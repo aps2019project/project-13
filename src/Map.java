@@ -17,7 +17,7 @@ public class Map {
     }
 
     public Item getItem(Cell cell) {
-        return cell.getCard().getItem();
+        return cell.getItem();
     }
 
     public void moveCard(Card card, Cell sourceCell, Cell destinationCell) {

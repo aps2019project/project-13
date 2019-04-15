@@ -61,11 +61,6 @@ public class Battle {
     public void showMinionsOfPlayer(int numberOfPlayer) {
 
     }
-
-    public Card getCardFromCardID(String cardID) {
-        return new Card();//  ;)
-    }
-
     public void showCardInfo(String cardID) {
 
     }
@@ -109,6 +104,77 @@ public class Battle {
     public void endTurn() {
 
     }
+
+    public void showCollectable() {
+
+    }
+
+    public void selectCollectable(String collectableID) {
+
+    }
+
+    public void showItemInfo(String itemID) {
+
+    }
+
+    public void showNextCard() {
+
+    }
+
+    public void enterGraveYard() {
+
+    }
+
+    public void showGraveYardCardInfo(String cardID) {
+
+    }
+
+    public void showGraveYardCards() {
+
+    }
+
+    public void helpMenu() {
+
+    }
+
+    public void endGame() {
+
+    }
+
+    public void exit() {
+
+    }
+
+    public void findValidCell(String kindOfAcction){
+
+    }
+    public void findValidCellToMove(){
+
+    }
+    public void findValidCellToAttack(){
+
+    }
+    public void findValidCellToInsert(){
+
+    }
+    public void findValidCellToItem(){
+
+    }
+    public void findValidCellToSpell(){
+
+    }
+    private boolean isVAlidMove(Cell destinationCell){
+        return true ;
+    }
+    private boolean isValidComboAttack(Cell targetCell , String... warriorsCardID){
+        return true ;
+    }
+    private boolean isValidSpeicalPower(int row , int column){
+        return true ;
+    }
+
+
+
 
 
 }

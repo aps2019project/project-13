@@ -4,6 +4,7 @@ public class Cell {
     private Card card;
     private int row;
     private int column;
+    private Item item ;
     private ArrayList<Buff> buffs = new ArrayList<>();
 
     Cell(int row, int column) {
@@ -35,4 +36,7 @@ public class Cell {
         buffs.add(buff);
     }
 
+    public Item getItem() {
+        return item;
+    }
 }
