@@ -16,5 +16,29 @@ public class Spell extends Card {
         this.activationCondition = activationCondition;
     }
 
+    public ArrayList<Spell> getAllSpells() {
+        return allSpells;
+    }
+
+    public void addToAddSpells(Spell spell) {
+        allSpells.add(spell);
+    }
+
+    public TargetSocietyKind getTargetSocietyKind() {
+        return targetSocietyKind;
+    }
+
+    public SpellName getSpellName() {
+        return spellName;
+    }
+
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
+    }
+
+    public ActivationCondition getActivationCondition() {
+        return activationCondition;
+    }
+
 
 }

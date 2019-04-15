@@ -1,5 +1,7 @@
-public class HeroName {
+public enum HeroName {
 
+    DIVE_SEFID, SIMORGH, EJDEHA ,RAKSH , ZAHHAK,KAVEH ,ARASH ,AFSANEH,
+    ESFANDIAR ,ROSTAM
 
 
 }
