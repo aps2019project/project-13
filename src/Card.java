@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Card {
 
     private static ArrayList<Card> allCards = new ArrayList<Card>();
-    private int cardId;
+    private String cardId;
     private int manaCost;
     private int darikCost;
     private Cell currentCell;
@@ -12,7 +12,7 @@ public class Card {
     private String cardDescription;
     private boolean isAbleToMove;
 
-    public Card(int cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
+    public Card(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
         this.cardId = cardId;
         this.manaCost = manaCost;
         this.darikCost = darikCost;
@@ -25,7 +25,7 @@ public class Card {
         return allCards;
     }
 
-    public int getCardId() {
+    public String getCardId() {
         return cardId;
     }
 
@@ -65,14 +65,13 @@ public class Card {
         allCards.add(card);
     }
 
-    public static Card getCard(int cardId) {
+    public static Card getCard(String cardId) {
         for (int i = 0; i < allCards.size(); i++) {
-            if (allCards.get(i).getCardId() == cardId)
+            if (allCards.get(i).getCardId().equals(cardId))
                 return allCards.get(i);
         }
         return null;
     }
-
 
 
 }
