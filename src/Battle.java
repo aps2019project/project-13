@@ -61,6 +61,7 @@ public class Battle {
     public void showMinionsOfPlayer(int numberOfPlayer) {
 
     }
+
     public void showCardInfo(String cardID) {
 
     }
@@ -145,36 +146,80 @@ public class Battle {
 
     }
 
-    public void findValidCell(String kindOfAcction){
+    public void findValidCell(String kindOfAcction) {
 
     }
-    public void findValidCellToMove(){
+
+    public void findValidCellToMove() {
 
     }
-    public void findValidCellToAttack(){
+
+    public void findValidCellToAttack() {
 
     }
-    public void findValidCellToInsert(){
+
+    public void findValidCellToInsert() {
 
     }
-    public void findValidCellToItem(){
+
+    public void findValidCellToItem() {
 
     }
-    public void findValidCellToSpell(){
+
+    public void findValidCellToSpell() {
 
     }
-    private boolean isVAlidMove(Cell destinationCell){
-        return true ;
-    }
-    private boolean isValidComboAttack(Cell targetCell , String... warriorsCardID){
-        return true ;
-    }
-    private boolean isValidSpeicalPower(int row , int column){
-        return true ;
+
+    private boolean isVAlidMove(Cell destinationCell) {
+        return true;
     }
 
+    private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {
+        return true;
+    }
 
+    private boolean isValidAttack(Cell targetCell, String warriorsCardID) {
+        return true;
+    }
+    private boolean isValidSpeicalPower(int row, int column) {
+        return true;
+    }
 
+    public void setHandOfFirstPlayer(){
 
+    }
+    public void setHandOfSecondPlayer(){
 
+    }
+
+    public void stratGame(){
+
+    }
+
+    public Card getFirstPlayerNextCard() {
+        return firstPlayerNextCard;
+    }
+
+    public Card getSecondPlayerNextCard() {
+        return secondPlayerNextCard;
+    }
+
+    public ArrayList<Item> getFirstPlayerItems() {
+        return firstPlayerItems;
+    }
+
+    public ArrayList<Item> getSecondPlayerItems() {
+        return secondPlayerItems;
+    }
+
+    public void addFirstPlayerItems(Item firstPlayerItems) {
+        this.firstPlayerItems.add(firstPlayerItems);
+    }
+
+    public void addSecondPlayerItems(Item secondPlayerItems) {
+        this.secondPlayerItems.add(secondPlayerItems);
+    }
+    public int[] getSixRandomNumber(){
+        return new int[6] ;
+    }
 }
