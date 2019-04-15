@@ -49,7 +49,7 @@ public class Card {
         return cardKind;
     }
 
-    public boolean setAbleToMove(boolean flag) {
+    public void setAbleToMove(boolean flag) {
         this.isAbleToMove = flag;
     }
 
