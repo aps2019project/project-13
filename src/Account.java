@@ -14,7 +14,7 @@ public class Account {
         setUsername(username);
         setPassword(password);
         setDecks(new ArrayList<>());
-        setCardCollection(new CardCollection());
+        setCardCollection(new CardCollection(this));
         setBattleHistory(new ArrayList<>());
         accounts.add(this);
     }

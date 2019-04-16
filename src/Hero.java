@@ -12,7 +12,7 @@ public class Hero extends Card {
     private int attackRange;
     private AttackKind attackKind;
 
-    public Hero(int cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, HeroName heroName) {
+    public Hero(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, HeroName heroName) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
         this.heroName = heroName;
         addHero(this);
