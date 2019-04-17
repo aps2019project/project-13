@@ -61,7 +61,8 @@ public class CardCollection {
 
     public boolean validAddItem() {
 
-        return false;
+        return items.size() <= 3;
+
     }
 
 }

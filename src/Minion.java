@@ -12,7 +12,7 @@ public class Minion extends Card {
     private int attackRange;
     private AttackKind attackKind;
 
-    public Minion(int cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName) {
+    public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
         this.minionName = minionName;
         addMinion(this);
