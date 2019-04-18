@@ -1,3 +1,3 @@
 public enum TargetSocietyKind {
-    CELL, FRIENDLY_CARDS, ENEMY_CARDS
+    CELL, FRIENDLY_CARDS, ENEMY_CARDS    
 }
