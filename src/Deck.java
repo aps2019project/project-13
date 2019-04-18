@@ -9,6 +9,100 @@ public class Deck {
     private Account account;
     private String deckName;
 
+    Deck(String deckName, Account account)
+    {
+        setDeckName(deckName);
+        setAccount(account);
+        setCards(new ArrayList<>());
+        setMinions(new ArrayList<>());
+        decks.add(this);
+    }
+    public static void deleteDeck(Deck deck)
+    {
+        if (deck!=null)
+        {
+            decks.remove(deck);
+        }
+    }
+    public static void createDeck (String deckName , Account account)
+    {
+        new Deck(deckName,account);
+    }
+    public void deleteItem()
+    {
+        setItem(null);
+    }
+    public static boolean validateDeck(Deck deck)
+    {
+        if (deck!=null && deck.getHero()!=null && deck.getCards().size()==20)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void addCard(Card card)
+    {
+        if (card!=null)
+        {
+            getCards().add(card);
+        }
+    }
+    public void addHero(Hero hero)
+    {
+        if (hero!=null) {
+            if (getHero() != null) {
+                getCards().remove(getHero());
+                setHero(hero);
+                getCards().add(hero);
+            }
+            else
+            {
+                setHero(hero);
+                getCards().add(hero);
+            }
+        }
+    }
+    public void addMinion(Minion minion)
+    {
+        if (minion!=null)
+        {
+            getMinions().add(minion);
+            getCards().add(minion);
+        }
+    }
+
+    public static void removeCardFromDeck(String cardId , String deckName)
+    {
+        Deck deck = findDeck(deckName);
+        if (deck!=null)
+        {
+            deck.removeCard(cardId);
+        }
+    }
+
+    public void removeCard(String cardId)
+    {
+        for (int i=0;i<getCards().size();i++)
+        {
+            if (getCards().get(i)!=null && getCards().get(i).getCardId().equals(cardId))
+            {
+                getCards().remove(getCards().get(i));
+            }
+        }
+    }
+
+    public static Deck findDeck(String deckName)
+    {
+        for(int i =0;i<decks.size();i++)
+        {
+            if (decks.get(i)!=null && decks.get(i).getDeckName().equals(deckName))
+            {
+                return decks.get(i);
+            }
+        }
+        return null;
+    }
+
 
     public static ArrayList<Deck> getDecks() {
         return decks;

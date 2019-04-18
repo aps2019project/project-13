@@ -67,7 +67,7 @@ public class Card {
 
     public static Card getCard(String cardId) {
         for (int i = 0; i < allCards.size(); i++) {
-            if (allCards.get(i).getCardId().equals(cardId))
+            if (allCards.get(i)!=null &&allCards.get(i).getCardId().equals(cardId))
                 return allCards.get(i);
         }
         return null;
