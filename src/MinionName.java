@@ -23,10 +23,10 @@ public enum MinionName {
     JADOOGAR(5, 4, 4, AttackKind.RANGED), JADOOGAR_AZAM(6, 6, 6, AttackKind.RANGED),
     JEN(10, 4, 5, AttackKind.RANGED);
 
-    int healthPoint;
-    int actionPower;
-    int manaCost;
-    AttackKind attackKind;
+    private int healthPoint;
+    private int actionPower;
+    private int manaCost;
+    private AttackKind attackKind;
 
     private MinionName() {
 
@@ -37,6 +37,23 @@ public enum MinionName {
         this.actionPower = actionPower;
         this.manaCost = manaCost;
         this.attackKind = attackKind;
+    }
+
+    public int getHealthPoint() {
+        return healthPoint;
+    }
+
+    public int getActionPower() {
+        return actionPower;
+    }
+
+
+    public int getManaCost() {
+        return manaCost;
+    }
+
+    public AttackKind getAttackKind() {
+        return attackKind;
     }
 
 

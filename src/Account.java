@@ -125,4 +125,5 @@ public class Account {
     public void setDarick(int darick) {
         this.darick = darick;
     }
+
 }

@@ -1,2 +1,4 @@
-public class ActivationCondition {
+public enum ActivationCondition {
+    PASSIVE, RESPAWN, DEATH, ATTACK, DEFEND;
+
 }
