@@ -23,6 +23,10 @@ public class Account {
     {
         setDarick(getDarick()+number);
     }
+    public void decreaseDarick(int number)
+    {
+        setDarick(getDarick()-number);
+    }
 
     public boolean validateLogin(String username, String password) {
         Account account = findAccount(username);

@@ -29,8 +29,10 @@ public class Shop {
         Item item = searchAndGetItem(name);
         if (card != null && card.getDarikCost() <= account.getDarick()) {
             account.getCardCollection().addCard(card);
+            account.decreaseDarick(card.getDarikCost());
         } else if (item != null && item.getDarickCost() <= account.getDarick()) {
             account.getCardCollection().addItem(item);
+            account.decreaseDarick(item.getDarickCost());
         }
 
     }

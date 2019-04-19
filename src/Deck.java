@@ -82,13 +82,12 @@ public class Deck {
 
     public void removeCard(String cardId)
     {
-        for (int i=0;i<getCards().size();i++)
-        {
-            if (getCards().get(i)!=null && getCards().get(i).getCardId().equals(cardId))
-            {
-                getCards().remove(getCards().get(i));
-            }
-        }
+       Card card= Card.findCardInArrayList(cardId,this.getCards());
+       if (card!=null)
+       {
+           getCards().remove(card);
+       }
+
     }
 
     public static Deck findDeck(String deckName)
