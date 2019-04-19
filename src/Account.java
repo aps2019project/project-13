@@ -19,6 +19,11 @@ public class Account {
         accounts.add(this);
     }
 
+    public void increaseDarick(int number)
+    {
+        setDarick(getDarick()+number);
+    }
+
     public boolean validateLogin(String username, String password) {
         Account account = findAccount(username);
         if (account == null) {

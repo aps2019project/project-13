@@ -25,24 +25,36 @@ public class Shop {
     }
 
     public void buy(String name, Account account) {
+        Card card = searchAndGetCard(name);
+        Item item = searchAndGetItem(name);
+        if (card != null && card.getDarikCost() <= account.getDarick()) {
+            account.getCardCollection().addCard(card);
+        } else if (item != null && item.getDarickCost() <= account.getDarick()) {
+            account.getCardCollection().addItem(item);
+        }
 
     }
 
     public void sell(String cardId, Account account) {
-
+        Card card = account.getCardCollection().findCard(cardId);
+        if (card!=null)
+        {
+            account.increaseDarick(card.getDarikCost());
+            account.getCardCollection().removeCard(card);
+        }
     }
 
     public void help() {
 
     }
 
-    public Card searchAndGetCard(String name ){
-
-        return new Card(""  , 1 , 1 ,CardKind.HERO , "");
+    public Card searchAndGetCard(String name) {
+        return Card.findCardInArrayList(name, getCards());
+        //return new Card(""  , 1 , 1 ,CardKind.HERO , "");
     }
 
-    public Item searchAndGetItem(String name ){
-        return new Item();
+    public Item searchAndGetItem(String name) {
+        return Item.findItemInArrayList(name, getItems());
     }
 
     public ArrayList<Card> getCards() {

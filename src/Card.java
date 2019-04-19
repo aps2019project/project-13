@@ -21,6 +21,17 @@ public class Card {
         addCard(this);
     }
 
+    public static Card findCardInArrayList(String cardId, ArrayList<Card> cards) {
+        if (cards != null) {
+            for (int i = 0; i < cards.size(); i++)
+            {
+                if (cards.get(i)!=null && cards.get(i).getCardId().equals(cardId))
+                {return cards.get(i);}
+            }
+        }
+        return null;
+    }
+
     public static ArrayList<Card> getAllCards() {
         return allCards;
     }
@@ -66,10 +77,7 @@ public class Card {
     }
 
     public static Card getCard(String cardId) {
-        for (int i = 0; i < allCards.size(); i++) {
-            if (allCards.get(i)!=null &&allCards.get(i).getCardId().equals(cardId))
-                return allCards.get(i);
-        }
+        //TODO WHAT IS THIS METHOD?!
         return null;
     }
 
