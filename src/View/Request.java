@@ -2,6 +2,7 @@ package View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 
 public class Request {
     private static final Request request = new Request();
@@ -40,27 +41,25 @@ public class Request {
             case COLLECTION:
                 commandOfCollection(command);
                 break;
+            case CARD:
+                commandOfCard(command);
+                break;
+            case GRAVEYARD:
+                commandOfGraveyard(command);
+                break;
+            case COLLECTABLE:
+                commandOfCollectable(command);
+                break;
 
         }
     }
 
     private void commandOfShop(String command) {
-        if (command.equals("exit")) {
-
-        } else if (command.equals("show")) {
-
-        } else if (command.equals("show collection")) {
-
-        } else if (command.equals("help")) {
-
-        } else if (command.matches("search \\s+")) {
-
-        } else if (command.matches("search collection \\s+")) {
-
-        } else if (command.matches("buy \\s+")) {
-
-        } else if (command.matches("sell \\s+")) {
-
+        for (int i = 0; i < Patterns.shopPatterns.length; i++) {
+            Matcher matcher = Patterns.shopPatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
         }
     }
 
@@ -73,104 +72,66 @@ public class Request {
             } else if (flagGraveYard) {
                 flagGraveYard = false;
             }
-        } else if (command.equals("Game info")) {
+        }
+        for (int i = 0; i < Patterns.battlePatterns.length; i++) {
+            Matcher matcher = Patterns.battlePatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
+        }
+    }
 
-        } else if (command.equals("Show my minions")) {
+    private void commandOfCollectable(String command) {
+        for (int i = 0; i < Patterns.collectionPatterns.length; i++) {
+            Matcher matcher = Patterns.collectionPatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
+        }
+    }
 
-        } else if (command.equals("help")) {
+    private void commandOfCard(String command) {
+        for (int i = 0; i < Patterns.cardPatterns.length; i++) {
+            Matcher matcher = Patterns.cardPatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
+        }
+    }
 
-        } else if (command.equals("Show opponent minions")) {
-
-        } else if (command.matches("Show card info \\s+")) {
-
-        } else if (command.matches("select \\s+") && !flagCollectable) {
-
-        } else if (command.matches("move to (\\d+, \\d+)")) {
-
-        } else if (command.matches("Attack \\s+")) {
-
-        } else if (command.matches("Attack combo \\s+")) {
-
-        } else if (command.matches("Use special power (\\d+, \\d+)")) {
-
-        } else if (command.matches("Insert \\s+ in (\\d+, \\d+)")) {
-
-        } else if (command.equals("Show hand")) {
-
-        } else if (command.equals("End turn")) {
-
-        } else if (command.equals("Show collectables")) {
-            flagCollectable = true;
-        } else if (command.matches("select \\s+") && flagCollectable) {
-
-        } else if (command.equals("Show info")&& flagCollectable) {
-
-        } else if (command.matches("Use (\\d+, \\d+)")&& flagCollectable) {
-
-        } else if (command.equals("Show Next Card")) {
-
-        } else if (command.equals("Enter graveyard")) {
-            flagGraveYard = true;
-        } else if (command.matches("Show info \\s+")&& flagGraveYard) {
-
-        } else if (command.equals("Show cards") && flagGraveYard) {
-
-        } else if (command.equals("End Game")) {
-
-        } else if (command.equals("Show menu")) {
-
+    private void commandOfGraveyard(String command) {
+        for (int i = 0; i < Patterns.graveyardPatters.length; i++) {
+            Matcher matcher = Patterns.graveyardPatters[i].matcher(command);
+            {
+                //TODO do something
+            }
         }
     }
 
     private void commandOfAccount(String command) {
-        if (command.equals("help")) {
-
-        } else if (command.equals("logout")) {
-
-        } else if (command.equals("show leaderboard")) {
-
-        } else if (command.equals("save")) {
-
-        } else if (command.matches("login \\s+")) {
-
-        } else if (command.matches("create account \\s+")) {
-
+        for (int i = 0; i < Patterns.accountPatterns.length; i++) {
+            Matcher matcher = Patterns.accountPatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
         }
     }
 
     private void commandOfMainMenu(String command) {
-        if (command.matches("Enter \\s+")) {
-
+        for (int i = 0; i < Patterns.mainMenuPatterns.length; i++) {
+            Matcher matcher = Patterns.mainMenuPatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
         }
     }
 
     private void commandOfCollection(String command) {
-        if (command.equals("exit")) {
-
-        } else if (command.equals("show")) {
-
-        } else if (command.equals("save")) {
-
-        } else if (command.equals("show all deck")) {
-
-        } else if (command.equals("help")) {
-
-        } else if (command.matches("search \\s+")) {
-
-        } else if (command.matches("create deck \\s+")) {
-
-        } else if (command.matches("delete deck \\s+")) {
-
-        } else if (command.matches("add \\s+ to deck \\s+")) {
-
-        } else if (command.matches("remove \\s+ from deck \\s+")) {
-
-        } else if (command.matches("validate deck \\s+")) {
-
-        } else if (command.matches("select deck \\s+")) {
-
-        } else if (command.matches("show deck \\s+")) {
-
+        for (int i = 0; i < Patterns.collectionPatterns.length; i++) {
+            Matcher matcher = Patterns.collectionPatterns[i].matcher(command);
+            {
+                //TODO do something
+            }
         }
     }
 }
