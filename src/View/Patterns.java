@@ -1,9 +1,9 @@
-package Model;
+package View;
 
 import java.util.regex.Pattern;
 
 public class Patterns {
-    //This class maybe will be merged in input system. But as of now, it is just a Place for Model.Patterns;
+    //This class maybe will be merged in input system. But as of now, it is just a Place for View.Patterns;
     public static Pattern[] accountPatterns = new Pattern[]{
             Pattern.compile("^back\\s+$"),
             Pattern.compile("^exit\\s*$"),
