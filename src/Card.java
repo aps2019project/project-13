@@ -77,8 +77,7 @@ public class Card {
     }
 
     public static Card getCard(String cardId) {
-        //TODO WHAT IS THIS METHOD?!
-        return null;
+        return findCardInArrayList(cardId,getAllCards());
     }
 
 
