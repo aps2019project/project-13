@@ -1,3 +1,5 @@
+package Model;
+
 import java.lang.annotation.Target;
 
 public enum SpellName {

@@ -1,7 +1,9 @@
+package Model;
+
 import java.util.regex.Pattern;
 
 public class Patterns {
-    //This class maybe will be merged in input system. But as of now, it is just a Place for Patterns;
+    //This class maybe will be merged in input system. But as of now, it is just a Place for Model.Patterns;
     public static Pattern[] accountPatterns = new Pattern[]{
             Pattern.compile("^back\\s+$"),
             Pattern.compile("^exit\\s*$"),
@@ -58,7 +60,7 @@ public class Patterns {
             Pattern.compile("^Show opponent minions\\s*$"),
             Pattern.compile("^Show card info (\\S+)\\s*$"),
             Pattern.compile("^Select (\\S+)\\s*$"),
-            //Card move and attack patterns are in another array
+            //Model.Card move and attack patterns are in another array
             Pattern.compile("^Insert \\s*(\\S+) \\s*in\\s* \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$"),
             Pattern.compile("^End turn\\s*$"),
             Pattern.compile("^Show collectables\\s*$"),

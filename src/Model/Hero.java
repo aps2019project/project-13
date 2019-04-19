@@ -1,22 +1,25 @@
+package Model;
+
 import java.util.ArrayList;
 
-public class Minion extends Card {
+public class Hero extends Card {
 
-    private static ArrayList<Minion> allMinions = new ArrayList<>();
-    private boolean validCounterAttack;
-    private boolean hasSpecialPower;
+    private static ArrayList<Hero> allHeroes = new ArrayList<>();
     private Spell specialPower;
+    private int spceialPowerCooldownTime;
+    private HeroName heroName;
+    private boolean validCounterAttack;
     private int healthPoint;
     private int actionPower;
-    private MinionName minionName;
     private int attackRange;
     private AttackKind attackKind;
 
-    public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName) {
+    public Hero(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, HeroName heroName) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
-        this.minionName = minionName;
-        addMinion(this);
+        this.heroName = heroName;
+        addHero(this);
     }
+
 
     public void setValidCounterAttack(boolean validCounterAttack) {
         this.validCounterAttack = validCounterAttack;
@@ -24,14 +27,6 @@ public class Minion extends Card {
 
     public boolean validCounterAttack() {
         return validCounterAttack;
-    }
-
-    public void setHasSpecialPower(boolean hasSpecialPower) {
-        this.hasSpecialPower = hasSpecialPower;
-    }
-
-    public boolean hasSpecialPower() {
-        return hasSpecialPower;
     }
 
     private void setSpecialPower(Spell specialPower) {
@@ -66,22 +61,21 @@ public class Minion extends Card {
         return attackRange;
     }
 
-    public MinionName getMinionName() {
-        return minionName;
+    public HeroName getHeroName() {
+        return heroName;
     }
 
     public AttackKind getAttackKind() {
         return attackKind;
     }
 
-    public static ArrayList<Minion> getAllMinions() {
-        return allMinions;
+    public static ArrayList<Hero> getAllHeroes() {
+        return allHeroes;
     }
 
-    private void addMinion(Minion minion) {
-        allMinions.add(minion);
+    private void addHero(Hero hero) {
+        allHeroes.add(hero);
     }
-
 
 
 }

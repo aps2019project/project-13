@@ -1,3 +1,9 @@
+package Model;
+
+import Model.Account;
+import Model.Card;
+import Model.CardKind;
+
 import java.util.ArrayList;
 
 public class CardCollection {

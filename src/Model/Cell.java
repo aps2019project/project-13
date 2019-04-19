@@ -1,3 +1,8 @@
+package Model;
+
+import Model.Buff;
+import Model.Card;
+
 import java.util.ArrayList;
 
 public class Cell {

@@ -1,3 +1,10 @@
+package Model;
+
+import Model.Battle;
+import Model.Card;
+import Model.Cell;
+import Model.Item;
+
 import java.util.ArrayList;
 
 public class Map {
