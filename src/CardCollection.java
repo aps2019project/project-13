@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class CardCollection {
 
-    ArrayList<Card> cards;
-    ArrayList<Item> items;
-    Account account;
+    private ArrayList<Card> cards;
+    private ArrayList<Item> items;
+    private Account account;
 
     public CardCollection(Account account) {
         setAccount(account);

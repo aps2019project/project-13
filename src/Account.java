@@ -29,11 +29,10 @@ public class Account {
         return true;
 
     }
-    public void selectDeckAsMainDeck(String deckName)
-    {
+
+    public void selectDeckAsMainDeck(String deckName) {
         Deck deck = findDeck(deckName);
-        if (deck !=null)
-        {
+        if (deck != null) {
             setMainDeck(deck);
         }
     }
@@ -54,16 +53,14 @@ public class Account {
         }
         return null;
     }
-    public Deck findDeck(String deckName)
-    {
-        for (Deck deck : decks)
-        {
-            if (deck!=null && deck.getDeckName().equals(deckName))
-            {
+
+    public Deck findDeck(String deckName) {
+        for (Deck deck : decks) {
+            if (deck != null && deck.getDeckName().equals(deckName)) {
                 return deck;
             }
         }
-        return  null;
+        return null;
     }
 
     public static ArrayList<Account> getAccounts() {

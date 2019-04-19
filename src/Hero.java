@@ -4,7 +4,7 @@ public class Hero extends Card {
 
     private static ArrayList<Hero> allHeroes = new ArrayList<>();
     private Spell specialPower;
-    private int spceialPowerCooldownTime;
+    private int specialPowerCooldownTime;
     private HeroName heroName;
     private boolean validCounterAttack;
     private int healthPoint;
@@ -12,9 +12,17 @@ public class Hero extends Card {
     private int attackRange;
     private AttackKind attackKind;
 
-    public Hero(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, HeroName heroName) {
+    public Hero(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
+                HeroName heroName, AttackKind attackKind, int healthPoint, int actionPower, int attackRange,
+                Spell specialPower, int specialPowerCooldownTime) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
         this.heroName = heroName;
+        this.specialPower = specialPower;
+        this.attackKind = attackKind;
+        this.healthPoint = healthPoint;
+        this.actionPower = actionPower;
+        this.attackRange = attackRange;
+        this.specialPowerCooldownTime = specialPowerCooldownTime;
         addHero(this);
     }
 
@@ -27,32 +35,17 @@ public class Hero extends Card {
         return validCounterAttack;
     }
 
-    private void setSpecialPower(Spell specialPower) {
-        this.specialPower = specialPower;
-    }
-
     public Spell getSpecialPower() {
         return specialPower;
-    }
-
-    private void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
     }
 
     public int getHealthPoint() {
         return healthPoint;
     }
 
-    private void setActionPower(int actionPower) {
-        this.actionPower = actionPower;
-    }
 
     public int getActionPower() {
         return actionPower;
-    }
-
-    public void setAttackRange(int attackRange) {
-        this.attackRange = attackRange;
     }
 
     public int getAttackRange() {
@@ -76,4 +69,7 @@ public class Hero extends Card {
     }
 
 
+    public int getSpecialPowerCooldownTime() {
+        return specialPowerCooldownTime;
+    }
 }

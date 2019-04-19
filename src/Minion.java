@@ -12,9 +12,15 @@ public class Minion extends Card {
     private int attackRange;
     private AttackKind attackKind;
 
-    public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName) {
+    public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName,
+                  AttackKind attackKind, int healthPoint, int actionPower, int attackRange, Spell specialPower) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
         this.minionName = minionName;
+        this.attackKind = attackKind;
+        this.healthPoint = healthPoint;
+        this.actionPower = actionPower;
+        this.attackRange = attackRange;
+        this.specialPower = specialPower;
         addMinion(this);
     }
 
@@ -34,33 +40,18 @@ public class Minion extends Card {
         return hasSpecialPower;
     }
 
-    private void setSpecialPower(Spell specialPower) {
-        this.specialPower = specialPower;
-    }
-
     public Spell getSpecialPower() {
         return specialPower;
-    }
-
-    private void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
     }
 
     public int getHealthPoint() {
         return healthPoint;
     }
 
-    private void setActionPower(int actionPower) {
-        this.actionPower = actionPower;
-    }
-
     public int getActionPower() {
         return actionPower;
     }
 
-    public void setAttackRange(int attackRange) {
-        this.attackRange = attackRange;
-    }
 
     public int getAttackRange() {
         return attackRange;
@@ -81,7 +72,6 @@ public class Minion extends Card {
     private void addMinion(Minion minion) {
         allMinions.add(minion);
     }
-
 
 
 }
