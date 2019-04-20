@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public enum ShopCommand {
     BACK , EXIT , SHOW_MENU , SHOW_COLLECTION , SEARCH , SEARCH_COLLECTION , BUY , SELL ,SHOW ,HELP;
-    ArrayList<String> data = new ArrayList<>();
+    String data  ;
 
-    public void setData(ArrayList<String> data) {
+    public ShopCommand setData(String data) {
         this.data = data;
+        return this ;
     }
 
-    public ArrayList<String> getData() {
+    public String getData() {
         return data;
     }
 

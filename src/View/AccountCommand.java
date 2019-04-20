@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public enum AccountCommand {
         BACK , EXIT , SHOW_MENU , CREATE_ACCOUNT , LOGIN , SHOW_LEADERBOARD , SAVE , LOGOUT , HELP;
-    ArrayList<String> data = new ArrayList<>();
+    String data ;
 
-    public void setData(ArrayList<String> data) {
+    public AccountCommand setData(String data) {
         this.data = data;
+        return this ;
     }
 
-    public ArrayList<String> getData() {
+    public String getData() {
         return data;
     }
 }

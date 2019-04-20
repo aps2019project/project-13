@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public enum GraveYardCommand {
     BACK , EXIT , SHOW_INFO , SHOW_CARD ;
-    ArrayList<String> data = new java.util.ArrayList<>();
+    String data ;
 
-    public void setData(ArrayList<String> data) {
+    public GraveYardCommand setData(String data) {
         this.data = data;
+        return this ;
     }
 
-    public ArrayList<String> getData() {
+    public String getData() {
         return data;
     }
 }
