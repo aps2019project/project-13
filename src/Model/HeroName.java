@@ -27,7 +27,7 @@ public enum HeroName {
 
     }
 
-    private HeroName(int price, int powerAction, int healthPoint, AttackKind attackKind, int specialPowerCooldown, Spell specialPower) {
+    HeroName(int price, int powerAction, int healthPoint, AttackKind attackKind, int specialPowerCooldown, Spell specialPower) {
         this.price = price;
         this.powerAction = powerAction;
         this.healthPoint = healthPoint;

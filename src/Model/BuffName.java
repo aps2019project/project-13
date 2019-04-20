@@ -1,3 +1,5 @@
+package Model;
+
 public enum BuffName {
 
     HOLY_BUFF(true), POWER_BUFF(true), POISON_BUFF(false),

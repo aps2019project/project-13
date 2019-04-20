@@ -33,9 +33,11 @@ public enum MinionName {
 
     private MinionName() {
 
+
+
     }
 
-    private MinionName(int healthPoint, int actionPower, int manaCost, AttackKind attackKind) {
+    MinionName(int healthPoint, int actionPower, int manaCost, AttackKind attackKind) {
         this.healthPoint = healthPoint;
         this.actionPower = actionPower;
         this.manaCost = manaCost;

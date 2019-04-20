@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Card {
+public class Card implements Serializable {
 
     private static ArrayList<Card> allCards = new ArrayList<Card>();
     private String cardId;
@@ -25,10 +26,10 @@ public class Card {
 
     public static Card findCardInArrayList(String cardId, ArrayList<Card> cards) {
         if (cards != null) {
-            for (int i = 0; i < cards.size(); i++)
-            {
-                if (cards.get(i)!=null && cards.get(i).getCardId().equals(cardId))
-                {return cards.get(i);}
+            for (int i = 0; i < cards.size(); i++) {
+                if (cards.get(i) != null && cards.get(i).getCardId().equals(cardId)) {
+                    return cards.get(i);
+                }
             }
         }
         return null;
@@ -79,7 +80,7 @@ public class Card {
     }
 
     public static Card getCard(String cardId) {
-        return findCardInArrayList(cardId,getAllCards());
+        return findCardInArrayList(cardId, getAllCards());
     }
 
 
