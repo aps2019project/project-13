@@ -1,3 +1,7 @@
+package Model;
+
+import Model.AttackKind;
+
 public enum HeroName {
 
     DIVE_SEFID(8000, 4, 50, AttackKind.MELEE, 2, null),

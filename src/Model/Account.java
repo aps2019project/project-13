@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Account {
@@ -17,6 +19,15 @@ public class Account {
         setCardCollection(new CardCollection(this));
         setBattleHistory(new ArrayList<>());
         accounts.add(this);
+    }
+
+    public void increaseDarick(int number)
+    {
+        setDarick(getDarick()+number);
+    }
+    public void decreaseDarick(int number)
+    {
+        setDarick(getDarick()-number);
     }
 
     public boolean validateLogin(String username, String password) {

@@ -1,3 +1,6 @@
+package Model;
+
+import Model.AttackKind;
 
 public enum MinionName {
 

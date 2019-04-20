@@ -1,3 +1,9 @@
+package Model;
+
+import Model.Account;
+import Model.Card;
+import Model.CardKind;
+
 import java.util.ArrayList;
 
 public class CardCollection {
@@ -14,8 +20,23 @@ public class CardCollection {
         return cards;
     }
 
+    public void removeCard(Card card) {
+        if (card != null) {
+            getCards().remove(card);
+        }
+    }
+    public void removeItem(Item item)
+    {
+        if(item!=null)
+        {
+            getItems().remove(item);
+        }
+    }
+
     public void addCard(Card card) {
-        cards.add(card);
+        if (card != null) {
+            getCards().add(card);
+        }
     }
 
     public ArrayList<Item> getItems() {
@@ -23,7 +44,16 @@ public class CardCollection {
     }
 
     public void addItem(Item item) {
-        items.add(item);
+        if (item != null) {
+            getItems().add(item);
+        }
+    }
+    public Card findCard(String cardId) {
+        return Card.findCardInArrayList(cardId, getCards());
+    }
+    public Item findItem(String itemId)
+    {
+        return Item.findItemInArrayList(itemId,getItems());
     }
 
     public boolean hasCard(String cardName) {

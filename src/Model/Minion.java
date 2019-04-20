@@ -1,31 +1,30 @@
+package Model;
+
 import java.util.ArrayList;
 
-public class Hero extends Card {
+public class Minion extends Card {
 
-    private static ArrayList<Hero> allHeroes = new ArrayList<>();
-    private Spell specialPower;
-    private int specialPowerCooldownTime;
-    private HeroName heroName;
+    private static ArrayList<Minion> allMinions = new ArrayList<>();
     private boolean validCounterAttack;
+    private boolean hasSpecialPower;
+    private Spell specialPower;
     private int healthPoint;
     private int actionPower;
+    private MinionName minionName;
     private int attackRange;
     private AttackKind attackKind;
 
-    public Hero(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
-                HeroName heroName, AttackKind attackKind, int healthPoint, int actionPower, int attackRange,
-                Spell specialPower, int specialPowerCooldownTime) {
+    public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName,
+                  AttackKind attackKind, int healthPoint, int actionPower, int attackRange, Spell specialPower) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
-        this.heroName = heroName;
-        this.specialPower = specialPower;
+        this.minionName = minionName;
         this.attackKind = attackKind;
         this.healthPoint = healthPoint;
         this.actionPower = actionPower;
         this.attackRange = attackRange;
-        this.specialPowerCooldownTime = specialPowerCooldownTime;
-        addHero(this);
+        this.specialPower = specialPower;
+        addMinion(this);
     }
-
 
     public void setValidCounterAttack(boolean validCounterAttack) {
         this.validCounterAttack = validCounterAttack;
@@ -33,6 +32,14 @@ public class Hero extends Card {
 
     public boolean validCounterAttack() {
         return validCounterAttack;
+    }
+
+    public void setHasSpecialPower(boolean hasSpecialPower) {
+        this.hasSpecialPower = hasSpecialPower;
+    }
+
+    public boolean hasSpecialPower() {
+        return hasSpecialPower;
     }
 
     public Spell getSpecialPower() {
@@ -43,33 +50,30 @@ public class Hero extends Card {
         return healthPoint;
     }
 
-
     public int getActionPower() {
         return actionPower;
     }
+
 
     public int getAttackRange() {
         return attackRange;
     }
 
-    public HeroName getHeroName() {
-        return heroName;
+    public MinionName getMinionName() {
+        return minionName;
     }
 
     public AttackKind getAttackKind() {
         return attackKind;
     }
 
-    public static ArrayList<Hero> getAllHeroes() {
-        return allHeroes;
+    public static ArrayList<Minion> getAllMinions() {
+        return allMinions;
     }
 
-    private void addHero(Hero hero) {
-        allHeroes.add(hero);
+    private void addMinion(Minion minion) {
+        allMinions.add(minion);
     }
 
 
-    public int getSpecialPowerCooldownTime() {
-        return specialPowerCooldownTime;
-    }
 }
