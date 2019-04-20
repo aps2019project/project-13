@@ -2,9 +2,9 @@ package View;
 
 import java.util.ArrayList;
 
-public enum Collectablecommand {
-    SHOW;
-    ArrayList<String> data = new ArrayList<>();
+public enum GraveYardCommand {
+    BACK , EXIT , SHOW_INFO , SHOW_CARD ;
+    ArrayList<String> data = new java.util.ArrayList<>();
 
     public void setData(ArrayList<String> data) {
         this.data = data;

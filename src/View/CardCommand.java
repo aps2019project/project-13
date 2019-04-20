@@ -2,9 +2,9 @@ package View;
 
 import java.util.ArrayList;
 
-public enum Battlecommand {
-    GAME_INFo;
-    ArrayList<String> data = new ArrayList<>();
+public enum CardCommand {
+    BACK , EXIT , MOVE , ATTACK , USE_SPECIAL_POWER ;
+    ArrayList<String> data = new java.util.ArrayList<>();
 
     public void setData(ArrayList<String> data) {
         this.data = data;

@@ -8,8 +8,6 @@ public class Request {
     private static final Request request = new Request();
     private ArrayList<KindOfOrder> kindOfOrder = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
-    private boolean flagCollectable = false;
-    private boolean flagGraveYard = false;
 
     private Request() {
         kindOfOrder.add(KindOfOrder.ACCOUNT);
@@ -58,34 +56,32 @@ public class Request {
         for (int i = 0; i < Patterns.shopPatterns.length; i++) {
             Matcher matcher = Patterns.shopPatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfShop(matcher, i);
+                }
             }
         }
     }
 
     private void commandOfBattle(String command) {
 
-
-        if (command.equals("exit")) {
-            if (flagCollectable) {
-                flagCollectable = false;
-            } else if (flagGraveYard) {
-                flagGraveYard = false;
-            }
-        }
         for (int i = 0; i < Patterns.battlePatterns.length; i++) {
             Matcher matcher = Patterns.battlePatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfBattle(matcher, i);
+                }
             }
         }
     }
 
     private void commandOfCollectable(String command) {
-        for (int i = 0; i < Patterns.collectionPatterns.length; i++) {
-            Matcher matcher = Patterns.collectionPatterns[i].matcher(command);
+        for (int i = 0; i < Patterns.collectablePatterns.length; i++) {
+            Matcher matcher = Patterns.collectablePatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfCollectable(matcher, i);
+                }
             }
         }
     }
@@ -94,7 +90,9 @@ public class Request {
         for (int i = 0; i < Patterns.cardPatterns.length; i++) {
             Matcher matcher = Patterns.cardPatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfCard(matcher, i);
+                }
             }
         }
     }
@@ -103,7 +101,9 @@ public class Request {
         for (int i = 0; i < Patterns.graveyardPatters.length; i++) {
             Matcher matcher = Patterns.graveyardPatters[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfGraveyard(matcher, i);
+                }
             }
         }
     }
@@ -112,7 +112,9 @@ public class Request {
         for (int i = 0; i < Patterns.accountPatterns.length; i++) {
             Matcher matcher = Patterns.accountPatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfAccount(matcher, i);
+                }
             }
         }
     }
@@ -121,7 +123,9 @@ public class Request {
         for (int i = 0; i < Patterns.mainMenuPatterns.length; i++) {
             Matcher matcher = Patterns.mainMenuPatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfMainMenu(matcher, i);
+                }
             }
         }
     }
@@ -130,8 +134,43 @@ public class Request {
         for (int i = 0; i < Patterns.collectionPatterns.length; i++) {
             Matcher matcher = Patterns.collectionPatterns[i].matcher(command);
             {
-                //TODO do something
+                if (matcher.matches()) {
+                    setCommandOfCollection(matcher, i);
+                }
             }
         }
     }
+
+    private void setCommandOfShop(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfAccount(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfCollection(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfMainMenu(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfGraveyard(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfCard(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfCollectable(Matcher matcher, int i) {
+
+    }
+
+    private void setCommandOfBattle(Matcher matcher, int i) {
+
+    }
+
 }

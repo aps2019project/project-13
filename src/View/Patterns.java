@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class Patterns {
     //This class maybe will be merged in input system. But as of now, it is just a Place for View.Patterns;
     public static Pattern[] accountPatterns = new Pattern[]{
-            Pattern.compile("^back\\s+$"),
+            Pattern.compile("^back\\s*$"),
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^Show menu\\s*$"),
             Pattern.compile("^create account (\\S+)\\s*$"),
@@ -16,7 +16,7 @@ public class Patterns {
             Pattern.compile("^help\\s*$"),
     };
     public static Pattern[] mainMenuPatterns = new Pattern[]{
-            Pattern.compile("^back\\s+$"),
+            Pattern.compile("^back\\s*$"),
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^Show menu\\s*$"),
             Pattern.compile("^Enter Collection\\s*$"),
@@ -26,7 +26,7 @@ public class Patterns {
             Pattern.compile("^Enter Help\\s*$"),
     };
     public static Pattern[] collectionPatterns = new Pattern[]{
-            Pattern.compile("^back\\s+$"),
+            Pattern.compile("^back\\s*$"),
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^Show menu\\s*$"),
             Pattern.compile("^show\\s*$"),
@@ -66,6 +66,7 @@ public class Patterns {
             Pattern.compile("^Show collectables\\s*$"),
             //Collectable patterns are in another array
             Pattern.compile("^Show Next Card\\s*$"),
+            Pattern.compile("^Show hand\\s*$"),
             Pattern.compile("^Enter graveyard\\s*$"),
             //Graveyard pattern are in another array
             Pattern.compile("^Help\\s*$"),
@@ -73,23 +74,22 @@ public class Patterns {
 
     };
     public static Pattern[] cardPatterns = new Pattern[]{
-            Pattern.compile("^back\\s+$"),
+            Pattern.compile("^back\\s*$"),
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^Move to \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$"),
             Pattern.compile("^Attack (\\S+)\\s*$"),
             //TODO ATTACK COMBO REGEX
-            Pattern.compile("^Use special power \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$"),
-            Pattern.compile("^Show hand\\s*$")
+            Pattern.compile("^Use special power \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$")
 
     };
     public static Pattern[] collectablePatterns = new Pattern[]{
-            Pattern.compile("^back\\s+$"),
+            Pattern.compile("^back\\s*$"),
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^Show info\\s*$"),
             Pattern.compile("^Use \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$")
     };
     public static Pattern[] graveyardPatters = new Pattern[]{
-            Pattern.compile("^back\\s+$"),
+            Pattern.compile("^back\\s*$"),
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^Show info (\\S+)\\s*$"),
             Pattern.compile("^Show Cards\\s*$")
