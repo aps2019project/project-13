@@ -10,4 +10,7 @@ public class Show {
     public static Show getInstance() {
         return show;
     }
+    public void showHelp(KindOfOrder kindOfOrder){
+
+    }
 }

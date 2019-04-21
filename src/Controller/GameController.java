@@ -19,44 +19,52 @@ public class GameController {
         Request request = Request.getInstance();
         while (!isFinish) {
             request.getRequest();
-            commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size()-1));
+            commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size() - 1));
         }
     }
 
     private void commandManagement(Request request, KindOfOrder kindOfOrder) {
         switch (kindOfOrder) {
             case COLLECTION:
-                collectionCommandManagement(request.getCollectionCommand());
+                collectionCommandManagement(request, request.getCollectionCommand());
                 break;
             case MAIN_MENU:
-                mainMenuCommandManagement(request.getMainCommand());
+                mainMenuCommandManagement(request, request.getMainCommand());
                 break;
             case ACCOUNT:
-                accountCommandManagement(request.getAccountCommand());
+                accountCommandManagement(request, request.getAccountCommand());
                 break;
             case BATTLE:
-                battleCommandManagement(request.getBattleCommand());
+                battleCommandManagement(request, request.getBattleCommand());
                 break;
             case SHOP:
-                shopCommandManagement(request.getShopCommand());
+                shopCommandManagement(request, request.getShopCommand());
                 break;
             case CARD:
-                cardCommandManagement(request.getCardCommand());
+                cardCommandManagement(request, request.getCardCommand());
                 break;
             case GRAVEYARD:
-                graveYardCommandManagement(request.getGraveYardCommand());
+                graveYardCommandManagement(request, request.getGraveYardCommand());
                 break;
             case COLLECTABLE:
-                collectableCommandManagement(request.getCollectableCommand());
+                collectableCommandManagement(request, request.getCollectableCommand());
         }
     }
 
-    private void shopCommandManagement(ShopCommand shopCommand) {
+    private void shopCommandManagement(Request request, ShopCommand shopCommand) {
+        Shop shop = Shop.getInstance();
+        Show show = Show.getInstance();
         switch (shopCommand) {
             case BUY:
+                shop.buy(shopCommand.getData(), new Account("userName", "password"));
+                break;
             case EXIT:
+                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                break;
             case HELP:
+                show.showHelp(KindOfOrder.SHOP);
             case SELL:
+                shop.sell(shopCommand.getData(), new Account("userName", "password"));
             case SHOW:
             case SEARCH:
             case SHOW_MENU:
@@ -65,7 +73,7 @@ public class GameController {
         }
     }
 
-    private void mainMenuCommandManagement(MainCommand mainCommand) {
+    private void mainMenuCommandManagement(Request request, MainCommand mainCommand) {
         switch (mainCommand) {
             case SHOW_MENU:
                 //TODO bde b show
@@ -83,9 +91,11 @@ public class GameController {
         }
     }
 
-    private void accountCommandManagement(AccountCommand accountCommand) {
+    private void accountCommandManagement(Request request, AccountCommand accountCommand) {
         switch (accountCommand) {
             case EXIT:
+                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                break;
             case SHOW_MENU:
             case HELP:
             case SAVE:
@@ -96,7 +106,7 @@ public class GameController {
         }
     }
 
-    private void battleCommandManagement(BattleCommand battleCommand) {
+    private void battleCommandManagement(Request request, BattleCommand battleCommand) {
         switch (battleCommand) {
             case HELP:
             case INSERT:
@@ -114,12 +124,14 @@ public class GameController {
         }
     }
 
-    private void collectionCommandManagement(CollectionCommand collectionCommand) {
+    private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {
         switch (collectionCommand) {
             case HELP:
             case SAVE:
             case SHOW_MENU:
             case EXIT:
+                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                break;
             case SEARCH:
             case SHOW:
             case SHOW_DECK:
@@ -133,27 +145,33 @@ public class GameController {
         }
     }
 
-    private void cardCommandManagement(CardCommand cardCommand) {
+    private void cardCommandManagement(Request request, CardCommand cardCommand) {
         switch (cardCommand) {
             case EXIT:
+                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                break;
             case MOVE:
             case ATTACK:
             case USE_SPECIAL_POWER:
         }
     }
 
-    private void graveYardCommandManagement(GraveYardCommand graveYardCommand) {
+    private void graveYardCommandManagement(Request request, GraveYardCommand graveYardCommand) {
         switch (graveYardCommand) {
             case EXIT:
+                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                break;
             case SHOW_CARD:
             case SHOW_INFO:
         }
     }
 
-    private void collectableCommandManagement(CollectableCommand collectableCommand) {
+    private void collectableCommandManagement(Request request, CollectableCommand collectableCommand) {
         switch (collectableCommand) {
             case SHOW_INFO:
             case EXIT:
+                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                break;
             case USE:
         }
     }
