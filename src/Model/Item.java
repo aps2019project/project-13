@@ -6,12 +6,14 @@ public class Item {
     private String itemId;
     private String itemDescription;
     private ItemKind itemKind;
+    private ItemName itemName;
  //   private int darickCost;
 
-    public Item(String itemId, String itemDescription, ItemKind itemKind) {
+    public Item(String itemId, String itemDescription, ItemKind itemKind , ItemName itemName)  {
         this.itemId = itemId;
         this.itemDescription = itemDescription;
         this.itemKind=itemKind;
+        this.itemName = itemName;
 //        this.darickCost = darickCost;
     }
 

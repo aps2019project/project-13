@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class UsableItem extends Item {
     int DarickCost;
     Spell spell;
-    public UsableItem(String itemId, String itemDescription , int darickCost) {
-        super(itemId, itemDescription, ItemKind.USABLE );
+    public UsableItem(String itemId, String itemDescription ,ItemName itemName, int darickCost , Spell spell) {
+        super(itemId, itemDescription, ItemKind.USABLE, itemName );
         this.DarickCost=darickCost;
+        this.spell = spell;
     }
 
     public int getDarickCost() {
