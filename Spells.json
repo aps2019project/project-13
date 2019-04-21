@@ -1,0 +1,377 @@
+[
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "TOTAL_DISARM",
+    "buffs": [
+      {
+        "isPositive": true,
+        "buffName": "DISARM",
+        "effectDuration": 1000000
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "1",
+    "manaCost": 0,
+    "darikCost": 1000,
+    "cardKind": "SPELL",
+    "cardDescription": "Yek Nirooye Doshman Ta Akhare Bazi Disarm Mishavad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "CELL",
+    "spellName": "AREA_DISPEL",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "NEUTRALIZE_All_BUFFS",
+        "effectDuration": 1
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "2",
+    "manaCost": 2,
+    "darikCost": 1500,
+    "cardKind": "SPELL",
+    "cardDescription": "in cart buff haye mosbat harif va buff haye manfie khodi ra az bein mibarad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARDS",
+    "spellName": "EMPOWER",
+    "buffs": [
+      {
+        "isPositive": true,
+        "buffName": "POWER_BUFF",
+        "effectDuration": 1000000
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "3",
+    "manaCost": 1,
+    "darikCost": 250,
+    "cardKind": "SPELL",
+    "cardDescription": "2vahed be ghodrate zarbeye yek niroo ezafe mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "FIREBALL",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 1
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "4",
+    "manaCost": 1,
+    "darikCost": 400,
+    "cardKind": "SPELL",
+    "cardDescription": "4vahed be yek nirooye harif zarbe vared mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARDS",
+    "spellName": "GOD_STRENGTH",
+    "buffs": [
+      {
+        "isPositive": true,
+        "buffName": "POWER_BUFF",
+        "effectDuration": 100000
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "5",
+    "manaCost": 2,
+    "darikCost": 450,
+    "cardKind": "SPELL",
+    "cardDescription": "4 vahed be ghodrate hamleye hero ezafe mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "CELL",
+    "spellName": "HELLFIRE",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "FLAME_BUFF",
+        "effectDuration": 2
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "6",
+    "manaCost": 3,
+    "darikCost": 600,
+    "cardKind": "SPELL",
+    "cardDescription": "baraye 2 nobate dar khanehaye morede hadaf asare atashin doros mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "LIGHTING_BOLT",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 100000
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "7",
+    "manaCost": 2,
+    "darikCost": 1250,
+    "cardKind": "SPELL",
+    "cardDescription": "8 vahede be heroye harif zarbe mizanad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "CELL",
+    "spellName": "POISON_LAKE",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "FLAME_BUFF",
+        "effectDuration": 1
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "8",
+    "manaCost": 5,
+    "darikCost": 900,
+    "cardKind": "SPELL",
+    "cardDescription": "baraye 1 dast dar khanehaye morede nazar sam ijad mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARD",
+    "spellName": "MADNESS",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "POWER_BUFF",
+        "effectDuration": 3
+      },
+      {
+        "isPositive": false,
+        "buffName": "DISARM_BUFF",
+        "effectDuration": 3
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "9",
+    "manaCost": 0,
+    "darikCost": 650,
+    "cardKind": "SPELL",
+    "cardDescription": "baraye 3 nobat ghodrate zarbe yek niroo ra 4vahed afzayesh midahad amma disarm nemishavad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "ALL_DISARM",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "DISARM_BUFF",
+        "effectDuration": 1
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "10",
+    "manaCost": 9,
+    "darikCost": 2000,
+    "cardKind": "SPELL",
+    "cardDescription": "baraye yek nobate tamame niroohaye harif disarm mishavand",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "ALL_POISON",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "POISON_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "11",
+    "manaCost": 8,
+    "darikCost": 1500,
+    "cardKind": "SPELL",
+    "cardDescription": "hameye niroohaye harif baraye 4 nobat masmoom mishavand",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "DISPEL",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "NEUTRALIZE_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "12",
+    "manaCost": 0,
+    "darikCost": 2100,
+    "cardKind": "SPELL",
+    "cardDescription": "buffhaue manfi yek nirooye khodi ya buff haye mosbate yek nirooye harif ra cancel mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARDS",
+    "spellName": "HEALTH_WITH_PROFIT",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 1
+      },
+      {
+        "isPositive": true,
+        "buffName": "HOLY_BUFF",
+        "effectDuration": 3
+      },
+      {
+        "isPositive": true,
+        "buffName": "HOLY_BUFF",
+        "effectDuration": 3
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "13",
+    "manaCost": 0,
+    "darikCost": 2250,
+    "cardKind": "SPELL",
+    "cardDescription": "",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARDS",
+    "spellName": "GHAZA_BOKHOR_JOON_BEGIRI",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "POWER_BUFF",
+        "effectDuration": 100000
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "14",
+    "manaCost": 2,
+    "darikCost": 2500,
+    "cardKind": "SPELL",
+    "cardDescription": "yek power buff ba afzayeshe ghodrate zarbe barabare jane feliash baraye kolle bazi faal mishavad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARDS",
+    "spellName": "ALL_POWER",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "POWER_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "15",
+    "manaCost": 4,
+    "darikCost": 2000,
+    "cardKind": "SPELL",
+    "cardDescription": "be hameye niroohaye khodi yek power buff ba 2 vahed afzayesh ghodrate zarbe besoorate daem",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "ALL_ATTACK",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "16",
+    "manaCost": 4,
+    "darikCost": 1500,
+    "cardKind": "SPELL",
+    "cardDescription": "be hameye niroohaye doshman be andaze 6 vahed zarbe vared mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "WEAKENING",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "17",
+    "manaCost": 1,
+    "darikCost": 1000,
+    "cardKind": "SPELL",
+    "cardDescription": "yek buffe weakness ba 4 vahed kahesh sathe ghodrat zarbe dar yek niroo emal mikonad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "FRIENDLY_CARDS",
+    "spellName": "SACRIFICE",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "18",
+    "manaCost": 3,
+    "darikCost": 1600,
+    "cardKind": "SPELL",
+    "cardDescription": "jane felie minion ra be hero ezafe mikonad va minion ra mikoshad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "KING_GUARD",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "WEAKNESS_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "19",
+    "manaCost": 3,
+    "darikCost": 1750,
+    "cardKind": "SPELL",
+    "cardDescription": "minione morede nazar ra mikoshad",
+    "isAbleToMove": false
+  },
+  {
+    "targetSocietyKind": "ENEMY_CARDS",
+    "spellName": "SHOCK",
+    "buffs": [
+      {
+        "isPositive": false,
+        "buffName": "STUN_BUFF",
+        "effectDuration": 4
+      }
+    ],
+    "activationCondition": "PASSIVE",
+    "cardId": "20",
+    "manaCost": 1,
+    "darikCost": 1200,
+    "cardKind": "SPELL",
+    "cardDescription": "baraye 2 nobat stun mishavad",
+    "isAbleToMove": false
+  }
+]
