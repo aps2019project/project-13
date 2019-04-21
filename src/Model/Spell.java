@@ -18,6 +18,18 @@ public class Spell extends Card {
         this.buffs.addAll(buffs);
     }
 
+    public void affectAllBuffsOnCard(Card card)
+    {
+        for (int i =0;i<buffs.size();i++)
+        {
+            Buff buff = buffs.get(i);
+            if (buff!=null)
+            { //TODO EFFECT DURATION MUST BE ADDED SOMEHOW
+                buff.affectOnCard(card,buff.getPowerAndWeaknessBuffKind(),buff.getBuffNumber());
+            }
+        }
+    }
+
     public ArrayList<Spell> getAllSpells() {
         return allSpells;
     }

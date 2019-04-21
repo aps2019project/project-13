@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Shop {
 
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<UsableItem> items = new ArrayList<>();
     private static Shop instance;
 
     private Shop() {
@@ -28,7 +28,7 @@ public class Shop {
 
     public void buy(String name, Account account) {
         Card card = searchAndGetCard(name);
-        Item item = searchAndGetItem(name);
+        UsableItem item = searchAndGetItem(name);
         if (card != null && card.getDarikCost() <= account.getDarick()) {
             account.getCardCollection().addCard(card);
             account.decreaseDarick(card.getDarikCost());
@@ -57,15 +57,15 @@ public class Shop {
         //return new Model.Card(""  , 1 , 1 ,Model.CardKind.HERO , "");
     }
 
-    public Item searchAndGetItem(String name) {
-        return Item.findItemInArrayList(name, getItems());
+    public UsableItem searchAndGetItem(String name) {
+        return  UsableItem.findUsableItemInArrayList(name, getItems());
     }
 
     public ArrayList<Card> getCards() {
         return cards;
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<UsableItem> getItems() {
         return items;
     }
 
@@ -73,7 +73,7 @@ public class Shop {
         cards.add(card);
     }
 
-    public void addItem(Item item) {
+    public void addItem(UsableItem item) {
         items.add(item);
     }
 
