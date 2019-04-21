@@ -1,7 +1,7 @@
 package Controller;
 
 import View.*;
-import com.sun.org.apache.bcel.internal.generic.SWITCH;
+import Model.*;
 
 public class GameController {
     private static final GameController gamecontroller = new GameController();
@@ -19,7 +19,7 @@ public class GameController {
         Request request = Request.getInstance();
         while (!isFinish) {
             request.getRequest();
-            commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size()));
+            commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size()-1));
         }
     }
 
@@ -54,7 +54,6 @@ public class GameController {
     private void shopCommandManagement(ShopCommand shopCommand) {
         switch (shopCommand) {
             case BUY:
-            case BACK:
             case EXIT:
             case HELP:
             case SELL:
@@ -69,19 +68,23 @@ public class GameController {
     private void mainMenuCommandManagement(MainCommand mainCommand) {
         switch (mainCommand) {
             case SHOW_MENU:
-            case EXIT:
-            case BACK:
+                //TODO bde b show
             case ENTER_EXIT:
+                isFinish = true;
+                break;
             case ENTER_HELP:
+                //TODO bde b show
             case ENTER_SHOP:
+                //TODO bde b show
             case ENTER_BATTLE:
+                //TODO bde b show
             case ENTER_COLLECTION:
+                //TODO bde b show
         }
     }
 
     private void accountCommandManagement(AccountCommand accountCommand) {
         switch (accountCommand) {
-            case BACK:
             case EXIT:
             case SHOW_MENU:
             case HELP:
@@ -105,7 +108,7 @@ public class GameController {
             case SHOW_CARD_INFO:
             case SHOW_NEXT_CARD:
             case ENTER_GRAVE_YARD:
-            case SHHOW_MY_MINIONS:
+            case SHOW_MY_MINIONS:
             case SHOW_COLLECTABLE:
             case SHOW_OPPONENT_MINIONS:
         }
@@ -117,7 +120,6 @@ public class GameController {
             case SAVE:
             case SHOW_MENU:
             case EXIT:
-            case BACK:
             case SEARCH:
             case SHOW:
             case SHOW_DECK:
@@ -133,7 +135,6 @@ public class GameController {
 
     private void cardCommandManagement(CardCommand cardCommand) {
         switch (cardCommand) {
-            case BACK:
             case EXIT:
             case MOVE:
             case ATTACK:
@@ -144,7 +145,6 @@ public class GameController {
     private void graveYardCommandManagement(GraveYardCommand graveYardCommand) {
         switch (graveYardCommand) {
             case EXIT:
-            case BACK:
             case SHOW_CARD:
             case SHOW_INFO:
         }
@@ -153,7 +153,6 @@ public class GameController {
     private void collectableCommandManagement(CollectableCommand collectableCommand) {
         switch (collectableCommand) {
             case SHOW_INFO:
-            case BACK:
             case EXIT:
             case USE:
         }

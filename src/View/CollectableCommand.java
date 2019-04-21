@@ -1,7 +1,7 @@
 package View;
 
 public enum CollectableCommand {
-    BACK , EXIT , SHOW_INFO , USE ;
+    EXIT , SHOW_INFO , USE ;
     String data ;
 
     public CollectableCommand setData(String data) {
