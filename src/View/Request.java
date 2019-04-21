@@ -1,5 +1,7 @@
 package View;
 
+import Model.Battle;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -162,15 +164,15 @@ public class Request {
     }
 
     private void setCommandOfCollection(Matcher matcher, int i) {
-        if(i==4 || (i>5 && i<11) || i==13){
+        if (i == 4 || (i > 5 && i < 11) || i == 13) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if(i==8 || i==9 ){
+            if (i == 8 || i == 9) {
                 strings.add(matcher.group(2));
             }
-            collectionCommand= CollectionCommand.values()[i].setData(strings);
-        }else
-        collectionCommand= CollectionCommand.values()[i];
+            collectionCommand = CollectionCommand.values()[i].setData(strings);
+        } else
+            collectionCommand = CollectionCommand.values()[i];
     }
 
     private void setCommandOfMainMenu(int i) {
@@ -178,38 +180,40 @@ public class Request {
     }
 
     private void setCommandOfGraveyard(Matcher matcher, int i) {
-        if (i ==2) {
+        if (i == 2) {
             graveYardCommand = GraveYardCommand.values()[i].setData(matcher.group(1));
         } else graveYardCommand = GraveYardCommand.values()[i];
     }
 
     private void setCommandOfCard(Matcher matcher, int i) {
-        if(i>1){
+        if (i > 1) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if(i!=3){
+            if (i != 3) {
                 strings.add(matcher.group(2));
             }
-            cardCommand= CardCommand.values()[i].setData(strings);
-        }else
-        cardCommand= CardCommand.values()[i];
+            cardCommand = CardCommand.values()[i].setData(strings);
+        } else
+            cardCommand = CardCommand.values()[i];
     }
 
     private void setCommandOfCollectable(Matcher matcher, int i) {
-        if(i==3){
+        if (i == 3) {
             collectableCommand = CollectableCommand.values()[i].setData(matcher.group(1));
-        }else collectableCommand = CollectableCommand.values()[i];
+        } else collectableCommand = CollectableCommand.values()[i];
     }
 
     private void setCommandOfBattle(Matcher matcher, int i) {
-        if(i>2 && i<6){
+        if (i > 2 && i < 6) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if(i==5){
+            if (i == 5) {
                 strings.add(matcher.group(2));
                 strings.add(matcher.group(3));
             }
+            battleCommand = BattleCommand.values()[i].setData(strings);
         }
+        battleCommand = BattleCommand.values()[i];
     }
 
     public AccountCommand getAccountCommand() {
