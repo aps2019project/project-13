@@ -1,11 +1,10 @@
 package Model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Card implements Serializable {
+public class Card {
 
-    private static ArrayList<Card> allCards = new ArrayList<Card>();
+    private static ArrayList<Card> allCards = new ArrayList<>();
     private String cardId;
     private int manaCost;
     private int darikCost;
@@ -13,6 +12,7 @@ public class Card implements Serializable {
     private CardKind cardKind;
     private Account account;
     private String cardDescription;
+    private ArrayList<Buff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
 
     public Card(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
@@ -55,8 +55,16 @@ public class Card implements Serializable {
         return currentCell;
     }
 
+    public void setCurrentCell(Cell cell) {
+        this.currentCell = cell;
+    }
+
     public Account getAccount() {
         return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public CardKind getCardKind() {
@@ -73,6 +81,18 @@ public class Card implements Serializable {
 
     public String getCardDescription() {
         return cardDescription;
+    }
+
+    public void addBuff(Buff buff) {
+        buffs.add(buff);
+    }
+
+    public void deleteBuff(Buff buff) {
+        buffs.remove(buff);
+    }
+
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
     }
 
     private void addCard(Card card) {

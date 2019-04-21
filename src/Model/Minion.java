@@ -5,17 +5,18 @@ import java.util.ArrayList;
 public class Minion extends Card {
 
     private static ArrayList<Minion> allMinions = new ArrayList<>();
+
+    private MinionName minionName;
+    private int healthPoint;
+    private int actionPower;
+    private int attackRange;
+    private AttackKind attackKind;
     private boolean validCounterAttack;
     private boolean hasSpecialPower;
     private Spell specialPower;
-    private int healthPoint;
-    private int actionPower;
-    private MinionName minionName;
-    private int attackRange;
-    private AttackKind attackKind;
 
     public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName,
-                  AttackKind attackKind, int healthPoint, int actionPower, int attackRange, Spell specialPower) {
+                  int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
         super(cardId, manaCost, darikCost, cardKind, cardDescription);
         this.minionName = minionName;
         this.attackKind = attackKind;
@@ -50,10 +51,25 @@ public class Minion extends Card {
         return healthPoint;
     }
 
+    public void increaseHealthPoint(int number) {
+        healthPoint += number;
+    }
+
+    public void decreaseHealthPoint(int number) {
+        healthPoint -= number;
+    }
+
     public int getActionPower() {
         return actionPower;
     }
 
+    public void increaseActionPower(int number) {
+        actionPower += number;
+    }
+
+    public void decreaseActionPower(int number) {
+        actionPower -= number;
+    }
 
     public int getAttackRange() {
         return attackRange;

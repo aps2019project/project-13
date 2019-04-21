@@ -45,9 +45,24 @@ public class Hero extends Card {
         return healthPoint;
     }
 
+    public void increaseHealthPoint(int number) {
+        healthPoint += number;
+    }
+
+    public void deacreaseHealthPoint(int number) {
+        healthPoint -= number;
+    }
 
     public int getActionPower() {
         return actionPower;
+    }
+
+    public void increaseActionPower(int number) {
+        actionPower += number;
+    }
+
+    public void decreaseActionPower(int number) {
+        actionPower -= number;
     }
 
     public int getAttackRange() {
@@ -69,7 +84,6 @@ public class Hero extends Card {
     private void addHero(Hero hero) {
         allHeroes.add(hero);
     }
-
 
     public int getSpecialPowerCooldownTime() {
         return specialPowerCooldownTime;

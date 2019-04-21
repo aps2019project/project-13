@@ -25,10 +25,9 @@ public class CardCollection {
             getCards().remove(card);
         }
     }
-    public void removeItem(Item item)
-    {
-        if(item!=null)
-        {
+
+    public void removeItem(Item item) {
+        if (item != null) {
             getItems().remove(item);
         }
     }
@@ -48,12 +47,13 @@ public class CardCollection {
             getItems().add(item);
         }
     }
+
     public Card findCard(String cardId) {
         return Card.findCardInArrayList(cardId, getCards());
     }
-    public Item findItem(String itemId)
-    {
-        return Item.findItemInArrayList(itemId,getItems());
+
+    public Item findItem(String itemId) {
+        return Item.findItemInArrayList(itemId, getItems());
     }
 
     public boolean hasCard(String cardName) {
@@ -78,7 +78,8 @@ public class CardCollection {
 
     public Item getItem(String name) {
 
-        return new Item();
+        //TODO should find an specific item by its name
+        return null;
     }
 
     public Account getAccount() {

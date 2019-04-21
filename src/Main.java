@@ -1,9 +1,19 @@
-import Controller.* ;
+import Controller.*;
+
+import java.io.*;
+import java.sql.BatchUpdateException;
+import java.util.ArrayList;
+
+import Model.*;
+import com.google.gson.*;
+
 public class Main {
 
 
-    public static void main(String[] args){
-        Gamecontroller gamecontroller = Gamecontroller.getInstance();
-        gamecontroller.main();
+    public static void main(String[] args) {
+
+        GameController gameController = GameController.getInstance();
+        gameController.main();
+
     }
 }
