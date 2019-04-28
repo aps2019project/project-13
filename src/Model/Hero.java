@@ -6,7 +6,7 @@ public class Hero extends Card {
 
     private static ArrayList<Hero> allHeroes = new ArrayList<>();
     private Spell specialPower;
-    private int specialPowerCooldownTime;
+    private int specialPowerCoolDownTime;
     private HeroName heroName;
     private boolean validCounterAttack;
     private int healthPoint;
@@ -24,7 +24,7 @@ public class Hero extends Card {
         this.healthPoint = healthPoint;
         this.actionPower = actionPower;
         this.attackRange = attackRange;
-        this.specialPowerCooldownTime = specialPowerCooldownTime;
+        this.specialPowerCoolDownTime = specialPowerCooldownTime;
         addHero(this);
     }
 
@@ -85,7 +85,7 @@ public class Hero extends Card {
         allHeroes.add(hero);
     }
 
-    public int getSpecialPowerCooldownTime() {
-        return specialPowerCooldownTime;
+    public int getSpecialPowerCoolDownTime() {
+        return specialPowerCoolDownTime;
     }
 }

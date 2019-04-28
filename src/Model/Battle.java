@@ -9,6 +9,8 @@ public class Battle {
     private Account firstPlayer;
     private Account secondPlayer;
     private int turn = 1;
+    private int firstPlayerCapacityMana;
+    private int secondPlayerCapacityMana;
     private int firstPlayerMana;
     private int secondPlayerMana;
     private Card selectedCard;
@@ -39,13 +41,19 @@ public class Battle {
 
     public void setMana() {
         if (turn == 1) {
-            firstPlayerMana = 2;
+            firstPlayerCapacityMana = 2;
         } else if (turn == 2) {
-            secondPlayerMana = 3;
-        } else if (turn % 2 == 1) {
-            firstPlayerMana++;
-            secondPlayerMana++;
+            secondPlayerCapacityMana = 3;
+        } else if (turn % 2 == 1 && turn < 14) {
+            firstPlayerCapacityMana++;
+            secondPlayerCapacityMana++;
         }
+        if (turn >= 14) {
+            firstPlayerCapacityMana = 9;
+            secondPlayerCapacityMana = 9;
+        }
+        firstPlayerMana = firstPlayerCapacityMana;
+        secondPlayerMana = secondPlayerCapacityMana;
     }
 
     public void decreaseMana(int number, int numberOfPlayer) {
@@ -59,19 +67,43 @@ public class Battle {
     }
 
     public void showMinions(boolean isFreindly) {
-
+        if ((isFreindly && turn % 2 == 1) || (!isFreindly && turn % 2 == 0)) {
+            showMinionsOfPlayer(1);
+        } else {
+            showMinionsOfPlayer(2);
+        }
     }
 
-    public void showMinionsOfPlayer(int numberOfPlayer) {
-
+    public ArrayList<Card> showMinionsOfPlayer(int numberOfPlayer) {
+        Account account ;
+        if(numberOfPlayer==1){
+            account = firstPlayer ;
+        }else {
+            account = secondPlayer ;
+        }
+        ArrayList<Card> cards = new ArrayList<>();
+        ArrayList<Cell> cells = map.getCells() ;
+        for (Cell cell:
+             cells) {
+            if(cell.getCard()!=null && cell.getCard().getAccount().equals(account)){
+                cards.add(cell.getCard());
+            }
+        }
+        return cards ;
     }
 
     public void showCardInfo(String cardID) {
 
     }
 
-    public void selectedCard(String cardID) {
-
+    public void selectCard(String cardID) {
+        Card card;
+        if (turn % 2 == 1) {
+            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
+        } else {
+            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
+        }
+        selectedCard = card;
     }
 
     public Card getSelectedCard() {
@@ -82,11 +114,16 @@ public class Battle {
         return turn;
     }
 
-    public void moveCard(Card card, Cell destinationCell) {
-
+    public void moveCard(Cell destinationCell) {
+        map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
+        // TODO valid moves
     }
 
-    public void attack(Cell targetCell, String warriorsCarId) {
+    public void attack(Cell targetCell) {
+        Card targetCard = targetCell.getCard();
+        if (targetCard instanceof Minion) {
+
+        }
 
     }
 
@@ -94,15 +131,15 @@ public class Battle {
 
     }
 
-    public void useSpecialPower(int row, int column) {
+    public void useSpecialPower(Cell cell) {
 
     }
 
-    public void showHand(int numberOfPlayer) {
-
+    public String showHand(int numberOfPlayer) {
+        return new String();
     }
 
-    public void insertCard(String cardName, Cell cell) {
+    public void insertCard(String cardID, Cell cell) {
 
     }
 
@@ -185,18 +222,20 @@ public class Battle {
     private boolean isValidAttack(Cell targetCell, String warriorsCardID) {
         return true;
     }
+
     private boolean isValidSpeicalPower(int row, int column) {
         return true;
     }
 
-    public void setHandOfFirstPlayer(){
-
-    }
-    public void setHandOfSecondPlayer(){
+    public void setHandOfFirstPlayer() {
 
     }
 
-    public void stratGame(){
+    public void setHandOfSecondPlayer() {
+
+    }
+
+    public void stratGame() {
 
     }
 
@@ -223,7 +262,8 @@ public class Battle {
     public void addSecondPlayerItems(Item secondPlayerItems) {
         this.secondPlayerItems.add(secondPlayerItems);
     }
-    public int[] getSixRandomNumber(){
-        return new int[6] ;
+
+    public int[] getSixRandomNumber() {
+        return new int[6];
     }
 }
