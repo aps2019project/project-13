@@ -1,6 +1,6 @@
 package View;
 
-public class Error extends Exception {
+public class Error extends RuntimeException {
 
     private String massage;
 
