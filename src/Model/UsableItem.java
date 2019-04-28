@@ -3,8 +3,8 @@ package Model;
 import java.util.ArrayList;
 
 public class UsableItem extends Item {
-    int DarickCost;
-    Spell spell;
+    private int DarickCost;
+    private Spell spell;
     public UsableItem(String itemId, String itemDescription ,ItemName itemName, int darickCost , Spell spell) {
         super(itemId, itemDescription, ItemKind.USABLE, itemName );
         this.DarickCost=darickCost;
