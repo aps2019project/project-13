@@ -56,4 +56,9 @@ public class Spell extends Card {
         return activationCondition;
     }
 
+    @Override
+    public String toString() {
+        String str = "Type: Spell" +  "- Name: "+ this.getSpellName().getName() + "- MP:" + this.getManaCost() + "-Description: " + this.getCardDescription();
+        return str;
+    }
 }
