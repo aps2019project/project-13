@@ -1,0 +1,266 @@
+[
+  {
+    "DarickCost": 300,
+    "spell": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "buffs": [
+        {
+          "isPositive": true,
+          "buffName": "MANA_BUFF",
+          "effectDuration": 3,
+          "buffNumber": 1
+        }
+      ],
+      "activationCondition": "PASSIVE",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "Increase Mana in 3 turns",
+    "itemKind": "USABLE",
+    "itemName": "TAJ_DANAEE"
+  },
+  {
+    "DarickCost": 4000,
+    "spell": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "buffs": [
+        {
+          "isPositive": true,
+          "buffName": "HOLY_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 12
+        }
+      ],
+      "activationCondition": "PASSIVE",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "12 Holy Buff in Friendly Hero",
+    "itemKind": "USABLE",
+    "itemName": "NAMOOS_SEPAR"
+  },
+  {
+    "DarickCost": 30000,
+    "spell": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "DISARM_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 1
+        }
+      ],
+      "activationCondition": "ATTACK",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "Friendly Hero disarm Enemy For One Trun",
+    "itemKind": "USABLE",
+    "itemName": "BOW_OF_DAMOL"
+  },
+  {
+    "DarickCost": 3500,
+    "spell": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "DISARM_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 2
+        }
+      ],
+      "activationCondition": "PASSIVE",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "Weakness power buff for enemy Ranged",
+    "itemKind": "USABLE",
+    "itemName": "PAR_SIMORGH"
+  },
+  {
+    "DarickCost": 5000,
+    "spell": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "WEAKNESS_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 2
+        }
+      ],
+      "activationCondition": "ATTACK",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "Weakness power buff for random enemty for one turn",
+    "itemKind": "USABLE",
+    "itemName": "TERROR_HOOD"
+  },
+  {
+    "DarickCost": 9000,
+    "spell": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "WEAKNESS_BUFF",
+          "effectDuration": 1000,
+          "buffNumber": 1
+        }
+      ],
+      "activationCondition": "PASSIVE",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "One extra Mana for whole game",
+    "itemKind": "USABLE",
+    "itemName": "KING_WISDOM"
+  },
+  {
+    "DarickCost": 15000,
+    "spell": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "WEAKNESS_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 2
+        }
+      ],
+      "activationCondition": "SPAWN",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "One damage to Enemy Hero each time you put a card on the field",
+    "itemKind": "USABLE",
+    "itemName": "ASSASSINATION_DAGGER"
+  },
+  {
+    "DarickCost": 7000,
+    "spell": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "POISON_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 1
+        }
+      ],
+      "activationCondition": "ATTACK",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "Poison damage to random enemy",
+    "itemKind": "USABLE",
+    "itemName": "POISONOUS_DAGGER"
+  },
+  {
+    "DarickCost": 15000,
+    "spell": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "STUN_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 2
+        }
+      ],
+      "activationCondition": "ATTACK",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "Hero disarm One enemy for one turn",
+    "itemKind": "USABLE",
+    "itemName": "SHOCK_HAMMER"
+  },
+  {
+    "DarickCost": 25000,
+    "spell": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "buffs": [
+        {
+          "isPositive": false,
+          "buffName": "POISON_BUFF",
+          "effectDuration": 1,
+          "buffNumber": 1
+        }
+      ],
+      "activationCondition": "DEATH",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "A power buff to a unit when some of units die",
+    "itemKind": "USABLE",
+    "itemName": "SOUL_EATER"
+  },
+  {
+    "DarickCost": 20000,
+    "spell": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "buffs": [
+        {
+          "isPositive": true,
+          "buffName": "HOLY_BUFF",
+          "effectDuration": 2,
+          "buffNumber": 1
+        }
+      ],
+      "activationCondition": "SPAWN",
+      "cardId": "0",
+      "manaCost": 0,
+      "darikCost": 0,
+      "cardKind": "SPELL",
+      "isAbleToMove": false
+    },
+    "itemId": "2",
+    "itemDescription": "2 turn holy buff for each unit",
+    "itemKind": "USABLE",
+    "itemName": "GHOSL_TAMID"
+  }
+]

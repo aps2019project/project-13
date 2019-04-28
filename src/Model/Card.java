@@ -12,7 +12,7 @@ public class Card {
     private CardKind cardKind;
     private Account account;
     private String cardDescription;
-    private ArrayList<Buff> buffs = new ArrayList<>();
+    private transient ArrayList<Buff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
 
     public Card(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
