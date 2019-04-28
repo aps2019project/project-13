@@ -23,6 +23,9 @@ public class GameController {
         }
     }
 
+    //TODO INVALID INPUT HANDLING
+    //TODO INVALID OUTPUT HANDLING
+
     private void commandManagement(Request request, KindOfOrder kindOfOrder) {
         switch (kindOfOrder) {
             case COLLECTION:
@@ -127,21 +130,135 @@ public class GameController {
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {
         switch (collectionCommand) {
             case HELP:
+                collectionHelp();
+                break;
             case SAVE:
             case SHOW_MENU:
             case EXIT:
                 request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
                 break;
             case SEARCH:
+                collectionSearch(request, collectionCommand);
+                break;
             case SHOW:
+                collectionShow(request);
+                break;
             case SHOW_DECK:
+                collectionShowDeck(request, collectionCommand);
+                break;
             case ADD_TO_DECK:
+                collectionAddToDeck(request, collectionCommand);
+                break;
             case CREATE_DECK:
+                collectionCreateDeck(request, collectionCommand);
+                break;
             case DELETE_DECK:
+                collectionDeleteDeck(request, collectionCommand);
+                break;
             case SELECTE_DECK:
+                collectionSelectMainDeck(request, collectionCommand);
+                break;
             case SHOW_ALL_DECK:
+                collectionShowAllDeck(request);
+                break;
             case VALIDATE_DECK:
+                collectionValidateDeck(request, collectionCommand);
+                break;
             case REMOVE_FROM_DECK:
+                collectionRemoveCardFromDeck(request, collectionCommand);
+                break;
+        }
+    }
+
+    private void collectionHelp() {
+        //TODO CALL A FUNCTION
+    }
+
+    private void collectionSearch(Request request, CollectionCommand collectionCommand) {
+        Account account = request.getAccount();
+        String name = collectionCommand.getData().get(0);
+        account.getCardCollection().search(name);
+        //TODO CALL SHOW METHOD
+    }
+
+    private void collectionShow(Request request) {
+        Account account = request.getAccount();
+        //TODO CALL A SHOW METHOD
+    }
+
+    private void collectionShowDeck(Request request, CollectionCommand collectionCommand) {
+        String deckName = collectionCommand.getData().get(0);
+        Deck deck = request.getAccount().findDeck(deckName);
+        if (deck != null) {
+            //TODO A METHOD FROM SHOW
+            System.out.println(deck.toString());
+        }
+    }
+
+    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand) {
+        String cardName = collectionCommand.getData().get(0);
+        String deckName = collectionCommand.getData().get(1);
+        Deck deck = request.getAccount().findDeck(deckName);
+        if (deck != null) {
+            deck.removeCard(cardName);
+        }
+        //TODO MAYBE ERRORS?!
+    }
+
+    private void collectionShowAllDeck(Request request) {
+        Account account = request.getAccount();
+        for (int i = 0; i < account.getDecks().size(); i++) {
+            Deck deck = account.getDecks().get(i);
+            if (deck != null) {
+
+                //TODO THIS MUST BE DONE IN VIEW
+                System.out.println(deck.toString());
+            }
+        }
+    }
+
+    private void collectionValidateDeck(Request request, CollectionCommand collectionCommand) {
+        String deckName = collectionCommand.getData().get(0);
+        Deck deck = request.getAccount().findDeck(deckName);
+        if (deck != null) {
+            Deck.validateDeck(deck);
+            //TODO SHOW SOMETHING
+        }
+    }
+
+    private void collectionSelectMainDeck(Request request, CollectionCommand collectionCommand) {
+        String deckName = collectionCommand.getData().get(0);
+        Deck deck = request.getAccount().findDeck(deckName);
+        if (deck != null) {
+            request.getAccount().setMainDeck(deck);
+        }
+    }
+
+    private void collectionDeleteDeck(Request request, CollectionCommand collectionCommand) {
+        String deckName = collectionCommand.getData().get(0);
+        Deck deck = request.getAccount().findDeck(deckName);
+        if (deck != null) {
+            if (request.getAccount().getMainDeck().equals(deck)) {
+                request.getAccount().setMainDeck(null);
+            }
+            request.getAccount().getDecks().remove(deck);
+        }
+    }
+
+    private void collectionCreateDeck(Request request, CollectionCommand collectionCommand) {
+        String deckName = collectionCommand.getData().get(0);
+        if (request.getAccount().findDeck(deckName) == null) {
+            Deck.createDeck(deckName, request.getAccount());
+        }
+    }
+
+    private void collectionAddToDeck(Request request, CollectionCommand collectionCommand) {
+        String cardName = collectionCommand.getData().get(0);
+        String deckName = collectionCommand.getData().get(1);
+        Deck deck = request.getAccount().findDeck(deckName);
+        Card card = Card.findCardInArrayList(cardName, request.getAccount().getCardCollection().getCards());
+        if (deck != null && card != null) {
+            deck.addCard(card);
         }
     }
 
