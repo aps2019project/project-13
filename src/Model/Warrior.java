@@ -9,6 +9,7 @@ public class Warrior extends Card {
     private AttackKind attackKind;
     private boolean validCounterAttack;
     private Spell specialPower;
+    private boolean isDeath;
 
     public Warrior(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
@@ -44,6 +45,16 @@ public class Warrior extends Card {
 
     public void decreaseActionPower(int number) {
         actionPower -= number;
+    }
+
+    private void checkDeath() {
+        if (healthPoint <= 0)
+            isDeath = true;
+    }
+
+    public boolean isDeath() {
+        checkDeath();
+        return isDeath;
     }
 
     public int getAttackRange() {

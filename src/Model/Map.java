@@ -8,19 +8,31 @@ import Model.Item;
 import java.util.ArrayList;
 
 public class Map {
-    private ArrayList<Cell> cells = new ArrayList<>();
+
+
+    private static Cell[][] cells = new Cell[5][9];
     private Battle battle;
 
     Map(Battle battle) {
         this.battle = battle;
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                cells[i][j] = new Cell(i, j);
+            }
+        }
     }
 
-    public ArrayList<Cell> getCells() {
+    public static Cell getCell(int row, int col) {
+        return cells[row][col];
+    }
+
+    public Cell[][] getCells() {
         return cells;
     }
 
     public int getDistanceOfTwoCell(Cell firstCell, Cell secondCell) {
         return Math.abs(firstCell.getColumn() - secondCell.getColumn()) + Math.abs(firstCell.getRow() - secondCell.getRow());
+
     }
 
     public Item getItem(Cell cell) {
