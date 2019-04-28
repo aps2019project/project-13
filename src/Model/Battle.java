@@ -1,8 +1,5 @@
 package Model;
 
-import Model.Account;
-
-import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
 public class Battle {
@@ -105,6 +102,7 @@ public class Battle {
             card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
         }
         selectedCard = card;
+
     }
 
     public Card getSelectedCard() {
@@ -116,25 +114,25 @@ public class Battle {
     }
 
     public void moveCard(Cell destinationCell) {
+        if (!isVAlidMove(destinationCell)) {
+            return;
+        }
         if (selectedCard.isAbleToMove())
             map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
-        // TODO valid moves
     }
 
     public void attack(Cell targetCell) {
         Card targetCard = targetCell.getCard();
-        Warrior warrior ;
-        Warrior defender ;
-        if (targetCard instanceof Warrior) {
-            defender = (Warrior) targetCard ;
-        }else {
-            //TODO send error
+        Warrior warrior;
+        Warrior defender;
+        defender = (Warrior) targetCard;
+        warrior = (Warrior) selectedCard;
+        if (!isValidAttack(targetCell)) {
+            return;
         }
-        if (selectedCard instanceof Warrior){
-            warrior = (Warrior) selectedCard ;
-        }else {
-            //TODO send error
-        }
+        defender.decreaseHealthPoint(warrior.getActionPower());
+        //TODO check valid counterAttack
+        warrior.decreaseHealthPoint(defender.getActionPower());
 
 
     }
@@ -148,11 +146,18 @@ public class Battle {
     }
 
     public String showHand(int numberOfPlayer) {
-        return new String();
+        return null;
     }
 
     public void insertCard(String cardID, Cell cell) {
-
+        Card card;
+        if (turn % 2 == 1) {
+            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
+        } else {
+            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
+        }
+        if (!isVAlidInsert(cardID, cell))
+            cell.setCard(card);
     }
 
     public void endTurn() {
@@ -199,10 +204,6 @@ public class Battle {
 
     }
 
-    public void findValidCell(String kindOfAcction) {
-
-    }
-
     public void findValidCellToMove() {
 
     }
@@ -227,11 +228,53 @@ public class Battle {
         return true;
     }
 
+    private boolean isVAlidInsert(String cardID, Cell destinationCell) {
+        Card card;
+        if (turn % 2 == 1) {
+            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
+        } else {
+            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
+        }
+        if (destinationCell.getCard() != null) {
+            //TODO send error
+            return false;
+        }
+        if ((turn % 2 == 1 && card.getManaCost() > firstPlayerMana) || (turn % 2 == 0 && card.getManaCost() > secondPlayerMana)) {
+            //TODO send error
+            return false;
+        }
+        if (validCells.contains(destinationCell)) {
+            return true;
+        } else {
+            //TODO send error
+            return false;
+        }
+    }
+
     private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {
         return true;
     }
 
-    private boolean isValidAttack(Cell targetCell, String warriorsCardID) {
+    private boolean isValidAttack(Cell targetCell) {
+        Card targetCard = targetCell.getCard();
+        Warrior warrior;
+        Warrior defender;
+        if (targetCard instanceof Warrior) {
+            defender = (Warrior) targetCard;
+        } else {
+            //TODO send error
+            return false;
+        }
+        if (selectedCard instanceof Warrior) {
+            warrior = (Warrior) selectedCard;
+        } else {
+            //TODO send error
+            return false;
+        }
+        if (warrior.getAccount().equals(defender.getAccount())) {
+            //TODO send error
+            return false;
+        }
         return true;
     }
 
