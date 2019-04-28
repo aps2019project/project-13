@@ -2,6 +2,7 @@ package Model;
 
 import Model.Account;
 
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
 public class Battle {
@@ -75,21 +76,21 @@ public class Battle {
     }
 
     public ArrayList<Card> showMinionsOfPlayer(int numberOfPlayer) {
-        Account account ;
-        if(numberOfPlayer==1){
-            account = firstPlayer ;
-        }else {
-            account = secondPlayer ;
+        Account account;
+        if (numberOfPlayer == 1) {
+            account = firstPlayer;
+        } else {
+            account = secondPlayer;
         }
         ArrayList<Card> cards = new ArrayList<>();
-        ArrayList<Cell> cells = map.getCells() ;
-        for (Cell cell:
-             cells) {
-            if(cell.getCard()!=null && cell.getCard().getAccount().equals(account)){
+        ArrayList<Cell> cells = map.getCells();
+        for (Cell cell :
+                cells) {
+            if (cell.getCard() != null && cell.getCard().getAccount().equals(account)) {
                 cards.add(cell.getCard());
             }
         }
-        return cards ;
+        return cards;
     }
 
     public void showCardInfo(String cardID) {
@@ -115,16 +116,25 @@ public class Battle {
     }
 
     public void moveCard(Cell destinationCell) {
-        map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
+        if (selectedCard.isAbleToMove())
+            map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
         // TODO valid moves
     }
 
     public void attack(Cell targetCell) {
         Card targetCard = targetCell.getCard();
-        if (targetCard instanceof Minion) {
-
+        Warrior warrior ;
+        Warrior defender ;
+        if (targetCard instanceof Warrior) {
+            defender = (Warrior) targetCard ;
+        }else {
+            //TODO send error
         }
-
+        if (selectedCard instanceof Warrior){
+            warrior = (Warrior) selectedCard ;
+        }else {
+            //TODO send error
+        }
 
 
     }
