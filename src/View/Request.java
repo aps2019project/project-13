@@ -256,4 +256,8 @@ public class Request {
     public ShopCommand getShopCommand() {
         return shopCommand;
     }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
 }

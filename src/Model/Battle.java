@@ -174,7 +174,7 @@ public class Battle {
         } else {
             card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
         }
-        if (!isVAlidInsert(cardID, cell))
+        if (!isValidInsert(cardID, cell))
             cell.setCard(card);
     }
 
@@ -320,7 +320,7 @@ public class Battle {
 
     }
 
-    private boolean isVAlidInsert(String cardID, Cell destinationCell) {
+    private boolean isValidInsert(String cardID, Cell destinationCell) {
         Card card;
         if (turn % 2 == 1) {
             card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
