@@ -143,6 +143,12 @@ public class Battle {
         }
         if (selectedCard.isAbleToMove())
             map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
+        //Take Flags for win the game
+        if (gameGoal == GameGoal.HOLD_FLAG) {
+            flagForHoldFlagGameMode.updateFlagCell();
+            takeFlag(firstPlayer);
+            takeFlag(secondPlayer);
+        }
     }
 
     public void attack(Cell targetCell) {
@@ -157,8 +163,6 @@ public class Battle {
         defender.decreaseHealthPoint(warrior.getActionPower());
         //TODO check valid counterAttack
         warrior.decreaseHealthPoint(defender.getActionPower());
-
-
     }
 
     public void attackCombo(Cell targetCell, String... warriorsCarIds) {
@@ -180,7 +184,8 @@ public class Battle {
         } else {
             card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
         }
-        if (!isValidInsert(cardID, cell))
+        findValidCell(KindOfActionForValidCells.INSERT);
+        if (validCells.contains(cell))
             cell.setCard(card);
     }
 
@@ -192,11 +197,6 @@ public class Battle {
         }
         setPlayersManaForNewTurn();
         incrementTurn();
-        if (gameGoal == GameGoal.HOLD_FLAG) {
-            flagForHoldFlagGameMode.updateFlagCell();
-            takeFlag(firstPlayer);
-            takeFlag(secondPlayer);
-        }
 
     }
 
@@ -212,38 +212,6 @@ public class Battle {
 
     private void incrementTurn() {
         turn++;
-    }
-
-    public void showCollectable() {
-
-    }
-
-    public void selectCollectable(String collectableID) {
-
-    }
-
-    public void showItemInfo(String itemID) {
-
-    }
-
-    public void showNextCard() {
-
-    }
-
-    public void enterGraveYard() {
-
-    }
-
-    public void showGraveYardCardInfo(String cardID) {
-
-    }
-
-    public void showGraveYardCards() {
-
-    }
-
-    public void helpMenu() {
-
     }
 
     public void endGame() {
@@ -279,6 +247,7 @@ public class Battle {
     }
 
     private void takeFlag(Account player) {
+
         for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
             if (player.getMainDeck().getCards().get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
                 if (flagForHoldFlagGameMode.getFlagHolder() != player.getMainDeck().getCards().get(i))
@@ -289,15 +258,46 @@ public class Battle {
     }
 
     private void endOfCollectFlagGameMode() {
-        if (firstPlayerFlags >= flagForCollectFlagGameModes.length)
+        if (firstPlayerFlags >= flagForCollectFlagGameModes.length / 2)
             setWinner(firstPlayer);
-        else if (secondPlayerFlags >= flagForCollectFlagGameModes.length)
+        else if (secondPlayerFlags >= flagForCollectFlagGameModes.length / 2)
             setWinner(secondPlayer);
-
     }
 
     public void exit() {
 
+
+    }
+
+    public void showCollectable() {
+
+    }
+
+    public void selectCollectable(String collectableID) {
+
+    }
+
+    public void showItemInfo(String itemID) {
+
+    }
+
+    public void showNextCard() {
+
+    }
+
+    public void enterGraveYard() {
+
+    }
+
+    public void showGraveYardCardInfo(String cardID) {
+
+    }
+
+    public void showGraveYardCards() {
+
+    }
+
+    public void helpMenu() {
 
     }
 
@@ -420,7 +420,6 @@ public class Battle {
     }
 
     private boolean isValidRangedAttack(Cell targetCell, Warrior warrior) {
-
 
         if (Math.abs(targetCell.getRow() - warrior.getCurrentCell().getRow()) <= 1 && Math.abs(targetCell.getColumn() - warrior.getCurrentCell().getColumn()) <= 1) {
             return false;

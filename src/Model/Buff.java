@@ -1,5 +1,7 @@
 package Model;
 
+import javax.tools.ForwardingFileObject;
+
 public class Buff {
 
     enum PowerAndWeaknessBuffKind {
@@ -12,19 +14,17 @@ public class Buff {
     private PowerAndWeaknessBuffKind powerAndWeaknessBuffKind;
     private int buffNumber;
 
-    public Buff(BuffName buffName, int effectDuration , int buffNumber) {
+    public Buff(BuffName buffName, int effectDuration, int buffNumber) {
         this.buffName = buffName;
         this.isPositive = buffName.isPositive();
         this.effectDuration = effectDuration;
         this.buffNumber = buffNumber;
     }
 
-    public void affectOnCard(Card card , PowerAndWeaknessBuffKind powerBuffKind , int number)
-    {
-        switch (this.buffName)
-        {
+    public void affectOnCard(Card card, PowerAndWeaknessBuffKind powerBuffKind, int number) {
+        switch (this.buffName) {
             case POWER_BUFF:
-                this.powerBuff(card,powerBuffKind,number);
+                this.powerBuff(card, powerBuffKind, number);
                 break;
             case HOLY_BUFF:
                 this.holyBuff(number);
@@ -78,25 +78,22 @@ public class Buff {
     }
 
     public void poisonBuff(Card card) {
-        if (card instanceof Minion) {
-            ((Minion) card).decreaseHealthPoint(1);
-        } else if (card instanceof Hero) {
-            ((Hero) card).deacreaseHealthPoint(1);
-        }
+
+        if (!(card instanceof Warrior))
+            return;
+        Warrior warrior = (Warrior) card;
+        warrior.decreaseHealthPoint(1);
+
     }
 
     public void weaknessBuff(Card card, PowerAndWeaknessBuffKind weaknessBuffKind, int number) {
-        if (card instanceof Minion) {
-            if (weaknessBuffKind == PowerAndWeaknessBuffKind.ATTACK)
-                ((Minion) card).decreaseActionPower(number);
-            else if (weaknessBuffKind == PowerAndWeaknessBuffKind.HEALTH)
-                ((Minion) card).decreaseHealthPoint(number);
-        } else if (card instanceof Hero) {
-            if (weaknessBuffKind == PowerAndWeaknessBuffKind.ATTACK)
-                ((Hero) card).decreaseActionPower(number);
-            else if (weaknessBuffKind == PowerAndWeaknessBuffKind.HEALTH)
-                ((Hero) card).deacreaseHealthPoint(number);
-        }
+
+        Warrior warrior = (Warrior) card;
+
+        if (weaknessBuffKind == PowerAndWeaknessBuffKind.ATTACK)
+            warrior.decreaseActionPower(number);
+        else if (weaknessBuffKind == PowerAndWeaknessBuffKind.HEALTH)
+            warrior.decreaseHealthPoint(number);
     }
 
     public void stunBuff(Card card) {
