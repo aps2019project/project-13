@@ -32,7 +32,6 @@ public class GameController {
             } catch (Error e) {
                 System.out.println(e.toString());
             }
-
         }
     }
     //TODO INVALID OUTPUT HANDLING

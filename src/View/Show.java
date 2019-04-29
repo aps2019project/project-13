@@ -6,7 +6,6 @@ public class Show {
     private static final String GET_PASSWORD = "PassWord [ password > 5 letter ] : ";
     private static final String UNRELIBALE_PASSWORD = "password is unreliable! , input secure password";
     private static final String YOUR_PASSWORD = "PassWord : ";
-    private static final String INCORRECT_PASSWORD = "incorrect password! , try again!";
 
     private Show() {
 
@@ -41,11 +40,9 @@ public class Show {
     public void createdAccount(String username){
         System.out.println("new account "+username+" is created");
     }
-    public void getYourPasWord(){
-        System.out.println(YOUR_PASSWORD);
-    }
+    public void getYourPasWord(){ System.out.println(YOUR_PASSWORD);}
     public void incorrectPassWord(){
-        System.out.println(INCORRECT_PASSWORD);
+        System.out.println(ConstantMessages.INVALID_PASSWORD);
     }
 
 }
