@@ -9,7 +9,7 @@ public class Cell {
     private Card card;
     private int row;
     private int column;
-    private Item item ;
+    private Item item;
     private ArrayList<Buff> buffs = new ArrayList<>();
 
     Cell(int row, int column) {
@@ -23,6 +23,10 @@ public class Cell {
 
     public void setCard(Card card) {
         this.card = card;
+    }
+
+    public boolean isEmpty() {
+        return !(this.getCard() instanceof Warrior);
     }
 
     public int getRow() {
@@ -44,4 +48,5 @@ public class Cell {
     public Item getItem() {
         return item;
     }
+
 }
