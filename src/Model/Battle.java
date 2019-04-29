@@ -5,6 +5,10 @@ import Model.Account;
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
+enum KindOfActionForValidCells {
+    MOVE, ATTACK, INSERT, ITEM, SPELL
+}
+
 public class Battle {
     private Map map;
     private Account firstPlayer;
@@ -288,41 +292,131 @@ public class Battle {
 
     }
 
-    public void findValidCell(String kindOfAcction) {
+    private void clearValidCellsList() {
+        validCells.clear();
+    }
+
+    public void findValidCell(KindOfActionForValidCells kindOfActionForValidCells) {
+
+        clearValidCellsList();
+        switch (kindOfActionForValidCells) {
+            case MOVE:
+                findValidCellToMove();
+                break;
+            case ATTACK:
+                findValidCellToAttack();
+                break;
+            case INSERT:
+                findValidCellToInsert();
+                break;
+            case ITEM:
+                findValidCellToItem();
+                break;
+            case SPELL:
+                findValidCellToSpell();
+                break;
+        }
+
+    }
+
+
+    private void findValidCellToMove() {
+        Cell[][] cells = map.getCells();
+        if (!selectedCard.isAbleToMove())
+            return;
+        Warrior warrior = (Warrior) selectedCard;
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].isEmpty() && map.getDistanceOfTwoCell(warrior.getCurrentCell(), cells[i][j]) <= 2 && isValidMove(cells[i][j]))
+                    validCells.add(cells[i][j]);
+            }
+        }
+
+    }
+
+    private void findValidCellToAttack() {
+
+        Cell[][] cells = map.getCells();
+        Warrior warrior = (Warrior) selectedCard;
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (isValidAttack(cells[i][j], warrior))
+                    validCells.add(cells[i][j]);
+            }
+        }
+    }
+
+    private void findValidCellToInsert() {
+
+        Cell[][] cells = map.getCells();
+
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].isEmpty())
+                    validCells.add(cells[i][j]);
+            }
+        }
+    }
+
+    private void findValidCellToItem() {
+
+    }
+
+    private void findValidCellToSpell() {
 
 
     }
 
-    public void findValidCellToMove() {
+    private boolean isValidMove(Cell destinationCell) {
+        if (destinationCell.getRow() == selectedCard.getCurrentCell().getRow()) {
+            if (destinationCell.getColumn() < selectedCard.getCurrentCell().getColumn()) {
+                return map.getCells()[destinationCell.getRow()][destinationCell.getColumn() + 1].isEmpty();
+            } else {
+                return map.getCells()[destinationCell.getRow()][destinationCell.getColumn() - 1].isEmpty();
+            }
 
-    }
-
-    public void findValidCellToAttack() {
-
-    }
-
-    public void findValidCellToInsert() {
-
-    }
-
-    public void findValidCellToItem() {
-
-    }
-
-    public void findValidCellToSpell() {
-
-    }
-
-    private boolean isVAlidMove(Cell destinationCell) {
-        return true;
+        } else if (destinationCell.getColumn() == selectedCard.getCurrentCell().getColumn()) {
+            if (destinationCell.getRow() < selectedCard.getCurrentCell().getRow()) {
+                return map.getCells()[destinationCell.getRow() + 1][destinationCell.getColumn()].isEmpty();
+            } else {
+                return map.getCells()[destinationCell.getRow() - 1][destinationCell.getColumn()].isEmpty();
+            }
+        }
+        return false;
     }
 
     private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {
         return true;
     }
 
-    private boolean isValidAttack(Cell targetCell, String warriorsCardID) {
+    private boolean isValidAttack(Cell targetCell, Warrior warrior) {
+
+        switch (warrior.getAttackKind()) {
+            case MELEE:
+                return isValidMeleeAttack(targetCell, warrior);
+            case RANGED:
+                return isValidRangedAttack(targetCell, warrior);
+            case HYBRID:
+                boolean flag1 = isValidRangedAttack(targetCell, warrior);
+                boolean flag2 = isValidMeleeAttack(targetCell, warrior);
+                return flag1 || flag2;
+        }
+
+
         return true;
+    }
+
+    private boolean isValidRangedAttack(Cell targetCell, Warrior warrior) {
+
+        if (Math.abs(targetCell.getRow() - warrior.getCurrentCell().getRow()) <= 1 && Math.abs(targetCell.getColumn() - warrior.getCurrentCell().getColumn()) <= 1) {
+            return false;
+        } else {
+            return map.getDistanceOfTwoCell(targetCell, warrior.getCurrentCell()) <= warrior.getAttackRange();
+        }
+    }
+
+    private boolean isValidMeleeAttack(Cell targetCell, Warrior warrior) {
+        return Math.abs(targetCell.getRow() - warrior.getCurrentCell().getRow()) <= 1 && Math.abs(targetCell.getColumn() - warrior.getCurrentCell().getColumn()) <= 1;
     }
 
     private boolean isValidSpeicalPower(int row, int column) {
