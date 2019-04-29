@@ -2,10 +2,14 @@ package Controller;
 
 import View.*;
 import Model.*;
+import com.sun.org.apache.regexp.internal.RE;
+
+import java.util.Scanner;
 
 public class GameController {
     private static final GameController gamecontroller = new GameController();
     private boolean isFinish = false;
+    private static Show show = Show.getInstance();
 
     private GameController() {
 
@@ -101,12 +105,64 @@ public class GameController {
                 break;
             case SHOW_MENU:
             case HELP:
+                show.showHelp(KindOfOrder.ACCOUNT);
             case SAVE:
+                //TODO save to file
             case LOGIN:
+                login(request, accountCommand);
             case LOGOUT:
             case CREATE_ACCOUNT:
+                createAccount(request, accountCommand);
             case SHOW_LEADERBOARD:
         }
+    }
+
+    private void createAccount(Request request, AccountCommand accountCommand) {
+        String userName = accountCommand.getData();
+        for (Account account :
+                Account.getAccounts()) {
+            if (account.getUsername().equals(userName)) {
+                //TODO send error
+                return;
+            }
+        }
+        show.getPassword();
+        String passWord;
+        Scanner scanner = request.getScanner();
+        passWord = scanner.nextLine();
+        while (passWord.length() < 4) {
+            show.unreliablePassWord();
+            show.getPassword();
+            passWord = scanner.nextLine();
+        }
+        new Account(userName, passWord);
+        show.createdAccount(userName);
+    }
+
+    private void login(Request request, AccountCommand accountCommand) {
+        String userName = accountCommand.getData();
+        Account trueAccount = null;
+        for (Account account :
+                Account.getAccounts()) {
+            if (account.getUsername().equals(userName)) {
+                trueAccount = account;
+            }
+        }
+        if (trueAccount == null) {
+            //TODO send error
+            return;
+        }
+        show.getYourPasWord();
+        String passWord;
+        Scanner scanner = request.getScanner();
+        passWord = scanner.nextLine();
+        while (!passWord.equals(trueAccount.getPassword())) {
+            show.incorrectPassWord();
+            show.getYourPasWord();
+            passWord = scanner.nextLine();
+        }
+        //TODO set account
+
     }
 
     private void battleCommandManagement(Request request, BattleCommand battleCommand) {
