@@ -321,26 +321,7 @@ public class Battle {
     }
 
     private boolean isValidInsert(String cardID, Cell destinationCell) {
-        Card card;
-        if (turn % 2 == 1) {
-            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
-        } else {
-            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
-        }
-        if (destinationCell.getCard() != null) {
-            //TODO send error
-            return false;
-        }
-        if ((turn % 2 == 1 && card.getManaCost() > firstPlayerMana) || (turn % 2 == 0 && card.getManaCost() > secondPlayerMana)) {
-            //TODO send error
-            return false;
-        }
-        if (validCells.contains(destinationCell)) {
-            return true;
-        } else {
-            //TODO send error
-            return false;
-        }
+      return true;
     }
 
     private boolean isValidMove(Cell targetCell) {
@@ -352,25 +333,7 @@ public class Battle {
     }
 
     private boolean isValidAttack(Cell targetCell) {
-        Card targetCard = targetCell.getCard();
-        Warrior warrior;
-        Warrior defender;
-        if (targetCard instanceof Warrior) {
-            defender = (Warrior) targetCard;
-        } else {
-            //TODO send error
-            return false;
-        }
-        if (selectedCard instanceof Warrior) {
-            warrior = (Warrior) selectedCard;
-        } else {
-            //TODO send error
-            return false;
-        }
-        if (warrior.getAccount().equals(defender.getAccount())) {
-            //TODO send error
-            return false;
-        }
+
         return true;
     }
 
