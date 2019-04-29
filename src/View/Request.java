@@ -1,5 +1,7 @@
 package View;
 
+import Model.Account;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -16,6 +18,7 @@ public class Request {
     private GraveYardCommand graveYardCommand;
     private MainCommand mainCommand;
     private ShopCommand shopCommand;
+    private Account account; //TODO MAYBE IT WILL BE DELETED
 
     private Request() {
         kindOfOrder.add(KindOfOrder.ACCOUNT);
@@ -212,6 +215,10 @@ public class Request {
             battleCommand = BattleCommand.values()[i].setData(strings);
         }
         battleCommand = BattleCommand.values()[i];
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public AccountCommand getAccountCommand() {

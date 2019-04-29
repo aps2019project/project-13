@@ -33,4 +33,10 @@ public class Hero extends Warrior {
     public int getSpecialPowerCoolDownTime() {
         return specialPowerCoolDownTime;
     }
+
+    @Override
+    public String toString() {
+        String str = "Name: "+this.getHeroName().getName() +"- AP: "+ this.getActionPower() + "- HP: " + this.getHealthPoint() + "- Class: "+getAttackKind().name() + "- Special Power: " + getCardDescription();
+        return str;
+    }
 }

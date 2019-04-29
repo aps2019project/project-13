@@ -11,6 +11,8 @@ public class Deck {
     private Account account;
     private String deckName;
 
+    //TODO DECK TO STRING
+
     Deck(String deckName, Account account)
     {
         setDeckName(deckName);
@@ -44,6 +46,7 @@ public class Deck {
     }
     public void addCard(Card card)
     {
+        //TODO TYPE OF CARD
         if (card!=null)
         {
             getCards().add(card);

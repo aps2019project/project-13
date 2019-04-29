@@ -1,16 +1,21 @@
 package Model;
 
+import Model.Account;
+
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
 public class Battle {
     private Map map;
     private Account firstPlayer;
     private Account secondPlayer;
+    private Account winner;
     private int turn = 1;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
-    private int firstPlayerMana;
-    private int secondPlayerMana;
+    private int turnMaximumMana = 2;
+    private int firstPlayerMana = 2;
+    private int secondPlayerMana = 2;
     private Card selectedCard;
     private ArrayList<Card> graveYardCards = new ArrayList<>();
     private ArrayList<Card> firstPlayerHand = new ArrayList<>();
@@ -26,10 +31,21 @@ public class Battle {
     private ArrayList<Item> secondPlayerItems = new ArrayList<>();
     private GameMode gameMode;
     private GameGoal gameGoal;
+    private boolean endGame;
+    private FlagForHoldFlagGameMode flagForHoldFlagGameMode;
+    private int firstPlayerFlags;
+    private int secondPlayerFlags;
+    private FlagForCollectFlagGameMode[] flagForCollectFlagGameModes = new FlagForCollectFlagGameMode[7];//TODO bejaye 7 bayad moteghayyer gozasht
 
-    Battle(Account firstPlayer, Account secondPlayer) {
+
+    Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
+        this.gameMode = gameMode;
+        this.gameGoal = gameGoal;
+        if (gameGoal == GameGoal.HOLD_FLAG) {
+            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG);
+        }
     }
 
     public void nextTurn() {
@@ -74,19 +90,22 @@ public class Battle {
 
     public ArrayList<Card> showMinionsOfPlayer(int numberOfPlayer) {
         Account account;
+
         if (numberOfPlayer == 1) {
             account = firstPlayer;
         } else {
             account = secondPlayer;
         }
         ArrayList<Card> cards = new ArrayList<>();
-        ArrayList<Cell> cells = map.getCells();
-        for (Cell cell :
-                cells) {
-            if (cell.getCard() != null && cell.getCard().getAccount().equals(account)) {
-                cards.add(cell.getCard());
+        Cell[][] cells = map.getCells();
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
+                if (cells[i][j].getCard() != null && cells[i][j].getCard().getAccount().equals(account)) {
+                    cards.add(cells[i][j].getCard());
+                }
             }
         }
+
         return cards;
     }
 
@@ -102,7 +121,6 @@ public class Battle {
             card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
         }
         selectedCard = card;
-
     }
 
     public Card getSelectedCard() {
@@ -114,25 +132,25 @@ public class Battle {
     }
 
     public void moveCard(Cell destinationCell) {
-        if (!isVAlidMove(destinationCell)) {
-            return;
-        }
         if (selectedCard.isAbleToMove())
             map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
+        // TODO valid moves
     }
 
     public void attack(Cell targetCell) {
         Card targetCard = targetCell.getCard();
         Warrior warrior;
         Warrior defender;
-        defender = (Warrior) targetCard;
-        warrior = (Warrior) selectedCard;
-        if (!isValidAttack(targetCell)) {
-            return;
+        if (targetCard instanceof Warrior) {
+            defender = (Warrior) targetCard;
+        } else {
+            //TODO send error
         }
-        defender.decreaseHealthPoint(warrior.getActionPower());
-        //TODO check valid counterAttack
-        warrior.decreaseHealthPoint(defender.getActionPower());
+        if (selectedCard instanceof Warrior) {
+            warrior = (Warrior) selectedCard;
+        } else {
+            //TODO send error
+        }
 
 
     }
@@ -146,22 +164,41 @@ public class Battle {
     }
 
     public String showHand(int numberOfPlayer) {
-        return null;
+        return new String();
     }
 
     public void insertCard(String cardID, Cell cell) {
-        Card card;
-        if (turn % 2 == 1) {
-            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
-        } else {
-            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
-        }
-        if (!isVAlidInsert(cardID, cell))
-            cell.setCard(card);
+
     }
 
     public void endTurn() {
+        endGame();
+        if (endGame) {
+            //TODO if game finish what to do , what not to do :\
+            return;
+        }
+        setPlayersManaForNewTurn();
+        incrementTurn();
+        if (gameGoal == GameGoal.HOLD_FLAG) {
+            flagForHoldFlagGameMode.updateFlagCell();
+            takeFlag(firstPlayer);
+            takeFlag(secondPlayer);
+        }
 
+    }
+
+    private void incrementTurnMaximumMana() {
+        turnMaximumMana++;
+    }
+
+    private void setPlayersManaForNewTurn() {
+        incrementTurnMaximumMana();
+        firstPlayerMana = turnMaximumMana;
+        secondPlayerMana = turnMaximumMana;
+    }
+
+    private void incrementTurn() {
+        turn++;
     }
 
     public void showCollectable() {
@@ -197,10 +234,62 @@ public class Battle {
     }
 
     public void endGame() {
+        switch (gameGoal) {
+            case KILL_HERO:
+                endOfKillHeroGameMode();
+                break;
+            case HOLD_FLAG:
+                endOfHoldFlagGameMode();
+                break;
+            case COLLECT_FLAG:
+                endOfCollectFlagGameMode();
+
+        }
+
+    }
+
+    private void endOfKillHeroGameMode() {
+        if (firstPlayer.getMainDeck().getHero().isDeath()) {
+            endGame = true;
+            setWinner(secondPlayer);
+        } else if (secondPlayer.getMainDeck().getHero().isDeath()) {
+            endGame = true;
+            setWinner(firstPlayer);
+        }
+    }
+
+    private void endOfHoldFlagGameMode() {
+        if (flagForHoldFlagGameMode.getNumberOfTurns() == 6) {
+            setWinner(flagForHoldFlagGameMode.getFlagHolder().getAccount());
+            endGame = true;
+        }
+    }
+
+    private void takeFlag(Account player) {
+        for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
+            if (player.getMainDeck().getCards().get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
+                if (flagForHoldFlagGameMode.getFlagHolder() != player.getMainDeck().getCards().get(i))
+                    flagForHoldFlagGameMode.setFlagHolder((Warrior) player.getMainDeck().getCards().get(i));
+                return;
+            }
+        }
+    }
+
+    private void endOfCollectFlagGameMode() {
+        if (firstPlayerFlags >= flagForCollectFlagGameModes.length)
+            setWinner(firstPlayer);
+        else if (secondPlayerFlags >= flagForCollectFlagGameModes.length)
+            setWinner(secondPlayer);
 
     }
 
     public void exit() {
+
+
+    }
+
+    public void findValidCell(String kindOfAcction) {
+
 
     }
 
@@ -228,53 +317,11 @@ public class Battle {
         return true;
     }
 
-    private boolean isVAlidInsert(String cardID, Cell destinationCell) {
-        Card card;
-        if (turn % 2 == 1) {
-            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
-        } else {
-            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
-        }
-        if (destinationCell.getCard() != null) {
-            //TODO send error
-            return false;
-        }
-        if ((turn % 2 == 1 && card.getManaCost() > firstPlayerMana) || (turn % 2 == 0 && card.getManaCost() > secondPlayerMana)) {
-            //TODO send error
-            return false;
-        }
-        if (validCells.contains(destinationCell)) {
-            return true;
-        } else {
-            //TODO send error
-            return false;
-        }
-    }
-
     private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {
         return true;
     }
 
-    private boolean isValidAttack(Cell targetCell) {
-        Card targetCard = targetCell.getCard();
-        Warrior warrior;
-        Warrior defender;
-        if (targetCard instanceof Warrior) {
-            defender = (Warrior) targetCard;
-        } else {
-            //TODO send error
-            return false;
-        }
-        if (selectedCard instanceof Warrior) {
-            warrior = (Warrior) selectedCard;
-        } else {
-            //TODO send error
-            return false;
-        }
-        if (warrior.getAccount().equals(defender.getAccount())) {
-            //TODO send error
-            return false;
-        }
+    private boolean isValidAttack(Cell targetCell, String warriorsCardID) {
         return true;
     }
 
@@ -320,5 +367,25 @@ public class Battle {
 
     public int[] getSixRandomNumber() {
         return new int[6];
+    }
+
+    public GameMode getGameMode() {
+        return gameMode;
+    }
+
+    public GameGoal getGameGoal() {
+        return gameGoal;
+    }
+
+    public FlagForHoldFlagGameMode getFlagForHoldFlagGameMode() {
+        return flagForHoldFlagGameMode;
+    }
+
+    public void setWinner(Account winner) {
+        this.winner = winner;
+    }
+
+    public Account getWinner() {
+        return winner;
     }
 }
