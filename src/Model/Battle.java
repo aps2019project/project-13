@@ -11,7 +11,7 @@ enum KindOfActionForValidCells {
 }
 
 public class Battle {
-    private Battle runningBattle = null ;
+    private static Battle runningBattle = null ;
     private Map map;
     private Account firstPlayer;
     private Account secondPlayer;
@@ -533,7 +533,7 @@ public class Battle {
         return winner;
     }
 
-    public Battle getRunningBattle() {
+    public static Battle getRunningBattle() {
         return runningBattle;
     }
 }
