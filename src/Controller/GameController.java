@@ -134,6 +134,7 @@ public class GameController {
                 throw new Error(ConstantMessages.USERNAME_EXIST.getMessage());
             }
         }
+
         show.getPassword();
         String passWord;
         Scanner scanner = request.getScanner();
@@ -218,21 +219,18 @@ public class GameController {
     private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
         Account account;
         Battle battle = Battle.getRunningBattle();
-        if (isYoursMinion)
-        { account = battle.getThisTurnPlayer();}
-        else {
-            account=battle.getOtherTurnPlayer();
+        if (isYoursMinion) {
+            account = battle.getThisTurnPlayer();
+        } else {
+            account = battle.getOtherTurnPlayer();
         }
         Map map = battle.getMap();
         ArrayList<String> output = new ArrayList<>();
-        for (int i =0;i<map.MAX_ROW;i++)
-        {
-            for (int j =0;j<map.MAX_COLUMN;j++)
-            {
-                Cell cell = map.getCell(i,j);
-                if (cell.getCard().getAccount().equals(account))
-                {
-                    output.add(cell.getCard().toString() + "- Position: "+i+1 + " , " + j+1);
+        for (int i = 0; i < map.MAX_ROW; i++) {
+            for (int j = 0; j < map.MAX_COLUMN; j++) {
+                Cell cell = map.getCell(i, j);
+                if (cell.getCard().getAccount().equals(account)) {
+                    output.add(cell.getCard().toString() + "- Position: " + i + 1 + " , " + j + 1);
                 }
             }
         }
@@ -418,7 +416,7 @@ public class GameController {
         Deck deck = request.getAccount().findDeck(deckName);
         if (deck != null) {
             Deck.validateDeck(deck);
-            //TODO SHOW SOMETHING
+            System.out.println(ConstantMessages.VALID_DECK);
         }
     }
 
