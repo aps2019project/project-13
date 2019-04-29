@@ -67,6 +67,14 @@ public class Show {
     public void createdAccount(String username) {
         System.out.println("new account " + username + " is created");
     }
+
+    public void getYourPasWord() {
+        System.out.println(YOUR_PASSWORD);
+    }
+
+    public void incorrectPassWord() {
+        System.out.println(INCORRECT_PASSWORD);
+    }
         private void showCollectabletHelp () {
             System.out.println(COLLECTABLE_HELP);
         }
