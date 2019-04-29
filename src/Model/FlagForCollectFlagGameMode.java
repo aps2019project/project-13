@@ -6,11 +6,15 @@ public class FlagForCollectFlagGameMode extends Item {
 
     public FlagForCollectFlagGameMode(Cell currentCell) {
         super("00", "Flag", ItemKind.FLAG, null);
-        this.currentCell = currentCell;
+        setCurrentCell(currentCell);
     }
 
 
     public Cell getCurrentCell() {
         return currentCell;
+    }
+
+    public void setCurrentCell(Cell currentCell) {
+        this.currentCell = currentCell;
     }
 }

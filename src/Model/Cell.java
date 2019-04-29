@@ -49,4 +49,7 @@ public class Cell {
         return item;
     }
 
+    public void setItem(Item item) {
+        this.item = item;
+    }
 }

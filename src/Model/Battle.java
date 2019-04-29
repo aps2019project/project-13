@@ -4,6 +4,7 @@ import Model.Account;
 
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
+import java.util.Random;
 
 enum KindOfActionForValidCells {
     MOVE, ATTACK, INSERT, ITEM, SPELL
@@ -39,7 +40,7 @@ public class Battle {
     private FlagForHoldFlagGameMode flagForHoldFlagGameMode;
     private int firstPlayerFlags;
     private int secondPlayerFlags;
-    private FlagForCollectFlagGameMode[] flagForCollectFlagGameModes = new FlagForCollectFlagGameMode[7];//TODO bejaye 7 bayad moteghayyer gozasht
+    private FlagForCollectFlagGameMode[] flagForCollectFlagGameModes = new FlagForCollectFlagGameMode[6];//TODO bejaye 6 bayad moteghayyer gozasht
 
 
     Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
@@ -49,7 +50,8 @@ public class Battle {
         this.gameGoal = gameGoal;
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG);
-        }
+        } else if (gameGoal == GameGoal.COLLECT_FLAG)
+            setFlagForCollectFlagGameModes();
     }
 
     public void nextTurn() {
@@ -420,10 +422,12 @@ public class Battle {
     }
 
     private boolean isValidSpeicalPower(int row, int column) {
+
         return true;
     }
 
     public void setHandOfFirstPlayer() {
+
 
     }
 
@@ -432,6 +436,7 @@ public class Battle {
     }
 
     public void stratGame() {
+
 
     }
 
@@ -459,8 +464,40 @@ public class Battle {
         this.secondPlayerItems.add(secondPlayerItems);
     }
 
-    public int[] getSixRandomNumber() {
-        return new int[6];
+    public void setFlagForCollectFlagGameModes() {
+        int[] randomX = new int[6];
+        int[] randomY = new int[6];
+        getNRandomNumber(6, randomX, randomY);
+        for (int i = 0; i < flagForCollectFlagGameModes.length; i++) {
+            flagForCollectFlagGameModes[i] = new FlagForCollectFlagGameMode(Map.getCell(randomX[i], randomY[i]));
+            Map.getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes[i]);
+        }
+    }
+
+    public void getNRandomNumber(int n, int[] randomX, int[] randomY) {
+
+        randomX = new int[n];
+        randomY = new int[n];
+        Random random = new Random();
+
+        for (int i = 0; i < randomX.length; i++) {
+            randomX[i] = random.nextInt();
+            randomY[i] = random.nextInt();
+            while (hasNumber(randomX, randomX[i])) {
+                randomX[i] = random.nextInt();
+            }
+            while (hasNumber(randomY, randomY[i])) {
+                randomY[i] = random.nextInt();
+            }
+        }
+    }
+
+    private boolean hasNumber(int[] array, int number) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == number)
+                return true;
+        }
+        return false;
     }
 
     public GameMode getGameMode() {
