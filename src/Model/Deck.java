@@ -13,94 +13,80 @@ public class Deck {
 
     //TODO DECK TO STRING
 
-    Deck(String deckName, Account account)
-    {
+    Deck(String deckName, Account account) {
         setDeckName(deckName);
         setAccount(account);
         setCards(new ArrayList<>());
         setMinions(new ArrayList<>());
         decks.add(this);
     }
-    public static void deleteDeck(Deck deck)
-    {
-        if (deck!=null)
-        {
+
+    public static void deleteDeck(Deck deck) {
+        if (deck != null) {
             decks.remove(deck);
         }
     }
-    public static void createDeck (String deckName , Account account)
-    {
-        new Deck(deckName,account);
+
+    public static void createDeck(String deckName, Account account) {
+        new Deck(deckName, account);
     }
-    public void deleteItem()
-    {
+
+    public void deleteItem() {
         setItem(null);
     }
-    public static boolean validateDeck(Deck deck)
-    {
-        if (deck!=null && deck.getHero()!=null && deck.getCards().size()==20)
-        {
+
+    public static boolean validateDeck(Deck deck) {
+        if (deck != null && deck.getHero() != null && deck.getCards().size() == 20) {
             return true;
         }
         return false;
     }
-    public void addCard(Card card)
-    {
+
+    public void addCard(Card card) {
         //TODO TYPE OF CARD
-        if (card!=null)
-        {
+        if (card != null) {
             getCards().add(card);
         }
     }
-    public void addHero(Hero hero)
-    {
-        if (hero!=null) {
+
+    public void addHero(Hero hero) {
+        if (hero != null) {
             if (getHero() != null) {
                 getCards().remove(getHero());
                 setHero(hero);
                 getCards().add(hero);
-            }
-            else
-            {
+            } else {
                 setHero(hero);
                 getCards().add(hero);
             }
         }
     }
-    public void addMinion(Minion minion)
-    {
-        if (minion!=null)
-        {
+
+    public void addMinion(Minion minion) {
+        if (minion != null) {
             getMinions().add(minion);
             getCards().add(minion);
         }
     }
 
-    public static void removeCardFromDeck(String cardId , String deckName)
-    {
+    public static void removeCardFromDeck(String cardId, String deckName) {
         Deck deck = findDeck(deckName);
-        if (deck!=null)
-        {
+        if (deck != null) {
             deck.removeCard(cardId);
         }
     }
 
-    public void removeCard(String cardId)
-    {
-       Card card= Card.findCardInArrayList(cardId,this.getCards());
-       if (card!=null)
-       {
-           getCards().remove(card);
-       }
+    public void removeCard(String cardId) {
+        Card card = Card.findCardInArrayList(cardId, this.getCards());
+        if (card != null) {
+            getCards().remove(card);
+        }
 
     }
 
-    public static Deck findDeck(String deckName)
-    {
-        for(int i =0;i<decks.size();i++)
-        {
-            if (decks.get(i)!=null && decks.get(i).getDeckName().equals(deckName))
-            {
+    public static Deck findDeck(String deckName) {
+        for (int i = 0; i < decks.size(); i++) {
+            if (decks.get(i) != null && decks.get(i).getDeckName().equals(deckName)) {
                 return decks.get(i);
             }
         }
@@ -160,5 +146,31 @@ public class Deck {
         this.deckName = deckName;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(deckName).append(" \n");
+        ArrayList<Card> cards = Card.cardArrayListSorter(Card.cardArrayListSorter(this.cards));
+        int iter = 1;
+        sb.append("Hero: \n");
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i) != null && cards.get(i).getCardKind().equals(CardKind.HERO)) {
+                sb.append(iter++).append(". ").append(cards.get(i).toString()).append("\n");
+            }
+        }
+        sb.append("Items: \n");
+        if (this.item != null) {
+            sb.append(item.toString()).append(" \n");
+        }
+        iter = 1;
+        sb.append("Cards: \n");
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i) != null && !cards.get(i).getCardKind().equals(CardKind.HERO)) {
+                sb.append(iter++).append(". ").append(cards.get(i).toString()).append("\n");
+            }
+        }
+        String result = sb.toString();
 
+        return result;
+    }
 }

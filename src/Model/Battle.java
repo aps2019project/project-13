@@ -116,6 +116,7 @@ public class Battle {
 
     }
 
+
     public void selectCard(String cardID) {
         Card card;
         if (turn % 2 == 1) {

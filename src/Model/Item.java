@@ -37,6 +37,10 @@ public class Item {
 //    }
 
 
+    public ItemName getItemName() {
+        return itemName;
+    }
+
     public ItemKind getItemKind() {
         return itemKind;
     }

@@ -46,6 +46,21 @@ public class Map {
         destinationCell.setCard(card);
     }
 
+    public Cell findCardCell(String cardName)
+    {
+        for (int i =0;i<MAX_ROW;i++)
+        {
+            for (int j =0;j<MAX_COLUMN ;j++)
+            {
+                if (cells[i][j].getCard()!=null && cells[i][j].getCard().getCardId().equals(cardName))
+                {
+                    return cells[i][j];
+                }
+            }
+        }
+        return null;
+    }
+
     public void insertCard(Card card, Cell cell) {
         if (cell.getCard() == null)
             return;

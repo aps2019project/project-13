@@ -25,4 +25,9 @@ public class CollectableItem extends Item{
     public void setSpell(Spell spell) {
         this.spell = spell;
     }
+
+    @Override
+    public String toString() {
+        return "Name:"+ this.getItemName() + "- Desc: " + this.getItemDescription();
+    }
 }

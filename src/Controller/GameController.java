@@ -5,7 +5,6 @@ import Model.*;
 import View.Error;
 
 
-import java.lang.invoke.ConstantCallSite;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -462,8 +461,43 @@ public class GameController {
                 request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
                 break;
             case MOVE:
+                cardCommandMove(cardCommand);
+                break;
             case ATTACK:
+            {
+                Battle battle = Battle.getRunningBattle();
+                String cardName = cardCommand.getData().get(0);
+                Cell cell = battle.getMap().findCardCell(cardName);
+                if (cell!=null)
+                {
+                    battle.attack(cell);
+                }
+                else
+                {
+                    //TODO ERROR
+                }
+
+            }
             case USE_SPECIAL_POWER:
+                //TODO
+        }
+    }
+
+    private void cardCommandMove(CardCommand cardCommand) {
+        Battle battle = Battle.getRunningBattle();
+        Card card = battle.getSelectedCard();
+        if (card ==null)
+        {
+            //TODO ERROR
+        }
+        try {
+            int x = Integer.parseInt(cardCommand.getData().get(0));
+            int y = Integer.parseInt(cardCommand.getData().get(1));
+            battle.moveCard(battle.getMap().getCell(x,y));
+        }
+        catch (Exception e)
+        {
+            //TODO CHECK THIS TRY CATCH
         }
     }
 
@@ -472,13 +506,31 @@ public class GameController {
             case EXIT:
                 request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
                 break;
-            case SHOW_CARD:
+            case SHOW_CARDS:
+                //TODO IT IS ONLY RELATED TO SHOW. IT MUST SHOW ALL CARDS OF BATTLE GRAVEYARD SO A FOR ON CARDS AND SOUT!
+
+                break;
             case SHOW_INFO:
+                graveyardShowInfo(graveYardCommand);
+                break;
+        }
+    }
+
+    private void graveyardShowInfo(GraveYardCommand graveYardCommand) {
+        String cardName = graveYardCommand.getData();
+        Battle battle = Battle.getRunningBattle();
+        Card card=  Card.findCardInArrayList(cardName ,battle.getGraveYardCards());
+        if (card != null) {
+            //TODO SHOW Item using CARD . toString
+        }
+        {
+            //TODO ERROR
         }
     }
 
     private void collectableCommandManagement(Request request, CollectableCommand collectableCommand) {
         switch (collectableCommand) {
+            //TODO IN BAKHSH ZEDEH NASHODEH
             case SHOW_INFO:
             case EXIT:
                 request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);

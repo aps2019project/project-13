@@ -24,4 +24,8 @@ public class UsableItem extends Item {
         }
         return null;
     }
+    @Override
+    public String toString() {
+        return "Name:"+ this.getItemName() + "- Desc: " + this.getItemDescription();
+    }
 }
