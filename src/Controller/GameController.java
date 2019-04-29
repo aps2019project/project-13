@@ -4,6 +4,7 @@ import View.*;
 import Model.*;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameController {
@@ -173,46 +174,149 @@ public class GameController {
             case HELP:
                 show.showHelp(KindOfOrder.BATTLE);
                 break;
-            case INSERT: {
-                String cardName =  battleCommand.getData().get(0);
-                int x = Integer.parseInt( battleCommand.getData().get(1));
-                int y = Integer.parseInt(battleCommand.getData().get(2));
-                Battle battle = Battle.getRunningBattle();
-                Account account = battle.getThisTurnPlayer();
-
-                Card card = Card.findCardInArrayList(cardName,account.getMainDeck().getCards());
-                if (card !=null)
-                {
-                    Cell cell = battle.getMap().getCell(x,y);
-                    if (battle.isValidInsert(cell))
-                    {
-                        battle.insertCard(cardName,cell);
-                    }
-                    else
-                    {
-                        //TODO SHOW ERROR
-                    }
-                }
-                else
-                {
-                    //TODO SHOW ERROR
-                }
-
-
-            }
-            break;
-
+            case INSERT:
+                battleInsert(battleCommand);
+                break;
             case SELECT:
+                battleSelect(battleCommand);
+                break;
             case END_GAME:
+                battleEndGame();
+                break;
             case END_TURN:
+                battleEndTurn();
+                break;
             case GAME_INFO:
+                battleGameInfo();
+                break;
             case SHOW_HAND:
+                battleShowHand();
+                break;
             case SHOW_CARD_INFO:
+                battleShowCardInfo();
+                break;
             case SHOW_NEXT_CARD:
+                battleShowNextCard();
+                break;
             case ENTER_GRAVE_YARD:
+                battleEnterGraveyard();
+                break;
             case SHOW_MY_MINIONS:
+                battleShowMinion(true);
+                //TODO PASS THIS TO SHOW
+                return;
             case SHOW_COLLECTABLE:
             case SHOW_OPPONENT_MINIONS:
+                battleShowMinion(false);
+                //TODO PASS THIS TO SHOW
+        }
+    }
+
+    private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
+        Account account;
+        Battle battle = Battle.getRunningBattle();
+        if (isYoursMinion)
+        { account = battle.getThisTurnPlayer();}
+        else {
+            account=battle.getOtherTurnPlayer();
+        }
+        Map map = battle.getMap();
+        ArrayList<String> output = new ArrayList<>();
+        for (int i =0;i<map.MAX_ROW;i++)
+        {
+            for (int j =0;j<map.MAX_COLUMN;j++)
+            {
+                Cell cell = map.getCell(i,j);
+                if (cell.getCard().getAccount().equals(account))
+                {
+                    output.add(cell.getCard().toString() + "- Position: "+i+1 + " , " + j+1);
+                }
+            }
+        }
+        return output;
+    }
+
+    private void battleEnterGraveyard() {
+        Battle.getRunningBattle().enterGraveYard();
+    }
+
+    private void battleShowNextCard() {
+        Battle battle = Battle.getRunningBattle();
+        battle.showNextCard(); //TODO NEED TO BE CHANGED.
+    }
+
+    private void battleShowCardInfo() {
+        Card card = Battle.getRunningBattle().getSelectedCard();
+        //TODO SHOW SOMETHING
+    }
+
+    private void battleShowHand() {
+        Battle battle = Battle.getRunningBattle();
+        if (battle.getTurn() % 2 == 1) {
+            battle.getFirstPlayerHand();
+            //TODO SHOW SOMETHING
+        } else {
+            battle.getSecondPlayerHand();
+            //TODO SHOW SOMETHING
+        }
+    }
+
+    private void battleGameInfo() {
+        Battle battle = Battle.getRunningBattle();
+        if (battle.getGameGoal() == GameGoal.KILL_HERO) {
+            //TODO SHOW SOMETHING
+        } else if (battle.getGameGoal() == GameGoal.COLLECT_FLAG) {
+            //TODO SHOW SOMETHING
+        } else if (battle.getGameGoal() == GameGoal.HOLD_FLAG) {
+            //TODO SHOW SOMETHING ELSE
+        }
+    }
+
+    private void battleEndTurn() {
+        Battle battle = Battle.getRunningBattle();
+        battle.endTurn();
+    }
+
+    private void battleEndGame() {
+        Battle battle = Battle.getRunningBattle();
+        battle.endGame();
+    }
+
+    private void battleSelect(BattleCommand battleCommand) {
+        String cardName = battleCommand.getData().get(0);
+        Battle battle = Battle.getRunningBattle();
+        Account account = battle.getThisTurnPlayer();
+        ArrayList<Card> hand = new ArrayList<>();
+        if (battle.getTurn() % 2 == 1) {
+            hand = battle.getFirstPlayerHand();
+        } else {
+            hand = battle.getSecondPlayerHand();
+        }
+        Card card = Card.findCardInArrayList(cardName, hand);
+        if (card != null) {
+            battle.selectCard(cardName);
+        } else {
+            //TODO ERROR PRINT
+        }
+    }
+
+    private void battleInsert(BattleCommand battleCommand) {
+        String cardName = battleCommand.getData().get(0);
+        int x = Integer.parseInt(battleCommand.getData().get(1));
+        int y = Integer.parseInt(battleCommand.getData().get(2));
+        Battle battle = Battle.getRunningBattle();
+        Account account = battle.getThisTurnPlayer();
+
+        Card card = Card.findCardInArrayList(cardName, account.getMainDeck().getCards());
+        if (card != null) {
+            Cell cell = battle.getMap().getCell(x, y);
+            if (battle.isValidInsert(cell)) {
+                battle.insertCard(cardName, cell);
+            } else {
+                //TODO SHOW ERROR
+            }
+        } else {
+            //TODO SHOW ERROR
         }
     }
 

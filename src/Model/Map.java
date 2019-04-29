@@ -8,9 +8,11 @@ import Model.Item;
 import java.util.ArrayList;
 
 public class Map {
+    public static  final  int MAX_ROW = 5;
+    public static final int MAX_COLUMN = 9;
 
 
-    private  Cell[][] cells = new Cell[5][9];
+    private  Cell[][] cells = new Cell[MAX_ROW][MAX_COLUMN];
     private Battle battle;
 
     Map(Battle battle) {

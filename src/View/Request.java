@@ -33,7 +33,7 @@ public class Request {
         transferCommandToRightPlace(command);
     }
 
-    private void transferCommandToRightPlace(String command) {
+    public void transferCommandToRightPlace(String command) {
         switch (kindOfOrder.get(kindOfOrder.size() - 1)) {
             case SHOP:
                 commandOfShop(command);
