@@ -46,7 +46,7 @@ public class Battle {
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
         if (gameGoal == GameGoal.HOLD_FLAG) {
-            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG);
+            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
             setFlagForCollectFlagGameModes();
         runningBattle = this;
@@ -65,8 +65,7 @@ public class Battle {
         } else if (turn % 2 == 1 && turn < 14) {
             firstPlayerCapacityMana++;
             secondPlayerCapacityMana++;
-        }
-        if (turn >= 14) {
+        } else if (turn >= 14) {
             firstPlayerCapacityMana = 9;
             secondPlayerCapacityMana = 9;
         }
@@ -183,7 +182,7 @@ public class Battle {
             card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
         }
         findValidCell(KindOfActionForValidCells.INSERT);
-        if (validCells.contains(cell))
+        if (isValidInsert(cell))
             cell.setCard(card);
     }
 
@@ -389,10 +388,9 @@ public class Battle {
 
 
     }
-    public boolean isValidInsert(Cell destinationCell )
-    {
-        if (destinationCell.isEmpty())
-        {
+
+    public boolean isValidInsert(Cell destinationCell) {
+        if (destinationCell.isEmpty()) {
             return true;
         }
         return false;

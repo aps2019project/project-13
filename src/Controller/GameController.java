@@ -2,8 +2,10 @@ package Controller;
 
 import View.*;
 import Model.*;
+import View.Error;
 
 
+import java.lang.invoke.ConstantCallSite;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,21 +19,25 @@ public class GameController {
     }
 
     public static GameController getInstance() {
+
         return gamecontroller;
     }
 
     public void main() {
         Request request = Request.getInstance();
         while (!isFinish) {
-            request.getRequest();
-            commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size() - 1));
+            try {
+                request.getRequest();
+                commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size() - 1));
+            } catch (Error e) {
+                System.out.println(e.toString());
+            }
+
         }
     }
-
-    //TODO INVALID INPUT HANDLING
     //TODO INVALID OUTPUT HANDLING
 
-    private void commandManagement(Request request, KindOfOrder kindOfOrder) {
+    private void commandManagement(Request request, KindOfOrder kindOfOrder) throws Error {
         switch (kindOfOrder) {
             case COLLECTION:
                 collectionCommandManagement(request, request.getCollectionCommand());
@@ -99,7 +105,7 @@ public class GameController {
         }
     }
 
-    private void accountCommandManagement(Request request, AccountCommand accountCommand) {
+    private void accountCommandManagement(Request request, AccountCommand accountCommand) throws Error {
         switch (accountCommand) {
             case EXIT:
                 request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
@@ -126,8 +132,7 @@ public class GameController {
         for (Account account :
                 Account.getAccounts()) {
             if (account.getUsername().equals(userName)) {
-                //TODO send error
-                return;
+                throw new Error(ConstantMessages.USERNAME_EXIST.getMessage());
             }
         }
         show.getPassword();
@@ -153,8 +158,7 @@ public class GameController {
             }
         }
         if (trueAccount == null) {
-            //TODO send error
-            return;
+            throw new Error(ConstantMessages.USERNAME_NOT_EXIST.getMessage());
         }
         show.getYourPasWord();
         String passWord;
@@ -296,7 +300,7 @@ public class GameController {
         if (card != null) {
             battle.selectCard(cardName);
         } else {
-            //TODO ERROR PRINT
+            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         }
     }
 
@@ -313,10 +317,10 @@ public class GameController {
             if (battle.isValidInsert(cell)) {
                 battle.insertCard(cardName, cell);
             } else {
-                //TODO SHOW ERROR
+                throw new Error(ConstantMessages.INVALID_CELL_TO_INSERT_CARD.getMessage());
             }
         } else {
-            //TODO SHOW ERROR
+            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         }
     }
 

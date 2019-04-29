@@ -33,7 +33,7 @@ public class Request {
         transferCommandToRightPlace(command);
     }
 
-    public void transferCommandToRightPlace(String command) {
+    private void transferCommandToRightPlace(String command) throws Error {
         switch (kindOfOrder.get(kindOfOrder.size() - 1)) {
             case SHOP:
                 commandOfShop(command);
@@ -69,9 +69,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfShop(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfBattle(String command) {
@@ -81,9 +83,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfBattle(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfCollectable(String command) {
@@ -92,9 +96,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfCollectable(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfCard(String command) {
@@ -103,9 +109,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfCard(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfGraveyard(String command) {
@@ -114,9 +122,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfGraveyard(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfAccount(String command) {
@@ -125,9 +135,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfAccount(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfMainMenu(String command) {
@@ -136,9 +148,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfMainMenu(i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void commandOfCollection(String command) {
@@ -147,9 +161,11 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfCollection(matcher, i);
+                    return;
                 }
             }
         }
+        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
     private void setCommandOfShop(Matcher matcher, int i) {
