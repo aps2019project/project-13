@@ -11,6 +11,7 @@ enum KindOfActionForValidCells {
 }
 
 public class Battle {
+    private Battle runningBattle = null ;
     private Map map;
     private Account firstPlayer;
     private Account secondPlayer;
@@ -52,6 +53,7 @@ public class Battle {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
             setFlagForCollectFlagGameModes();
+        runningBattle = this;
     }
 
     public void nextTurn() {
@@ -529,5 +531,9 @@ public class Battle {
 
     public Account getWinner() {
         return winner;
+    }
+
+    public Battle getRunningBattle() {
+        return runningBattle;
     }
 }

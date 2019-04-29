@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Account {
+    private Account loginedAccount = null ;
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<String> battleHistory;
     private ArrayList<Deck> decks;
@@ -19,6 +20,7 @@ public class Account {
         setCardCollection(new CardCollection(this));
         setBattleHistory(new ArrayList<>());
         accounts.add(this);
+        loginedAccount = this;
     }
 
     public void increaseDarick(int number)
@@ -134,5 +136,7 @@ public class Account {
         this.darick = darick;
     }
 
-
+    public Account getLoginedAccount() {
+        return loginedAccount;
+    }
 }
