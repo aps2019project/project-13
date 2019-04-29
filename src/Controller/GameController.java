@@ -178,6 +178,25 @@ public class GameController {
                 int x = Integer.parseInt( battleCommand.getData().get(1));
                 int y = Integer.parseInt(battleCommand.getData().get(2));
                 Battle battle = Battle.getRunningBattle();
+                Account account = battle.getThisTurnPlayer();
+
+                Card card = Card.findCardInArrayList(cardName,account.getMainDeck().getCards());
+                if (card !=null)
+                {
+                    Cell cell = battle.getMap().getCell(x,y);
+                    if (battle.isValidInsert(cell))
+                    {
+                        battle.insertCard(cardName,cell);
+                    }
+                    else
+                    {
+                        //TODO SHOW ERROR
+                    }
+                }
+                else
+                {
+                    //TODO SHOW ERROR
+                }
 
 
             }

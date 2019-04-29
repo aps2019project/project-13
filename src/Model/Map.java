@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Map {
 
 
-    private static Cell[][] cells = new Cell[5][9];
+    private  Cell[][] cells = new Cell[5][9];
     private Battle battle;
 
     Map(Battle battle) {
@@ -22,7 +22,7 @@ public class Map {
         }
     }
 
-    public static Cell getCell(int row, int col) {
+    public  Cell getCell(int row, int col) {
         return cells[row][col];
     }
 

@@ -6,10 +6,6 @@ import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.Random;
 
-enum KindOfActionForValidCells {
-    MOVE, ATTACK, INSERT, ITEM, SPELL
-}
-
 public class Battle {
     private static Battle runningBattle = null;
     private Map map;
@@ -393,6 +389,15 @@ public class Battle {
 
 
     }
+    public boolean isValidInsert(Cell destinationCell )
+    {
+        if (destinationCell.isEmpty())
+        {
+            return true;
+        }
+        return false;
+
+    }
 
     private boolean isValidMove(Cell destinationCell) {
         if (destinationCell.getRow() == selectedCard.getCurrentCell().getRow()) {
@@ -498,8 +503,8 @@ public class Battle {
         int[] randomY = new int[6];
         getNRandomNumber(6, randomX, randomY);
         for (int i = 0; i < flagForCollectFlagGameModes.length; i++) {
-            flagForCollectFlagGameModes[i] = new FlagForCollectFlagGameMode(Map.getCell(randomX[i], randomY[i]));
-            Map.getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes[i]);
+            flagForCollectFlagGameModes[i] = new FlagForCollectFlagGameMode(getMap().getCell(randomX[i], randomY[i]));
+            getMap().getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes[i]);
         }
     }
 
@@ -547,6 +552,86 @@ public class Battle {
 
     public Account getWinner() {
         return winner;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public Account getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public Account getSecondPlayer() {
+        return secondPlayer;
+    }
+
+    public int getFirstPlayerCapacityMana() {
+        return firstPlayerCapacityMana;
+    }
+
+    public int getSecondPlayerCapacityMana() {
+        return secondPlayerCapacityMana;
+    }
+
+    public int getTurnMaximumMana() {
+        return turnMaximumMana;
+    }
+
+    public int getFirstPlayerMana() {
+        return firstPlayerMana;
+    }
+
+    public int getSecondPlayerMana() {
+        return secondPlayerMana;
+    }
+
+    public ArrayList<Card> getGraveYardCards() {
+        return graveYardCards;
+    }
+
+    public ArrayList<Card> getFirstPlayerHand() {
+        return firstPlayerHand;
+    }
+
+    public ArrayList<Card> getSecondPlayerHand() {
+        return secondPlayerHand;
+    }
+
+    public ArrayList<Cell> getValidCells() {
+        return validCells;
+    }
+
+    public ArrayList<Card> getFirstPlayerDeck() {
+        return firstPlayerDeck;
+    }
+
+    public ArrayList<Card> getSecondPlayerDeck() {
+        return secondPlayerDeck;
+    }
+
+    public ArrayList<Card> getFirstPlayerUnUsesdCard() {
+        return firstPlayerUnUsesdCard;
+    }
+
+    public ArrayList<Card> getSecondPlayerUnUsedCard() {
+        return secondPlayerUnUsedCard;
+    }
+
+    public boolean isEndGame() {
+        return endGame;
+    }
+
+    public int getFirstPlayerFlags() {
+        return firstPlayerFlags;
+    }
+
+    public int getSecondPlayerFlags() {
+        return secondPlayerFlags;
+    }
+
+    public FlagForCollectFlagGameMode[] getFlagForCollectFlagGameModes() {
+        return flagForCollectFlagGameModes;
     }
 
     public static Battle getRunningBattle() {
