@@ -2,6 +2,11 @@ package View;
 
 public class Show {
     private static final Show show = new Show();
+    private static final String HELP_SHOW = "create account [user name]\nlogin [username]\nshow leaderboard\nsave\nlogout";
+    private static final String GET_PASSWORD = "PassWord [ password > 5 letter ] : ";
+    private static final String UNRELIBALE_PASSWORD = "password is unreliable! , input secure password";
+    private static final String YOUR_PASSWORD = "PassWord : ";
+    private static final String INCORRECT_PASSWORD = "incorrect password! , try again!";
 
     private Show() {
 
@@ -25,22 +30,22 @@ public class Show {
         }
     }
     private void showAccountHelp(){
-        System.out.println("create account [user name]\nlogin [username]\nshow leaderboard\nsave\nlogout");
+        System.out.println(HELP_SHOW);
     }
     public void getPassword(){
-        System.out.println("PassWord [ password > 5 letter ] : ");
+        System.out.println(GET_PASSWORD);
     }
     public void unreliablePassWord(){
-        System.out.println("password is unreliable! , input secure password");
+        System.out.println(UNRELIBALE_PASSWORD);
     }
     public void createdAccount(String username){
         System.out.println("new account "+username+" is created");
     }
     public void getYourPasWord(){
-        System.out.println("PassWord : ");
+        System.out.println(YOUR_PASSWORD);
     }
     public void incorrectPassWord(){
-        System.out.println("incorrect password! , try again!");
+        System.out.println(INCORRECT_PASSWORD);
     }
 
 }
