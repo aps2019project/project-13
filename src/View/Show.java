@@ -67,37 +67,27 @@ public class Show {
     public void createdAccount(String username) {
         System.out.println("new account " + username + " is created");
     }
+        private void showCollectabletHelp () {
+            System.out.println(COLLECTABLE_HELP);
+        }
 
-    public void getYourPasWord() {
-        System.out.println(YOUR_PASSWORD);
-    }
+        private void showGraveYardHelp () {
+            System.out.println(GRAVEYARD_HELP);
+        }
 
-    public void incorrectPassWord() {
-        System.out.println(INCORRECT_PASSWORD);
-    }
+        private void showShopHelp () {
+            System.out.println(SHOP_HELP);
+        }
 
-    private void showCollectabletHelp() {
-        System.out.println(COLLECTABLE_HELP);
-    }
+        private void showBattleHelp () {
+            System.out.println(BATTLE_HELP);
+        }
 
-    private void showGraveYardHelp() {
-        System.out.println(GRAVEYARD_HELP);
-    }
+        private void showColectionHelp () {
+            System.out.println(COLLECTION_HELP);
+        }
 
-    private void showShopHelp() {
-        System.out.println(SHOP_HELP);
-    }
-
-    private void showBattleHelp() {
-        System.out.println(BATTLE_HELP);
-    }
-
-    private void showColectionHelp() {
-        System.out.println(COLLECTION_HELP);
-    }
-
-    private void showMainMenuHelp() {
-        System.out.println(MAIN_MENU_HELP);
-    }
-
+        private void showMainMenuHelp () {
+            System.out.println(MAIN_MENU_HELP);
+        }
 }
