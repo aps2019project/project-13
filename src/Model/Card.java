@@ -103,5 +103,31 @@ public class Card {
         return findCardInArrayList(cardId, getAllCards());
     }
 
+    public static ArrayList<Card> cardArrayListSorter(ArrayList<Card> sourceCards) {
+        if (sourceCards != null) {
+            ArrayList<Card> copy = (ArrayList<Card>) sourceCards.clone();
+            ArrayList<Card> result = new ArrayList<>();
+            for (int i = 0; i < copy.size(); i++) {
+                if (copy.get(i) != null && copy.get(i).getCardKind().equals(CardKind.HERO)) {
+                    result.add(copy.get(i));
+                }
+            }
+            for (int i = 0; i < copy.size(); i++) {
+                if (copy.get(i) != null && copy.get(i).getCardKind().equals(CardKind.MINION)) {
+                    result.add(copy.get(i));
+                }
+            }
+            for (int i = 0; i < copy.size(); i++) {
+                if (copy.get(i) != null && copy.get(i).getCardKind().equals(CardKind.SPELL)) {
+                    result.add(copy.get(i));
+                }
+            }
+
+
+            return result;
+        }
+        return null;
+    }
+
 
 }
