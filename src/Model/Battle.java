@@ -11,7 +11,7 @@ enum KindOfActionForValidCells {
 }
 
 public class Battle {
-    private static Battle runningBattle = null ;
+    private static Battle runningBattle = null;
     private Map map;
     private Account firstPlayer;
     private Account secondPlayer;
@@ -264,6 +264,22 @@ public class Battle {
             setWinner(firstPlayer);
         else if (secondPlayerFlags >= flagForCollectFlagGameModes.length / 2)
             setWinner(secondPlayer);
+    }
+
+    public Account getThisTurnPlayer() {
+        if (getTurn() % 2 == 1) {
+            return firstPlayer;
+        } else {
+            return secondPlayer;
+        }
+    }
+
+    public Account getOtherTurnPlayer() {
+        if (getTurn() % 2 == 1) {
+            return secondPlayer;
+        } else {
+            return firstPlayer;
+        }
     }
 
     public void exit() {

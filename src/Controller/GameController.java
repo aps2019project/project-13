@@ -172,7 +172,16 @@ public class GameController {
         switch (battleCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.BATTLE);
-            case INSERT:
+                break;
+            case INSERT: {
+                String cardName =  battleCommand.getData().get(0);
+                int x = Integer.parseInt( battleCommand.getData().get(1));
+                int y = Integer.parseInt(battleCommand.getData().get(2));
+                Battle battle = Battle.getRunningBattle();
+
+
+            }
+            break;
 
             case SELECT:
             case END_GAME:
