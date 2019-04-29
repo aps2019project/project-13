@@ -106,13 +106,16 @@ public class GameController {
             case SHOW_MENU:
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
+                break;
             case SAVE:
                 //TODO save to file
             case LOGIN:
                 login(request, accountCommand);
+                break;
             case LOGOUT:
             case CREATE_ACCOUNT:
                 createAccount(request, accountCommand);
+                break;
             case SHOW_LEADERBOARD:
         }
     }
@@ -168,7 +171,9 @@ public class GameController {
     private void battleCommandManagement(Request request, BattleCommand battleCommand) {
         switch (battleCommand) {
             case HELP:
+                show.showHelp(KindOfOrder.BATTLE);
             case INSERT:
+
             case SELECT:
             case END_GAME:
             case END_TURN:
