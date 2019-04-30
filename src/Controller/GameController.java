@@ -27,7 +27,7 @@ public class GameController {
         while (!isFinish) {
             try {
                 request.getRequest();
-                commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size() - 1));
+                commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
             } catch (Error e) {
                 show.showError(e);
             }
@@ -73,12 +73,14 @@ public class GameController {
                 shop.buy(shopCommand.getData(), new Account("userName", "password"));
                 break;
             case EXIT:
-                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                request.exitLastmenu();
                 break;
             case HELP:
                 show.showHelp(KindOfOrder.SHOP);
+                break;
             case SELL:
                 shop.sell(shopCommand.getData(), new Account("userName", "password"));
+                break;
             case SHOW:
             case SEARCH:
             case SHOW_MENU:
@@ -90,27 +92,27 @@ public class GameController {
     private void mainMenuCommandManagement(Request request, MainCommand mainCommand) {
         switch (mainCommand) {
             case SHOW_MENU:
-                //TODO bde b show
+                show.showHelp(KindOfOrder.MAIN_MENU);
             case ENTER_EXIT:
-                isFinish = true;
-                break;
+                request.exitLastmenu();
             case ENTER_HELP:
-                //TODO bde b show
+                show.showHelp(KindOfOrder.MAIN_MENU);
             case ENTER_SHOP:
-                //TODO bde b show
+                request.addNewMenu(KindOfOrder.SHOP);
             case ENTER_BATTLE:
-                //TODO bde b show
+                request.addNewMenu(KindOfOrder.BATTLE);
             case ENTER_COLLECTION:
-                //TODO bde b show
+                request.addNewMenu(KindOfOrder.COLLECTION);
         }
     }
 
     private void accountCommandManagement(Request request, AccountCommand accountCommand) throws Error {
         switch (accountCommand) {
             case EXIT:
-                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                request.exitLastmenu();
                 break;
             case SHOW_MENU:
+                show.showHelp(KindOfOrder.ACCOUNT);
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
                 break;
@@ -171,7 +173,6 @@ public class GameController {
             passWord = scanner.nextLine();
         }
 
-        //TODO set account
 
     }
 
@@ -324,7 +325,7 @@ public class GameController {
             case SAVE:
             case SHOW_MENU:
             case EXIT:
-                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
             case SEARCH:
                 collectionSearch(request, collectionCommand);
@@ -454,7 +455,7 @@ public class GameController {
     private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
         switch (cardCommand) {
             case EXIT:
-                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
             case MOVE:
                 cardCommandMove(cardCommand);
@@ -493,7 +494,7 @@ public class GameController {
     private void graveYardCommandManagement(Request request, GraveYardCommand graveYardCommand) {
         switch (graveYardCommand) {
             case EXIT:
-                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
             case SHOW_CARDS:
                 //TODO IT IS ONLY RELATED TO SHOW. IT MUST SHOW ALL CARDS OF BATTLE GRAVEYARD SO A FOR ON CARDS AND SOUT!
@@ -521,7 +522,7 @@ public class GameController {
             //TODO IN BAKHSH ZEDEH NASHODEH
             case SHOW_INFO:
             case EXIT:
-                request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
+                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
             case USE:
         }

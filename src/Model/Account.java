@@ -138,4 +138,8 @@ public class Account {
     public static Account getLoginedAccount() {
         return loginedAccount;
     }
+
+    public static void setLoginedAccount(Account loginedAccount) {
+        Account.loginedAccount = loginedAccount;
+    }
 }

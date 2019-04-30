@@ -640,6 +640,10 @@ public class Battle {
         return runningBattle;
     }
 
+    public static void setRunningBattle(Battle runningBattle) {
+        Battle.runningBattle = runningBattle;
+    }
+
     public void setCurrentTurnPlayer() {
         if (getTurn() % 2 == 1) {
             currentTurnPlayer = firstPlayer;

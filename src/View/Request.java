@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 
 public class Request {
     private static final Request request = new Request();
-    private ArrayList<KindOfOrder> kindOfOrder = new ArrayList<>();
+    private ArrayList<KindOfOrder> kindOfOrders = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private AccountCommand accountCommand;
     private BattleCommand battleCommand;
@@ -21,7 +21,7 @@ public class Request {
     private Account account; //TODO MAYBE IT WILL BE DELETED
 
     private Request() {
-        kindOfOrder.add(KindOfOrder.ACCOUNT);
+        kindOfOrders.add(KindOfOrder.ACCOUNT);
     }
 
     public static Request getInstance() {
@@ -34,7 +34,7 @@ public class Request {
     }
 
     private void transferCommandToRightPlace(String command) throws Error {
-        switch (kindOfOrder.get(kindOfOrder.size() - 1)) {
+        switch (kindOfOrders.get(kindOfOrders.size() - 1)) {
             case SHOP:
                 commandOfShop(command);
                 break;
@@ -241,8 +241,8 @@ public class Request {
         return accountCommand;
     }
 
-    public ArrayList<KindOfOrder> getKindOfOrder() {
-        return kindOfOrder;
+    public ArrayList<KindOfOrder> getKindOfOrders() {
+        return kindOfOrders;
     }
 
     public BattleCommand getBattleCommand() {
@@ -275,5 +275,12 @@ public class Request {
 
     public Scanner getScanner() {
         return scanner;
+    }
+
+    public void addNewMenu(KindOfOrder kindOfOrder){
+        kindOfOrders.add(kindOfOrder);
+    }
+    public void exitLastmenu(){
+        kindOfOrders.remove(kindOfOrders.size()-1);
     }
 }
