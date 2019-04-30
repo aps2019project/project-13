@@ -29,7 +29,7 @@ public class GameController {
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrder().get(request.getKindOfOrder().size() - 1));
             } catch (Error e) {
-                System.out.println(e.toString());
+                show.showError(e);
             }
         }
     }
