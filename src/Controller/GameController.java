@@ -28,6 +28,7 @@ public class GameController {
             try {
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
+                System.out.println(request.getKindOfOrders().get(request.getKindOfOrders().size()-1));
             } catch (Error e) {
                 show.showError(e);
             }
@@ -325,11 +326,11 @@ public class GameController {
 
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {
         switch (collectionCommand) {
+            case SHOW_MENU:
             case HELP:
-                collectionHelp();
+                show.showHelp(KindOfOrder.COLLECTION);
                 break;
             case SAVE:
-            case SHOW_MENU:
             case EXIT:
                 request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
@@ -364,10 +365,6 @@ public class GameController {
                 collectionRemoveCardFromDeck(request, collectionCommand);
                 break;
         }
-    }
-
-    private void collectionHelp() {
-        //TODO CALL A FUNCTION
     }
 
     private void collectionSearch(Request request, CollectionCommand collectionCommand) {
