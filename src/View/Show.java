@@ -88,4 +88,8 @@ public class Show {
     public void showError(Error error){
         System.out.println(error.getMessage());
     }
+
+    public void showMainMenu(){
+        System.out.println(ConstantMessages.MAIN_MENU.getMessage());
+    }
 }

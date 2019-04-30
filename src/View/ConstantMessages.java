@@ -55,12 +55,13 @@ public enum ConstantMessages {
     COLLECTION_HELP("Show menu\nshow\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
             "select deck [deck name] \nshow all decks \nshow deck [deck name]"),
-    MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nEnter Exit");
+    MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nEnter Exit"),
+    MAIN_MENU("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help");
     //*****************************************
 
     private String message;
 
-    private ConstantMessages(String message) {
+    ConstantMessages(String message) {
         this.message = message;
     }
 

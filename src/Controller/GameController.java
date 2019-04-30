@@ -122,6 +122,7 @@ public class GameController {
                 login(request, accountCommand);
                 break;
             case LOGOUT:
+                Account.setLoginedAccount(null);
             case CREATE_ACCOUNT:
                 createAccount(request, accountCommand);
                 break;
@@ -147,8 +148,11 @@ public class GameController {
             show.getPassword();
             passWord = scanner.nextLine();
         }
-        new Account(userName, passWord);
+        Account account = new Account(userName, passWord);
         show.createdAccount(userName);
+        Account.setLoginedAccount(account);
+        request.addNewMenu(KindOfOrder.MAIN_MENU);
+        show.showMainMenu();
     }
 
     private void login(Request request, AccountCommand accountCommand) {
@@ -172,7 +176,9 @@ public class GameController {
             show.getYourPasWord();
             passWord = scanner.nextLine();
         }
-
+        Account.setLoginedAccount(trueAccount);
+        request.addNewMenu(KindOfOrder.MAIN_MENU);
+        show.showMainMenu();
 
     }
 
