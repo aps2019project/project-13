@@ -4,15 +4,17 @@ import Model.Battle;
 import Model.Card;
 import Model.Cell;
 import Model.Item;
+import View.ConstantMessages;
+import View.Error;
 
 import java.util.ArrayList;
 
 public class Map {
-    public static  final  int MAX_ROW = 5;
+    public static final int MAX_ROW = 5;
     public static final int MAX_COLUMN = 9;
 
 
-    private  Cell[][] cells = new Cell[MAX_ROW][MAX_COLUMN];
+    private Cell[][] cells = new Cell[MAX_ROW][MAX_COLUMN];
     private Battle battle;
 
     Map(Battle battle) {
@@ -24,7 +26,9 @@ public class Map {
         }
     }
 
-    public  Cell getCell(int row, int col) {
+    public Cell getCell(int row, int col) {
+        if (row <= 0 || row >= MAX_ROW || col <= 0 || col >= MAX_COLUMN)
+            throw new Error(ConstantMessages.INVALID_CELL_TO_INSERT_CARD.getMessage());
         return cells[row][col];
     }
 
@@ -46,14 +50,10 @@ public class Map {
         destinationCell.setCard(card);
     }
 
-    public Cell findCardCell(String cardName)
-    {
-        for (int i =0;i<MAX_ROW;i++)
-        {
-            for (int j =0;j<MAX_COLUMN ;j++)
-            {
-                if (cells[i][j].getCard()!=null && cells[i][j].getCard().getCardId().equals(cardName))
-                {
+    public Cell findCardCell(String cardName) {
+        for (int i = 0; i < MAX_ROW; i++) {
+            for (int j = 0; j < MAX_COLUMN; j++) {
+                if (cells[i][j].getCard() != null && cells[i][j].getCard().getCardId().equals(cardName)) {
                     return cells[i][j];
                 }
             }

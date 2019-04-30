@@ -1,5 +1,8 @@
 package Model;
 
+import View.ConstantMessages;
+import View.Error;
+
 import java.util.ArrayList;
 
 public class Shop {
@@ -29,20 +32,29 @@ public class Shop {
     public void buy(String name, Account account) {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
-        if (card != null && card.getDarikCost() <= account.getDarick()) {
-            account.getCardCollection().addCard(card);
-            account.decreaseDarick(card.getDarikCost());
-        } else if (item != null && item.getDarickCost() <= account.getDarick()) {
-            account.getCardCollection().addItem(item);
-            account.decreaseDarick(item.getDarickCost());
+
+        if(card == null && item == null)
+            throw new Error(ConstantMessages.NOT_IN_SHOP.getMessage());
+
+        if (card != null) {
+            if( card.getDarikCost() <= account.getDarick()) {
+                account.getCardCollection().addCard(card);
+                account.decreaseDarick(card.getDarikCost());
+            }else
+                throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
+        } else if (item != null ) {
+            if(item.getDarickCost() <= account.getDarick()) {
+                account.getCardCollection().addItem(item);
+                account.decreaseDarick(item.getDarickCost());
+            }else
+                throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
         }
 
     }
 
     public void sell(String cardId, Account account) {
         Card card = account.getCardCollection().findCard(cardId);
-        if (card!=null)
-        {
+        if (card != null) {
             account.increaseDarick(card.getDarikCost());
             account.getCardCollection().removeCard(card);
         }
@@ -58,7 +70,7 @@ public class Shop {
     }
 
     public UsableItem searchAndGetItem(String name) {
-        return  UsableItem.findUsableItemInArrayList(name, getItems());
+        return UsableItem.findUsableItemInArrayList(name, getItems());
     }
 
     public ArrayList<Card> getCards() {

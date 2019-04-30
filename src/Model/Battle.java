@@ -1,6 +1,7 @@
 package Model;
 
 import View.ConstantMessages;
+import View.Error;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -44,6 +45,7 @@ public class Battle {
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
+        map = new Map(this);
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
@@ -132,7 +134,7 @@ public class Battle {
         defender = (Warrior) targetCard;
         warrior = (Warrior) selectedCard;
         if (!isValidAttack(targetCell, warrior)) {
-            return;
+            throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
         }
         defender.decreaseHealthPoint(warrior.getActionPower());
         //TODO check valid counterAttack
@@ -151,12 +153,29 @@ public class Battle {
         return null;
     }
 
-    public void insertCard(String cardID, Cell cell) {
+    public void insertCard(String cardName, int x, int y) throws Error {
 
-        Card card = Card.findCardInArrayList(cardID, currentTurnPlayer.getMainDeck().getCards());
-
-        if (isValidInsert(cell))
-            cell.setCard(card);
+        Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
+        if (card != null) {
+            Cell cell = map.getCell(x, y);
+            if (isValidInsert(cell)) {
+                if (turn % 2 == 1) {
+                    if (firstPlayerMana >= card.getManaCost())
+                        cell.setCard(card);
+                    else
+                        throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                } else {
+                    if (secondPlayerMana >= card.getManaCost())
+                        cell.setCard(card);
+                    else
+                        throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                }
+            } else {
+                throw new Error(ConstantMessages.INVALID_CELL_TO_INSERT_CARD.getMessage());
+            }
+        } else {
+            throw new Error(ConstantMessages.INVALID_CARD_NAME.getMessage());
+        }
     }
 
     public void endTurn() {

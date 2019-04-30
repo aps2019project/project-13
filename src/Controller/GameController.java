@@ -63,9 +63,11 @@ public class GameController {
         }
     }
 
-    private void shopCommandManagement(Request request, ShopCommand shopCommand) {
+    private void shopCommandManagement(Request request, ShopCommand shopCommand) throws Error {
+
         Shop shop = Shop.getInstance();
         Show show = Show.getInstance();
+
         switch (shopCommand) {
             case BUY:
                 shop.buy(shopCommand.getData(), new Account("userName", "password"));
@@ -304,24 +306,14 @@ public class GameController {
         }
     }
 
-    private void battleInsert(BattleCommand battleCommand) {
+    private void battleInsert(BattleCommand battleCommand) throws Error {
+
         String cardName = battleCommand.getData().get(0);
         int x = Integer.parseInt(battleCommand.getData().get(1));
         int y = Integer.parseInt(battleCommand.getData().get(2));
         Battle battle = Battle.getRunningBattle();
-        Account account = battle.getCurrentTurnPlayer();
+        battle.insertCard(cardName, x, y);
 
-        Card card = Card.findCardInArrayList(cardName, account.getMainDeck().getCards());
-        if (card != null) {
-            Cell cell = battle.getMap().getCell(x, y);
-            if (battle.isValidInsert(cell)) {
-                battle.insertCard(cardName, cell);
-            } else {
-                throw new Error(ConstantMessages.INVALID_CELL_TO_INSERT_CARD.getMessage());
-            }
-        } else {
-            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
-        }
     }
 
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {

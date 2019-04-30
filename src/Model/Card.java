@@ -12,11 +12,13 @@ public class Card {
     private CardKind cardKind;
     private Account account;
     private String cardDescription;
+    private String cardName;
     private transient ArrayList<Buff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
     private boolean isInGame;
 
-    public Card(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
+    public Card(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
+        this.cardName = cardName;
         this.cardId = cardId;
         this.manaCost = manaCost;
         this.darikCost = darikCost;
@@ -29,6 +31,17 @@ public class Card {
         if (cards != null) {
             for (int i = 0; i < cards.size(); i++) {
                 if (cards.get(i) != null && cards.get(i).getCardId().equals(cardId)) {
+                    return cards.get(i);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Card findCardInArrayListByName(String cardName, ArrayList<Card> cards) {
+        if (cards != null) {
+            for (int i = 0; i < cards.size(); i++) {
+                if (cards.get(i) != null && cards.get(i).getCardName().equals(cardName)) {
                     return cards.get(i);
                 }
             }
@@ -137,5 +150,13 @@ public class Card {
 
     public void setInGame(boolean inGame) {
         isInGame = inGame;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
     }
 }

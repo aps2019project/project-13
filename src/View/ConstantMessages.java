@@ -27,6 +27,7 @@ public enum ConstantMessages {
     INVALID_CARD_NAME("Invalid Card name!"),
     NOT_YOUR_TURN("It is not your turn!"),
     NO_CARD_SELECTED("Please Select a Card"),
+    NOT_IN_SHOP("Sorry!We don't have this one in our shop"),
     //*****************************************
 
     //Successful Messages

@@ -84,7 +84,8 @@ public class Show {
     private void showMainMenuHelp() {
         System.out.println(ConstantMessages.MAIN_MENU_HELP.getMessage());
     }
+
     public void showError(Error error){
-        System.out.println(error);
+        System.out.println(error.getMessage());
     }
 }
