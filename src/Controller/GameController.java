@@ -26,9 +26,9 @@ public class GameController {
         Request request = Request.getInstance();
         while (!isFinish) {
             try {
+                System.out.println(request.getKindOfOrders().get(request.getKindOfOrders().size()-1));
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
-                System.out.println(request.getKindOfOrders().get(request.getKindOfOrders().size()-1));
             } catch (Error e) {
                 show.showError(e);
             }
@@ -84,7 +84,6 @@ public class GameController {
                 break;
             case SHOW:
             case SEARCH:
-            case SHOW_MENU:
             case SHOW_COLLECTION:
             case SEARCH_COLLECTION:
         }
@@ -92,28 +91,30 @@ public class GameController {
 
     private void mainMenuCommandManagement(Request request, MainCommand mainCommand) {
         switch (mainCommand) {
-            case SHOW_MENU:
-                show.showHelp(KindOfOrder.MAIN_MENU);
-            case ENTER_EXIT:
-                request.exitLastmenu();
             case ENTER_HELP:
                 show.showHelp(KindOfOrder.MAIN_MENU);
+                break;
+            case ENTER_EXIT:
+                request.exitLastmenu();
+                break;
             case ENTER_SHOP:
                 request.addNewMenu(KindOfOrder.SHOP);
+                break;
             case ENTER_BATTLE:
                 request.addNewMenu(KindOfOrder.BATTLE);
+                break;
             case ENTER_COLLECTION:
                 request.addNewMenu(KindOfOrder.COLLECTION);
         }
     }
 
     private void accountCommandManagement(Request request, AccountCommand accountCommand) throws Error {
+        System.out.println("/////////////////////");
+
         switch (accountCommand) {
             case EXIT:
                 request.exitLastmenu();
                 break;
-            case SHOW_MENU:
-                show.showHelp(KindOfOrder.ACCOUNT);
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
                 break;
@@ -326,7 +327,6 @@ public class GameController {
 
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {
         switch (collectionCommand) {
-            case SHOW_MENU:
             case HELP:
                 show.showHelp(KindOfOrder.COLLECTION);
                 break;

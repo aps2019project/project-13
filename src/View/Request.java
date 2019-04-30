@@ -135,6 +135,7 @@ public class Request {
             {
                 if (matcher.matches()) {
                     setCommandOfAccount(matcher, i);
+                    System.out.println("=====>>" + i);
                     return;
                 }
             }
@@ -175,16 +176,16 @@ public class Request {
     }
 
     private void setCommandOfAccount(Matcher matcher, int i) {
-        if (i == 2 || i == 3) {
+        if (i > 4) {
             accountCommand = AccountCommand.values()[i].setData(matcher.group(1));
         } else accountCommand = AccountCommand.values()[i];
     }
 
     private void setCommandOfCollection(Matcher matcher, int i) {
-        if (i == 3 || (i > 4 && i < 10) || i == 12) {
+        if (i > 4) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if (i == 8 || i == 7) {
+            if (i > 10) {
                 strings.add(matcher.group(2));
             }
             collectionCommand = CollectionCommand.values()[i].setData(strings);
@@ -221,10 +222,10 @@ public class Request {
     }
 
     private void setCommandOfBattle(Matcher matcher, int i) {
-        if (i > 2 && i < 6) {
+        if (i > 9) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if (i == 5) {
+            if (i > 11) {
                 strings.add(matcher.group(2));
                 strings.add(matcher.group(3));
             }
@@ -277,10 +278,11 @@ public class Request {
         return scanner;
     }
 
-    public void addNewMenu(KindOfOrder kindOfOrder){
+    public void addNewMenu(KindOfOrder kindOfOrder) {
         kindOfOrders.add(kindOfOrder);
     }
-    public void exitLastmenu(){
-        kindOfOrders.remove(kindOfOrders.size()-1);
+
+    public void exitLastmenu() {
+        kindOfOrders.remove(kindOfOrders.size() - 1);
     }
 }
