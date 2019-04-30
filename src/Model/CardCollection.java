@@ -73,7 +73,7 @@ public class CardCollection {
 
     public Card getCard(String name) {
 
-        return new Card(" ", 1, 1, CardKind.HERO, "");
+        return new Card( "test" , "22", 1, 1, CardKind.HERO, "");
     }
 
     public Item getItem(String name) {

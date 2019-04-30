@@ -11,10 +11,10 @@ public class Warrior extends Card {
     private Spell specialPower;
     private boolean isDeath;
 
-    public Warrior(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
+    public Warrior(String cardName , String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
 
-        super(cardId, manaCost, darikCost, cardKind, cardDescription);
+        super(cardName ,cardId, manaCost, darikCost, cardKind, cardDescription);
         this.attackKind = attackKind;
         this.healthPoint = healthPoint;
         this.actionPower = actionPower;

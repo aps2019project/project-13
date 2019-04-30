@@ -10,8 +10,8 @@ public class Spell extends Card {
     private ActivationCondition activationCondition;
 
 
-    public Spell(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, TargetSocietyKind targetSocietyKind, SpellName spellName, ActivationCondition activationCondition, ArrayList<Buff> buffs) {
-        super(cardId, manaCost, darikCost, cardKind, cardDescription);
+    public Spell(String cardName , String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, TargetSocietyKind targetSocietyKind, SpellName spellName, ActivationCondition activationCondition, ArrayList<Buff> buffs) {
+        super(cardName , cardId, manaCost, darikCost, cardKind, cardDescription);
         this.targetSocietyKind = targetSocietyKind;
         this.spellName = spellName;
         this.activationCondition = activationCondition;

@@ -9,18 +9,16 @@ public class Minion extends Warrior {
     private MinionName minionName;
     private boolean hasSpecialPower;
 
-    public Minion(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName,
+    public Minion(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName,
                   int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
-        super(cardId, manaCost, darikCost, cardKind, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
+        super(cardName, cardId, manaCost, darikCost, cardKind, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
         this.minionName = minionName;
         addMinion(this);
     }
 
-
     public boolean hasSpecialPower() {
         return hasSpecialPower;
     }
-
 
     public MinionName getMinionName() {
         return minionName;
@@ -36,8 +34,8 @@ public class Minion extends Warrior {
 
     @Override
     public String toString() {
-        String str = "Type: Minion "+ "- Name: " + this.getMinionName().getName() + "- Class " + this.getMinionName().getAttackKind() + "- AP: " + this.getActionPower() + " - HP: " + this.getHealthPoint() +
-        "- MP:" + this.getManaCost() + "- Special Power: " + this.getCardDescription();
+        String str = "Type: Minion " + "- Name: " + this.getMinionName().getName() + "- Class " + this.getMinionName().getAttackKind() + "- AP: " + this.getActionPower() + " - HP: " + this.getHealthPoint() +
+                "- MP:" + this.getManaCost() + "- Special Power: " + this.getCardDescription();
         return str;
     }
 }

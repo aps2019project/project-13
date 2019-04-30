@@ -62,9 +62,11 @@ public class Battle {
 
     public void gameInfo() {
 
+
     }
 
     public void showMinions(boolean isFriendly) {
+
         if ((isFriendly && turn % 2 == 1) || (!isFriendly && turn % 2 == 0)) {
             showMinionsOfPlayer(1);
         } else {
@@ -94,6 +96,9 @@ public class Battle {
     }
 
     public void showCardInfo(String cardID) {
+
+
+
 
     }
 
@@ -146,6 +151,7 @@ public class Battle {
     }
 
     public void useSpecialPower(Cell cell) {
+
 
     }
 
@@ -271,9 +277,7 @@ public class Battle {
                     break;
                 }
             }
-
         }
-
     }
 
 
@@ -287,7 +291,6 @@ public class Battle {
 
     public void exit() {
 
-
     }
 
     public void showCollectable() {
@@ -295,6 +298,7 @@ public class Battle {
     }
 
     public void selectCollectable(String collectableID) {
+
 
     }
 
@@ -389,6 +393,7 @@ public class Battle {
     }
 
     private void findValidCellToItem() {
+
 
     }
 
