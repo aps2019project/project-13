@@ -48,14 +48,14 @@ public enum ConstantMessages {
     YOUR_PASSWORD("PassWord : "),
     COLLECTABLE_HELP("Show info\nUse [location x,y]"),
     GRAVEYARD_HELP("exit\nShow info\nShow Cards"),
-    SHOP_HELP("Show menu\nshow collection\nsearch [card name]\nsearch collection [name]\nbuy [name]\nsell [name]\nshow"),
+    SHOP_HELP("show collection\nsearch [card name]\nsearch collection [name]\nbuy [name]\nsell [name]\nshow"),
     BATTLE_HELP("Game info\nShow my minions\nShow opponent minions\n" +
             "Show card info [cardID]\nSelect [card id]\nInsert [card name] in (x,y)\nEnd turn\nShow collectables\n" +
             "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)"),
     COLLECTION_HELP("Show menu\nshow\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
             "select deck [deck name] \nshow all decks \nshow deck [deck name]"),
-    MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nEnter Exit"),
+    MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nexit"),
     MAIN_MENU("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help");
     //*****************************************
 

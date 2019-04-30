@@ -26,7 +26,6 @@ public class GameController {
         Request request = Request.getInstance();
         while (!isFinish) {
             try {
-                System.out.println(request.getKindOfOrders().get(request.getKindOfOrders().size()-1));
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
             } catch (Error e) {
@@ -109,8 +108,6 @@ public class GameController {
     }
 
     private void accountCommandManagement(Request request, AccountCommand accountCommand) throws Error {
-        System.out.println("/////////////////////");
-
         switch (accountCommand) {
             case EXIT:
                 request.exitLastmenu();
