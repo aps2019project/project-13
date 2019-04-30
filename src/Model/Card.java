@@ -14,6 +14,7 @@ public class Card {
     private String cardDescription;
     private transient ArrayList<Buff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
+    private boolean isInGame;
 
     public Card(String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
         this.cardId = cardId;
@@ -130,4 +131,11 @@ public class Card {
     }
 
 
+    public boolean isInGame() {
+        return isInGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        isInGame = inGame;
+    }
 }

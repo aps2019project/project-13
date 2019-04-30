@@ -1,9 +1,7 @@
 package Model;
 
-import Model.Account;
 import View.ConstantMessages;
 
-import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,9 +14,8 @@ public class Battle {
     private int turn = 1;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
-    private int turnMaximumMana = 2;
-    private int firstPlayerMana = 2;
-    private int secondPlayerMana = 2;
+    private int firstPlayerMana;
+    private int secondPlayerMana;
     private Card selectedCard;
     private ArrayList<Card> graveYardCards = new ArrayList<>();
     private ArrayList<Card> firstPlayerHand = new ArrayList<>();
@@ -38,7 +35,7 @@ public class Battle {
     private FlagForHoldFlagGameMode flagForHoldFlagGameMode;
     private int firstPlayerFlags;
     private int secondPlayerFlags;
-    private FlagForCollectFlagGameMode[] flagForCollectFlagGameModes = new FlagForCollectFlagGameMode[6];//TODO bejaye 6 bayad moteghayyer gozasht
+    private ArrayList<FlagForCollectFlagGameMode> flagForCollectFlagGameModes = new ArrayList<>();//TODO bejaye 6 bayad moteghayyer gozasht
 
 
     Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
@@ -53,26 +50,6 @@ public class Battle {
         runningBattle = this;
     }
 
-    public void nextTurn() {
-        turn++;
-        setMana();
-    }
-
-    public void setMana() {
-        if (turn == 1) {
-            firstPlayerCapacityMana = 2;
-        } else if (turn == 2) {
-            secondPlayerCapacityMana = 3;
-        } else if (turn % 2 == 1 && turn < 14) {
-            firstPlayerCapacityMana++;
-            secondPlayerCapacityMana++;
-        } else if (turn >= 14) {
-            firstPlayerCapacityMana = 9;
-            secondPlayerCapacityMana = 9;
-        }
-        firstPlayerMana = firstPlayerCapacityMana;
-        secondPlayerMana = secondPlayerCapacityMana;
-    }
 
     public void decreaseMana(int number, int numberOfPlayer) {
         if (numberOfPlayer == 1) {
@@ -145,8 +122,11 @@ public class Battle {
         //Take Flags for win the game
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode.updateFlagCell();
-            takeFlag(firstPlayer);
-            takeFlag(secondPlayer);
+            takeHoldingFlag(firstPlayer);
+            takeHoldingFlag(secondPlayer);
+        }else if(gameGoal == GameGoal.COLLECT_FLAG) {
+            takeCollectingFlag(firstPlayer);
+            takeCollectingFlag(secondPlayer);
         }
     }
 
@@ -194,19 +174,25 @@ public class Battle {
             //TODO if game finish what to do , what not to do :\
             return;
         }
-        setPlayersManaForNewTurn();
+        setMana();
         incrementTurn();
 
     }
 
-    private void incrementTurnMaximumMana() {
-        turnMaximumMana++;
-    }
-
-    private void setPlayersManaForNewTurn() {
-        incrementTurnMaximumMana();
-        firstPlayerMana = turnMaximumMana;
-        secondPlayerMana = turnMaximumMana;
+    private void setMana() {
+        if (turn == 1) {
+            firstPlayerCapacityMana = 2;
+        } else if (turn == 2) {
+            secondPlayerCapacityMana = 3;
+        } else if (turn % 2 == 1 && turn < 14) {
+            firstPlayerCapacityMana++;
+            secondPlayerCapacityMana++;
+        } else if (turn >= 14) {
+            firstPlayerCapacityMana = 9;
+            secondPlayerCapacityMana = 9;
+        }
+        firstPlayerMana = firstPlayerCapacityMana;
+        secondPlayerMana = secondPlayerCapacityMana;
     }
 
     private void incrementTurn() {
@@ -245,10 +231,10 @@ public class Battle {
         }
     }
 
-    private void takeFlag(Account player) {
+    private void takeHoldingFlag(Account player) {
 
         for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
-            if (player.getMainDeck().getCards().get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
+            if (player.getMainDeck().getCards().get(i).isInGame() && player.getMainDeck().getCards().get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
                 if (flagForHoldFlagGameMode.getFlagHolder() != player.getMainDeck().getCards().get(i))
                     flagForHoldFlagGameMode.setFlagHolder((Warrior) player.getMainDeck().getCards().get(i));
                 return;
@@ -257,10 +243,27 @@ public class Battle {
     }
 
     private void endOfCollectFlagGameMode() {
-        if (firstPlayerFlags >= flagForCollectFlagGameModes.length / 2)
+        if (firstPlayerFlags >= 6 / 2) // Bejaye 6 bayad moteghayyer bezarim
             setWinner(firstPlayer);
-        else if (secondPlayerFlags >= flagForCollectFlagGameModes.length / 2)
+        else if (secondPlayerFlags >= 6/ 2)
             setWinner(secondPlayer);
+    }
+
+    private void takeCollectingFlag(Account player) {
+        for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
+            for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
+                if (player.getMainDeck().getCards().get(i).isInGame() && player.getMainDeck().getCards().get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
+                    if (turn % 2 == 1)
+                        firstPlayerFlags++;
+                    else
+                        secondPlayerFlags++;
+                    flagForCollectFlagGameModes.remove(j);
+                    break;
+                }
+            }
+
+        }
+
     }
 
     public Account getThisTurnPlayer() {
@@ -502,9 +505,9 @@ public class Battle {
         int[] randomX = new int[6];
         int[] randomY = new int[6];
         getNRandomNumber(6, randomX, randomY);
-        for (int i = 0; i < flagForCollectFlagGameModes.length; i++) {
-            flagForCollectFlagGameModes[i] = new FlagForCollectFlagGameMode(getMap().getCell(randomX[i], randomY[i]));
-            getMap().getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes[i]);
+        for (int i = 0; i < randomX.length; i++) {
+            flagForCollectFlagGameModes.add(new FlagForCollectFlagGameMode(getMap().getCell(randomX[i], randomY[i])));
+            getMap().getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes.get(i));
         }
     }
 
@@ -574,10 +577,6 @@ public class Battle {
         return secondPlayerCapacityMana;
     }
 
-    public int getTurnMaximumMana() {
-        return turnMaximumMana;
-    }
-
     public int getFirstPlayerMana() {
         return firstPlayerMana;
     }
@@ -630,7 +629,7 @@ public class Battle {
         return secondPlayerFlags;
     }
 
-    public FlagForCollectFlagGameMode[] getFlagForCollectFlagGameModes() {
+    public ArrayList<FlagForCollectFlagGameMode> getFlagForCollectFlagGameModes() {
         return flagForCollectFlagGameModes;
     }
 
