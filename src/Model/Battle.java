@@ -12,6 +12,7 @@ public class Battle {
     private Account secondPlayer;
     private Account winner;
     private int turn = 1;
+    private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
     private int firstPlayerMana;
@@ -25,7 +26,7 @@ public class Battle {
     private ArrayList<Cell> validCells = new ArrayList<>();
     private ArrayList<Card> firstPlayerDeck = new ArrayList<>();
     private ArrayList<Card> secondPlayerDeck = new ArrayList<>();
-    private ArrayList<Card> firstPlayerUnUsesdCard = new ArrayList<>();
+    private ArrayList<Card> firstPlayerUnUsedCard = new ArrayList<>();
     private ArrayList<Card> secondPlayerUnUsedCard = new ArrayList<>();
     private ArrayList<Item> firstPlayerItems = new ArrayList<>();
     private ArrayList<Item> secondPlayerItems = new ArrayList<>();
@@ -97,11 +98,7 @@ public class Battle {
 
     public void selectCard(String cardID) {
         Card card;
-        if (turn % 2 == 1) {
-            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
-        } else {
-            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
-        }
+        card = Card.findCardInArrayList(cardID, currentTurnPlayer.getMainDeck().getCards());
         selectedCard = card;
     }
 
@@ -122,11 +119,9 @@ public class Battle {
         //Take Flags for win the game
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode.updateFlagCell();
-            takeHoldingFlag(firstPlayer);
-            takeHoldingFlag(secondPlayer);
-        }else if(gameGoal == GameGoal.COLLECT_FLAG) {
-            takeCollectingFlag(firstPlayer);
-            takeCollectingFlag(secondPlayer);
+            takeHoldingFlag(currentTurnPlayer);
+        } else if (gameGoal == GameGoal.COLLECT_FLAG) {
+            takeCollectingFlag(currentTurnPlayer);
         }
     }
 
@@ -157,13 +152,9 @@ public class Battle {
     }
 
     public void insertCard(String cardID, Cell cell) {
-        Card card;
-        if (turn % 2 == 1) {
-            card = Card.findCardInArrayList(cardID, firstPlayer.getMainDeck().getCards());
-        } else {
-            card = Card.findCardInArrayList(cardID, secondPlayer.getMainDeck().getCards());
-        }
-        findValidCell(KindOfActionForValidCells.INSERT);
+
+        Card card = Card.findCardInArrayList(cardID, currentTurnPlayer.getMainDeck().getCards());
+
         if (isValidInsert(cell))
             cell.setCard(card);
     }
@@ -245,7 +236,7 @@ public class Battle {
     private void endOfCollectFlagGameMode() {
         if (firstPlayerFlags >= 6 / 2) // Bejaye 6 bayad moteghayyer bezarim
             setWinner(firstPlayer);
-        else if (secondPlayerFlags >= 6/ 2)
+        else if (secondPlayerFlags >= 6 / 2)
             setWinner(secondPlayer);
     }
 
@@ -253,7 +244,7 @@ public class Battle {
         for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
                 if (player.getMainDeck().getCards().get(i).isInGame() && player.getMainDeck().getCards().get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
-                    if (turn % 2 == 1)
+                    if (currentTurnPlayer.equals(firstPlayer))
                         firstPlayerFlags++;
                     else
                         secondPlayerFlags++;
@@ -266,13 +257,6 @@ public class Battle {
 
     }
 
-    public Account getThisTurnPlayer() {
-        if (getTurn() % 2 == 1) {
-            return firstPlayer;
-        } else {
-            return secondPlayer;
-        }
-    }
 
     public Account getOtherTurnPlayer() {
         if (getTurn() % 2 == 1) {
@@ -609,8 +593,8 @@ public class Battle {
         return secondPlayerDeck;
     }
 
-    public ArrayList<Card> getFirstPlayerUnUsesdCard() {
-        return firstPlayerUnUsesdCard;
+    public ArrayList<Card> getFirstPlayerUnUsedCard() {
+        return firstPlayerUnUsedCard;
     }
 
     public ArrayList<Card> getSecondPlayerUnUsedCard() {
@@ -635,5 +619,17 @@ public class Battle {
 
     public static Battle getRunningBattle() {
         return runningBattle;
+    }
+
+    public void setCurrentTurnPlayer() {
+        if (getTurn() % 2 == 1) {
+            currentTurnPlayer = firstPlayer;
+        } else {
+            currentTurnPlayer = secondPlayer;
+        }
+    }
+
+    public Account getCurrentTurnPlayer() {
+        return currentTurnPlayer;
     }
 }

@@ -174,6 +174,9 @@ public class GameController {
     }
 
     private void battleCommandManagement(Request request, BattleCommand battleCommand) {
+
+        Battle.getRunningBattle().setCurrentTurnPlayer();
+
         switch (battleCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.BATTLE);
@@ -220,7 +223,7 @@ public class GameController {
         Account account;
         Battle battle = Battle.getRunningBattle();
         if (isYoursMinion) {
-            account = battle.getThisTurnPlayer();
+            account = battle.getCurrentTurnPlayer();
         } else {
             account = battle.getOtherTurnPlayer();
         }
@@ -286,7 +289,7 @@ public class GameController {
     private void battleSelect(BattleCommand battleCommand) {
         String cardName = battleCommand.getData().get(0);
         Battle battle = Battle.getRunningBattle();
-        Account account = battle.getThisTurnPlayer();
+        Account account = battle.getCurrentTurnPlayer();
         ArrayList<Card> hand = new ArrayList<>();
         if (battle.getTurn() % 2 == 1) {
             hand = battle.getFirstPlayerHand();
@@ -306,7 +309,7 @@ public class GameController {
         int x = Integer.parseInt(battleCommand.getData().get(1));
         int y = Integer.parseInt(battleCommand.getData().get(2));
         Battle battle = Battle.getRunningBattle();
-        Account account = battle.getThisTurnPlayer();
+        Account account = battle.getCurrentTurnPlayer();
 
         Card card = Card.findCardInArrayList(cardName, account.getMainDeck().getCards());
         if (card != null) {
