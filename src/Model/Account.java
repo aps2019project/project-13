@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Account {
-    private static Account loginedAccount = null ;
+    private static Account loginedAccount = null;
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<String> battleHistory;
     private ArrayList<Deck> decks;
@@ -23,13 +23,12 @@ public class Account {
         loginedAccount = this;
     }
 
-    public void increaseDarick(int number)
-    {
-        setDarick(getDarick()+number);
+    public void increaseDarick(int number) {
+        setDarick(getDarick() + number);
     }
-    public void decreaseDarick(int number)
-    {
-        setDarick(getDarick()-number);
+
+    public void decreaseDarick(int number) {
+        setDarick(getDarick() - number);
     }
 
     public boolean validateLogin(String username, String password) {

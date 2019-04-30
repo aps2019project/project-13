@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Account;
+import View.ConstantMessages;
 
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
@@ -137,7 +138,7 @@ public class Battle {
 
     public void moveCard(Cell destinationCell) {
         if (!isValidMove(destinationCell)) {
-            return;
+            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
         if (selectedCard.isAbleToMove())
             map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);

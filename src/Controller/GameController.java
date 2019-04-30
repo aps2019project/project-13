@@ -168,6 +168,7 @@ public class GameController {
             show.getYourPasWord();
             passWord = scanner.nextLine();
         }
+
         //TODO set account
 
     }
@@ -455,7 +456,7 @@ public class GameController {
         }
     }
 
-    private void cardCommandManagement(Request request, CardCommand cardCommand) {
+    private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
         switch (cardCommand) {
             case EXIT:
                 request.getKindOfOrder().remove(request.getKindOfOrder().size() - 1);
@@ -463,18 +464,14 @@ public class GameController {
             case MOVE:
                 cardCommandMove(cardCommand);
                 break;
-            case ATTACK:
-            {
+            case ATTACK: {
                 Battle battle = Battle.getRunningBattle();
                 String cardName = cardCommand.getData().get(0);
                 Cell cell = battle.getMap().findCardCell(cardName);
-                if (cell!=null)
-                {
+                if (cell != null) {
                     battle.attack(cell);
-                }
-                else
-                {
-                    //TODO ERROR
+                } else {
+                    throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
                 }
 
             }
@@ -483,20 +480,17 @@ public class GameController {
         }
     }
 
-    private void cardCommandMove(CardCommand cardCommand) {
+    private void cardCommandMove(CardCommand cardCommand) throws Error {
         Battle battle = Battle.getRunningBattle();
         Card card = battle.getSelectedCard();
-        if (card ==null)
-        {
-            //TODO ERROR
+        if (card == null) {
+            throw new Error(ConstantMessages.NO_CARD_SELECTED.getMessage());
         }
         try {
             int x = Integer.parseInt(cardCommand.getData().get(0));
             int y = Integer.parseInt(cardCommand.getData().get(1));
-            battle.moveCard(battle.getMap().getCell(x,y));
-        }
-        catch (Exception e)
-        {
+            battle.moveCard(battle.getMap().getCell(x, y));
+        } catch (Exception e) {
             //TODO CHECK THIS TRY CATCH
         }
     }
@@ -516,15 +510,14 @@ public class GameController {
         }
     }
 
-    private void graveyardShowInfo(GraveYardCommand graveYardCommand) {
+    private void graveyardShowInfo(GraveYardCommand graveYardCommand) throws Error {
         String cardName = graveYardCommand.getData();
         Battle battle = Battle.getRunningBattle();
-        Card card=  Card.findCardInArrayList(cardName ,battle.getGraveYardCards());
+        Card card = Card.findCardInArrayList(cardName, battle.getGraveYardCards());
         if (card != null) {
             //TODO SHOW Item using CARD . toString
-        }
-        {
-            //TODO ERROR
+        } else {
+            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         }
     }
 
