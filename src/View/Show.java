@@ -32,7 +32,7 @@ public class Show {
                 showMainMenuHelp();
                 break;
             case COLLECTION:
-                showColectionHelp();
+                showCollectionHelp();
                 break;
         }
     }
@@ -77,11 +77,14 @@ public class Show {
         System.out.println(ConstantMessages.BATTLE_HELP.getMessage());
     }
 
-    private void showColectionHelp() {
+    private void showCollectionHelp() {
         System.out.println(ConstantMessages.COLLECTION_HELP.getMessage());
     }
 
     private void showMainMenuHelp() {
         System.out.println(ConstantMessages.MAIN_MENU_HELP.getMessage());
+    }
+    public void showError(Error error){
+        System.out.println(error);
     }
 }
