@@ -1,6 +1,10 @@
 package Model;
 
+import View.*;
+import View.Error;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Account {
     private static Account loginedAccount = null;
@@ -141,5 +145,66 @@ public class Account {
 
     public static void setLoginedAccount(Account loginedAccount) {
         Account.loginedAccount = loginedAccount;
+    }
+
+    public static void createAccount(Request request, AccountCommand accountCommand) throws Error {
+        Show show = Show.getInstance();
+        String userName = accountCommand.getData();
+        getAccount(userName);
+        show.getPassword();
+        String passWord;
+        passWord = request.getPassWord();
+        while (passWord.length() < 4) {
+            show.unreliablePassWord();
+            show.getPassword();
+            passWord = request.getPassWord();
+        }
+        Account account = new Account(userName, passWord);
+        show.createdAccount(userName);
+        Account.setLoginedAccount(account);
+        request.addNewMenu(KindOfOrder.MAIN_MENU);
+        show.showMainMenu();
+    }
+
+    private static void getAccount(String userName) {
+        for (Account account :
+                Account.getAccounts()) {
+            if (account.getUsername().equals(userName)) {
+                throw new Error(ConstantMessages.USERNAME_EXIST.getMessage());
+            }
+        }
+    }
+
+    public static void login(Request request, AccountCommand accountCommand) {
+        Show show = Show.getInstance();
+        String userName = accountCommand.getData();
+        Account trueAccount = null;
+        trueAccount = getAccount(userName, trueAccount);
+        if (trueAccount == null) {
+            throw new Error(ConstantMessages.USERNAME_NOT_EXIST.getMessage());
+        }
+        show.getYourPasWord();
+        String passWord;
+        Scanner scanner = request.getScanner();
+        passWord = scanner.nextLine();
+        while (!passWord.equals(trueAccount.getPassword())) {
+            show.incorrectPassWord();
+            show.getYourPasWord();
+            passWord = scanner.nextLine();
+        }
+        Account.setLoginedAccount(trueAccount);
+        request.addNewMenu(KindOfOrder.MAIN_MENU);
+        show.showMainMenu();
+
+    }
+
+    private static Account getAccount(String userName, Account trueAccount) {
+        for (Account account :
+                Account.getAccounts()) {
+            if (account.getUsername().equals(userName)) {
+                trueAccount = account;
+            }
+        }
+        return trueAccount;
     }
 }

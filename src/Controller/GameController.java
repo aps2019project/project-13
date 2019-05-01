@@ -119,7 +119,7 @@ public class GameController {
     private void accountCommandManagement(Request request, AccountCommand accountCommand) throws Error {
         switch (accountCommand) {
             case EXIT:
-                request.exitLastmenu();
+                isFinish = true;
                 break;
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
@@ -128,69 +128,19 @@ public class GameController {
                 //TODO save to file
                 break;
             case LOGIN:
-                login(request, accountCommand);
+                Account.login(request, accountCommand);
                 break;
             case LOGOUT:
                 Account.setLoginedAccount(null);
                 break;
             case CREATE_ACCOUNT:
-                createAccount(request, accountCommand);
+                Account.createAccount(request, accountCommand);
                 break;
             case SHOW_LEADERBOARD:
+                show.showLeaderBoard();
         }
     }
 
-    private void createAccount(Request request, AccountCommand accountCommand) {
-        String userName = accountCommand.getData();
-        for (Account account :
-                Account.getAccounts()) {
-            if (account.getUsername().equals(userName)) {
-                throw new Error(ConstantMessages.USERNAME_EXIST.getMessage());
-            }
-        }
-
-        show.getPassword();
-        String passWord;
-        Scanner scanner = request.getScanner();
-        passWord = scanner.nextLine();
-        while (passWord.length() < 4) {
-            show.unreliablePassWord();
-            show.getPassword();
-            passWord = scanner.nextLine();
-        }
-        Account account = new Account(userName, passWord);
-        show.createdAccount(userName);
-        Account.setLoginedAccount(account);
-        request.addNewMenu(KindOfOrder.MAIN_MENU);
-        show.showMainMenu();
-    }
-
-    private void login(Request request, AccountCommand accountCommand) {
-        String userName = accountCommand.getData();
-        Account trueAccount = null;
-        for (Account account :
-                Account.getAccounts()) {
-            if (account.getUsername().equals(userName)) {
-                trueAccount = account;
-            }
-        }
-        if (trueAccount == null) {
-            throw new Error(ConstantMessages.USERNAME_NOT_EXIST.getMessage());
-        }
-        show.getYourPasWord();
-        String passWord;
-        Scanner scanner = request.getScanner();
-        passWord = scanner.nextLine();
-        while (!passWord.equals(trueAccount.getPassword())) {
-            show.incorrectPassWord();
-            show.getYourPasWord();
-            passWord = scanner.nextLine();
-        }
-        Account.setLoginedAccount(trueAccount);
-        request.addNewMenu(KindOfOrder.MAIN_MENU);
-        show.showMainMenu();
-
-    }
 
     private void battleCommandManagement(Request request, BattleCommand battleCommand) {
 
