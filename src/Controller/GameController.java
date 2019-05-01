@@ -5,8 +5,8 @@ import Model.*;
 import View.Error;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class GameController {
     private static final GameController gamecontroller = new GameController();
@@ -110,6 +110,7 @@ public class GameController {
                 break;
             case ENTER_BATTLE:
                 request.addNewMenu(KindOfOrder.BATTLE);
+                StartBattle(request);
                 break;
             case ENTER_COLLECTION:
                 request.addNewMenu(KindOfOrder.COLLECTION);
@@ -119,7 +120,7 @@ public class GameController {
     private void accountCommandManagement(Request request, AccountCommand accountCommand) throws Error {
         switch (accountCommand) {
             case EXIT:
-                request.exitLastmenu();
+                isFinish = true;
                 break;
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
@@ -128,72 +129,21 @@ public class GameController {
                 //TODO save to file
                 break;
             case LOGIN:
-                login(request, accountCommand);
+                Account.login(request, accountCommand);
                 break;
             case LOGOUT:
                 Account.setLoginedAccount(null);
                 break;
             case CREATE_ACCOUNT:
-                createAccount(request, accountCommand);
+                Account.createAccount(request, accountCommand);
                 break;
             case SHOW_LEADERBOARD:
+                show.showLeaderBoard();
         }
     }
 
-    private void createAccount(Request request, AccountCommand accountCommand) {
-        String userName = accountCommand.getData();
-        for (Account account :
-                Account.getAccounts()) {
-            if (account.getUsername().equals(userName)) {
-                throw new Error(ConstantMessages.USERNAME_EXIST.getMessage());
-            }
-        }
 
-        show.getPassword();
-        String passWord;
-        Scanner scanner = request.getScanner();
-        passWord = scanner.nextLine();
-        while (passWord.length() < 4) {
-            show.unreliablePassWord();
-            show.getPassword();
-            passWord = scanner.nextLine();
-        }
-        Account account = new Account(userName, passWord);
-        show.createdAccount(userName);
-        Account.setLoginedAccount(account);
-        request.addNewMenu(KindOfOrder.MAIN_MENU);
-        show.showMainMenu();
-    }
-
-    private void login(Request request, AccountCommand accountCommand) {
-        String userName = accountCommand.getData();
-        Account trueAccount = null;
-        for (Account account :
-                Account.getAccounts()) {
-            if (account.getUsername().equals(userName)) {
-                trueAccount = account;
-            }
-        }
-        if (trueAccount == null) {
-            throw new Error(ConstantMessages.USERNAME_NOT_EXIST.getMessage());
-        }
-        show.getYourPasWord();
-        String passWord;
-        Scanner scanner = request.getScanner();
-        passWord = scanner.nextLine();
-        while (!passWord.equals(trueAccount.getPassword())) {
-            show.incorrectPassWord();
-            show.getYourPasWord();
-            passWord = scanner.nextLine();
-        }
-        Account.setLoginedAccount(trueAccount);
-        request.addNewMenu(KindOfOrder.MAIN_MENU);
-        show.showMainMenu();
-
-    }
-
-    private void battleCommandManagement(Request request, BattleCommand battleCommand) {
-
+    private void battleCommandManagement(Request request, BattleCommand battleCommand) throws Error {
         Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
@@ -228,15 +178,53 @@ public class GameController {
                 battleEnterGraveyard();
                 break;
             case SHOW_MY_MINIONS:
-                battleShowMinion(true);
-                //TODO PASS THIS TO SHOW
-                return;
+                show.battleShowAnStringArrayList(battleShowMinion(true));
+                break;
             case SHOW_COLLECTABLE:
+                show.battleShowAnStringArrayList(battleShowCollectables());
             case SHOW_OPPONENT_MINIONS:
-                battleShowMinion(false);
-                //TODO PASS THIS TO SHOW
+                show.battleShowAnStringArrayList(battleShowMinion(false));
         }
     }
+
+    private void StartBattle(Request request) {
+        show.enterInBattle();
+        String gameModeNumber = request.getNumberForKindOfBattle();
+        gameModeNumber = getGameMode(request, gameModeNumber);
+        show.enterInBattleSecondStep();
+        String gameGoalNumber = request.getNumberForKindOfBattle();
+        gameGoalNumber = getGameGoal(request, gameGoalNumber);
+        GameGoal gameGoal;
+        GameMode gameMode;
+        if (gameModeNumber.equals("1")) {
+            gameMode = GameMode.SINGLEPLAYER;
+        } else gameMode = GameMode.MULTIPLAYER;
+        if (gameGoalNumber.equals("1")) {
+            gameGoal = GameGoal.HOLD_FLAG;
+        } else if (gameGoalNumber.equals("2")) {
+            gameGoal = GameGoal.COLLECT_FLAG;
+        } else gameGoal = GameGoal.KILL_HERO;
+        new Battle(Account.getLoginedAccount(), new Account("username", "12345"), gameMode, gameGoal);//TODO AI
+    }
+
+    private String getGameMode(Request request, String gameModeNumber) {
+        while (!gameModeNumber.equals("1") && !gameModeNumber.equals("2")) {
+            show.invalidNumberForMode();
+            show.enterInBattle();
+            gameModeNumber = request.getNumberForKindOfBattle();
+        }
+        return gameModeNumber;
+    }
+
+    private String getGameGoal(Request request, String gameGoalNumber) {
+        while (!gameGoalNumber.equals("1") && !gameGoalNumber.equals("2") && !gameGoalNumber.equals("3")) {
+            show.invalidNumberForGoal();
+            show.enterInBattleSecondStep();
+            gameGoalNumber = request.getNumberForKindOfBattle();
+        }
+        return gameGoalNumber;
+    }
+
 
     private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
         Account account;
@@ -257,6 +245,14 @@ public class GameController {
             }
         }
         return output;
+    }
+
+    private ArrayList<String> battleShowCollectables() {
+        ArrayList<String> outPut = new ArrayList<>();
+        for (Item item : Account.getLoginedAccount().getCollectableItems()) {
+            outPut.add(item.toString());
+        }
+        return outPut;
     }
 
     private void battleEnterGraveyard() {
@@ -333,12 +329,13 @@ public class GameController {
 
     }
 
-    private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {
+    private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) throws Error {
         switch (collectionCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.COLLECTION);
                 break;
             case SAVE:
+                throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
             case EXIT:
                 request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;

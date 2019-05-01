@@ -40,7 +40,7 @@ public class Battle {
     private ArrayList<FlagForCollectFlagGameMode> flagForCollectFlagGameModes = new ArrayList<>();//TODO bejaye 6 bayad moteghayyer gozasht
 
 
-    Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
+    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;

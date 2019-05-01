@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameController;
 import Model.*;
 
 import java.util.ArrayList;
@@ -141,5 +142,32 @@ public class Show {
             System.out.println(card.toString());
         }
     }
+
+    public void showLeaderBoard() {
+        Account.sortAccounts();
+        for (Account account : Account.getAccounts()) {
+            System.out.println(account.toString());
+        }
+
+    }
+    public void enterInBattle(){
+        System.out.println("Enter Game Mode :\n1.Single Player\n2.Multi Player\n(1 , 2)? ");
+    }
+    public void invalidNumberForMode(){
+        System.out.println("1 or 2 !!? :)");
+    }
+    public void enterInBattleSecondStep(){
+        System.out.println("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?");
+    }
+    public void invalidNumberForGoal(){
+        System.out.println("1 or 2 or 3 !!? :)");
+    }
+
+    public void battleShowAnStringArrayList(ArrayList<String> minions) {
+        for (String string : minions) {
+            System.out.println(string);
+        }
+    }
+
 
 }
