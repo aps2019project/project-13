@@ -182,8 +182,10 @@ public class GameController {
                 break;
             case SHOW_COLLECTABLE:
                 show.battleShowAnStringArrayList(battleShowCollectables());
+                break;
             case SHOW_OPPONENT_MINIONS:
                 show.battleShowAnStringArrayList(battleShowMinion(false));
+                break;
         }
     }
 
@@ -225,7 +227,6 @@ public class GameController {
         return gameGoalNumber;
     }
 
-
     private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
         Account account;
         Battle battle = Battle.getRunningBattle();
@@ -261,7 +262,7 @@ public class GameController {
 
     private void battleShowNextCard() {
         Battle battle = Battle.getRunningBattle();
-        battle.showNextCard(); //TODO NEED TO BE CHANGED.
+        show.battleShowNextCard(battle.getNextCard().toString());
     }
 
     private void battleShowCardInfo() {
