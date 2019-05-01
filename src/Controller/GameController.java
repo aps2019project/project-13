@@ -70,6 +70,7 @@ public class GameController {
         switch (shopCommand) {
             case BUY:
                 shop.buy(shopCommand.getData(), Account.getLoginedAccount());
+                show.successfulBuy();
                 break;
             case EXIT:
                 request.exitLastmenu();
@@ -79,6 +80,7 @@ public class GameController {
                 break;
             case SELL:
                 shop.sell(shopCommand.getData(), new Account("userName", "password"));
+                show.successfulSell();
                 break;
             case SHOW:
                 show.showShopCards();
@@ -87,6 +89,7 @@ public class GameController {
                 show.showCardId(shop.searchCardInShop(shopCommand.getData()));
                 break;
             case SHOW_COLLECTION:
+                show.showCollection(Account.getLoginedAccount());
                 break;
             case SEARCH_COLLECTION:
                 show.showCardId(Account.getLoginedAccount().getCardCollection().searchCardInCollection(shopCommand.getData()));
