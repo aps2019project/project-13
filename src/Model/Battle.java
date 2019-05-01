@@ -27,8 +27,6 @@ public class Battle {
     private ArrayList<Cell> validCells = new ArrayList<>();
     private ArrayList<Card> firstPlayerDeck = new ArrayList<>();
     private ArrayList<Card> secondPlayerDeck = new ArrayList<>();
-    private ArrayList<Card> firstPlayerUnUsedCard = new ArrayList<>();
-    private ArrayList<Card> secondPlayerUnUsedCard = new ArrayList<>();
     private ArrayList<Item> firstPlayerItems = new ArrayList<>();
     private ArrayList<Item> secondPlayerItems = new ArrayList<>();
     private GameMode gameMode;
@@ -67,35 +65,6 @@ public class Battle {
 
     }
 
-    public void showMinions(boolean isFriendly) {
-
-        if ((isFriendly && turn % 2 == 1) || (!isFriendly && turn % 2 == 0)) {
-            showMinionsOfPlayer(1);
-        } else {
-            showMinionsOfPlayer(2);
-        }
-    }
-
-    public ArrayList<Card> showMinionsOfPlayer(int numberOfPlayer) {
-        Account account;
-
-        if (numberOfPlayer == 1) {
-            account = firstPlayer;
-        } else {
-            account = secondPlayer;
-        }
-        ArrayList<Card> cards = new ArrayList<>();
-        Cell[][] cells = map.getCells();
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j].getCard() != null && cells[i][j].getCard().getAccount().equals(account)) {
-                    cards.add(cells[i][j].getCard());
-                }
-            }
-        }
-
-        return cards;
-    }
 
     public void showCardInfo(String cardID) {
 
@@ -496,6 +465,14 @@ public class Battle {
 
     }
 
+    public Card getNextCard() {
+        Random random = new Random();
+        if (turn % 2 == 1) {
+            return firstPlayerDeck.get(random.nextInt());
+        } else
+            return secondPlayerDeck.get(random.nextInt());
+    }
+
     public Card getFirstPlayerNextCard() {
         return firstPlayerNextCard;
     }
@@ -628,13 +605,6 @@ public class Battle {
         return secondPlayerDeck;
     }
 
-    public ArrayList<Card> getFirstPlayerUnUsedCard() {
-        return firstPlayerUnUsedCard;
-    }
-
-    public ArrayList<Card> getSecondPlayerUnUsedCard() {
-        return secondPlayerUnUsedCard;
-    }
 
     public boolean isEndGame() {
         return endGame;
