@@ -168,6 +168,16 @@ public class Show {
             System.out.println(string);
         }
     }
+    public void showHand(ArrayList<Card> cards){
+        for (Card card : cards) {
+            if (card.getCardKind() == CardKind.HERO)
+                System.out.println(card.toString());
+        }
+        for (Card card : cards) {
+            if (card.getCardKind() == CardKind.MINION)
+                System.out.println(card.toString());
+        }
+    }
 
 
 }

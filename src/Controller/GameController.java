@@ -169,7 +169,7 @@ public class GameController {
                 battleShowHand();
                 break;
             case SHOW_CARD_INFO:
-                battleShowCardInfo();
+                battleShowCardInfo(battleCommand.getData().get(0));
                 break;
             case SHOW_NEXT_CARD:
                 battleShowNextCard();
@@ -264,19 +264,17 @@ public class GameController {
         battle.showNextCard(); //TODO NEED TO BE CHANGED.
     }
 
-    private void battleShowCardInfo() {
-        Card card = Battle.getRunningBattle().getSelectedCard();
-        //TODO SHOW SOMETHING
+    private void battleShowCardInfo(String cardID) {
+        show.showCardId(cardID);
     }
 
     private void battleShowHand() {
         Battle battle = Battle.getRunningBattle();
         if (battle.getTurn() % 2 == 1) {
-            battle.getFirstPlayerHand();
-            //TODO SHOW SOMETHING
+            show.showHand(battle.getFirstPlayerHand());
+
         } else {
-            battle.getSecondPlayerHand();
-            //TODO SHOW SOMETHING
+            show.showHand(battle.getSecondPlayerHand());
         }
     }
 
