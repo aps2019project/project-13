@@ -1,6 +1,9 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Account {
     private static Account loginedAccount = null;
@@ -11,6 +14,7 @@ public class Account {
     private Deck mainDeck;
     private String username;
     private String password;
+    private int countOfWins;
     private int darick;
 
     public Account(String username, String password) {
@@ -141,5 +145,34 @@ public class Account {
 
     public static void setLoginedAccount(Account loginedAccount) {
         Account.loginedAccount = loginedAccount;
+    }
+
+    private static Comparator<Account> sortByWin = new Comparator<Account>() {
+        @Override
+        public int compare(Account player1, Account player2) {
+            if (player1.getCountOfWins() > player2.getCountOfWins())
+                return -1;
+            else if (player1.getCountOfWins() == player2.getCountOfWins())
+                return 0;
+            else
+                return 1;
+        }
+    };
+
+    public static void sortAccounts() {
+        Collections.sort(accounts, Account.sortByWin);
+    }
+
+    public void incrementCountOfWins() {
+        countOfWins++;
+    }
+
+    public int getCountOfWins() {
+        return countOfWins;
+    }
+
+    @Override
+    public String toString() {
+        return "UserName: " + username + " - Wins: " + countOfWins;
     }
 }

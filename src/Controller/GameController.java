@@ -148,7 +148,6 @@ public class GameController {
                 throw new Error(ConstantMessages.USERNAME_EXIST.getMessage());
             }
         }
-
         show.getPassword();
         String passWord;
         Scanner scanner = request.getScanner();
