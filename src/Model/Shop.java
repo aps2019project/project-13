@@ -89,5 +89,14 @@ public class Shop {
         items.add(item);
     }
 
+    public String searchCardInShop(String cardName) {
+        for (Card card :
+                Shop.getInstance().getCards()) {
+            if (card.getCardName().equals(cardName)) {
+                return card.getCardId();
+            }
+        }
+        throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+    }
 
 }
