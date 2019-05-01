@@ -105,6 +105,10 @@ public class Card {
         buffs.remove(buff);
     }
 
+    public void clearAllBuffs(){
+        buffs.clear();
+    }
+
     public ArrayList<Buff> getBuffs() {
         return buffs;
     }

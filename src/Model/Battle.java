@@ -45,6 +45,8 @@ public class Battle {
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
+        firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
+        secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
         map = new Map(this);
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
@@ -96,8 +98,6 @@ public class Battle {
     }
 
     public void showCardInfo(String cardID) {
-
-
 
 
     }
@@ -394,7 +394,6 @@ public class Battle {
 
     private void findValidCellToItem() {
 
-
     }
 
     private void findValidCellToSpell() {
@@ -472,12 +471,24 @@ public class Battle {
     }
 
     public void setHandOfFirstPlayer() {
-
-
+        firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck, 5);
     }
 
     public void setHandOfSecondPlayer() {
+        secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck, 5);
 
+    }
+
+    private ArrayList<Card> selectRandomCardsForHand(ArrayList<Card> cards, int totalRandomCardsNeeded) {
+        Random random = new Random();
+        ArrayList<Card> temp = new ArrayList<>();
+
+        for (int i = 0; i < totalRandomCardsNeeded; i++) {
+            int randomIndex = random.nextInt();
+            temp.add(cards.get(randomIndex));
+            cards.remove(randomIndex);
+        }
+        return temp;
     }
 
     public void stratGame() {

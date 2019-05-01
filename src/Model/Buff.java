@@ -58,12 +58,12 @@ public class Buff {
         }
     }
 
-    public int holyBuff(int number) {
+    private int holyBuff(int number) {
         return number - 1;
         //TODO COMPLETE
     }
 
-    public void powerBuff(Card card, PowerAndWeaknessBuffKind powerBuffKind, int number) {
+    private void powerBuff(Card card, PowerAndWeaknessBuffKind powerBuffKind, int number) {
         if (card instanceof Minion) {
             if (powerBuffKind == PowerAndWeaknessBuffKind.ATTACK)
                 ((Minion) card).increaseActionPower(number);
@@ -77,7 +77,7 @@ public class Buff {
         }
     }
 
-    public void poisonBuff(Card card) {
+    private void poisonBuff(Card card) {
 
         if (!(card instanceof Warrior))
             return;
@@ -86,7 +86,7 @@ public class Buff {
 
     }
 
-    public void weaknessBuff(Card card, PowerAndWeaknessBuffKind weaknessBuffKind, int number) {
+    private void weaknessBuff(Card card, PowerAndWeaknessBuffKind weaknessBuffKind, int number) {
 
         Warrior warrior = (Warrior) card;
 
@@ -96,16 +96,21 @@ public class Buff {
             warrior.decreaseHealthPoint(number);
     }
 
-    public void stunBuff(Card card) {
+    private void stunBuff(Card card) {
         //TODO Too batel reval mikonim
     }
 
-    public void disarmBuff(Card card) {
+    private void disarmBuff(Card card) {
         //TODO Too batel reval mikonim
     }
 
-    public void flameBuff(Card card) {
+    private void flameBuff(Card card) {
         //TODO Too batel reval mikonim
+    }
+
+
+    public void neutralizeBuff(Card card) {
+        card.clearAllBuffs();
     }
 
     public boolean isPositive() {
@@ -116,9 +121,6 @@ public class Buff {
         return buffName;
     }
 
-    public void neutralizeBuff(Card card) {
-        //TODO  hanooz nazadam
-    }
 
     public int getEffectDuration() {
         return effectDuration;
