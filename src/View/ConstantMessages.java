@@ -36,8 +36,8 @@ public enum ConstantMessages {
     ITEM_EXIST("An Item exists with this name!"),
     CARD_EXIST("A Card exists with this name!"),
     VALID_DECK("Selected Deck is a Valid Deck"),
-    BUY_SUCCESFUL("Your buy request was done successfully!"),
-    SELL_SUCCESFULL("Your sell request was done successfully!"),
+    BUY_SUCCESSFUL("Your buy request was done successfully!"),
+    SELL_SUCCESSFUL("Your sell request was done successfully!"),
     //*****************************************
 
     //Menus
