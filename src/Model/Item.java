@@ -6,10 +6,10 @@ public class Item {
     private String itemId;
     private String itemDescription;
     private ItemKind itemKind;
-    private ItemName itemName;
+    private String itemName;
  //   private int darickCost;
 
-    public Item(String itemId, String itemDescription, ItemKind itemKind , ItemName itemName)  {
+    public Item(String itemId, String itemDescription, ItemKind itemKind , String itemName)  {
         this.itemId = itemId;
         this.itemDescription = itemDescription;
         this.itemKind=itemKind;
@@ -37,7 +37,7 @@ public class Item {
 //    }
 
 
-    public ItemName getItemName() {
+    public String getItemName() {
         return itemName;
     }
 

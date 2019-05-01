@@ -3,6 +3,7 @@ package View;
 import Controller.GameController;
 import Model.*;
 
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
 public class Show {
@@ -190,5 +191,8 @@ public class Show {
         System.out.println(nextCardInfo);
     }
 
+    public void showDeck(String deck){
+        System.out.println(deck);
+    }
 
 }
