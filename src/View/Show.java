@@ -142,4 +142,12 @@ public class Show {
         }
     }
 
+    public void showLeaderBoard() {
+        Account.sortAccounts();
+        for (Account account : Account.getAccounts()) {
+            System.out.println(account.toString());
+        }
+
+    }
+
 }
