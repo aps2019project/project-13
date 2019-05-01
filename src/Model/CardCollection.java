@@ -69,8 +69,17 @@ public class CardCollection {
     }
 
     public String search(String name) {
-
-        return "";
+        for (Card card:
+             cards) {
+            if(card.getCardName().equals(name))
+                return card.getCardId() ;
+        }
+        for (Item item:
+             items) {
+            if(item.getItemName().equals(name))
+                return item.getItemName();
+        }
+        return null ;
     }
 
     public Card getCard(String name) {

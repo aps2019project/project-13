@@ -330,13 +330,13 @@ public class GameController {
             case SAVE:
                 throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
             case EXIT:
-                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
+                request.exitLastmenu();
                 break;
             case SEARCH:
                 collectionSearch(request, collectionCommand);
                 break;
             case SHOW:
-                collectionShow(request);
+                collectionShow();
                 break;
             case SHOW_DECK:
                 collectionShowDeck(request, collectionCommand);
@@ -365,35 +365,36 @@ public class GameController {
         }
     }
 
-    private void collectionSearch(Request request, CollectionCommand collectionCommand) {
-        Account account = request.getAccount();
+    private void collectionSearch(Request request, CollectionCommand collectionCommand) throws Error {
+        Account account = Account.getLoginedAccount();
         String name = collectionCommand.getData().get(0);
-        account.getCardCollection().search(name);
-        //TODO CALL SHOW METHOD
+        String ID = account.getCardCollection().search(name);
+        if (ID != null) {
+            show.showCardId(ID);
+        } else
+            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
-    private void collectionShow(Request request) {
-        Account account = request.getAccount();
-        //TODO CALL A SHOW METHOD
+    private void collectionShow() {
+        show.showCollection(Account.getLoginedAccount());
     }
 
-    private void collectionShowDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionShowDeck(Request request, CollectionCommand collectionCommand)throws Error {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = request.getAccount().findDeck(deckName);
         if (deck != null) {
-            //TODO A METHOD FROM SHOW
-            System.out.println(deck.toString());
-        }
+            show.showDeck(deck.toString());
+        }else throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
+
     }
 
-    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand)throws Error {
         String cardName = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
-        Deck deck = request.getAccount().findDeck(deckName);
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
             deck.removeCard(cardName);
-        }
-        //TODO MAYBE ERRORS?!
+        }else throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
     private void collectionShowAllDeck(Request request) {
@@ -401,9 +402,7 @@ public class GameController {
         for (int i = 0; i < account.getDecks().size(); i++) {
             Deck deck = account.getDecks().get(i);
             if (deck != null) {
-
-                //TODO THIS MUST BE DONE IN VIEW
-                System.out.println(deck.toString());
+                show.showDeck(deck.toString());
             }
         }
     }
