@@ -110,6 +110,7 @@ public class GameController {
                 break;
             case ENTER_BATTLE:
                 request.addNewMenu(KindOfOrder.BATTLE);
+                StartBattle(request);
                 break;
             case ENTER_COLLECTION:
                 request.addNewMenu(KindOfOrder.COLLECTION);
@@ -142,17 +143,7 @@ public class GameController {
     }
 
 
-    private void battleCommandManagement(Request request, BattleCommand battleCommand) {
-        show.enterInBattle();
-        String gameModeNumber=request.getNumberForKindOfBattle();
-        gameModeNumber = getGameMode(request, gameModeNumber);
-        show.enterInBattleSecondStep();
-        String gameGoalNumber=request.getNumberForKindOfBattle();
-        gameGoalNumber = getGameGoal(request, gameGoalNumber);
-        GameGoal gameGoal=GameGoal.COLLECT_FLAG ;
-        GameMode gameMode=GameMode.MULTIPLAYER ;
-        setKindOfBattle(gameModeNumber, gameGoalNumber);
-        Battle battle = new Battle(Account.getLoginedAccount(),new Account("username","12345"),gameMode,gameGoal);//TODO AI
+    private void battleCommandManagement(Request request, BattleCommand battleCommand) throws Error {
         Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
@@ -196,36 +187,44 @@ public class GameController {
         }
     }
 
+    private void StartBattle(Request request) {
+        show.enterInBattle();
+        String gameModeNumber = request.getNumberForKindOfBattle();
+        gameModeNumber = getGameMode(request, gameModeNumber);
+        show.enterInBattleSecondStep();
+        String gameGoalNumber = request.getNumberForKindOfBattle();
+        gameGoalNumber = getGameGoal(request, gameGoalNumber);
+        GameGoal gameGoal;
+        GameMode gameMode;
+        if (gameModeNumber.equals("1")) {
+            gameMode = GameMode.SINGLEPLAYER;
+        } else gameMode = GameMode.MULTIPLAYER;
+        if (gameGoalNumber.equals("1")) {
+            gameGoal = GameGoal.HOLD_FLAG;
+        } else if (gameGoalNumber.equals("2")) {
+            gameGoal = GameGoal.COLLECT_FLAG;
+        } else gameGoal = GameGoal.KILL_HERO;
+        new Battle(Account.getLoginedAccount(), new Account("username", "12345"), gameMode, gameGoal);//TODO AI
+    }
+
     private String getGameMode(Request request, String gameModeNumber) {
-        while (!gameModeNumber.equals("1") && !gameModeNumber.equals("2")){
+        while (!gameModeNumber.equals("1") && !gameModeNumber.equals("2")) {
             show.invalidNumberForMode();
             show.enterInBattle();
-            gameModeNumber=request.getNumberForKindOfBattle();
+            gameModeNumber = request.getNumberForKindOfBattle();
         }
         return gameModeNumber;
     }
 
     private String getGameGoal(Request request, String gameGoalNumber) {
-        while (!gameGoalNumber.equals("1") && !gameGoalNumber.equals("2")&& !gameGoalNumber.equals("3")){
+        while (!gameGoalNumber.equals("1") && !gameGoalNumber.equals("2") && !gameGoalNumber.equals("3")) {
             show.invalidNumberForGoal();
             show.enterInBattleSecondStep();
-            gameGoalNumber=request.getNumberForKindOfBattle();
+            gameGoalNumber = request.getNumberForKindOfBattle();
         }
         return gameGoalNumber;
     }
 
-    private void setKindOfBattle(String gameModeNumber, String gameGoalNumber) {
-        GameMode gameMode;
-        GameGoal gameGoal;
-        if(gameModeNumber.equals("1")){
-            gameMode= GameMode.SINGLEPLAYER;
-        }else gameMode=GameMode.MULTIPLAYER;
-        if(gameGoalNumber.equals("1")){
-            gameGoal= GameGoal.HOLD_FLAG;
-        }else if (gameGoalNumber.equals("2")){
-            gameGoal=GameGoal.COLLECT_FLAG;
-        }else gameGoal=GameGoal.KILL_HERO;
-    }
 
     private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
         Account account;
