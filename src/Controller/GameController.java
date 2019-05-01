@@ -342,7 +342,7 @@ public class GameController {
                 collectionSearch(request, collectionCommand);
                 break;
             case SHOW:
-                collectionShow(request);
+                collectionShow();
                 break;
             case SHOW_DECK:
                 collectionShowDeck(request, collectionCommand);
@@ -385,7 +385,7 @@ public class GameController {
         show.showCollection(Account.getLoginedAccount());
     }
 
-    private void collectionShowDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionShowDeck(Request request, CollectionCommand collectionCommand)throws Error {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = request.getAccount().findDeck(deckName);
         if (deck != null) {
@@ -394,14 +394,13 @@ public class GameController {
 
     }
 
-    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand)throws Error {
         String cardName = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
-        Deck deck = request.getAccount().findDeck(deckName);
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
             deck.removeCard(cardName);
-        }
-        //TODO MAYBE ERRORS?!
+        }else throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
     private void collectionShowAllDeck(Request request) {
@@ -409,9 +408,7 @@ public class GameController {
         for (int i = 0; i < account.getDecks().size(); i++) {
             Deck deck = account.getDecks().get(i);
             if (deck != null) {
-
-                //TODO THIS MUST BE DONE IN VIEW
-                System.out.println(deck.toString());
+                show.showDeck(deck.toString());
             }
         }
     }
