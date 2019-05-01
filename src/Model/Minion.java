@@ -9,9 +9,9 @@ public class Minion extends Warrior {
     private MinionName minionName;
     private boolean hasSpecialPower;
 
-    public Minion(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription, MinionName minionName,
+    public Minion(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, MinionName minionName,
                   int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
-        super(cardName, cardId, manaCost, darikCost, cardKind, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
+        super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
         this.minionName = minionName;
         addMinion(this);
     }

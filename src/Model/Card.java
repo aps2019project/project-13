@@ -13,7 +13,7 @@ public class Card {
     private Account account;
     private String cardDescription;
     private String cardName;
-    private transient ArrayList<Buff> buffs = new ArrayList<>();
+    private ArrayList<Buff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
     private boolean isInGame;
 
