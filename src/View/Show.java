@@ -1,9 +1,8 @@
 package View;
 
-import Model.Card;
-import Model.CardKind;
-import Model.Item;
-import Model.Shop;
+import Model.*;
+
+import java.util.ArrayList;
 
 public class Show {
     private static final Show show = new Show();
@@ -100,21 +99,47 @@ public class Show {
 
     public void showShopCards() {
         Shop shop = Shop.getInstance();
+        showInProperFormat("Shop", null, shop);
+    }
 
-        for (Card card : shop.getCards()) {
-            if (card.getCardKind() == CardKind.HERO)
-                System.out.println(card.toString());
-        }
-        for (Item item : shop.getItems()) {
-            System.out.println(item.toString());
-        }
-        for (Card card : shop.getCards()) {
-            System.out.println(card.toString());
-        }
+    public void successfulSell() {
+        System.out.println(ConstantMessages.SELL_SUCCESSFUL);
+    }
+
+    public void successfulBuy() {
+        System.out.println(ConstantMessages.BUY_SUCCESSFUL);
     }
 
     public void showCardId(String cardId) {
         System.out.println(cardId);
+    }
+
+
+    public void showCollection(Account player) {
+        CardCollection cardCollection = player.getCardCollection();
+        showInProperFormat("Collection", cardCollection, null);
+    }
+
+    private void showInProperFormat(String kind, CardCollection cardCollection, Shop shop) {
+        ArrayList<Card> cards;
+        ArrayList<Item> items;
+        if (kind.equals("Shop")) {
+            cards = shop.getCards();
+            items = new ArrayList<>(shop.getItems());
+        } else {
+            cards = cardCollection.getCards();
+            items = cardCollection.getItems();
+        }
+        for (Card card : cards) {
+            if (card.getCardKind() == CardKind.HERO)
+                System.out.println(card.toString());
+        }
+        for (Item item : items) {
+            System.out.println(item.toString());
+        }
+        for (Card card : cards) {
+            System.out.println(card.toString());
+        }
     }
 
 }

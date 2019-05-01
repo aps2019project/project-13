@@ -21,35 +21,34 @@ public class Shop {
         return instance;
     }
 
-    public void show() {
-
-    }
-
-    public String search(String name) {
-        return "";
-    }
-
     public void buy(String name, Account account) {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
 
-        if(card == null && item == null)
+        if (card == null && item == null)
             throw new Error(ConstantMessages.NOT_IN_SHOP.getMessage());
 
         if (card != null) {
-            if( card.getDarikCost() <= account.getDarick()) {
+            if (card.getDarikCost() <= account.getDarick()) {
                 account.getCardCollection().addCard(card);
                 account.decreaseDarick(card.getDarikCost());
-            }else
+            } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
-        } else if (item != null ) {
-            if(item.getDarickCost() <= account.getDarick()) {
-                account.getCardCollection().addItem(item);
-                account.decreaseDarick(item.getDarickCost());
-            }else
-                throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
-        }
+        } else {
+            if (validbuyLimitOfItem(Account.getLoginedAccount())) {
+                if (item.getDarickCost() <= account.getDarick()) {
+                    account.getCardCollection().addItem(item);
+                    account.decreaseDarick(item.getDarickCost());
+                } else
+                    throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
+            }
+        }else
+            throw new Error(ConstantMessages.MORE_THAN_3_ITEM.getMessage());
 
+    }
+
+    private boolean validbuyLimitOfItem(Account account) {
+        return account.getCardCollection().getItems().size() <= 3;
     }
 
     public void sell(String cardId, Account account) {
@@ -57,16 +56,14 @@ public class Shop {
         if (card != null) {
             account.increaseDarick(card.getDarikCost());
             account.getCardCollection().removeCard(card);
+            addCard(card);
+        } else {
+            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         }
     }
 
-    public void help() {
-
-    }
-
-    public Card searchAndGetCard(String name) {
-        return Card.findCardInArrayList(name, getCards());
-        //return new Model.Card(""  , 1 , 1 ,Model.CardKind.HERO , "");
+    private Card searchAndGetCard(String name) {
+        return Card.findCardInArrayList(name, cards);
     }
 
     public UsableItem searchAndGetItem(String name) {
