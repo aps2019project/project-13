@@ -91,7 +91,7 @@ public class GameController {
     private void searchCard(String cardName) {
         for (Card card :
                 Shop.getInstance().getCards()) {
-            if (card.getCardName() == cardName) {
+            if (card.getCardName().equals(cardName)) {
                 System.out.println(card.getCardId());
                 return;
             }
