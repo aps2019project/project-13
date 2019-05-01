@@ -3,6 +3,8 @@ package Model;
 import Model.Account;
 import Model.Card;
 import Model.CardKind;
+import View.ConstantMessages;
+import View.Error;
 
 import java.util.ArrayList;
 
@@ -94,6 +96,15 @@ public class CardCollection {
 
         return items.size() <= 3;
 
+    }
+    public String searchCardInCollection(String cardName) {
+        for (Card card :
+                Account.getLoginedAccount().getCardCollection().getCards()) {
+            if (card.getCardName().equals(cardName)) {
+                return card.getCardId();
+            }
+        }
+        throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
 }

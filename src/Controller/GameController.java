@@ -81,23 +81,18 @@ public class GameController {
                 shop.sell(shopCommand.getData(), new Account("userName", "password"));
                 break;
             case SHOW:
+                show.showShopCards();
+                break;
             case SEARCH:
-                searchCard(shopCommand.getData());
+                show.showCardId(shop.searchCardInShop(shopCommand.getData()));
+                break;
             case SHOW_COLLECTION:
+                break;
             case SEARCH_COLLECTION:
+                show.showCardId(Account.getLoginedAccount().getCardCollection().searchCardInCollection(shopCommand.getData()));
         }
     }
 
-    private void searchCard(String cardName) {
-        for (Card card :
-                Shop.getInstance().getCards()) {
-            if (card.getCardName().equals(cardName)) {
-                System.out.println(card.getCardId());
-                return;
-            }
-        }
-        throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
-    }
 
     private void mainMenuCommandManagement(Request request, MainCommand mainCommand) {
         switch (mainCommand) {
