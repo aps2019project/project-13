@@ -3,7 +3,6 @@ package View;
 import Model.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Show {
     private static final Show show = new Show();
@@ -103,9 +102,18 @@ public class Show {
         showInProperFormat("Shop", null, shop);
     }
 
+    public void successfulSell() {
+        System.out.println(ConstantMessages.SELL_SUCCESSFUL);
+    }
+
+    public void successfulBuy() {
+        System.out.println(ConstantMessages.BUY_SUCCESSFUL);
+    }
+
     public void showCardId(String cardId) {
         System.out.println(cardId);
     }
+
 
     public void showCollection(Account player) {
         CardCollection cardCollection = player.getCardCollection();
