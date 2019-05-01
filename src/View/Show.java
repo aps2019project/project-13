@@ -1,5 +1,10 @@
 package View;
 
+import Model.Card;
+import Model.CardKind;
+import Model.Item;
+import Model.Shop;
+
 public class Show {
     private static final Show show = new Show();
 
@@ -85,11 +90,31 @@ public class Show {
         System.out.println(ConstantMessages.MAIN_MENU_HELP.getMessage());
     }
 
-    public void showError(Error error){
+    public void showError(Error error) {
         System.out.println(error.getMessage());
     }
 
-    public void showMainMenu(){
+    public void showMainMenu() {
         System.out.println(ConstantMessages.MAIN_MENU.getMessage());
     }
+
+    public void showShopCards() {
+        Shop shop = Shop.getInstance();
+
+        for (Card card : shop.getCards()) {
+            if (card.getCardKind() == CardKind.HERO)
+                System.out.println(card.toString());
+        }
+        for (Item item : shop.getItems()) {
+            System.out.println(item.toString());
+        }
+        for (Card card : shop.getCards()) {
+            System.out.println(card.toString());
+        }
+    }
+
+    public void showCardId(String cardId) {
+        System.out.println(cardId);
+    }
+
 }
