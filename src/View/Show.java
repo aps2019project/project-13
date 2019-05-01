@@ -149,5 +149,17 @@ public class Show {
         }
 
     }
+    public void enterInBattle(){
+        System.out.println("Enter Game Mode :\n1.Single Player\n2.Multi Player\n(1 , 2)? ");
+    }
+    public void invalidNumberForMode(){
+        System.out.println("1 or 2 !!? :)");
+    }
+    public void enterInBattleSecondStep(){
+        System.out.println("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?");
+    }
+    public void invalidNumberForGoal(){
+        System.out.println("1 or 2 or 3 !!? :)");
+    }
 
 }

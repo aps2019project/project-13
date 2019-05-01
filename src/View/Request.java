@@ -36,6 +36,9 @@ public class Request {
     public String getPassWord() {
         return scanner.nextLine();
     }
+    public String getNumberForKindOfBattle(){
+        return scanner.nextLine();
+    }
 
     private void transferCommandToRightPlace(String command) throws Error {
         switch (kindOfOrders.get(kindOfOrders.size() - 1)) {

@@ -6,7 +6,6 @@ import View.Error;
 
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class GameController {
     private static final GameController gamecontroller = new GameController();
@@ -143,7 +142,16 @@ public class GameController {
 
 
     private void battleCommandManagement(Request request, BattleCommand battleCommand) {
-
+        show.enterInBattle();
+        String gameModeNumber=request.getNumberForKindOfBattle();
+        gameModeNumber = getGameMode(request, gameModeNumber);
+        show.enterInBattleSecondStep();
+        String gameGoalNumber=request.getNumberForKindOfBattle();
+        gameGoalNumber = getGameGoal(request, gameGoalNumber);
+        GameGoal gameGoal=GameGoal.COLLECT_FLAG ;
+        GameMode gameMode=GameMode.MULTIPLAYER ;
+        setKindOfBattle(gameModeNumber, gameGoalNumber);
+        Battle battle = new Battle(Account.getLoginedAccount(),new Account("username","12345"),gameMode,gameGoal);//TODO AI
         Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
@@ -186,6 +194,37 @@ public class GameController {
                 battleShowMinion(false);
                 //TODO PASS THIS TO SHOW
         }
+    }
+
+    private String getGameMode(Request request, String gameModeNumber) {
+        while (!gameModeNumber.equals("1") && !gameModeNumber.equals("2")){
+            show.invalidNumberForMode();
+            show.enterInBattle();
+            gameModeNumber=request.getNumberForKindOfBattle();
+        }
+        return gameModeNumber;
+    }
+
+    private String getGameGoal(Request request, String gameGoalNumber) {
+        while (!gameGoalNumber.equals("1") && !gameGoalNumber.equals("2")&& !gameGoalNumber.equals("3")){
+            show.invalidNumberForGoal();
+            show.enterInBattleSecondStep();
+            gameGoalNumber=request.getNumberForKindOfBattle();
+        }
+        return gameGoalNumber;
+    }
+
+    private void setKindOfBattle(String gameModeNumber, String gameGoalNumber) {
+        GameMode gameMode;
+        GameGoal gameGoal;
+        if(gameModeNumber.equals("1")){
+            gameMode= GameMode.SINGLEPLAYER;
+        }else gameMode=GameMode.MULTIPLAYER;
+        if(gameGoalNumber.equals("1")){
+            gameGoal= GameGoal.HOLD_FLAG;
+        }else if (gameGoalNumber.equals("2")){
+            gameGoal=GameGoal.COLLECT_FLAG;
+        }else gameGoal=GameGoal.KILL_HERO;
     }
 
     private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
@@ -283,12 +322,13 @@ public class GameController {
 
     }
 
-    private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) {
+    private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) throws Error {
         switch (collectionCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.COLLECTION);
                 break;
             case SAVE:
+                throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
             case EXIT:
                 request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
