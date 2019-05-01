@@ -19,6 +19,7 @@ public class Account {
     private String password;
     private int countOfWins;
     private int darick;
+    private ArrayList<Item> collectableItems;
 
     public Account(String username, String password) {
         setUsername(username);
@@ -26,6 +27,7 @@ public class Account {
         setDecks(new ArrayList<>());
         setCardCollection(new CardCollection(this));
         setBattleHistory(new ArrayList<>());
+        collectableItems = new ArrayList<>();
         accounts.add(this);
         loginedAccount = this;
     }
@@ -237,5 +239,13 @@ public class Account {
     @Override
     public String toString() {
         return "UserName: " + username + " - Wins: " + countOfWins;
+    }
+
+    public void addCollectableItem(Item item) {
+        collectableItems.add(item);
+    }
+
+    public ArrayList<Item> getCollectableItems() {
+        return collectableItems;
     }
 }

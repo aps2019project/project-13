@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameController;
 import Model.*;
 
 import java.util.ArrayList;
@@ -149,5 +150,12 @@ public class Show {
         }
 
     }
+
+    public void battleShowAnStringArrayList(ArrayList<String> minions) {
+        for (String string : minions) {
+            System.out.println(string);
+        }
+    }
+
 
 }

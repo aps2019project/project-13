@@ -5,6 +5,7 @@ import Model.*;
 import View.Error;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -178,13 +179,12 @@ public class GameController {
                 battleEnterGraveyard();
                 break;
             case SHOW_MY_MINIONS:
-                battleShowMinion(true);
-                //TODO PASS THIS TO SHOW
-                return;
+                show.battleShowAnStringArrayList(battleShowMinion(true));
+                break;
             case SHOW_COLLECTABLE:
+                show.battleShowAnStringArrayList(battleShowCollectables());
             case SHOW_OPPONENT_MINIONS:
-                battleShowMinion(false);
-                //TODO PASS THIS TO SHOW
+                show.battleShowAnStringArrayList(battleShowMinion(false));
         }
     }
 
@@ -207,6 +207,14 @@ public class GameController {
             }
         }
         return output;
+    }
+
+    private ArrayList<String> battleShowCollectables() {
+        ArrayList<String> outPut = new ArrayList<>();
+        for (Item item : Account.getLoginedAccount().getCollectableItems()) {
+            outPut.add(item.toString());
+        }
+        return outPut;
     }
 
     private void battleEnterGraveyard() {
