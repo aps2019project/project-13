@@ -33,7 +33,6 @@ public class GameController {
             }
         }
     }
-    //TODO INVALID OUTPUT HANDLING
 
     private void commandManagement(Request request, KindOfOrder kindOfOrder) throws Error {
         switch (kindOfOrder) {
@@ -70,7 +69,7 @@ public class GameController {
 
         switch (shopCommand) {
             case BUY:
-                shop.buy(shopCommand.getData(), new Account("userName", "password"));
+                shop.buy(shopCommand.getData(), Account.getLoginedAccount());
                 break;
             case EXIT:
                 request.exitLastmenu();
@@ -83,9 +82,21 @@ public class GameController {
                 break;
             case SHOW:
             case SEARCH:
+                searchCard(shopCommand.getData());
             case SHOW_COLLECTION:
             case SEARCH_COLLECTION:
         }
+    }
+
+    private void searchCard(String cardName) {
+        for (Card card :
+                Shop.getInstance().getCards()) {
+            if (card.getCardName() == cardName) {
+                System.out.println(card.getCardId());
+                return;
+            }
+        }
+        throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
     private void mainMenuCommandManagement(Request request, MainCommand mainCommand) {
