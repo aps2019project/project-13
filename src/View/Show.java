@@ -175,7 +175,8 @@ public class Show {
             System.out.println(string);
         }
     }
-    public void showHand(ArrayList<Card> cards){
+
+    public void showHand(ArrayList<Card> cards) {
         for (Card card : cards) {
             if (card.getCardKind() == CardKind.HERO)
                 System.out.println(card.toString());
@@ -190,5 +191,8 @@ public class Show {
         System.out.println(nextCardInfo);
     }
 
+    public void showBattleInfo(String battleInfo) {
+        System.out.println(battleInfo);
+    }
 
 }

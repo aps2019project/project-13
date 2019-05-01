@@ -281,13 +281,7 @@ public class GameController {
 
     private void battleGameInfo() {
         Battle battle = Battle.getRunningBattle();
-        if (battle.getGameGoal() == GameGoal.KILL_HERO) {
-            //TODO SHOW SOMETHING
-        } else if (battle.getGameGoal() == GameGoal.COLLECT_FLAG) {
-            //TODO SHOW SOMETHING
-        } else if (battle.getGameGoal() == GameGoal.HOLD_FLAG) {
-            //TODO SHOW SOMETHING ELSE
-        }
+        show.showBattleInfo(battle.toString());
     }
 
     private void battleEndTurn() {
