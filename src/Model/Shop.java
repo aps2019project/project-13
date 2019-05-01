@@ -41,9 +41,9 @@ public class Shop {
                     account.decreaseDarick(item.getDarickCost());
                 } else
                     throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
-            }
-        }else
-            throw new Error(ConstantMessages.MORE_THAN_3_ITEM.getMessage());
+            }else
+                throw new Error(ConstantMessages.MORE_THAN_3_ITEM.getMessage());
+        }
 
     }
 

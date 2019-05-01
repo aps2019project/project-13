@@ -79,7 +79,7 @@ public class GameController {
                 show.showHelp(KindOfOrder.SHOP);
                 break;
             case SELL:
-                shop.sell(shopCommand.getData(), new Account("userName", "password"));
+                shop.sell(shopCommand.getData(), Account.getLoginedAccount());
                 show.successfulSell();
                 break;
             case SHOW:
@@ -126,11 +126,13 @@ public class GameController {
                 break;
             case SAVE:
                 //TODO save to file
+                break;
             case LOGIN:
                 login(request, accountCommand);
                 break;
             case LOGOUT:
                 Account.setLoginedAccount(null);
+                break;
             case CREATE_ACCOUNT:
                 createAccount(request, accountCommand);
                 break;
