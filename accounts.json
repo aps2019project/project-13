@@ -1,0 +1,19 @@
+[
+  {
+    "@type": "Model.Account",
+    "@val": {
+      "battleHistory": [],
+      "decks": [],
+      "cardCollection": {
+        "cards": [],
+        "items": [],
+        "account": "@root.0"
+      },
+      "username": "reza",
+      "password": "rezaa",
+      "countOfWins": 0,
+      "darick": 100000,
+      "collectableItems": []
+    }
+  }
+]
