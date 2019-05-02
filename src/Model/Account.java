@@ -3,10 +3,15 @@ package Model;
 import View.*;
 import View.Error;
 
+import java.io.FileWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 public class Account {
     private static Account loginedAccount = null;
@@ -28,15 +33,16 @@ public class Account {
         setCardCollection(new CardCollection(this));
         setBattleHistory(new ArrayList<>());
         collectableItems = new ArrayList<>();
+        setDarick(100000);
         accounts.add(this);
         loginedAccount = this;
     }
 
-    public void increaseDarick(int number) {
+    void increaseDarick(int number) {
         setDarick(getDarick() + number);
     }
 
-    public void decreaseDarick(int number) {
+    void decreaseDarick(int number) {
         setDarick(getDarick() - number);
     }
 
@@ -247,5 +253,17 @@ public class Account {
 
     public ArrayList<Item> getCollectableItems() {
         return collectableItems;
+    }
+
+    public static void saveAccount() {
+        YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
+        try {
+            Writer writer = new FileWriter("accounts.json");
+            String s = new String(yaGson.toJson(accounts));
+            writer.write(s);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
