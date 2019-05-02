@@ -51,6 +51,8 @@ public class Main {
             System.out.println(i + ": " + minion.toString());
             i++;
         }
+
+
         GameController gamecontroller = GameController.getInstance();
         gamecontroller.main();
     }

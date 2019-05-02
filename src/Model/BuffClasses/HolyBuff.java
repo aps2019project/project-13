@@ -6,7 +6,8 @@ import Model.Warrior;
 public class HolyBuff extends ABuff {
     private int shield;
     private boolean isAffected;
-    public HolyBuff(int shield) {
+    public HolyBuff(int shield , int duration) {
+        super(duration);
         this.shield = shield;
     }
 

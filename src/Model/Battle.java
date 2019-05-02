@@ -49,7 +49,7 @@ public class Battle {
         if (firstPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
             firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
         } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
-        if (secondPlayer.getMainDeck()!= null && firstPlayer.getMainDeck().isValid()) {
+        if (secondPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
             secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
         } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         map = new Map(this);
@@ -105,7 +105,7 @@ public class Battle {
         if (!isValidAttack(targetCell, warrior)) {
             throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
         }
-        defender.decreaseHealthPoint(warrior.getActionPower());
+        defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
         //TODO check valid counterAttack
         warrior.decreaseHealthPoint(defender.getActionPower());
     }
@@ -297,16 +297,15 @@ public class Battle {
         }
     }
 
-
     private void findValidCellToMove() {
         Cell[][] cells = map.getCells();
         if (!selectedCard.isAbleToMove())
             return;
         Warrior warrior = (Warrior) selectedCard;
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j].isEmpty() && map.getDistanceOfTwoCell(warrior.getCurrentCell(), cells[i][j]) <= 2 && isValidMove(cells[i][j]))
-                    validCells.add(cells[i][j]);
+        for (Cell[] cell : cells) {
+            for (Cell cell1 : cell) {
+                if (cell1.isEmpty() && map.getDistanceOfTwoCell(warrior.getCurrentCell(), cell1) <= 2 && isValidMove(cell1))
+                    validCells.add(cell1);
             }
         }
 
@@ -316,10 +315,10 @@ public class Battle {
 
         Cell[][] cells = map.getCells();
         Warrior warrior = (Warrior) selectedCard;
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (!cells[i][j].isEmpty() && isValidAttack(cells[i][j], warrior))
-                    validCells.add(cells[i][j]);
+        for (Cell[] cell : cells) {
+            for (Cell cell1 : cell) {
+                if (!cell1.isEmpty() && isValidAttack(cell1, warrior))
+                    validCells.add(cell1);
             }
         }
     }
@@ -328,10 +327,10 @@ public class Battle {
 
         Cell[][] cells = map.getCells();
 
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                if (cells[i][j].isEmpty())
-                    validCells.add(cells[i][j]);
+        for (Cell[] cell : cells) {
+            for (Cell cell1 : cell) {
+                if (cell1.isEmpty())
+                    validCells.add(cell1);
             }
         }
     }
@@ -344,12 +343,8 @@ public class Battle {
 
     }
 
-    public boolean isValidInsert(Cell destinationCell) {
-        if (destinationCell.isEmpty()) {
-            return true;
-        }
-        return false;
-
+    private boolean isValidInsert(Cell destinationCell) {
+        return destinationCell.isEmpty();
     }
 
     private boolean isValidMove(Cell destinationCell) {
@@ -488,10 +483,8 @@ public class Battle {
         }
     }
 
-    public void getNRandomNumber(int n, int[] randomX, int[] randomY) {
+    private void getNRandomNumber(int n, int[] randomX, int[] randomY) {
 
-        randomX = new int[n];
-        randomY = new int[n];
         Random random = new Random();
 
         for (int i = 0; i < randomX.length; i++) {
@@ -507,8 +500,8 @@ public class Battle {
     }
 
     private boolean hasNumber(int[] array, int number) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == number)
+        for (int n : array) {
+            if (n == number)
                 return true;
         }
         return false;
@@ -526,7 +519,7 @@ public class Battle {
         return flagForHoldFlagGameMode;
     }
 
-    public void setWinner(Account winner) {
+    private void setWinner(Account winner) {
         this.winner = winner;
     }
 
@@ -640,10 +633,10 @@ public class Battle {
     private ArrayList<Card> findDeathCards(ArrayList<Card> playerInGameCards) {
 
         ArrayList<Card> deathCards = new ArrayList<>();
-        for (int i = 0; i < playerInGameCards.size(); i++) {
-            if (playerInGameCards.get(i).isInGame() && (playerInGameCards.get(i) instanceof Warrior)) {
-                if (((Warrior) playerInGameCards.get(i)).getHealthPoint() <= 0)
-                    deathCards.add(playerInGameCards.get(i));
+        for (Card playerInGameCard : playerInGameCards) {
+            if (playerInGameCard.isInGame() && (playerInGameCard instanceof Warrior)) {
+                if (((Warrior) playerInGameCard).getHealthPoint() <= 0)
+                    deathCards.add(playerInGameCard);
             }
         }
         return deathCards;
@@ -671,11 +664,11 @@ public class Battle {
         return secondPlayerGraveYard;
     }
 
-    public void addToFirstPlayerInGameCards(Card card) {
+    private void addToFirstPlayerInGameCards(Card card) {
         firstPlayerInGameCards.add(card);
     }
 
-    public void addToSecondPlayerInGameCards(Card card) {
+    private void addToSecondPlayerInGameCards(Card card) {
         secondPlayerInGameCards.add(card);
     }
 
