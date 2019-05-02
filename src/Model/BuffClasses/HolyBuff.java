@@ -53,5 +53,10 @@ public class HolyBuff extends ABuff {
     @Override
     public <T> void update(T t) {
 
+        decrementDuration();
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
     }
 }

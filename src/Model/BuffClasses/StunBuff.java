@@ -10,22 +10,27 @@ public class StunBuff extends ABuff {
         super(account ,duration , PositiveNegative.NEGATIVE , isDispellable);
     }
 
-    public void affectOnWarriro(Warrior warrior)
-    {
+    public void affectOnWarrior(Warrior warrior) {
         warrior.setValidToAttack(false);
         warrior.setValidToMove(false);
     }
 
     @Override
     public <T> void affect(T t) {
-        if(t instanceof Warrior){
-            affectOnWarriro((Warrior) t);
+        if (t instanceof Warrior) {
+            affectOnWarrior((Warrior) t);
         }
 
     }
 
     @Override
     public <T> void update(T t) {
+
+        decrementDuration();
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
 
     }
 
