@@ -46,8 +46,12 @@ public class Battle {
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
-        firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
-        secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
+        if (firstPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
+            firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
+        } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        if (secondPlayer.getMainDeck()!= null && firstPlayer.getMainDeck().isValid()) {
+            secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
+        } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         map = new Map(this);
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);

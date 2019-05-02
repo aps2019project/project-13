@@ -10,6 +10,7 @@ public class Deck {
     private Item item;
     private Account account;
     private String deckName;
+    private boolean isValid = false ;
 
     //TODO DECK TO STRING
 
@@ -172,5 +173,13 @@ public class Deck {
         String result = sb.toString();
 
         return result;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
+    public boolean isValid() {
+        return isValid;
     }
 }
