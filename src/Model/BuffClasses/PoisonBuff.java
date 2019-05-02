@@ -5,7 +5,7 @@ import Model.Warrior;
 
 public class PoisonBuff extends ABuff {
 
-    int poisonDamage;
+    private int poisonDamage;
 
     public PoisonBuff(Account account, int duration, int poisonDamage , boolean isDispellable) {
         super(account, duration , PositiveNegative.POSITIVE , isDispellable);

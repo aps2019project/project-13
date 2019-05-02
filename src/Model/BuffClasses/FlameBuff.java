@@ -5,7 +5,7 @@ import Model.Cell;
 import Model.Warrior;
 
 public class FlameBuff extends ABuff {
-    int flameDamage;
+    private int flameDamage;
 
     public FlameBuff(Account account, int duration , int flameDamage , boolean isDispellable) {
         super(account, duration , PositiveNegative.NEGATIVE , isDispellable);
