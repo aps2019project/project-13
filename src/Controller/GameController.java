@@ -257,7 +257,6 @@ public class GameController {
 
     private void battleEnterGraveyard() {
         Request.getInstance().addNewMenu(KindOfOrder.GRAVEYARD);
-
     }
 
     private void battleShowNextCard() {
