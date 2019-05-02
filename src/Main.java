@@ -9,17 +9,35 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import Model.Account;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.YaGsonBuilder;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.FileReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 
 public class Main {
 
 
     public static void main(String[] args) {
+        try{
+            YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
+            Reader reader = new FileReader("accounts.json");
+            Account[] accounts = new Account[1000];
+            accounts = yaGson.fromJson(reader, (Type) Account[].class);
+            for (Account account : accounts) {
+                Account.getAccounts().add(account);
+            }
 
+        }catch (Exception e){
+
+        }
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
         Minion[] cards = new Minion[40];
         try (Reader reader = new FileReader("Minions_YaGson.json")) {

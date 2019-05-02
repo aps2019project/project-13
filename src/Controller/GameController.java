@@ -3,6 +3,7 @@ package Controller;
 import View.*;
 import Model.*;
 import View.Error;
+import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 
 
 import java.util.ArrayList;
@@ -120,6 +121,7 @@ public class GameController {
         switch (accountCommand) {
             case EXIT:
                 isFinish = true;
+                Account.saveAccount();
                 break;
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
