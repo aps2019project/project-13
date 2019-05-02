@@ -8,7 +8,7 @@ public class ManaBuff extends ABuff {
     private int manaAmountIncrease;
 
     public ManaBuff(int manaAmountIncrease, Account account, int duration) {
-        super(account, duration);
+        super(account, duration , PositiveNegative.POSITIVE);
         this.manaAmountIncrease = manaAmountIncrease;
     }
     public void affectOnBattle(Battle battle)

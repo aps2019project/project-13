@@ -7,7 +7,7 @@ public class DisarmBuff extends ABuff {
 
 
     public DisarmBuff(Account account, int duration) {
-        super(account, duration);
+        super(account, duration , PositiveNegative.NEGATIVE);
     }
 
     @Override
