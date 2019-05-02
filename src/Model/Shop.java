@@ -24,8 +24,7 @@ public class Shop {
     public void buy(String name, Account account) {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
-        if (card == null)
-            System.out.println(":FFFFFFFF");
+
         if (card == null && item == null)
             throw new Error(ConstantMessages.NOT_IN_SHOP.getMessage());
 

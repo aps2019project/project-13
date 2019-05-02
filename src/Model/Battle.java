@@ -13,6 +13,7 @@ public class Battle {
     private Account secondPlayer;
     private Account winner;
     private int turn = 1;
+    private int numberOfFlagForWin ;
     private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
@@ -678,5 +679,9 @@ public class Battle {
 
     public ArrayList<Card> getSecondPlayerInGameCards() {
         return secondPlayerInGameCards;
+    }
+
+    public void setNumberOfFlagForWin(int numberOfFlagForWin) {
+        this.numberOfFlagForWin = numberOfFlagForWin;
     }
 }

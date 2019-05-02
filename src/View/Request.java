@@ -45,6 +45,10 @@ public class Request {
         return scanner.nextLine();
     }
 
+    public String getNumberOfFlag(){
+        return scanner.nextLine();
+    }
+
     private void transferCommandToRightPlace(String command) throws Error {
         switch (kindOfOrders.get(kindOfOrders.size() - 1)) {
             case SHOP:

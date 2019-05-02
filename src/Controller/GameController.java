@@ -109,7 +109,7 @@ public class GameController {
                 break;
             case ENTER_BATTLE:
                 request.addNewMenu(KindOfOrder.BATTLE);
-                StartBattle(request);
+                startBattle(request);
                 break;
             case ENTER_COLLECTION:
                 request.addNewMenu(KindOfOrder.COLLECTION);
@@ -189,7 +189,7 @@ public class GameController {
         }
     }
 
-    private void StartBattle(Request request) {
+    private void startBattle(Request request) {
         show.enterInBattle();
         String gameModeNumber = request.getNumberForKindOfBattle();
         gameModeNumber = getGameMode(request, gameModeNumber);
@@ -206,6 +206,20 @@ public class GameController {
         } else if (gameGoalNumber.equals("2")) {
             gameGoal = GameGoal.COLLECT_FLAG;
         } else gameGoal = GameGoal.KILL_HERO;
+        if (gameGoal == GameGoal.COLLECT_FLAG) {
+            int numberOfFlagForWin = 0;
+            while (numberOfFlagForWin < 1) {
+                show.numberOfFlag();
+                String numberOfFlag = request.getNumberOfFlag();
+                try {
+                    numberOfFlagForWin = Integer.parseInt(numberOfFlag);
+                } catch (Exception e) {
+                    show.invalidNumberForFlag();
+                }
+            }
+            new Battle(Account.getLoginedAccount(), new Account("username", "12345"), gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);//TODO AI
+            return;
+        }
         new Battle(Account.getLoginedAccount(), new Account("username", "12345"), gameMode, gameGoal);//TODO AI
     }
 
