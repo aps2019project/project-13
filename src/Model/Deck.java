@@ -1,3 +1,4 @@
+
 package Model;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class Deck {
         setItem(null);
     }
 
-    public static boolean validateDeck(Deck deck) {
+    public static boolean valisdateDeck(Deck deck) {
         return deck.getHero() != null && countOfMinionsInDeck(deck) == 20;
     }
 

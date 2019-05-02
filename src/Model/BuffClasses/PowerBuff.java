@@ -1,6 +1,7 @@
 package Model.BuffClasses;
 
 
+import Model.Account;
 import Model.Warrior;
 
 public class PowerBuff extends ABuff {
@@ -9,8 +10,8 @@ public class PowerBuff extends ABuff {
     private PowerAndWeaknessBuffType powerBuffKind;
     private int buffPower;
 
-    public PowerBuff(PowerAndWeaknessBuffType powerBuffKind, int buffPower, int duration) {
-        super(duration);
+    public PowerBuff(PowerAndWeaknessBuffType powerBuffKind, int buffPower, Account account , int duration) {
+        super(account , duration);
         this.powerBuffKind = powerBuffKind;
         this.buffPower = buffPower;
     }

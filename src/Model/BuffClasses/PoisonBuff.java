@@ -1,9 +1,11 @@
 package Model.BuffClasses;
 
+import Model.Account;
+
 public class PoisonBuff extends ABuff {
 
-    public PoisonBuff(int duration){
-        super(duration);
+    public PoisonBuff(Account account , int duration){
+        super(account , duration);
     }
 
     @Override

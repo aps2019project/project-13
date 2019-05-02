@@ -1,13 +1,15 @@
 package Model.BuffClasses;
 
+import Model.Account;
 import Model.Warrior;
 
 
 public class HolyBuff extends ABuff {
     private int shield;
     private boolean isAffected;
-    public HolyBuff(int shield , int duration) {
-        super(duration);
+
+    public HolyBuff(int shield, Account account, int duration) {
+        super(account, duration);
         this.shield = shield;
     }
 
@@ -24,11 +26,11 @@ public class HolyBuff extends ABuff {
     }
 
     public void setDuration(int duration) {
-        this.duration=duration;
+        this.duration = duration;
     }
 
-    public void changeDuration(int i){
-        setDuration(getDuration()-i);
+    public void changeDuration(int i) {
+        setDuration(getDuration() - i);
     }
 
     public boolean isAffected() {
@@ -39,26 +41,21 @@ public class HolyBuff extends ABuff {
         isAffected = affected;
     }
 
-    public void affectOnCard(Warrior warrior)
-    {
-        if (getDuration()>0 && !isAffected())
-        {
+    private void affectOnCard(Warrior warrior) {
+        if (getDuration() > 0 && !isAffected()) {
             warrior.changeShield(getShield());
             setAffected(true);
         }
-        if (getDuration()<=0 && isAffected())
-        {
+        if (getDuration() <= 0 && isAffected()) {
             warrior.changeShield(-getShield());
             setAffected(false);
         }
     }
 
 
-
     @Override
-    public <T>  void affect(T t) {
-        if (t instanceof Warrior)
-        {
+    public <T> void affect(T t) {
+        if (t instanceof Warrior) {
             Warrior warrior = (Warrior) t;
             affectOnCard(warrior);
         }

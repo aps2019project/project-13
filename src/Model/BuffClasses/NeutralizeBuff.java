@@ -1,9 +1,11 @@
 package Model.BuffClasses;
 
+import Model.Account;
+
 public class NeutralizeBuff extends ABuff {
 
-    public NeutralizeBuff(int duration) {
-        super(duration);
+    public NeutralizeBuff(Account account , int duration) {
+        super(account ,duration);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package Model.BuffClasses;
 
+import Model.Account;
+
 public class DisarmBuff extends ABuff {
 
 
-    public DisarmBuff(int duration){
-        super(duration);
+    public DisarmBuff(Account account, int duration){
+        super(account , duration);
     }
     @Override
     public <T> void affect(T t) {

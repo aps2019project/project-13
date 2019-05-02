@@ -1,10 +1,12 @@
 package Model.BuffClasses;
 
+import Model.Account;
+
 public class StunBuff extends ABuff {
 
 
-    public StunBuff(int duration) {
-        super(duration);
+    public StunBuff(Account account , int duration) {
+        super(account ,duration);
     }
 
     @Override

@@ -1,9 +1,13 @@
 package Model.BuffClasses;
 
+import Model.Account;
+
 public abstract class ABuff {
     int duration;
+    Account account;
 
-    public ABuff(int duration) {
+    public ABuff(Account account, int duration) {
+        this.account = account;
         this.duration = duration;
     }
 
