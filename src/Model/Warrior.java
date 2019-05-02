@@ -11,6 +11,9 @@ public class Warrior extends Card {
     private Spell specialPower;
     private boolean isDeath;
     private int shield;
+    private boolean isValidToAttack = true ;
+    private boolean IsValidToMove =true;
+
 
     public Warrior(String cardName , String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
@@ -89,5 +92,21 @@ public class Warrior extends Card {
 
     public Spell getSpecialPower() {
         return specialPower;
+    }
+
+    public boolean isValidToAttack() {
+        return isValidToAttack;
+    }
+
+    public void setValidToAttack(boolean validToAttack) {
+        isValidToAttack = validToAttack;
+    }
+
+    public boolean isValidToMove() {
+        return IsValidToMove;
+    }
+
+    public void setValidToMove(boolean validToMove) {
+        this.IsValidToMove = validToMove;
     }
 }
