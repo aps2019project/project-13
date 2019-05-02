@@ -6,11 +6,11 @@ import Model.Warrior;
 public class StunBuff extends ABuff {
 
 
-    public StunBuff(Account account, int duration) {
-        super(account, duration, PositiveNegative.NEGATIVE);
+    public StunBuff(Account account , int duration , boolean isDispellable) {
+        super(account ,duration , PositiveNegative.NEGATIVE , isDispellable);
     }
 
-    public void affectOnWarriro(Warrior warrior) {
+    public void affectOnWarrior(Warrior warrior) {
         warrior.setValidToAttack(false);
         warrior.setValidToMove(false);
     }
@@ -18,7 +18,7 @@ public class StunBuff extends ABuff {
     @Override
     public <T> void affect(T t) {
         if (t instanceof Warrior) {
-            affectOnWarriro((Warrior) t);
+            affectOnWarrior((Warrior) t);
         }
 
     }

@@ -6,8 +6,8 @@ import Model.Warrior;
 public class DisarmBuff extends ABuff {
 
 
-    public DisarmBuff(Account account, int duration) {
-        super(account, duration, PositiveNegative.NEGATIVE);
+    public DisarmBuff(Account account, int duration , boolean isDispellable) {
+        super(account, duration , PositiveNegative.NEGATIVE , isDispellable);
     }
 
     @Override

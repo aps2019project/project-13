@@ -9,8 +9,8 @@ public class WeaknessBuff extends ABuff {
     private int buffPower;
 
 
-    public WeaknessBuff(PowerAndWeaknessBuffType weaknessBuffType, int buffPower, Account account, int duration) {
-        super(account, duration , PositiveNegative.NEGATIVE);
+    public WeaknessBuff(PowerAndWeaknessBuffType weaknessBuffType, int buffPower, Account account, int duration , boolean isDispellable) {
+        super(account, duration , PositiveNegative.NEGATIVE , isDispellable);
         this.weaknessBuffType = weaknessBuffType;
         this.buffPower = buffPower;
     }
