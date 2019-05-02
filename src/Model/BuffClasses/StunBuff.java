@@ -28,4 +28,6 @@ public class StunBuff extends ABuff {
     public <T> void update(T t) {
 
     }
+
+
 }

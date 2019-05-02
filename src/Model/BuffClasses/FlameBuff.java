@@ -24,12 +24,13 @@ public class FlameBuff extends ABuff {
         }
     }
 
-    public int getFlameDamage() {
-        return flameDamage;
+    @Override
+    public <T> void update(T t) {
+
     }
 
-    public void setFlameDamage(int flameDamage) {
-        this.flameDamage = flameDamage;
+    public int getFlameDamage() {
+        return flameDamage;
     }
 
 }

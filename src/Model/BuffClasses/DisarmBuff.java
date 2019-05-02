@@ -19,4 +19,8 @@ public class DisarmBuff extends ABuff {
 
     }
 
+    @Override
+    public <T> void update(T t) {
+
+    }
 }

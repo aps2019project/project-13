@@ -19,6 +19,7 @@ public class PoisonBuff extends ABuff {
         }
     }
 
+
     @Override
     public <T> void affect(T t) {
 
@@ -27,13 +28,13 @@ public class PoisonBuff extends ABuff {
         }
     }
 
+    @Override
+    public <T> void update(T t) {
+
+    }
+
     public int getPoisonDamage() {
         return poisonDamage;
     }
 
-
-    public void setPoisonDamage(int poisonDamage) {
-        this.poisonDamage = poisonDamage;
-
-    }
 }

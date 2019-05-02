@@ -48,8 +48,10 @@ public class HolyBuff extends ABuff {
             Warrior warrior = (Warrior) t;
             affectOnWarrior(warrior);
         }
-
-
     }
 
+    @Override
+    public <T> void update(T t) {
+
+    }
 }
