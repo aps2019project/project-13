@@ -526,8 +526,8 @@ public class GameController {
         int turn = battle.getTurn();
         ArrayList<Card> cards;
         if (turn % 2 == 1) {
-            cards = battle.getGraveYardCards();
-        } else cards = battle.getGraveYardCards();
+            cards = battle.getFirstPlayerGraveYard();
+        } else cards = battle.getSecondPlayerGraveYard();
         show.showHand(cards);
     }
 
