@@ -23,7 +23,7 @@ public class Battle {
     private ArrayList<Card> secondPlayerGraveYard = new ArrayList<>();
     private ArrayList<Card> firstPlayerHand = new ArrayList<>();
     private ArrayList<Card> secondPlayerHand = new ArrayList<>();
-    private Card firstPlayerNextCard;//TODO Methodeshoon zade shode , hrarvaght khstim az method migirim
+    private Card firstPlayerNextCard;
     private Card secondPlayerNextCard;
     private ArrayList<Cell> validCells = new ArrayList<>();
     private ArrayList<Card> firstPlayerDeck = new ArrayList<>();
@@ -62,18 +62,6 @@ public class Battle {
             firstPlayerMana -= number;
         } else secondPlayerMana -= number;
     }
-
-    public void gameInfo() {
-
-
-    }
-
-
-    public void showCardInfo(String cardID) {
-
-
-    }
-
 
     public void selectCard(String cardID) {
         Card card;
@@ -127,10 +115,6 @@ public class Battle {
 
     }
 
-    public String showHand(int numberOfPlayer) {
-        return null;
-    }
-
     public void insertCard(String cardName, int x, int y) throws Error {
 
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
@@ -164,13 +148,25 @@ public class Battle {
     public void endTurn() {
         endGame();
         if (endGame) {
-            //TODO if game finish what to do , what not to do :\
+            setHistoryAfterGame();
             return;
         }
         setMana();
         incrementTurn();
         addUsedCardsToGraveYard();
 
+    }
+
+    private void setHistoryAfterGame() {
+        winner.incrementCountOfWins();
+        int numberOfWinnerPlayer;
+        if (winner.equals(firstPlayer)) {
+            numberOfWinnerPlayer = 1;
+        } else numberOfWinnerPlayer = 2;
+        ArrayList<String> firstPlayerHistory = firstPlayer.getBattleHistory();
+        firstPlayerHistory.add(secondPlayer.getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
+        ArrayList<String> secondPlayerHistory = secondPlayer.getBattleHistory();
+        secondPlayerHistory.add(firstPlayer.getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
     }
 
     private void setMana() {
@@ -190,6 +186,8 @@ public class Battle {
     }
 
     private void incrementTurn() {
+        setFirstPlayerNextCard();
+        setSecondPlayerNextCard();
         turn++;
     }
 
@@ -203,7 +201,6 @@ public class Battle {
                 break;
             case COLLECT_FLAG:
                 endOfCollectFlagGameMode();
-
         }
 
     }
@@ -268,44 +265,6 @@ public class Battle {
         } else {
             return firstPlayer;
         }
-    }
-
-    public void exit() {
-
-    }
-
-    public void showCollectable() {
-        //TODO too controler zade shod vali shayad montaghel kardim be inja
-    }
-
-    public void selectCollectable(String collectableID) {
-
-
-    }
-
-    public void showItemInfo(String itemID) {
-
-    }
-
-    public void showNextCard() {
-        //TODO too controler zade shod vali shayad montaghel kardim be inja
-    }
-
-    public void enterGraveYard() {
-
-    }
-
-
-    public void showGraveYardCardInfo(String cardID) {
-
-    }
-
-    public void showGraveYardCards() {
-
-    }
-
-    public void helpMenu() {
-
     }
 
     private void clearValidCellsList() {
@@ -379,7 +338,6 @@ public class Battle {
 
     private void findValidCellToSpell() {
 
-
     }
 
     public boolean isValidInsert(Cell destinationCell) {
@@ -428,8 +386,6 @@ public class Battle {
                 boolean flag2 = isValidMeleeAttack(targetCell, warrior);
                 return (flag1 || flag2);
         }
-
-
         return true;
     }
 
@@ -474,22 +430,31 @@ public class Battle {
 
     public void stratGame() {
 
+    }
 
+    private void setFirstPlayerNextCard() {
+        Random random = new Random();
+        firstPlayerNextCard = firstPlayerDeck.get(random.nextInt());
+    }
+
+    private void setSecondPlayerNextCard() {
+        Random random = new Random();
+        secondPlayerNextCard = firstPlayerDeck.get(random.nextInt());
     }
 
     public Card getNextCard() {
-        Random random = new Random();
+
         if (turn % 2 == 1) {
-            return firstPlayerDeck.get(random.nextInt());
+            return getFirstPlayerNextCard();
         } else
-            return secondPlayerDeck.get(random.nextInt());
+            return getSecondPlayerNextCard();
     }
 
-    public Card getFirstPlayerNextCard() {
+    private Card getFirstPlayerNextCard() {
         return firstPlayerNextCard;
     }
 
-    public Card getSecondPlayerNextCard() {
+    private Card getSecondPlayerNextCard() {
         return secondPlayerNextCard;
     }
 
