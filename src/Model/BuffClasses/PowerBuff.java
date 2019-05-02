@@ -10,8 +10,8 @@ public class PowerBuff extends ABuff {
     private PowerAndWeaknessBuffType powerBuffKind;
     private int buffPower;
 
-    public PowerBuff(PowerAndWeaknessBuffType powerBuffKind, int buffPower, Account account , int duration) {
-        super(account , duration , PositiveNegative.POSITIVE);
+    public PowerBuff(PowerAndWeaknessBuffType powerBuffKind, int buffPower, Account account , int duration , boolean isDispellable) {
+        super(account , duration , PositiveNegative.POSITIVE , isDispellable);
         this.powerBuffKind = powerBuffKind;
         this.buffPower = buffPower;
     }

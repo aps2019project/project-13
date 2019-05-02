@@ -8,8 +8,8 @@ public class HolyBuff extends ABuff {
     private int shield;
     private boolean isAffected;
 
-    public HolyBuff(int shield, Account account, int duration) {
-        super(account, duration , PositiveNegative.POSITIVE);
+    public HolyBuff(int shield, Account account, int duration , boolean isDispellable) {
+        super(account, duration , PositiveNegative.POSITIVE , isDispellable);
         this.shield = shield;
     }
 

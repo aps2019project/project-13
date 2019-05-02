@@ -7,8 +7,8 @@ import Model.Warrior;
 public class FlameBuff extends ABuff {
     int flameDamage;
 
-    public FlameBuff(Account account, int duration , int flameDamage) {
-        super(account, duration , PositiveNegative.NEGATIVE);
+    public FlameBuff(Account account, int duration , int flameDamage , boolean isDispellable) {
+        super(account, duration , PositiveNegative.NEGATIVE , isDispellable);
         this.flameDamage = flameDamage;
     }
 

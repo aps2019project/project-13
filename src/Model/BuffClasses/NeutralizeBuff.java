@@ -5,8 +5,8 @@ import Model.Warrior;
 
 public class NeutralizeBuff extends ABuff {
 
-    public NeutralizeBuff(Account account, int duration) {
-        super(account, duration , PositiveNegative.NEUTRAL);
+    public NeutralizeBuff(Account account, int duration , boolean isDispellable) {
+        super(account, duration , PositiveNegative.NEUTRAL , isDispellable);
     }
 
     @Override
