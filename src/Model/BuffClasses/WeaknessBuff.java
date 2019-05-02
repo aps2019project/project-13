@@ -8,6 +8,7 @@ public class WeaknessBuff extends ABuff {
     private PowerAndWeaknessBuffType weaknessBuffType;
     private int buffPower;
 
+
     public WeaknessBuff(PowerAndWeaknessBuffType weaknessBuffType, int buffPower, Account account, int duration) {
         super(account, duration , PositiveNegative.NEGATIVE);
         this.weaknessBuffType = weaknessBuffType;
