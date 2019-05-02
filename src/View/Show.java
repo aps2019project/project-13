@@ -92,7 +92,7 @@ public class Show {
     }
 
     public void showError(Error error) {
-        System.out.println(error.getMessage());
+        System.out.println(error.toString());
     }
 
     public void showMainMenu() {
@@ -114,6 +114,9 @@ public class Show {
 
     public void showCardId(String cardId) {
         System.out.println(cardId);
+    }
+    public void showCard(Card card) {
+        System.out.println(card.toString());
     }
 
 
