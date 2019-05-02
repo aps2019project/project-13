@@ -238,10 +238,13 @@ public class Battle {
         for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
                 if (player.getMainDeck().getCards().get(i).isInGame() && player.getMainDeck().getCards().get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
-                    if (currentTurnPlayer.equals(firstPlayer))
+                    if (currentTurnPlayer.equals(firstPlayer)) {
                         firstPlayerFlags++;
-                    else
+                        flagForCollectFlagGameModes.get(j).setOwner(player.getMainDeck().getCards().get(i));
+                    } else {
                         secondPlayerFlags++;
+                        flagForCollectFlagGameModes.get(j).setOwner(player.getMainDeck().getCards().get(i));
+                    }
                     flagForCollectFlagGameModes.remove(j);
                     break;
                 }
@@ -640,5 +643,23 @@ public class Battle {
 
     public Account getCurrentTurnPlayer() {
         return currentTurnPlayer;
+    }
+
+    @Override
+    public String toString() {
+        if (gameGoal == GameGoal.KILL_HERO)
+            return "Hero HealthPoints     FirstPlayer: " + firstPlayer.getMainDeck().getHero().getHealthPoint()
+                    + " SecondPlayerL " + secondPlayer.getMainDeck().getHero().getHealthPoint();
+        else if (gameGoal == GameGoal.HOLD_FLAG) {
+            return "Flag Coordinates : Row: " + flagForHoldFlagGameMode.getCurrentCell().getRow()
+                    + " Column: " + flagForHoldFlagGameMode.getCurrentCell().getColumn()
+                    + " Flag Owner: " + flagForHoldFlagGameMode.getFlagHolder().getAccount();
+        } else {
+            StringBuilder output = new StringBuilder();
+            for (FlagForCollectFlagGameMode flagForCollectFlagGameMode : flagForCollectFlagGameModes) {
+                output.append("CardName: ").append(flagForCollectFlagGameMode.getOwner().getCardName()).append(" ").append("Player: ").append(flagForCollectFlagGameMode.getOwner().getAccount().getUsername()).append("\n");
+            }
+            return output.toString();
+        }
     }
 }
