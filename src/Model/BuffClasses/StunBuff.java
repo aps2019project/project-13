@@ -13,6 +13,7 @@ public class StunBuff extends ABuff {
     public void affectOnWarrior(Warrior warrior) {
         warrior.setValidToAttack(false);
         warrior.setValidToMove(false);
+        warrior.setValidCounterAttack(false);
     }
 
     @Override
@@ -27,9 +28,14 @@ public class StunBuff extends ABuff {
     public <T> void update(T t) {
 
         decrementDuration();
-        if (t instanceof Warrior) {
-            Warrior warrior = (Warrior) t;
-            warrior.getBuffs().remove(this);
+        if(getDuration()==0) {
+            if (t instanceof Warrior) {
+                Warrior warrior = (Warrior) t;
+                warrior.getBuffs().remove(this);
+                warrior.setValidToAttack(true);
+                warrior.setValidToMove(true);
+                warrior.setValidCounterAttack(true);
+            }
         }
 
     }

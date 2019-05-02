@@ -19,6 +19,9 @@ public class NeutralizeBuff extends ABuff {
 
     @Override
     public <T> void update(T t) {
-
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
     }
 }

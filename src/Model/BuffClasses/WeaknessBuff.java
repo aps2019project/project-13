@@ -7,10 +7,11 @@ public class WeaknessBuff extends ABuff {
 
     private PowerAndWeaknessBuffType weaknessBuffType;
     private int buffPower;
+    private boolean isAffect = false;
 
 
-    public WeaknessBuff(PowerAndWeaknessBuffType weaknessBuffType, int buffPower, Account account, int duration , boolean isDispellable) {
-        super(account, duration , PositiveNegative.NEGATIVE , isDispellable);
+    public WeaknessBuff(PowerAndWeaknessBuffType weaknessBuffType, int buffPower, Account account, int duration, boolean isDispellable) {
+        super(account, duration, PositiveNegative.NEGATIVE, isDispellable);
         this.weaknessBuffType = weaknessBuffType;
         this.buffPower = buffPower;
     }
@@ -26,7 +27,10 @@ public class WeaknessBuff extends ABuff {
     @Override
     public <T> void affect(T t) {
         if (t instanceof Warrior) {
-            affectOnWarrior((Warrior) t);
+            if(!isAffect()) {
+                affectOnWarrior((Warrior) t);
+                setAffect(true);
+            }
         }
 
     }
@@ -34,9 +38,24 @@ public class WeaknessBuff extends ABuff {
     @Override
     public <T> void update(T t) {
         decrementDuration();
-        if (t instanceof Warrior) {
-            Warrior warrior = (Warrior)t ;
-            warrior.getBuffs().remove(this);
+        if (getDuration() == 0) {
+            if (t instanceof Warrior) {
+                Warrior warrior = (Warrior) t;
+                warrior.getBuffs().remove(this);
+                if (weaknessBuffType == PowerAndWeaknessBuffType.ATTACK)
+                    warrior.increaseActionPower(buffPower);
+                else {
+                    warrior.increaseHealthPoint(buffPower);
+                }
+            }
         }
+    }
+
+    public boolean isAffect() {
+        return isAffect;
+    }
+
+    public void setAffect(boolean affect) {
+        isAffect = affect;
     }
 }

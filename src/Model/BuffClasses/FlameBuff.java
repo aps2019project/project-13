@@ -27,8 +27,10 @@ public class FlameBuff extends ABuff {
     @Override
     public <T> void update(T t) {
         decrementDuration();
-        if (t instanceof Cell) {
-            ((Cell) t).getBuffs().remove(this);
+        if(getDuration()==0) {
+            if (t instanceof Cell) {
+                ((Cell) t).getBuffs().remove(this);
+            }
         }
 
     }

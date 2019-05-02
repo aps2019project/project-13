@@ -2,6 +2,7 @@ package Model.BuffClasses;
 
 import Model.Account;
 import Model.Battle;
+import Model.Warrior;
 
 public class ManaBuff extends ABuff {
 
@@ -27,7 +28,10 @@ public class ManaBuff extends ABuff {
 
     @Override
     public <T> void update(T t) {
-
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
     }
 
     public int getManaAmountIncrease() {

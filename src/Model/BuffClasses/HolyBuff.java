@@ -35,10 +35,7 @@ public class HolyBuff extends ABuff {
             warrior.decreaseShield(getShield());
             setAffected(true);
         }
-        if (getDuration() <= 0 && isAffected()) {
-            warrior.increaseShield(getShield());
-            setAffected(false);
-        }
+
     }
 
 
@@ -47,6 +44,10 @@ public class HolyBuff extends ABuff {
         if (t instanceof Warrior) {
             Warrior warrior = (Warrior) t;
             affectOnWarrior(warrior);
+            if (getDuration() <= 0 && isAffected()) {
+                warrior.increaseShield(getShield());
+                setAffected(false);
+            }
         }
     }
 
@@ -54,9 +55,11 @@ public class HolyBuff extends ABuff {
     public <T> void update(T t) {
 
         decrementDuration();
-        if (t instanceof Warrior) {
-            Warrior warrior = (Warrior) t;
-            warrior.getBuffs().remove(this);
+        if(getDuration()==0) {
+            if (t instanceof Warrior) {
+                Warrior warrior = (Warrior) t;
+                warrior.getBuffs().remove(this);
+            }
         }
     }
 }

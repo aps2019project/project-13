@@ -22,9 +22,12 @@ public class DisarmBuff extends ABuff {
     @Override
     public <T> void update(T t) {
         decrementDuration();
-        if (t instanceof Warrior) {
-            Warrior warrior = (Warrior) t;
-            warrior.getBuffs().remove(this);
+        if(getDuration()==0) {
+            if (t instanceof Warrior) {
+                Warrior warrior = (Warrior) t;
+                warrior.getBuffs().remove(this);
+                warrior.setValidCounterAttack(true);
+            }
         }
     }
 }
