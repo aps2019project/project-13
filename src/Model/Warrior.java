@@ -10,6 +10,7 @@ public class Warrior extends Card {
     private boolean validCounterAttack;
     private Spell specialPower;
     private boolean isDeath;
+    private int shield;
 
     public Warrior(String cardName , String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
@@ -20,8 +21,16 @@ public class Warrior extends Card {
         this.actionPower = actionPower;
         this.attackRange = attackRange;
         this.specialPower = specialPower;
+        this.shield = 0;
+    }
+    public void changeShield(int i)
+    {
+        setShield(getShield()+i);
     }
 
+    public void setShield(int shield) {
+        this.shield = shield;
+    }
 
     public int getHealthPoint() {
         return healthPoint;
@@ -55,6 +64,10 @@ public class Warrior extends Card {
     public boolean isDeath() {
         checkDeath();
         return isDeath;
+    }
+
+    public int getShield() {
+        return shield;
     }
 
     public int getAttackRange() {
