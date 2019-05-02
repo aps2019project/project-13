@@ -10,7 +10,7 @@ public class Deck {
     private Item item;
     private Account account;
     private String deckName;
-    private boolean isValid = false ;
+    private boolean isValid = false;
 
     //TODO DECK TO STRING
 
@@ -37,10 +37,17 @@ public class Deck {
     }
 
     public static boolean validateDeck(Deck deck) {
-        if (deck != null && deck.getHero() != null && deck.getCards().size() == 20) {
-            return true;
+        return deck.getHero() != null && countOfMinionsInDeck(deck) == 20;
+    }
+
+    private static int countOfMinionsInDeck(Deck deck) {
+        int sum = 0;
+        for (int i = 0; i < deck.getCards().size(); i++) {
+            if (deck.getCards().get(i).getCardKind() == CardKind.MINION) {
+                sum++;
+            }
         }
-        return false;
+        return sum;
     }
 
     public void addCard(Card card) {
