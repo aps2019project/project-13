@@ -13,20 +13,20 @@ public class Ai {
         return mainDeck;
     }
 
-    public void playGame(){
-
+    public void playGame() {
 
 
     }
-    private void attack(){
+
+    private void attack() {
 
     }
 
-    private void move(){
+    private void move() {
 
     }
 
-    private void insertCard(){
+    private void insertCard() {
 
     }
 

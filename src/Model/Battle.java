@@ -19,14 +19,17 @@ public class Battle {
     private int firstPlayerMana;
     private int secondPlayerMana;
     private Card selectedCard;
-    private ArrayList<Card> graveYardCards = new ArrayList<>();
+    private ArrayList<Card> firstPlayerGraveYard = new ArrayList<>();
+    private ArrayList<Card> secondPlayerGraveYard = new ArrayList<>();
     private ArrayList<Card> firstPlayerHand = new ArrayList<>();
     private ArrayList<Card> secondPlayerHand = new ArrayList<>();
-    private Card firstPlayerNextCard;
+    private Card firstPlayerNextCard;//TODO Methodeshoon zade shode , hrarvaght khstim az method migirim
     private Card secondPlayerNextCard;
     private ArrayList<Cell> validCells = new ArrayList<>();
     private ArrayList<Card> firstPlayerDeck = new ArrayList<>();
     private ArrayList<Card> secondPlayerDeck = new ArrayList<>();
+    private ArrayList<Card> firstPlayerInGameCards = new ArrayList<>();
+    private ArrayList<Card> secondPlayerInGameCards = new ArrayList<>();
     private ArrayList<Item> firstPlayerItems = new ArrayList<>();
     private ArrayList<Item> secondPlayerItems = new ArrayList<>();
     private GameMode gameMode;
@@ -135,14 +138,19 @@ public class Battle {
             Cell cell = map.getCell(x, y);
             if (isValidInsert(cell)) {
                 if (turn % 2 == 1) {
-                    if (firstPlayerMana >= card.getManaCost())
+                    if (firstPlayerMana >= card.getManaCost()) {
                         cell.setCard(card);
-                    else
+                        firstPlayerHand.remove(card);
+                        addToFirstPlayerInGameCards(card);
+                    } else
                         throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
                 } else {
-                    if (secondPlayerMana >= card.getManaCost())
+                    if (secondPlayerMana >= card.getManaCost()) {
                         cell.setCard(card);
-                    else
+                        secondPlayerHand.remove(card);
+                        addToSecondPlayerInGameCards(card);
+
+                    } else
                         throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
                 }
             } else {
@@ -161,6 +169,7 @@ public class Battle {
         }
         setMana();
         incrementTurn();
+        addUsedCardsToGraveYard();
 
     }
 
@@ -266,7 +275,7 @@ public class Battle {
     }
 
     public void showCollectable() {
-
+        //TODO too controler zade shod vali shayad montaghel kardim be inja
     }
 
     public void selectCollectable(String collectableID) {
@@ -279,12 +288,13 @@ public class Battle {
     }
 
     public void showNextCard() {
-
+        //TODO too controler zade shod vali shayad montaghel kardim be inja
     }
 
     public void enterGraveYard() {
 
     }
+
 
     public void showGraveYardCardInfo(String cardID) {
 
@@ -322,7 +332,6 @@ public class Battle {
                 findValidCellToSpell();
                 break;
         }
-
     }
 
 
@@ -584,8 +593,8 @@ public class Battle {
         return secondPlayerMana;
     }
 
-    public ArrayList<Card> getGraveYardCards() {
-        return graveYardCards;
+    public ArrayList<Card> getFirstPlayerGraveYard() {
+        return firstPlayerGraveYard;
     }
 
     public ArrayList<Card> getFirstPlayerHand() {
@@ -645,6 +654,32 @@ public class Battle {
         return currentTurnPlayer;
     }
 
+    private void addUsedCardsToGraveYard() {
+
+        for (int i = 0; i < firstPlayerDeck.size(); i++) {
+            if (firstPlayerDeck.get(i) instanceof Spell && firstPlayerDeck.get(i).isInGame()) {
+                firstPlayerDeck.add(firstPlayerDeck.get(i));
+            }
+        }
+        firstPlayerGraveYard.addAll(findDeathCards(firstPlayerInGameCards));
+        firstPlayerInGameCards.removeAll(findDeathCards(firstPlayerInGameCards));
+        secondPlayerGraveYard.addAll(findDeathCards(secondPlayerInGameCards));
+        secondPlayerInGameCards.removeAll(findDeathCards(secondPlayerInGameCards));
+
+    }
+
+    private ArrayList<Card> findDeathCards(ArrayList<Card> playerInGameCards) {
+
+        ArrayList<Card> deathCards = new ArrayList<>();
+        for (int i = 0; i < playerInGameCards.size(); i++) {
+            if (playerInGameCards.get(i).isInGame() && (playerInGameCards.get(i) instanceof Warrior)) {
+                if (((Warrior) playerInGameCards.get(i)).getHealthPoint() <= 0)
+                    deathCards.add(playerInGameCards.get(i));
+            }
+        }
+        return deathCards;
+    }
+
     @Override
     public String toString() {
         if (gameGoal == GameGoal.KILL_HERO)
@@ -661,5 +696,25 @@ public class Battle {
             }
             return output.toString();
         }
+    }
+
+    public ArrayList<Card> getSecondPlayerGraveYard() {
+        return secondPlayerGraveYard;
+    }
+
+    public void addToFirstPlayerInGameCards(Card card) {
+        firstPlayerInGameCards.add(card);
+    }
+
+    public void addToSecondPlayerInGameCards(Card card) {
+        secondPlayerInGameCards.add(card);
+    }
+
+    public ArrayList<Card> getFirstPlayerInGameCards() {
+        return firstPlayerInGameCards;
+    }
+
+    public ArrayList<Card> getSecondPlayerInGameCards() {
+        return secondPlayerInGameCards;
     }
 }

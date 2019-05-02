@@ -5,7 +5,6 @@ import Model.*;
 import View.Error;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameController {
@@ -258,6 +257,7 @@ public class GameController {
 
     private void battleEnterGraveyard() {
         Battle.getRunningBattle().enterGraveYard();
+
     }
 
     private void battleShowNextCard() {
@@ -509,7 +509,7 @@ public class GameController {
     private void graveyardShowInfo(GraveYardCommand graveYardCommand) throws Error {
         String cardName = graveYardCommand.getData();
         Battle battle = Battle.getRunningBattle();
-        Card card = Card.findCardInArrayList(cardName, battle.getGraveYardCards());
+        Card card = Card.findCardInArrayList(cardName, battle.getFirstPlayerGraveYard());
         if (card != null) {
             //TODO SHOW Item using CARD . toString
         } else {
