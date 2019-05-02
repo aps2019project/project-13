@@ -1,6 +1,5 @@
 package View;
 
-import Controller.GameController;
 import Model.*;
 
 import java.util.ArrayList;
