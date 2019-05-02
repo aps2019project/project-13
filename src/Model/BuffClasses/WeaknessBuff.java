@@ -1,4 +1,4 @@
-package Model;
+package Model.BuffClasses;
 
 public class WeaknessBuff implements IBuff {
     @Override

@@ -1,4 +1,4 @@
-package Model;
+package Model.BuffClasses;
 
 public class HolyBuff implements IBuff {
     @Override
