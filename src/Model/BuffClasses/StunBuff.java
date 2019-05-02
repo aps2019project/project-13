@@ -7,7 +7,7 @@ public class StunBuff extends ABuff {
 
 
     public StunBuff(Account account , int duration) {
-        super(account ,duration);
+        super(account ,duration , PositiveNegative.NEGATIVE);
     }
 
     public void affectOnWarriro(Warrior warrior)

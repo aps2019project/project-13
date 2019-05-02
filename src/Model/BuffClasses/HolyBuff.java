@@ -9,7 +9,7 @@ public class HolyBuff extends ABuff {
     private boolean isAffected;
 
     public HolyBuff(int shield, Account account, int duration) {
-        super(account, duration);
+        super(account, duration , PositiveNegative.POSITIVE);
         this.shield = shield;
     }
 

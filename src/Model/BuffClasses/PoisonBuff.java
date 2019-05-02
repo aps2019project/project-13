@@ -8,7 +8,7 @@ public class PoisonBuff extends ABuff {
     int poisonDamage;
 
     public PoisonBuff(Account account, int duration, int poisonDamage) {
-        super(account, duration);
+        super(account, duration , PositiveNegative.POSITIVE);
         this.poisonDamage = poisonDamage;
     }
 
