@@ -114,6 +114,7 @@ public class Show {
     public void showCardId(String cardId) {
         System.out.println(cardId);
     }
+
     public void showCard(Card card) {
         System.out.println(card.toString());
     }
@@ -178,7 +179,8 @@ public class Show {
             System.out.println(string);
         }
     }
-    public void showHand(ArrayList<Card> cards){
+
+    public void showHand(ArrayList<Card> cards) {
         for (Card card : cards) {
             if (card.getCardKind() == CardKind.HERO)
                 System.out.println(card.toString());
@@ -193,11 +195,18 @@ public class Show {
         System.out.println(nextCardInfo);
     }
 
-    public void showDeck(String deck){
+    public void showDeck(String deck) {
         System.out.println(deck);
     }
+
     public void showBattleInfo(String battleInfo) {
         System.out.println(battleInfo);
     }
 
+    public void numberOfFlag(){
+        System.out.println("number of flag for win: ");
+    }
+    public void invalidNumberForFlag(){
+        System.out.println("input Number !! , try again ");
+    }
 }

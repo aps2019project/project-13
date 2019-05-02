@@ -12,8 +12,6 @@ public class Deck {
     private String deckName;
     private boolean isValid = false;
 
-    //TODO DECK TO STRING
-
     Deck(String deckName, Account account) {
         setDeckName(deckName);
         setAccount(account);
@@ -27,6 +25,7 @@ public class Deck {
             decks.remove(deck);
         }
     }
+
 
     public static void createDeck(String deckName, Account account) {
         new Deck(deckName, account);
@@ -51,13 +50,16 @@ public class Deck {
     }
 
     public void addCard(Card card) {
-        //TODO TYPE OF CARD
         if (card != null) {
-            getCards().add(card);
+            if(card instanceof Hero){
+                addHero((Hero)card);
+            }else if (card instanceof Minion){
+                addMinion((Minion)card);
+            }else getCards().add(card);
         }
     }
 
-    public void addHero(Hero hero) {
+    private void addHero(Hero hero) {
         if (hero != null) {
             if (getHero() != null) {
                 getCards().remove(getHero());
@@ -70,7 +72,7 @@ public class Deck {
         }
     }
 
-    public void addMinion(Minion minion) {
+    private void addMinion(Minion minion) {
         if (minion != null) {
             getMinions().add(minion);
             getCards().add(minion);
@@ -92,10 +94,10 @@ public class Deck {
 
     }
 
-    public static Deck findDeck(String deckName) {
-        for (int i = 0; i < decks.size(); i++) {
-            if (decks.get(i) != null && decks.get(i).getDeckName().equals(deckName)) {
-                return decks.get(i);
+    private static Deck findDeck(String deckName) {
+        for (Deck deck : decks) {
+            if (deck != null && deck.getDeckName().equals(deckName)) {
+                return deck;
             }
         }
         return null;
