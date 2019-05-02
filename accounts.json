@@ -5,12 +5,10 @@
       "battleHistory": [],
       "decks": [],
       "cardCollection": {
-        "cards": [],
-        "items": [],
         "account": "@root.0"
       },
       "username": "reza",
-      "password": "rezaa",
+      "password": "12345",
       "countOfWins": 0,
       "darick": 100000,
       "collectableItems": []
