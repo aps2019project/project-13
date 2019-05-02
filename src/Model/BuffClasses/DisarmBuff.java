@@ -7,13 +7,13 @@ public class DisarmBuff extends ABuff {
 
 
     public DisarmBuff(Account account, int duration) {
-        super(account, duration , PositiveNegative.NEGATIVE);
+        super(account, duration, PositiveNegative.NEGATIVE);
     }
 
     @Override
     public <T> void affect(T t) {
         if (t instanceof Warrior) {
-            Warrior warrior = (Warrior)t ;
+            Warrior warrior = (Warrior) t;
             warrior.setValidCounterAttack(false);
         }
 
@@ -21,6 +21,10 @@ public class DisarmBuff extends ABuff {
 
     @Override
     public <T> void update(T t) {
-
+        decrementDuration();
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
     }
 }

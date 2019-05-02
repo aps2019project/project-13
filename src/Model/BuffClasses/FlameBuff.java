@@ -7,8 +7,8 @@ import Model.Warrior;
 public class FlameBuff extends ABuff {
     int flameDamage;
 
-    public FlameBuff(Account account, int duration , int flameDamage) {
-        super(account, duration , PositiveNegative.NEGATIVE);
+    public FlameBuff(Account account, int duration, int flameDamage) {
+        super(account, duration, PositiveNegative.NEGATIVE);
         this.flameDamage = flameDamage;
     }
 
@@ -26,6 +26,10 @@ public class FlameBuff extends ABuff {
 
     @Override
     public <T> void update(T t) {
+        decrementDuration();
+        if (t instanceof Cell) {
+            ((Cell) t).getBuffs().remove(this);
+        }
 
     }
 

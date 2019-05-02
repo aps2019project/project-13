@@ -9,7 +9,7 @@ public class HolyBuff extends ABuff {
     private boolean isAffected;
 
     public HolyBuff(int shield, Account account, int duration) {
-        super(account, duration , PositiveNegative.POSITIVE);
+        super(account, duration, PositiveNegative.POSITIVE);
         this.shield = shield;
     }
 
@@ -53,5 +53,10 @@ public class HolyBuff extends ABuff {
     @Override
     public <T> void update(T t) {
 
+        decrementDuration();
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
     }
 }

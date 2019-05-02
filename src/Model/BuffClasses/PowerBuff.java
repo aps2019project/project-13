@@ -10,13 +10,13 @@ public class PowerBuff extends ABuff {
     private PowerAndWeaknessBuffType powerBuffKind;
     private int buffPower;
 
-    public PowerBuff(PowerAndWeaknessBuffType powerBuffKind, int buffPower, Account account , int duration) {
-        super(account , duration , PositiveNegative.POSITIVE);
+    public PowerBuff(PowerAndWeaknessBuffType powerBuffKind, int buffPower, Account account, int duration) {
+        super(account, duration, PositiveNegative.POSITIVE);
         this.powerBuffKind = powerBuffKind;
         this.buffPower = buffPower;
     }
-    public void affectOnWarrior(Warrior warrior)
-    {
+
+    public void affectOnWarrior(Warrior warrior) {
         if (powerBuffKind == PowerAndWeaknessBuffType.ATTACK) {
             warrior.increaseActionPower(getBuffPower());
         } else {
@@ -33,6 +33,11 @@ public class PowerBuff extends ABuff {
 
     @Override
     public <T> void update(T t) {
+        decrementDuration();
+        if (t instanceof Warrior) {
+            Warrior warrior = (Warrior) t;
+            warrior.getBuffs().remove(this);
+        }
 
     }
 
