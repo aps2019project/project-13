@@ -1,17 +1,11 @@
 import Controller.*;
-import Model.Card;
-import Model.Minion;
-import Model.Shop;
-import Model.UsableItem;
+import Model.*;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
-import Model.Account;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.io.FileReader;
 import java.io.Reader;
 import java.lang.reflect.Type;

@@ -1,0 +1,266 @@
+[
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 300,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "Increase Mana in 3 turns",
+      "itemKind": "USABLE",
+      "itemName": "Taj Danaee"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 4000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "12 Holy Buff in Friendly Hero",
+      "itemKind": "USABLE",
+      "itemName": "Namoos Separ"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 30000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "Friendly Hero disarm Enemy For One Trun",
+      "itemKind": "USABLE",
+      "itemName": "Bow of Damol"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 3500,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "Weakness power buff for enemy Ranged",
+      "itemKind": "USABLE",
+      "itemName": "Simorq Feather"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 5000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "Weakness power buff for random enemty for one turn",
+      "itemKind": "USABLE",
+      "itemName": "Terror Hood"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 9000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "One extra Mana for whole game",
+      "itemKind": "USABLE",
+      "itemName": "King Wisdom"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 15000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "One damage to Enemy Hero each time you put a card on the field",
+      "itemKind": "USABLE",
+      "itemName": "Assassination Dagger"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 7000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "Poison damage to random enemy",
+      "itemKind": "USABLE",
+      "itemName": "Poisonous Dagger"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 15000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "Hero disarm One enemy for one turn",
+      "itemKind": "USABLE",
+      "itemName": "Shock Hammer"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 25000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "A power buff to a unit when some of units die",
+      "itemKind": "USABLE",
+      "itemName": "Soul Eater"
+    }
+  },
+  {
+    "@type": "Model.UsableItem",
+    "@val": {
+      "DarickCost": 20000,
+      "spell": {
+        "targetSocietyKind": "FRIENDLY_CARDS",
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "cardId": "0",
+        "manaCost": 0,
+        "darikCost": 0,
+        "cardKind": "MINION",
+        "cardDescription": "NoDesc ",
+        "cardName": "0",
+        "buffs^1": [],
+        "isAbleToMove": false,
+        "isInGame": false
+      },
+      "itemId": "2",
+      "itemDescription": "2 turn holy buff for each unit",
+      "itemKind": "USABLE",
+      "itemName": "Baptism (Ghosl Ta'amid)"
+    }
+  }
+]
