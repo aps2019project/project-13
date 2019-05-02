@@ -13,7 +13,7 @@ public class Battle {
     private Account secondPlayer;
     private Account winner;
     private int turn = 1;
-    private int numberOfFlagForWin ;
+    private int numberOfFlagForWin;
     private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
@@ -683,5 +683,12 @@ public class Battle {
 
     public void setNumberOfFlagForWin(int numberOfFlagForWin) {
         this.numberOfFlagForWin = numberOfFlagForWin;
+    }
+
+    public void increaseMana(Account account, int number) {
+        if (account.getUsername() == firstPlayer.getUsername())
+            firstPlayerMana += number;
+        else if (account.getUsername() == secondPlayer.getUsername())
+            secondPlayerMana += number;
     }
 }

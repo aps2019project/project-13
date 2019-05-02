@@ -15,4 +15,8 @@ public abstract class ABuff {
 
     public abstract <T> void update(T t);
 
+    public void decrementDuration() {
+        duration--;
+    }
+
 }
