@@ -6,6 +6,7 @@ public enum ConstantMessages {
     INVALID_COMMAND("The input command is not valid!"),
     USERNAME_NOT_EXIST("No user with this Username found!"),
     INVALID_CELL_TO_INSERT_CARD("Selected cell is invalid to insert card"),
+    INVALID_CELL_TO_USE_SPECIAL_POWER("this cell invalid to use special power!"),
     INVALID_PASSWORD("Wrong Password!"),
     DECK_NOT_EXIST("No Deck exists with this name!"),
     DECK_EXIST("A Deck Exists with this name!"),

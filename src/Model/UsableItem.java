@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class UsableItem extends Item {
     private int DarickCost;
     private Spell spell;
-    public UsableItem(String itemId, String itemDescription ,ItemName itemName, int darickCost , Spell spell) {
+    public UsableItem(String itemId, String itemDescription ,String itemName, int darickCost , Spell spell) {
         super(itemId, itemDescription, ItemKind.USABLE, itemName );
         this.DarickCost=darickCost;
         this.spell = spell;

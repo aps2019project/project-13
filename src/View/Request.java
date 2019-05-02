@@ -28,7 +28,7 @@ public class Request {
         return request;
     }
 
-    public void getRequest() {
+    public void getRequest() throws Error {
         String command = scanner.nextLine();
         transferCommandToRightPlace(command);
     }
@@ -37,6 +37,9 @@ public class Request {
         return scanner.nextLine();
     }
     public String getNumberForKindOfBattle(){
+        return scanner.nextLine();
+    }
+    public String getCardID(){
         return scanner.nextLine();
     }
 

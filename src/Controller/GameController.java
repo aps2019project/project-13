@@ -379,22 +379,22 @@ public class GameController {
         show.showCollection(Account.getLoginedAccount());
     }
 
-    private void collectionShowDeck(Request request, CollectionCommand collectionCommand)throws Error {
+    private void collectionShowDeck(Request request, CollectionCommand collectionCommand) throws Error {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = request.getAccount().findDeck(deckName);
         if (deck != null) {
             show.showDeck(deck.toString());
-        }else throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
+        } else throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
 
     }
 
-    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand)throws Error {
+    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand) throws Error {
         String cardName = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
             deck.removeCard(cardName);
-        }else throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+        } else throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
     private void collectionShowAllDeck(Request request) {
@@ -455,7 +455,7 @@ public class GameController {
     private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
         switch (cardCommand) {
             case EXIT:
-                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
+                request.exitLastmenu();
                 break;
             case MOVE:
                 cardCommandMove(cardCommand);
@@ -471,8 +471,21 @@ public class GameController {
                 }
 
             }
+            break;
             case USE_SPECIAL_POWER:
-                //TODO
+                useSpecialPower(cardCommand);
+        }
+    }
+
+    private void useSpecialPower(CardCommand cardCommand) throws Error {
+        Battle battle = Battle.getRunningBattle();
+        int x = Integer.parseInt(cardCommand.getData().get(0));
+        int y = Integer.parseInt(cardCommand.getData().get(1));
+        Cell cell = battle.getMap().getCell(x, y);
+        if (cell != null) {
+            battle.useSpecialPower(cell);
+        } else {
+            throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
         }
     }
 
@@ -485,20 +498,22 @@ public class GameController {
         try {
             int x = Integer.parseInt(cardCommand.getData().get(0));
             int y = Integer.parseInt(cardCommand.getData().get(1));
-            battle.moveCard(battle.getMap().getCell(x, y));
-        } catch (Exception e) {
-            //TODO CHECK THIS TRY CATCH
+            Cell cell = battle.getMap().getCell(x, y);
+            if (cell != null)
+                battle.moveCard(battle.getMap().getCell(x, y));
+            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
+        } catch (Error e) {
+            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
     }
 
     private void graveYardCommandManagement(Request request, GraveYardCommand graveYardCommand) {
         switch (graveYardCommand) {
             case EXIT:
-                request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
+                request.exitLastmenu();
                 break;
             case SHOW_CARDS:
-                //TODO IT IS ONLY RELATED TO SHOW. IT MUST SHOW ALL CARDS OF BATTLE GRAVEYARD SO A FOR ON CARDS AND SOUT!
-
+                showCardsOfGraveYard();
                 break;
             case SHOW_INFO:
                 graveyardShowInfo(graveYardCommand);
@@ -506,21 +521,33 @@ public class GameController {
         }
     }
 
+    private void showCardsOfGraveYard() {
+        Battle battle = Battle.getRunningBattle();
+        int turn = battle.getTurn();
+        ArrayList<Card> cards;
+        if (turn % 2 == 1) {
+            cards = battle.getGraveYardCards();
+        } else cards = battle.getGraveYardCards();
+        show.showHand(cards);
+    }
+
     private void graveyardShowInfo(GraveYardCommand graveYardCommand) throws Error {
         String cardName = graveYardCommand.getData();
         Battle battle = Battle.getRunningBattle();
         Card card = Card.findCardInArrayList(cardName, battle.getFirstPlayerGraveYard());
         if (card != null) {
-            //TODO SHOW Item using CARD . toString
+            show.showCard(card);
         } else {
             throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         }
     }
 
     private void collectableCommandManagement(Request request, CollectableCommand collectableCommand) {
+        Battle battle = Battle.getRunningBattle();
+
         switch (collectableCommand) {
-            //TODO IN BAKHSH ZEDEH NASHODEH
             case SHOW_INFO:
+
             case EXIT:
                 request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
