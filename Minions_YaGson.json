@@ -30,7 +30,7 @@
       "darikCost": 300,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Persian Archer",
+      "cardName": "Persian_Archer",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -67,7 +67,7 @@
       "darikCost": 400,
       "cardKind": "MINION",
       "cardDescription": "Stun on Attack",
-      "cardName": "Persian Swordsman",
+      "cardName": "Persian_Swordsman",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -104,7 +104,7 @@
       "darikCost": 500,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Persian Spearman",
+      "cardName": "Persian_SpearMan",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -141,7 +141,7 @@
       "darikCost": 200,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Persian Horseman",
+      "cardName": "Persian_Horseman",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -178,7 +178,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "Attack 5 points more for each turn he attacked someone",
-      "cardName": "Persian Pahlavan",
+      "cardName": "Persian_Pahlavan",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -215,7 +215,7 @@
       "darikCost": 800,
       "cardKind": "MINION",
       "cardDescription": "Combo",
-      "cardName": "Persian General",
+      "cardName": "Persian_General",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -252,7 +252,7 @@
       "darikCost": 500,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Toranian Archer",
+      "cardName": "Toranian_Archer",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -289,7 +289,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Toranian Slinger",
+      "cardName": "Toranian_Slinger",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -326,7 +326,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Toranian Spearman",
+      "cardName": "Toranian_Spearman",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -363,7 +363,7 @@
       "darikCost": 700,
       "cardKind": "MINION",
       "cardDescription": "1 turn Disarm - 4 Turn Poison",
-      "cardName": "Toranian Spy",
+      "cardName": "Toranian_Spy",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -400,7 +400,7 @@
       "darikCost": 450,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Toranian Maceman",
+      "cardName": "Toranian_Maceman",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -437,7 +437,7 @@
       "darikCost": 800,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Toranian Prince",
+      "cardName": "Toranian_Prince",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -474,7 +474,7 @@
       "darikCost": 300,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Dive Siah",
+      "cardName": "Dive_Siah",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -511,7 +511,7 @@
       "darikCost": 300,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Rock Thrower Giant",
+      "cardName": "Rock_Thrower_Giant",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -548,7 +548,7 @@
       "darikCost": 2,
       "cardKind": "MINION",
       "cardDescription": "10 Health PowerBuff",
-      "cardName": "Eagle ",
+      "cardName": "Eagle",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -585,7 +585,7 @@
       "darikCost": 300,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Boarrider Dive",
+      "cardName": "Boarrider_Dive",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -622,7 +622,7 @@
       "darikCost": 500,
       "cardKind": "MINION",
       "cardDescription": "2 Damage to Adjacents on death",
-      "cardName": "OneEyed Giant",
+      "cardName": "OneEyed_Giant",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -659,7 +659,7 @@
       "darikCost": 300,
       "cardKind": "MINION",
       "cardDescription": "Posion for 3 Turns",
-      "cardName": "Poisonous Snake",
+      "cardName": "Poisonous_Snake",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -696,7 +696,7 @@
       "darikCost": 250,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Firing Dragon",
+      "cardName": "Firing_Dragon",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -733,7 +733,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "Holy buff has no effect on him",
-      "cardName": "Wild Lion",
+      "cardName": "Wild_Lion",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -770,7 +770,7 @@
       "darikCost": 500,
       "cardKind": "MINION",
       "cardDescription": "1 More Damage To 2-cell adjacent units",
-      "cardName": "Giant Snake",
+      "cardName": "Giant_Snake",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -807,7 +807,7 @@
       "darikCost": 400,
       "cardKind": "MINION",
       "cardDescription": "After Attack,After 1 turn 6 more dmg , After Another turn 4 more dmg to that minion",
-      "cardName": "White Wolf",
+      "cardName": "White_Wolf",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -1029,7 +1029,7 @@
       "darikCost": 500,
       "cardKind": "MINION",
       "cardDescription": "Cannot be disarmed",
-      "cardName": "Wild Boar",
+      "cardName": "Wild_Boar",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -1251,7 +1251,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "No Special Power",
-      "cardName": "Big Giant",
+      "cardName": "Big_Giant",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -1288,7 +1288,7 @@
       "darikCost": 550,
       "cardKind": "MINION",
       "cardDescription": "Negates all positive effect on attack card",
-      "cardName": "Two-headed Giant",
+      "cardName": "Two_headed_Giant",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -1325,7 +1325,7 @@
       "darikCost": 500,
       "cardKind": "MINION",
       "cardDescription": "Stun Adjacent Enemy Minions for turn",
-      "cardName": "Naneh Sarma",
+      "cardName": "Naneh_Sarma",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -1436,7 +1436,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "Combo",
-      "cardName": "Giant King",
+      "cardName": "Giant_King",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -1473,7 +1473,7 @@
       "darikCost": 600,
       "cardKind": "MINION",
       "cardDescription": "Combo",
-      "cardName": "Arzhang Div",
+      "cardName": "Arzhang_Div",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false

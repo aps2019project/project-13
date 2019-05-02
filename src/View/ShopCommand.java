@@ -1,8 +1,8 @@
 package View;
 
 public enum ShopCommand {
-    EXIT, HELP , SHOW, SEARCH_COLLECTION, SEARCH, SHOW_COLLECTION, BUY, SELL;
 
+    EXIT, HELP, SHOW, SHOW_COLLECTION, SEARCH, SEARCH_COLLECTION, BUY, SELL;
     String data;
 
     public ShopCommand setData(String data) {
@@ -13,5 +13,4 @@ public enum ShopCommand {
     public String getData() {
         return data;
     }
-
 }

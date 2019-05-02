@@ -36,10 +36,12 @@ public class Request {
     public String getPassWord() {
         return scanner.nextLine();
     }
-    public String getNumberForKindOfBattle(){
+
+    public String getNumberForKindOfBattle() {
         return scanner.nextLine();
     }
-    public String getCardID(){
+
+    public String getCardID() {
         return scanner.nextLine();
     }
 

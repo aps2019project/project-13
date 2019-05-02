@@ -15,6 +15,8 @@ public class CardCollection {
     private Account account;
 
     public CardCollection(Account account) {
+        cards = new ArrayList<>();
+        items = new ArrayList<>();
         setAccount(account);
     }
 
@@ -69,22 +71,22 @@ public class CardCollection {
     }
 
     public String search(String name) {
-        for (Card card:
-             cards) {
-            if(card.getCardName().equals(name))
-                return card.getCardId() ;
+        for (Card card :
+                cards) {
+            if (card.getCardName().equals(name))
+                return card.getCardId();
         }
-        for (Item item:
-             items) {
-            if(item.getItemName().equals(name))
+        for (Item item :
+                items) {
+            if (item.getItemName().equals(name))
                 return item.getItemName();
         }
-        return null ;
+        return null;
     }
 
     public Card getCard(String name) {
 
-        return new Card( "test" , "22", 1, 1, CardKind.HERO, "");
+        return new Card("test", "22", 1, 1, CardKind.HERO, "");
     }
 
     public Item getItem(String name) {
@@ -106,6 +108,7 @@ public class CardCollection {
         return items.size() <= 3;
 
     }
+
     public String searchCardInCollection(String cardName) {
         for (Card card :
                 Account.getLoginedAccount().getCardCollection().getCards()) {

@@ -24,7 +24,7 @@ public class Shop {
     public void buy(String name, Account account) {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
-        if(card == null)
+        if (card == null)
             System.out.println(":FFFFFFFF");
         if (card == null && item == null)
             throw new Error(ConstantMessages.NOT_IN_SHOP.getMessage());
@@ -32,6 +32,7 @@ public class Shop {
         if (card != null) {
             if (card.getDarikCost() <= account.getDarick()) {
                 account.getCardCollection().addCard(card);
+                cards.remove(card);
                 account.decreaseDarick(card.getDarikCost());
             } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
@@ -39,6 +40,7 @@ public class Shop {
             if (validBuyLimitOfItem(Account.getLoginedAccount())) {
                 if (item.getDarickCost() <= account.getDarick()) {
                     account.getCardCollection().addItem(item);
+                    items.remove(item);
                     account.decreaseDarick(item.getDarickCost());
                 } else
                     throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());

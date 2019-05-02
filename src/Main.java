@@ -26,7 +26,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        try{
+        try {
             YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
             Reader reader = new FileReader("accounts.json");
             Account[] accounts = new Account[1000];
@@ -35,7 +35,7 @@ public class Main {
                 Account.getAccounts().add(account);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();

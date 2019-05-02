@@ -34,7 +34,7 @@ public class Minion extends Warrior {
 
     @Override
     public String toString() {
-        String str = "Type: Minion " + "- Name: " + this.getMinionName().getName() + "- Class " + this.getMinionName().getAttackKind() + "- AP: " + this.getActionPower() + " - HP: " + this.getHealthPoint() +
+        String str = "Type: Minion " + "- Name: " + this.getCardName() + "- Class " + this.getMinionName().getAttackKind() + "- AP: " + this.getActionPower() + " - HP: " + this.getHealthPoint() +
                 "- MP:" + this.getManaCost() + "- Special Power: " + this.getCardDescription();
         return str;
     }
