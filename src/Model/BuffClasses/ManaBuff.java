@@ -10,6 +10,7 @@ public class ManaBuff extends ABuff {
     @Override
     public <T> void affect(T t) {
 
+        
     }
 
     @Override
