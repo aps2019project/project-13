@@ -38,12 +38,12 @@ public class Patterns {
     static Pattern[] shopPatterns = new Pattern[]{
             Pattern.compile("^exit\\s*$"),
             Pattern.compile("^help\\s*$"),
+            Pattern.compile("^show\\s*$"),
             Pattern.compile("^show collection\\s*$"),
             Pattern.compile("^search (\\S+)\\s*$"),
             Pattern.compile("^search collection (\\S+)\\s*$"),
             Pattern.compile("^buy (\\S+)\\s*$"),
             Pattern.compile("^sell (\\S+)\\s*$"),
-            Pattern.compile("^show (\\S+)\\s*$"),
     };
     static Pattern[] battlePatterns = new Pattern[]{
             Pattern.compile("^Game info\\s*$"),

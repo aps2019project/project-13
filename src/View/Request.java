@@ -179,7 +179,7 @@ public class Request {
     }
 
     private void setCommandOfShop(Matcher matcher, int i) {
-        if (i > 2) {
+        if (i > 3) {
             shopCommand = ShopCommand.values()[i].setData(matcher.group(1));
         } else shopCommand = ShopCommand.values()[i];
     }

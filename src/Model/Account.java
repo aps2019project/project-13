@@ -18,7 +18,7 @@ public class Account {
     private String username;
     private String password;
     private int countOfWins;
-    private int darick;
+    private int darick = 10000;
     private ArrayList<Item> collectableItems;
 
     public Account(String username, String password) {

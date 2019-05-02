@@ -1,7 +1,7 @@
 package View;
 
 public enum ShopCommand {
-    EXIT, HELP, SEARCH_COLLECTION, SEARCH, SHOW_COLLECTION, BUY, SELL, SHOW;
+    EXIT, HELP , SHOW, SEARCH_COLLECTION, SEARCH, SHOW_COLLECTION, BUY, SELL;
 
     String data;
 

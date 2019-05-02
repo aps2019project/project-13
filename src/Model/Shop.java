@@ -24,7 +24,8 @@ public class Shop {
     public void buy(String name, Account account) {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
-
+        if(card == null)
+            System.out.println(":FFFFFFFF");
         if (card == null && item == null)
             throw new Error(ConstantMessages.NOT_IN_SHOP.getMessage());
 
@@ -35,19 +36,19 @@ public class Shop {
             } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
         } else {
-            if (validbuyLimitOfItem(Account.getLoginedAccount())) {
+            if (validBuyLimitOfItem(Account.getLoginedAccount())) {
                 if (item.getDarickCost() <= account.getDarick()) {
                     account.getCardCollection().addItem(item);
                     account.decreaseDarick(item.getDarickCost());
                 } else
                     throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
-            }else
+            } else
                 throw new Error(ConstantMessages.MORE_THAN_3_ITEM.getMessage());
         }
 
     }
 
-    private boolean validbuyLimitOfItem(Account account) {
+    private boolean validBuyLimitOfItem(Account account) {
         return account.getCardCollection().getItems().size() <= 3;
     }
 
@@ -63,7 +64,7 @@ public class Shop {
     }
 
     private Card searchAndGetCard(String name) {
-        return Card.findCardInArrayList(name, cards);
+        return Card.findCardInArrayListByName(name, cards);
     }
 
     public UsableItem searchAndGetItem(String name) {
