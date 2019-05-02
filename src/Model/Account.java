@@ -6,7 +6,6 @@ import View.Error;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -46,30 +45,11 @@ public class Account {
         setDarick(getDarick() - number);
     }
 
-    public boolean validateLogin(String username, String password) {
-        Account account = findAccount(username);
-        if (account == null) {
-            return false;
-        } else if (!account.getPassword().equals(password)) {
-            return false;
-        }
-        return true;
-
-    }
-
     public void selectDeckAsMainDeck(String deckName) {
         Deck deck = findDeck(deckName);
         if (deck != null) {
             setMainDeck(deck);
         }
-    }
-
-    public boolean playerExistWithUsername(String username) {
-        Account account = findAccount(username);
-        if (account == null) {
-            return false;
-        }
-        return true;
     }
 
     public Account findAccount(String username) {

@@ -45,7 +45,7 @@ public class GameController {
                 accountCommandManagement(request, request.getAccountCommand());
                 break;
             case BATTLE:
-                battleCommandManagement(request, request.getBattleCommand());
+                battleCommandManagement(request.getBattleCommand());
                 break;
             case SHOP:
                 shopCommandManagement(request, request.getShopCommand());
@@ -120,13 +120,12 @@ public class GameController {
         switch (accountCommand) {
             case EXIT:
                 isFinish = true;
-                Account.saveAccount();
                 break;
             case HELP:
                 show.showHelp(KindOfOrder.ACCOUNT);
                 break;
             case SAVE:
-                //TODO save to file
+                Account.saveAccount();
                 break;
             case LOGIN:
                 Account.login(request, accountCommand);
@@ -143,7 +142,7 @@ public class GameController {
     }
 
 
-    private void battleCommandManagement(Request request, BattleCommand battleCommand) throws Error {
+    private void battleCommandManagement(BattleCommand battleCommand) throws Error {
         Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
@@ -251,8 +250,8 @@ public class GameController {
         }
         Map map = battle.getMap();
         ArrayList<String> output = new ArrayList<>();
-        for (int i = 0; i < map.MAX_ROW; i++) {
-            for (int j = 0; j < map.MAX_COLUMN; j++) {
+        for (int i = 0; i < Map.MAX_ROW; i++) {
+            for (int j = 0; j < Map.MAX_COLUMN; j++) {
                 Cell cell = map.getCell(i, j);
                 if (cell.getCard().getAccount().equals(account)) {
                     output.add(cell.getCard().toString() + "- Position: " + i + 1 + " , " + j + 1);
@@ -311,8 +310,7 @@ public class GameController {
     private void battleSelect(BattleCommand battleCommand) {
         String cardName = battleCommand.getData().get(0);
         Battle battle = Battle.getRunningBattle();
-        Account account = battle.getCurrentTurnPlayer();
-        ArrayList<Card> hand = new ArrayList<>();
+        ArrayList<Card> hand;
         if (battle.getTurn() % 2 == 1) {
             hand = battle.getFirstPlayerHand();
         } else {
@@ -347,7 +345,7 @@ public class GameController {
                 request.exitLastmenu();
                 break;
             case SEARCH:
-                collectionSearch(request, collectionCommand);
+                collectionSearch(collectionCommand);
                 break;
             case SHOW:
                 collectionShow();
@@ -374,12 +372,12 @@ public class GameController {
                 collectionValidateDeck(request, collectionCommand);
                 break;
             case REMOVE_FROM_DECK:
-                collectionRemoveCardFromDeck(request, collectionCommand);
+                collectionRemoveCardFromDeck(collectionCommand);
                 break;
         }
     }
 
-    private void collectionSearch(Request request, CollectionCommand collectionCommand) throws Error {
+    private void collectionSearch(CollectionCommand collectionCommand) throws Error {
         Account account = Account.getLoginedAccount();
         String name = collectionCommand.getData().get(0);
         String ID = account.getCardCollection().search(name);
@@ -395,14 +393,14 @@ public class GameController {
 
     private void collectionShowDeck(Request request, CollectionCommand collectionCommand) throws Error {
         String deckName = collectionCommand.getData().get(0);
-        Deck deck = request.getAccount().findDeck(deckName);
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
             show.showDeck(deck.toString());
         } else throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
 
     }
 
-    private void collectionRemoveCardFromDeck(Request request, CollectionCommand collectionCommand) throws Error {
+    private void collectionRemoveCardFromDeck(CollectionCommand collectionCommand) throws Error {
         String cardName = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
@@ -412,7 +410,7 @@ public class GameController {
     }
 
     private void collectionShowAllDeck(Request request) {
-        Account account = request.getAccount();
+        Account account = Account.getLoginedAccount();
         for (int i = 0; i < account.getDecks().size(); i++) {
             Deck deck = account.getDecks().get(i);
             if (deck != null) {
@@ -423,7 +421,7 @@ public class GameController {
 
     private void collectionValidateDeck(Request request, CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
-        Deck deck = request.getAccount().findDeck(deckName);
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
             Deck.validateDeck(deck);
             System.out.println(ConstantMessages.VALID_DECK);
@@ -432,35 +430,35 @@ public class GameController {
 
     private void collectionSelectMainDeck(Request request, CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
-        Deck deck = request.getAccount().findDeck(deckName);
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
-            request.getAccount().setMainDeck(deck);
+            Account.getLoginedAccount().setMainDeck(deck);
         }
     }
 
     private void collectionDeleteDeck(Request request, CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
-        Deck deck = request.getAccount().findDeck(deckName);
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
-            if (request.getAccount().getMainDeck().equals(deck)) {
-                request.getAccount().setMainDeck(null);
+            if (Account.getLoginedAccount().getMainDeck().equals(deck)) {
+                Account.getLoginedAccount().setMainDeck(null);
             }
-            request.getAccount().getDecks().remove(deck);
+            Account.getLoginedAccount().getDecks().remove(deck);
         }
     }
 
     private void collectionCreateDeck(Request request, CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
-        if (request.getAccount().findDeck(deckName) == null) {
-            Deck.createDeck(deckName, request.getAccount());
+        if (Account.getLoginedAccount().findDeck(deckName) == null) {
+            Deck.createDeck(deckName, Account.getLoginedAccount());
         }
     }
 
     private void collectionAddToDeck(Request request, CollectionCommand collectionCommand) {
         String cardName = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
-        Deck deck = request.getAccount().findDeck(deckName);
-        Card card = Card.findCardInArrayList(cardName, request.getAccount().getCardCollection().getCards());
+        Deck deck = Account.getLoginedAccount().findDeck(deckName);
+        Card card = Card.findCardInArrayList(cardName, Account.getLoginedAccount().getCardCollection().getCards());
         if (deck != null && card != null) {
             deck.addCard(card);
         }
@@ -557,8 +555,6 @@ public class GameController {
     }
 
     private void collectableCommandManagement(Request request, CollectableCommand collectableCommand) {
-        Battle battle = Battle.getRunningBattle();
-
         switch (collectableCommand) {
             case SHOW_INFO:
 
@@ -566,6 +562,7 @@ public class GameController {
                 request.getKindOfOrders().remove(request.getKindOfOrders().size() - 1);
                 break;
             case USE:
+
         }
     }
 

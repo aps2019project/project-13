@@ -1,7 +1,5 @@
 package View;
 
-import Model.Account;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -18,7 +16,6 @@ public class Request {
     private GraveYardCommand graveYardCommand;
     private MainCommand mainCommand;
     private ShopCommand shopCommand;
-    private Account account; //TODO MAYBE IT WILL BE DELETED
 
     private Request() {
         kindOfOrders.add(KindOfOrder.ACCOUNT);
@@ -41,9 +38,6 @@ public class Request {
         return scanner.nextLine();
     }
 
-    public String getCardID() {
-        return scanner.nextLine();
-    }
 
     public String getNumberOfFlag(){
         return scanner.nextLine();
@@ -249,10 +243,6 @@ public class Request {
         battleCommand = BattleCommand.values()[i];
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
     public AccountCommand getAccountCommand() {
         return accountCommand;
     }
@@ -287,10 +277,6 @@ public class Request {
 
     public ShopCommand getShopCommand() {
         return shopCommand;
-    }
-
-    public Scanner getScanner() {
-        return scanner;
     }
 
     public void addNewMenu(KindOfOrder kindOfOrder) {
