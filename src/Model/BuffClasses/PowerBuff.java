@@ -15,20 +15,28 @@ public class PowerBuff extends ABuff {
         this.powerBuffKind = powerBuffKind;
         this.buffPower = buffPower;
     }
+    public void affectOnWarrior(Warrior warrior)
+    {
+        if (powerBuffKind == PowerAndWeaknessBuffType.ATTACK) {
+            warrior.increaseActionPower(getBuffPower());
+        } else {
+            warrior.increaseHealthPoint(getBuffPower());
+        }
+    }
 
     @Override
     public <T> void affect(T t) {
         if (t instanceof Warrior) {
-            Warrior warrior = (Warrior) t;
-            if (powerBuffKind == PowerAndWeaknessBuffType.ATTACK) {
-                warrior.increaseActionPower(buffPower);
-            } else
-                warrior.increaseHealthPoint(buffPower);
+            affectOnWarrior((Warrior) t);
         }
     }
 
     @Override
     public <T> void update(T t) {
 
+    }
+
+    public int getBuffPower() {
+        return buffPower;
     }
 }

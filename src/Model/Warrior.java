@@ -31,6 +31,14 @@ public class Warrior extends Card {
         setShield(getShield()+i);
     }
 
+    public void decreaseShield(int i) {
+        setShield(getShield()-i);
+    }
+    public void increaseShield(int i)
+    {
+        setShield(getShield()+i);
+    }
+
     public void setShield(int shield) {
         this.shield = shield;
     }

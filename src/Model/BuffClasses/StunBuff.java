@@ -10,12 +10,16 @@ public class StunBuff extends ABuff {
         super(account ,duration);
     }
 
+    public void affectOnWarriro(Warrior warrior)
+    {
+        warrior.setValidToAttack(false);
+        warrior.setValidToMove(false);
+    }
+
     @Override
     public <T> void affect(T t) {
         if(t instanceof Warrior){
-            Warrior warrior = (Warrior) t ;
-            warrior.setValidToAttack(false);
-            warrior.setValidToMove(false);
+            affectOnWarriro((Warrior) t);
         }
 
     }

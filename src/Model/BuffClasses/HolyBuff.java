@@ -21,17 +21,6 @@ public class HolyBuff extends ABuff {
         this.shield = shield;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public void changeDuration(int i) {
-        setDuration(getDuration() - i);
-    }
 
     public boolean isAffected() {
         return isAffected;
@@ -41,13 +30,13 @@ public class HolyBuff extends ABuff {
         isAffected = affected;
     }
 
-    private void affectOnCard(Warrior warrior) {
+    private void affectOnWarrior(Warrior warrior) {
         if (getDuration() > 0 && !isAffected()) {
-            warrior.changeShield(getShield());
+            warrior.decreaseShield(getShield());
             setAffected(true);
         }
         if (getDuration() <= 0 && isAffected()) {
-            warrior.changeShield(-getShield());
+            warrior.increaseShield(getShield());
             setAffected(false);
         }
     }
@@ -57,17 +46,10 @@ public class HolyBuff extends ABuff {
     public <T> void affect(T t) {
         if (t instanceof Warrior) {
             Warrior warrior = (Warrior) t;
-            affectOnCard(warrior);
+            affectOnWarrior(warrior);
         }
 
 
     }
 
-
-    @Override
-    public <T> void update(T t) {
-        changeDuration(-1);
-
-
-    }
 }
