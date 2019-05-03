@@ -138,14 +138,14 @@ public class Show {
         }
         for (Card card : cards) {
             if (card.getCardKind() == CardKind.HERO)
-                System.out.println(card.toString());
+                System.out.println(card.toString() + " DarickValue : " + card.getDarikCost());
         }
         for (Item item : items) {
-            System.out.println(item.toString());
+            System.out.println(item.toString() + " DarickValue : " + ((UsableItem) item).getDarickCost());
         }
         for (Card card : cards) {
             if (card.getCardKind() == CardKind.MINION)
-                System.out.println(card.toString());
+                System.out.println(card.toString() + " DarickValue : " + card.getDarikCost());
         }
     }
 

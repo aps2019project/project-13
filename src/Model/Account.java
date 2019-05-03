@@ -22,13 +22,13 @@ public class Account {
     private String username;
     private String password;
     private int countOfWins;
-    private int darick ;
+    private int darick;
     private ArrayList<Item> collectableItems;
 
     public Account(String username, String password) {
         setUsername(username);
         setPassword(password);
-        setDecks(new ArrayList<>());
+        decks = new ArrayList<>();
         setCardCollection(new CardCollection(this));
         setBattleHistory(new ArrayList<>());
         collectableItems = new ArrayList<>();
@@ -86,8 +86,8 @@ public class Account {
         return decks;
     }
 
-    public void setDecks(ArrayList<Deck> decks) {
-        this.decks = decks;
+    public void addDeck(Deck deck) {
+        this.decks.add(deck);
     }
 
     public CardCollection getCardCollection() {

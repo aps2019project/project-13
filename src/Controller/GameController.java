@@ -423,7 +423,7 @@ public class GameController {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
-            Deck.valisdateDeck(deck);
+            Deck.validateDeck(deck);
             System.out.println(ConstantMessages.VALID_DECK);
         }
     }

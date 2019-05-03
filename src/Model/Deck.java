@@ -29,14 +29,14 @@ public class Deck {
 
 
     public static void createDeck(String deckName, Account account) {
-        new Deck(deckName, account);
+        account.addDeck(new Deck(deckName, account));
     }
 
     public void deleteItem() {
         setItem(null);
     }
 
-    public static boolean valisdateDeck(Deck deck) {
+    public static boolean validateDeck(Deck deck) {
         return deck.getHero() != null && countOfMinionsInDeck(deck) == 20;
     }
 
@@ -52,11 +52,11 @@ public class Deck {
 
     public void addCard(Card card) {
         if (card != null) {
-            if(card instanceof Hero){
-                addHero((Hero)card);
-            }else if (card instanceof Minion){
-                addMinion((Minion)card);
-            }else getCards().add(card);
+            if (card instanceof Hero) {
+                addHero((Hero) card);
+            } else if (card instanceof Minion) {
+                addMinion((Minion) card);
+            } else getCards().add(card);
         }
     }
 

@@ -42,6 +42,10 @@ public class Cell {
         return buffs;
     }
 
+    public void removeBuff(ABuff buff) {
+        buffs.remove(buff);
+    }
+
     public void addBuff(ABuff buff) {
         buffs.add(buff);
     }

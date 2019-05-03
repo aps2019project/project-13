@@ -103,7 +103,7 @@ public class Card {
         buffs.add(buff);
     }
 
-    public void deleteBuff(Buff buff) {
+    public void deleteBuff(ABuff buff) {
         buffs.remove(buff);
     }
 

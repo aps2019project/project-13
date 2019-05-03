@@ -1,12 +1,12 @@
 package Model;
 
-public class CollectableItem extends Item{
+public class CollectableItem extends Item {
 
-    Cell cell;
-    Spell spell;
+    private Cell cell;
+    private Spell spell;
 
     public CollectableItem(String itemId, String itemDescription, String itemName) {
-        super(itemId, itemDescription, ItemKind.COLLECTIBLE , itemName);
+        super(itemId, itemDescription, ItemKind.COLLECTIBLE, itemName);
     }
 
 
@@ -28,6 +28,6 @@ public class CollectableItem extends Item{
 
     @Override
     public String toString() {
-        return "Name:"+ this.getItemName() + "- Desc: " + this.getItemDescription();
+        return "Name:" + this.getItemName() + "- Desc: " + this.getItemDescription();
     }
 }

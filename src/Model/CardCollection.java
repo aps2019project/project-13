@@ -53,7 +53,7 @@ public class CardCollection {
     }
 
     public Card findCard(String cardId) {
-        return Card.findCardInArrayList(cardId, getCards());
+        return Card.findCardInArrayListByName(cardId, getCards());
     }
 
     public Item findItem(String itemId) {

@@ -51,8 +51,8 @@ public class Shop {
         return account.getCardCollection().getItems().size() <= 3;
     }
 
-    public void sell(String cardId, Account account) {
-        Card card = account.getCardCollection().findCard(cardId);
+    public void sell(String cardName, Account account) {
+        Card card = account.getCardCollection().findCard(cardName);
         if (card != null) {
             account.increaseDarick(card.getDarikCost());
             account.getCardCollection().removeCard(card);

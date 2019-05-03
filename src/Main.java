@@ -38,8 +38,6 @@ public class Main {
         int i = 1;
         for (Minion minion : cards) {
             Shop.getInstance().addCard(minion);
-            System.out.println(i + ": " + minion.toString());
-            i++;
         }
 
 

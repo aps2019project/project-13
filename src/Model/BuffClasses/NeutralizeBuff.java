@@ -5,8 +5,8 @@ import Model.Warrior;
 
 public class NeutralizeBuff extends ABuff {
 
-    public NeutralizeBuff(Account account, int duration , boolean isDispellable) {
-        super(account, duration , PositiveNegative.NEUTRAL , isDispellable);
+    public NeutralizeBuff(Account account, int duration, boolean isDispellable) {
+        super(account, duration, PositiveNegative.NEUTRAL, isDispellable);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class NeutralizeBuff extends ABuff {
     public <T> void update(T t) {
         if (t instanceof Warrior) {
             Warrior warrior = (Warrior) t;
-            warrior.getBuffs().remove(this);
+            warrior.clearAllBuffs();
         }
     }
 }
