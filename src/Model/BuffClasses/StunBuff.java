@@ -6,8 +6,8 @@ import Model.Warrior;
 public class StunBuff extends ABuff {
 
 
-    public StunBuff(Account account , int duration , boolean isDispellable) {
-        super(account ,duration , PositiveNegative.NEGATIVE , isDispellable);
+    public StunBuff(Account account, int duration, boolean isDispellable) {
+        super(account, duration, PositiveNegative.NEGATIVE, isDispellable);
     }
 
     public void affectOnWarrior(Warrior warrior) {
@@ -28,7 +28,7 @@ public class StunBuff extends ABuff {
     public <T> void update(T t) {
 
         decrementDuration();
-        if(getDuration()==0) {
+        if (getDuration() == 0) {
             if (t instanceof Warrior) {
                 Warrior warrior = (Warrior) t;
                 warrior.getBuffs().remove(this);

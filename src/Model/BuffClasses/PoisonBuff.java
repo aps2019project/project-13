@@ -7,8 +7,8 @@ public class PoisonBuff extends ABuff {
 
     private int poisonDamage;
 
-    public PoisonBuff(Account account, int duration, int poisonDamage , boolean isDispellable) {
-        super(account, duration , PositiveNegative.POSITIVE , isDispellable);
+    public PoisonBuff(Account account, int duration, int poisonDamage, boolean isDispellable) {
+        super(account, duration, PositiveNegative.POSITIVE, isDispellable);
         this.poisonDamage = poisonDamage;
     }
 
@@ -31,7 +31,7 @@ public class PoisonBuff extends ABuff {
     @Override
     public <T> void update(T t) {
         decrementDuration();
-        if(getDuration()==0) {
+        if (getDuration() == 0) {
             if (t instanceof Warrior) {
                 Warrior warrior = (Warrior) t;
                 warrior.getBuffs().remove(this);

@@ -1,0 +1,92 @@
+[
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_1",
+      "itemDescription": "6 More HP on Random Unit",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Cure-All (Nooshdaroo)"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_2",
+      "itemDescription": "6 More AP for a Random Hybrid or Ranged Unit",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Two-headed Arrow"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_3",
+      "itemDescription": "3 More HP and an AP Power Buff for a Random Minion",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Elixir"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_4",
+      "itemDescription": "3 More Mana on Next Turn",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Mana Potion"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_5",
+      "itemDescription": "10 HolyBuff for 2 Turn on Random Friendly Unit",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Invincibility Potion"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_6",
+      "itemDescription": "A Minion can do 8 DMG to one of Nearest Units on Random",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Death Curse"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_7",
+      "itemDescription": "2 DMG to Random Unit on Battlefield",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Random Damage"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_8",
+      "itemDescription": "6 More AP to Random Unit",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Blades of Agility"
+    }
+  },
+  {
+    "@type": "Model.CollectableItem",
+    "@val": {
+      "aBuffs": [],
+      "itemId": "CollectableItem_9",
+      "itemDescription": "5 More Ap to Melee Unit",
+      "itemKind": "COLLECTIBLE",
+      "itemName": "Chinese Sword"
+    }
+  }
+]

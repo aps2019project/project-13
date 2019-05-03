@@ -107,7 +107,7 @@ public class Card {
         buffs.remove(buff);
     }
 
-    public void clearAllBuffs(){
+    public void clearAllBuffs() {
         buffs.clear();
     }
 

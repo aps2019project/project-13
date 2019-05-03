@@ -7,8 +7,8 @@ import Model.Warrior;
 public class FlameBuff extends ABuff {
     private int flameDamage;
 
-    public FlameBuff(Account account, int duration , int flameDamage , boolean isDispellable) {
-        super(account, duration , PositiveNegative.NEGATIVE , isDispellable);
+    public FlameBuff(Account account, int duration, int flameDamage, boolean isDispellable) {
+        super(account, duration, PositiveNegative.NEGATIVE, isDispellable);
         this.flameDamage = flameDamage;
     }
 
@@ -27,7 +27,7 @@ public class FlameBuff extends ABuff {
     @Override
     public <T> void update(T t) {
         decrementDuration();
-        if(getDuration()==0) {
+        if (getDuration() == 0) {
             if (t instanceof Cell) {
                 ((Cell) t).getBuffs().remove(this);
             }

@@ -39,7 +39,7 @@ public class Request {
     }
 
 
-    public String getNumberOfFlag(){
+    public String getNumberOfFlag() {
         return scanner.nextLine();
     }
 

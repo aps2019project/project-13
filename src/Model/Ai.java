@@ -8,7 +8,7 @@ public class Ai {
     private Deck mainDeck;
     private Battle battle;
     private ArrayList<Card> hand;
-    private ArrayList<Card> cardsInGame ;
+    private ArrayList<Card> cardsInGame;
 
     public Ai(Deck mainDeck, Battle battle) {
         this.mainDeck = mainDeck;
@@ -34,7 +34,7 @@ public class Ai {
                 break;
             case 2:
                 insertCard();
-            battle.endTurn();
+                battle.endTurn();
         }
     }
 

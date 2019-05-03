@@ -8,12 +8,12 @@ public class ManaBuff extends ABuff {
 
     private int manaAmountIncrease;
 
-    public ManaBuff(int manaAmountIncrease, Account account, int duration , boolean isDispellable) {
-        super(account, duration , PositiveNegative.POSITIVE , isDispellable);
+    public ManaBuff(int manaAmountIncrease, Account account, int duration, boolean isDispellable) {
+        super(account, duration, PositiveNegative.POSITIVE, isDispellable);
         this.manaAmountIncrease = manaAmountIncrease;
     }
-    public void affectOnBattle(Battle battle)
-    {
+
+    public void affectOnBattle(Battle battle) {
         battle.increaseMana(getAccount(), getManaAmountIncrease());
     }
 

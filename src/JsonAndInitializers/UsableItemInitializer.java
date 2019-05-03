@@ -11,8 +11,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class UsableItemInitializer {
-    public void usableItemInit()
-    {
+    public void usableItemInit() {
         YaGson gson = new YaGsonBuilder().setPrettyPrinting().create();
         ArrayList<UsableItem> usableItems = new ArrayList<>();
         usableItems.add(new UsableItem("2", "Increase Mana in 3 turns", "Wisdom Crown", 300,
@@ -58,7 +57,6 @@ public class UsableItemInitializer {
         usableItems.add(new UsableItem("2", "2 turn holy buff for each unit", "Baptism (Ghosl Ta'amid)", 20000,
                 new Spell("0", "0", 0, 0, "NoDesc ", TargetSocietyKind.FRIENDLY_CARDS, null, ActivationCondition.PASSIVE,
                         new ArrayList<ABuff>())));
-
 
 
         try (Writer writer = new FileWriter("Items_YaGson.json")) {

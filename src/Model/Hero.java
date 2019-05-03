@@ -8,10 +8,10 @@ public class Hero extends Warrior {
     private int specialPowerCoolDownTime;
     private HeroName heroName;
 
-    public Hero(String cardName ,String cardId, int manaCost, int darikCost, String cardDescription,
+    public Hero(String cardName, String cardId, int manaCost, int darikCost, String cardDescription,
                 HeroName heroName, AttackKind attackKind, int healthPoint, int actionPower, int attackRange,
                 Spell specialPower, int specialPowerCooldownTime) {
-        super(cardName , cardId, manaCost, darikCost, CardKind.HERO, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
+        super(cardName, cardId, manaCost, darikCost, CardKind.HERO, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
         this.heroName = heroName;
         this.specialPowerCoolDownTime = specialPowerCooldownTime;
         addHero(this);
@@ -36,7 +36,7 @@ public class Hero extends Warrior {
 
     @Override
     public String toString() {
-        String str = "Name: "+this.getHeroName().getName() +"- AP: "+ this.getActionPower() + "- HP: " + this.getHealthPoint() + "- Class: "+getAttackKind().name() + "- Special Power: " + getCardDescription();
+        String str = "Name: " + this.getHeroName().getName() + "- AP: " + this.getActionPower() + "- HP: " + this.getHealthPoint() + "- Class: " + getAttackKind().name() + "- Special Power: " + getCardDescription();
         return str;
     }
 }

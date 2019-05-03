@@ -27,7 +27,7 @@ public class WeaknessBuff extends ABuff {
     @Override
     public <T> void affect(T t) {
         if (t instanceof Warrior) {
-            if(!isAffect()) {
+            if (!isAffect()) {
                 affectOnWarrior((Warrior) t);
                 setAffect(true);
             }

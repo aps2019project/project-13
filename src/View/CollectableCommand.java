@@ -1,12 +1,12 @@
 package View;
 
 public enum CollectableCommand {
-    EXIT , SHOW_INFO , USE ;
-    String data ;
+    EXIT, SHOW_INFO, USE;
+    String data;
 
     public CollectableCommand setData(String data) {
         this.data = data;
-        return this ;
+        return this;
     }
 
     public String getData() {
