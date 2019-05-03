@@ -463,6 +463,18 @@ public class Battle {
         this.secondPlayerCapacityMana = secondPlayerCapacityMana;
     }
 
+    public void increaseCapacityMana(Account account , int i)
+    {
+        if (account.equals(getFirstPlayer()))
+        {
+            incrementFirstPlayerCapacityMana(i);
+        }
+        else if (account.equals(getSecondPlayer()))
+        {
+            incrementSecondPlayerCapacityMana(i);
+        }
+    }
+
     public void incrementFirstPlayerCapacityMana(int i) {
         setFirstPlayerCapacityMana(getFirstPlayerCapacityMana()+i);
     }

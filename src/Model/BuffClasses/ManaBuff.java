@@ -15,6 +15,7 @@ public class ManaBuff extends ABuff implements Cloneable {
 
     public void affectOnBattle(Battle battle) {
         battle.increaseMana(getAccount(), getManaAmountIncrease());
+        battle.increaseCapacityMana(getAccount(), getManaAmountIncrease());
     }
 
     @Override
