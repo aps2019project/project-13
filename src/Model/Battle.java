@@ -686,9 +686,9 @@ public class Battle {
     }
 
     public void increaseMana(Account account, int number) {
-        if (account.getUsername() == firstPlayer.getUsername())
+        if (account.getUsername().equals(firstPlayer.getUsername()))
             firstPlayerMana += number;
-        else if (account.getUsername() == secondPlayer.getUsername())
+        else if (account.getUsername().equals(secondPlayer.getUsername()))
             secondPlayerMana += number;
     }
 }

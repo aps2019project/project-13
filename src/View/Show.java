@@ -158,19 +158,19 @@ public class Show {
     }
 
     public void enterInBattle() {
-        System.out.println("Enter Game Mode :\n1.Single Player\n2.Multi Player\n(1 , 2)? ");
+        System.out.println(ConstantMessages.GAME_MODE.getMessage());
     }
 
     public void invalidNumberForMode() {
-        System.out.println("1 or 2 !!? :)");
+        System.out.println(ConstantMessages.NUMBER_OF_GAME_MODE);
     }
 
     public void enterInBattleSecondStep() {
-        System.out.println("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?");
+        System.out.println(ConstantMessages.GAME_GOAL.getMessage());
     }
 
     public void invalidNumberForGoal() {
-        System.out.println("1 or 2 or 3 !!? :)");
+        System.out.println(ConstantMessages.NUMBER_OF_GAME_GOAL.getMessage());
     }
 
     public void battleShowAnStringArrayList(ArrayList<String> minions) {
@@ -202,10 +202,11 @@ public class Show {
         System.out.println(battleInfo);
     }
 
-    public void numberOfFlag(){
-        System.out.println("number of flag for win: ");
+    public void numberOfFlag() {
+        System.out.println(ConstantMessages.GAME_FLAG.getMessage());
     }
-    public void invalidNumberForFlag(){
-        System.out.println("input Number !! , try again ");
+
+    public void invalidNumberForFlag() {
+        System.out.println(ConstantMessages.NUMBER_OF_GAME_FLAG.getMessage());
     }
 }

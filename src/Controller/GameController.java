@@ -351,25 +351,25 @@ public class GameController {
                 collectionShow();
                 break;
             case SHOW_DECK:
-                collectionShowDeck(request, collectionCommand);
+                collectionShowDeck(collectionCommand);
                 break;
             case ADD_TO_DECK:
-                collectionAddToDeck(request, collectionCommand);
+                collectionAddToDeck(collectionCommand);
                 break;
             case CREATE_DECK:
-                collectionCreateDeck(request, collectionCommand);
+                collectionCreateDeck(collectionCommand);
                 break;
             case DELETE_DECK:
-                collectionDeleteDeck(request, collectionCommand);
+                collectionDeleteDeck(collectionCommand);
                 break;
             case SELECTE_DECK:
-                collectionSelectMainDeck(request, collectionCommand);
+                collectionSelectMainDeck(collectionCommand);
                 break;
             case SHOW_ALL_DECK:
-                collectionShowAllDeck(request);
+                collectionShowAllDeck();
                 break;
             case VALIDATE_DECK:
-                collectionValidateDeck(request, collectionCommand);
+                collectionValidateDeck(collectionCommand);
                 break;
             case REMOVE_FROM_DECK:
                 collectionRemoveCardFromDeck(collectionCommand);
@@ -391,7 +391,7 @@ public class GameController {
         show.showCollection(Account.getLoginedAccount());
     }
 
-    private void collectionShowDeck(Request request, CollectionCommand collectionCommand) throws Error {
+    private void collectionShowDeck(CollectionCommand collectionCommand) throws Error {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
@@ -409,7 +409,7 @@ public class GameController {
         } else throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
     }
 
-    private void collectionShowAllDeck(Request request) {
+    private void collectionShowAllDeck() {
         Account account = Account.getLoginedAccount();
         for (int i = 0; i < account.getDecks().size(); i++) {
             Deck deck = account.getDecks().get(i);
@@ -419,7 +419,7 @@ public class GameController {
         }
     }
 
-    private void collectionValidateDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionValidateDeck(CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
@@ -428,7 +428,7 @@ public class GameController {
         }
     }
 
-    private void collectionSelectMainDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionSelectMainDeck(CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
@@ -436,7 +436,7 @@ public class GameController {
         }
     }
 
-    private void collectionDeleteDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionDeleteDeck(CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
@@ -447,14 +447,14 @@ public class GameController {
         }
     }
 
-    private void collectionCreateDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionCreateDeck(CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
         if (Account.getLoginedAccount().findDeck(deckName) == null) {
             Deck.createDeck(deckName, Account.getLoginedAccount());
         }
     }
 
-    private void collectionAddToDeck(Request request, CollectionCommand collectionCommand) {
+    private void collectionAddToDeck(CollectionCommand collectionCommand) {
         String cardName = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
