@@ -170,7 +170,7 @@ public class Card implements Cloneable{
         this.cardName = cardName;
     }
 
-
+    //TODO THIS MAY NEED TO BE CHANGED. THE LOGIC IS THE SAME BUT MAYBE WE NEED TO CLONE ANOTHER ABuff ArrayList.
     @Override
     protected Object clone() throws CloneNotSupportedException {
         Warrior warrior = (Warrior) super.clone();
