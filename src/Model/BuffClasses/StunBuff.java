@@ -14,6 +14,7 @@ public class StunBuff extends ABuff implements Cloneable {
         warrior.setValidToAttack(false);
         warrior.setValidToMove(false);
         warrior.setValidCounterAttack(false);
+        warrior.setAbleToMove(false); //TODO POSSIBLE DUPLICATE! IT MUST BE CHECKED CAREFULLY!
     }
 
     @Override
@@ -35,6 +36,7 @@ public class StunBuff extends ABuff implements Cloneable {
                 warrior.setValidToAttack(true);
                 warrior.setValidToMove(true);
                 warrior.setValidCounterAttack(true);
+                warrior.setAbleToMove(true);
             }
         }
 
