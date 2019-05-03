@@ -214,12 +214,16 @@ public class Account implements Cloneable{
         Collections.sort(accounts, Account.sortByWin);
     }
 
-    public void incrementCountOfWins() {
-        countOfWins++;
+    public void incrementCountOfWins(int i) {
+        setCountOfWins(getCountOfWins()+i);
     }
 
     public int getCountOfWins() {
         return countOfWins;
+    }
+
+    public void setCountOfWins(int countOfWins) {
+        this.countOfWins = countOfWins;
     }
 
     @Override

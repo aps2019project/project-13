@@ -164,21 +164,38 @@ public class Battle {
     }
 
     private void setHistoryAfterGame() {
-        winner.incrementCountOfWins();
+        getWinner().incrementCountOfWins(1);
         int numberOfWinnerPlayer;
-        if (winner.equals(firstPlayer)) {
+        if (getWinner().equals(getFirstPlayer())) {
             numberOfWinnerPlayer = 1;
         } else numberOfWinnerPlayer = 2;
-        ArrayList<String> firstPlayerHistory = firstPlayer.getBattleHistory();
-        firstPlayerHistory.add(secondPlayer.getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
-        ArrayList<String> secondPlayerHistory = secondPlayer.getBattleHistory();
-        secondPlayerHistory.add(firstPlayer.getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
+        ArrayList<String> firstPlayerHistory = getFirstPlayer().getBattleHistory();
+        firstPlayerHistory.add(getSecondPlayer().getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
+        ArrayList<String> secondPlayerHistory = getSecondPlayer().getBattleHistory();
+        secondPlayerHistory.add(getFirstPlayer().getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
     }
 
     private void setMana() {
-        if (turn == 1) {
+        if (turn < 14)
+        {
+            setFirstPlayerCapacityMana(turn/2 + 2);
+            setSecondPlayerCapacityMana(turn/2 +2);
+        }
+        else if (turn>=14)
+        {
+            setFirstPlayerCapacityMana(9);
+            setSecondPlayerCapacityMana(9);
+        }
+        setFirstPlayerMana(getFirstPlayerCapacityMana());
+        setSecondPlayerMana(getSecondPlayerCapacityMana());
+
+        //TODO OLD IMPLEMENTATION NOT DELETED BUT PROBABLY IT HAS NO USE ANYMORE
+
+    /*    if (turn == 1) {
+            setFirstPlayerCapacityMana(2);
             firstPlayerCapacityMana = 2;
         } else if (turn == 2) {
+            setSecondPlayerCapacityMana(2);
             secondPlayerCapacityMana = 3;
         } else if (turn % 2 == 1 && turn < 14) {
             firstPlayerCapacityMana++;
@@ -188,7 +205,7 @@ public class Battle {
             secondPlayerCapacityMana = 9;
         }
         firstPlayerMana = firstPlayerCapacityMana;
-        secondPlayerMana = secondPlayerCapacityMana;
+        secondPlayerMana = secondPlayerCapacityMana;*/
     }
 
     private void incrementTurn() {
@@ -436,6 +453,29 @@ public class Battle {
     private void setFirstPlayerNextCard() {
         Random random = new Random();
         firstPlayerNextCard = firstPlayerDeck.get(random.nextInt());
+    }
+
+    public void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) {
+        this.firstPlayerCapacityMana = firstPlayerCapacityMana;
+    }
+
+    public void setSecondPlayerCapacityMana(int secondPlayerCapacityMana) {
+        this.secondPlayerCapacityMana = secondPlayerCapacityMana;
+    }
+
+    public void incrementFirstPlayerCapacityMana(int i) {
+        setFirstPlayerCapacityMana(getFirstPlayerCapacityMana()+i);
+    }
+    public void incrementSecondPlayerCapacityMana(int i) {
+        setSecondPlayerCapacityMana(getSecondPlayerCapacityMana()+i);
+    }
+
+    public void setFirstPlayerMana(int firstPlayerMana) {
+        this.firstPlayerMana = firstPlayerMana;
+    }
+
+    public void setSecondPlayerMana(int secondPlayerMana) {
+        this.secondPlayerMana = secondPlayerMana;
     }
 
     private void setSecondPlayerNextCard() {
