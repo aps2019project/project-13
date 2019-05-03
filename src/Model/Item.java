@@ -7,12 +7,12 @@ public class Item {
     private String itemDescription;
     private ItemKind itemKind;
     private String itemName;
- //   private int darickCost;
+    //   private int darickCost;
 
-    public Item(String itemId, String itemDescription, ItemKind itemKind , String itemName)  {
+    public Item(String itemId, String itemDescription, ItemKind itemKind, String itemName) {
         this.itemId = itemId;
         this.itemDescription = itemDescription;
-        this.itemKind=itemKind;
+        this.itemKind = itemKind;
         this.itemName = itemName;
 //        this.darickCost = darickCost;
     }
@@ -27,15 +27,6 @@ public class Item {
         }
         return null;
     }
-
-//    public int getDarickCost() {
-//        return darickCost;
-//    }
-//
-//    public void setDarickCost(int darickCost) {
-//        this.darickCost = darickCost;
-//    }
-
 
     public String getItemName() {
         return itemName;

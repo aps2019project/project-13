@@ -11,14 +11,14 @@ public class Warrior extends Card {
     private Spell specialPower;
     private boolean isDeath;
     private int shield;
-    private boolean isValidToAttack = true ;
-    private boolean IsValidToMove =true;
+    private boolean isValidToAttack = true;
+    private boolean IsValidToMove = true;
 
 
-    public Warrior(String cardName , String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
+    public Warrior(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
 
-        super(cardName ,cardId, manaCost, darikCost, cardKind, cardDescription);
+        super(cardName, cardId, manaCost, darikCost, cardKind, cardDescription);
         this.attackKind = attackKind;
         this.healthPoint = healthPoint;
         this.actionPower = actionPower;
@@ -26,17 +26,17 @@ public class Warrior extends Card {
         this.specialPower = specialPower;
         this.shield = 0;
     }
-    public void changeShield(int i)
-    {
-        setShield(getShield()+i);
+
+    public void changeShield(int i) {
+        setShield(getShield() + i);
     }
 
     public void decreaseShield(int i) {
-        setShield(getShield()-i);
+        setShield(getShield() - i);
     }
-    public void increaseShield(int i)
-    {
-        setShield(getShield()+i);
+
+    public void increaseShield(int i) {
+        setShield(getShield() + i);
     }
 
     public void setShield(int shield) {

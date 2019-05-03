@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Battle {
+
     private static Battle runningBattle = null;
     private Map map;
     private Account firstPlayer;
@@ -690,5 +691,9 @@ public class Battle {
             firstPlayerMana += number;
         else if (account.getUsername().equals(secondPlayer.getUsername()))
             secondPlayerMana += number;
+    }
+
+    public int getNumberOfFlagForWin() {
+        return numberOfFlagForWin;
     }
 }
