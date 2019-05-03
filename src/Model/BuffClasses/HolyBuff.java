@@ -4,7 +4,7 @@ import Model.Account;
 import Model.Warrior;
 
 
-public class HolyBuff extends ABuff {
+public class HolyBuff extends ABuff implements Cloneable {
     private int shield;
     private boolean isAffected;
 

@@ -3,7 +3,7 @@ package Model.BuffClasses;
 import Model.Account;
 import Model.Warrior;
 
-public class NeutralizeBuff extends ABuff {
+public class NeutralizeBuff extends ABuff implements Cloneable {
 
     public NeutralizeBuff(Account account, int duration, boolean isDispellable) {
         super(account, duration, PositiveNegative.NEUTRAL, isDispellable);

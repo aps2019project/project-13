@@ -4,7 +4,7 @@ package Model.BuffClasses;
 import Model.Account;
 import Model.Warrior;
 
-public class PowerBuff extends ABuff {
+public class PowerBuff extends ABuff implements Cloneable {
 
 
     private PowerAndWeaknessBuffType powerBuffKind;

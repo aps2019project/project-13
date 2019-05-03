@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Hero extends Warrior {
+public class Hero extends Warrior implements Cloneable {
 
     private static ArrayList<Hero> allHeroes = new ArrayList<>();
     private int specialPowerCoolDownTime;

@@ -3,7 +3,7 @@ package Model.BuffClasses;
 import Model.Account;
 import Model.Warrior;
 
-public class StunBuff extends ABuff {
+public class StunBuff extends ABuff implements Cloneable {
 
 
     public StunBuff(Account account, int duration, boolean isDispellable) {

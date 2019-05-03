@@ -12,7 +12,7 @@ import java.util.Comparator;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 
-public class Account {
+public class Account implements Cloneable{
     private static Account loginedAccount = null;
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<String> battleHistory;

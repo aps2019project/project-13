@@ -4,7 +4,7 @@ import Model.BuffClasses.ABuff;
 
 import java.util.ArrayList;
 
-public class Spell extends Card {
+public class Spell extends Card implements Cloneable{
     private static ArrayList<Spell> allSpells = new ArrayList<>();
     private TargetSocietyKind targetSocietyKind;
     private SpellName spellName;

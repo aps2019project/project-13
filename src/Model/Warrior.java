@@ -1,6 +1,10 @@
 package Model;
 
-public class Warrior extends Card {
+import Model.BuffClasses.ABuff;
+
+import java.util.ArrayList;
+
+public class Warrior extends Card implements Cloneable{
 
 
     private int healthPoint;
@@ -117,4 +121,13 @@ public class Warrior extends Card {
     public void setValidToMove(boolean validToMove) {
         this.IsValidToMove = validToMove;
     }
+
+    //TODO MAYBE THIS NEEDS TO BE IMPLEMENTED HERE. THIS CLONE IS CURRENTLY Implemented IN CARD
+    /*@Override
+    protected Object clone() throws CloneNotSupportedException {
+        Warrior warrior = (Warrior) super.clone();
+        ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
+        warrior.setBuffs(buffsClone);
+        return warrior;
+    }*/
 }

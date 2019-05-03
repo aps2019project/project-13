@@ -3,7 +3,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Deck {
+public class Deck implements Cloneable {
     private static ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards;
     private ArrayList<Minion> minions;

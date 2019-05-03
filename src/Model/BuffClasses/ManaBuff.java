@@ -4,7 +4,7 @@ import Model.Account;
 import Model.Battle;
 import Model.Warrior;
 
-public class ManaBuff extends ABuff {
+public class ManaBuff extends ABuff implements Cloneable {
 
     private int manaAmountIncrease;
 

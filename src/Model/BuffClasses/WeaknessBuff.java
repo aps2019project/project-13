@@ -3,7 +3,7 @@ package Model.BuffClasses;
 import Model.Account;
 import Model.Warrior;
 
-public class WeaknessBuff extends ABuff {
+public class WeaknessBuff extends ABuff implements Cloneable {
 
     private PowerAndWeaknessBuffType weaknessBuffType;
     private int buffPower;

@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Minion extends Warrior {
+public class Minion extends Warrior implements Cloneable {
 
     private static ArrayList<Minion> allMinions = new ArrayList<>();
 

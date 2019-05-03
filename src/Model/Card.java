@@ -4,7 +4,7 @@ import Model.BuffClasses.ABuff;
 
 import java.util.ArrayList;
 
-public class Card {
+public class Card implements Cloneable{
 
     private static ArrayList<Card> allCards = new ArrayList<>();
     private String cardId;
@@ -115,6 +115,10 @@ public class Card {
         return buffs;
     }
 
+    public void setBuffs(ArrayList<ABuff> buffs) {
+        this.buffs = buffs;
+    }
+
     private void addCard(Card card) {
         allCards.add(card);
     }
@@ -164,5 +168,14 @@ public class Card {
 
     public void setCardName(String cardName) {
         this.cardName = cardName;
+    }
+
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Warrior warrior = (Warrior) super.clone();
+        ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
+        warrior.setBuffs(buffsClone);
+        return warrior;
     }
 }

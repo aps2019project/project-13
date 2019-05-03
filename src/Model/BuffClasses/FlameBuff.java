@@ -4,7 +4,7 @@ import Model.Account;
 import Model.Cell;
 import Model.Warrior;
 
-public class FlameBuff extends ABuff {
+public class FlameBuff extends ABuff implements Cloneable {
     private int flameDamage;
 
     public FlameBuff(Account account, int duration, int flameDamage, boolean isDispellable) {
