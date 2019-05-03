@@ -57,7 +57,14 @@ public enum ConstantMessages {
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
             "select deck [deck name] \nshow all decks \nshow deck [deck name]"),
     MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nexit"),
+    GAME_MODE("Enter Game Mode :\n1.Single Player\n2.Multi Player\n(1 , 2)? "),
+    NUMBER_OF_GAME_MODE("1 or 2 !!? :)"),
+    GAME_GOAL("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?"),
+    NUMBER_OF_GAME_GOAL("1 or 2 or 3 !!? :)"),
+    GAME_FLAG("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?"),
+    NUMBER_OF_GAME_FLAG("input Number !! , try again "),
     MAIN_MENU("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help");
+
     //*****************************************
 
     private String message;
