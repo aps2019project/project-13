@@ -5,6 +5,7 @@
       "battleHistory": [],
       "decks": [],
       "cardCollection": {
+        "cards": [],
         "cards": [
           {
             "@type": "Model.Minion",
@@ -54,6 +55,7 @@
       "password": "12345",
       "countOfWins": 0,
       "darick": 99550,
+      "darick": 100000,
       "collectableItems": []
     }
   }

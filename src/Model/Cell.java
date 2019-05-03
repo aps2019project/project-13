@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Buff;
+import Model.BuffClasses.ABuff;
 import Model.Card;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class Cell {
     private int row;
     private int column;
     private Item item;
-    private ArrayList<Buff> buffs = new ArrayList<>();
+    private ArrayList<ABuff> buffs = new ArrayList<>();
 
     Cell(int row, int column) {
         this.row = row;
@@ -37,11 +38,11 @@ public class Cell {
         return column;
     }
 
-    public ArrayList<Buff> getBuffs() {
+    public ArrayList<ABuff> getBuffs() {
         return buffs;
     }
 
-    public void addBuff(Buff buff) {
+    public void addBuff(ABuff buff) {
         buffs.add(buff);
     }
 

@@ -1,30 +1,40 @@
 package Model;
 
+import Model.BuffClasses.ABuff;
+
 import java.util.ArrayList;
 
 public class Spell extends Card {
     private static ArrayList<Spell> allSpells = new ArrayList<>();
     private TargetSocietyKind targetSocietyKind;
     private SpellName spellName;
-    private ArrayList<Buff> buffs = new ArrayList<>();
+    private ArrayList<ABuff> buffs = new ArrayList<>();
     private ActivationCondition activationCondition;
 
 
-    public Spell(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, TargetSocietyKind targetSocietyKind, SpellName spellName, ActivationCondition activationCondition, ArrayList<Buff> buffs) {
+    public Spell(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, TargetSocietyKind targetSocietyKind, SpellName spellName, ActivationCondition activationCondition, ArrayList<ABuff> buffs) {
         super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription);
         this.targetSocietyKind = targetSocietyKind;
         this.spellName = spellName;
         this.activationCondition = activationCondition;
+        addToAllSpells(this);
         if (buffs != null) {
             this.buffs.addAll(buffs);
         }
     }
 
-    public void affectAllBuffsOnCard(Card card) {
-        for (int i = 0; i < buffs.size(); i++) {
-            Buff buff = buffs.get(i);
-            if (buff != null) { //TODO EFFECT DURATION MUST BE ADDED SOMEHOW
-                buff.affectOnCard(card, buff.getPowerAndWeaknessBuffKind(), buff.getBuffNumber());
+    public <T> void affectSpell(T e) {
+        if (targetSocietyKind == TargetSocietyKind.CELL) {
+            Cell cell = (Cell) e;
+            for (ABuff buff : buffs) {
+                cell.addBuff(buff);
+                buff.affect(cell);
+            }
+        } else {
+            Warrior warrior = (Warrior) e;
+            for (ABuff buff : buffs) {
+                warrior.addBuff(buff);
+                buff.affect(warrior);
             }
         }
     }
@@ -33,7 +43,7 @@ public class Spell extends Card {
         return allSpells;
     }
 
-    public void addToAddSpells(Spell spell) {
+    public void addToAllSpells(Spell spell) {
         allSpells.add(spell);
     }
 
@@ -45,7 +55,7 @@ public class Spell extends Card {
         return spellName;
     }
 
-    public ArrayList<Buff> getBuffs() {
+    public ArrayList<ABuff> getBuffs() {
         return buffs;
     }
 

@@ -8,8 +8,8 @@ public class HolyBuff extends ABuff {
     private int shield;
     private boolean isAffected;
 
-    public HolyBuff(int shield, Account account, int duration , boolean isDispellable) {
-        super(account, duration , PositiveNegative.POSITIVE , isDispellable);
+    public HolyBuff(int shield, Account account, int duration, boolean isDispellable) {
+        super(account, duration, PositiveNegative.POSITIVE, isDispellable);
         this.shield = shield;
     }
 
@@ -55,10 +55,9 @@ public class HolyBuff extends ABuff {
     public <T> void update(T t) {
 
         decrementDuration();
-        if(getDuration()==0) {
+        if (getDuration() == 0) {
             if (t instanceof Warrior) {
-                Warrior warrior = (Warrior) t;
-                warrior.getBuffs().remove(this);
+                ((Warrior) t).getBuffs().remove(this);
             }
         }
     }

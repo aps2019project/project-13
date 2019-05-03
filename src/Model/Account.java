@@ -22,7 +22,7 @@ public class Account {
     private String username;
     private String password;
     private int countOfWins;
-    private int darick = 10000;
+    private int darick ;
     private ArrayList<Item> collectableItems;
 
     public Account(String username, String password) {
@@ -58,7 +58,7 @@ public class Account {
                 return account;
             }
         }
-        return null;
+        return null;//TODO dar controler in tabe piade shode ast,shayad jabeja kardim be inja shayadam ino hazf kardim
     }
 
     public Deck findDeck(String deckName) {

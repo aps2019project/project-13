@@ -28,4 +28,8 @@ public class UsableItem extends Item {
     public String toString() {
         return "Name:"+ this.getItemName() + "- Desc: " + this.getItemDescription();
     }
+
+    public Spell getSpell() {
+        return spell;
+    }
 }

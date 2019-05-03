@@ -1,5 +1,7 @@
 package Model;
 
+import Model.BuffClasses.ABuff;
+
 import java.util.ArrayList;
 
 public class Card {
@@ -13,7 +15,7 @@ public class Card {
     private Account account;
     private String cardDescription;
     private String cardName;
-    private ArrayList<Buff> buffs = new ArrayList<>();
+    private ArrayList<ABuff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
     private boolean isInGame;
 
@@ -97,7 +99,7 @@ public class Card {
         return cardDescription;
     }
 
-    public void addBuff(Buff buff) {
+    public void addBuff(ABuff buff) {
         buffs.add(buff);
     }
 
@@ -109,7 +111,7 @@ public class Card {
         buffs.clear();
     }
 
-    public ArrayList<Buff> getBuffs() {
+    public ArrayList<ABuff> getBuffs() {
         return buffs;
     }
 
