@@ -176,13 +176,10 @@ public class Battle {
     }
 
     private void setMana() {
-        if (turn < 14)
-        {
-            setFirstPlayerCapacityMana(turn/2 + 2);
-            setSecondPlayerCapacityMana(turn/2 +2);
-        }
-        else if (turn>=14)
-        {
+        if (turn < 14) {
+            setFirstPlayerCapacityMana(turn / 2 + 2);
+            setSecondPlayerCapacityMana(turn / 2 + 2);
+        } else if (turn >= 14) {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
         }
@@ -463,23 +460,20 @@ public class Battle {
         this.secondPlayerCapacityMana = secondPlayerCapacityMana;
     }
 
-    public void increaseCapacityMana(Account account , int i)
-    {
-        if (account.equals(getFirstPlayer()))
-        {
+    public void increaseCapacityMana(Account account, int i) {
+        if (account.equals(getFirstPlayer())) {
             incrementFirstPlayerCapacityMana(i);
-        }
-        else if (account.equals(getSecondPlayer()))
-        {
+        } else if (account.equals(getSecondPlayer())) {
             incrementSecondPlayerCapacityMana(i);
         }
     }
 
     public void incrementFirstPlayerCapacityMana(int i) {
-        setFirstPlayerCapacityMana(getFirstPlayerCapacityMana()+i);
+        setFirstPlayerCapacityMana(getFirstPlayerCapacityMana() + i);
     }
+
     public void incrementSecondPlayerCapacityMana(int i) {
-        setSecondPlayerCapacityMana(getSecondPlayerCapacityMana()+i);
+        setSecondPlayerCapacityMana(getSecondPlayerCapacityMana() + i);
     }
 
     public void setFirstPlayerMana(int firstPlayerMana) {
@@ -747,5 +741,19 @@ public class Battle {
 
     public int getNumberOfFlagForWin() {
         return numberOfFlagForWin;
+    }
+
+    public void showMap() {
+        Cell[][] cells = map.getCells();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].getCard() != null) {
+                    if (cells[i][j].getCard().getAccount().equals(firstPlayer))
+                        System.out.print(" 1 ");
+                    else System.out.print(" 2 ");
+                } else System.out.print(" 0 ");
+                System.out.println();
+            }
+        }
     }
 }

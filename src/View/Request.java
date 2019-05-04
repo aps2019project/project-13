@@ -292,5 +292,6 @@ public class Request {
 
     public void exitLastmenu() {
         kindOfOrders.remove(kindOfOrders.size() - 1);
+        showMenu(kindOfOrders.get(kindOfOrders.size()-1));
     }
 }
