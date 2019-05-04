@@ -492,18 +492,10 @@ public class GameController {
             case MOVE:
                 cardCommandMove(cardCommand);
                 break;
-            case ATTACK: {
+            case ATTACK:
                 Battle battle = Battle.getRunningBattle();
-                String cardName = cardCommand.getData().get(0);
-                Cell cell = battle.getMap().findCardCell(cardName);
-                if (cell != null) {
-                    battle.attack(cell);
-                } else {
-                    throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
-                }
-
-            }
-            break;
+                battle.attack(cardCommand.getData().get(0),(Warrior) battle.getSelectedCard(), true);
+                break;
             case USE_SPECIAL_POWER:
                 useSpecialPower(cardCommand);
         }
@@ -513,13 +505,9 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        Cell cell = battle.getMap().getCell(x, y);
-        if (cell != null) {
-            battle.useSpecialPower(cell);
-        } else {
-            throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
-        }
+        battle.useSpecialPower(x, y);
     }
+
 
     private void cardCommandMove(CardCommand cardCommand) throws Error {
         Battle battle = Battle.getRunningBattle();
