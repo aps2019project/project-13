@@ -176,13 +176,10 @@ public class Battle {
     }
 
     private void setMana() {
-        if (turn < 14)
-        {
-            setFirstPlayerCapacityMana(turn/2 + 2);
-            setSecondPlayerCapacityMana(turn/2 +2);
-        }
-        else if (turn>=14)
-        {
+        if (turn < 14) {
+            setFirstPlayerCapacityMana(turn / 2 + 2);
+            setSecondPlayerCapacityMana(turn / 2 + 2);
+        } else if (turn >= 14) {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
         }
@@ -280,7 +277,6 @@ public class Battle {
             }
         }
     }
-
 
     public Account getOtherTurnPlayer() {
         if (getTurn() % 2 == 1) {
@@ -389,11 +385,9 @@ public class Battle {
     }
 
     private boolean isValidAttack(Cell targetCell, Warrior warrior) {
-
         if (targetCell.getCard().getAccount() == warrior.getAccount()) {
             return false;
         }
-
         switch (warrior.getAttackKind()) {
             case MELEE:
                 return isValidMeleeAttack(targetCell, warrior);
@@ -463,23 +457,20 @@ public class Battle {
         this.secondPlayerCapacityMana = secondPlayerCapacityMana;
     }
 
-    public void increaseCapacityMana(Account account , int i)
-    {
-        if (account.equals(getFirstPlayer()))
-        {
+    public void increaseCapacityMana(Account account, int i) {
+        if (account.equals(getFirstPlayer())) {
             incrementFirstPlayerCapacityMana(i);
-        }
-        else if (account.equals(getSecondPlayer()))
-        {
+        } else if (account.equals(getSecondPlayer())) {
             incrementSecondPlayerCapacityMana(i);
         }
     }
 
     public void incrementFirstPlayerCapacityMana(int i) {
-        setFirstPlayerCapacityMana(getFirstPlayerCapacityMana()+i);
+        setFirstPlayerCapacityMana(getFirstPlayerCapacityMana() + i);
     }
+
     public void incrementSecondPlayerCapacityMana(int i) {
-        setSecondPlayerCapacityMana(getSecondPlayerCapacityMana()+i);
+        setSecondPlayerCapacityMana(getSecondPlayerCapacityMana() + i);
     }
 
     public void setFirstPlayerMana(int firstPlayerMana) {

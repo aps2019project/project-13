@@ -37,6 +37,7 @@ public class Deck implements Cloneable {
     }
 
     public static boolean validateDeck(Deck deck) {
+
         return deck.getHero() != null && countOfMinionsInDeck(deck) == 20;
     }
 

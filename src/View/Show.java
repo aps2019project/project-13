@@ -15,6 +15,10 @@ public class Show {
         return show;
     }
 
+    public void printAMessage(String message) {
+        System.out.println(message);
+    }
+
     public void showHelp(KindOfOrder kindOfOrder) {
         switch (kindOfOrder) {
             case COLLECTABLE:
@@ -212,5 +216,20 @@ public class Show {
 
     public void showMenu(KindOfOrder kindOfOrder) {
         System.out.println(" *** " + kindOfOrder.name() + " Menu *** ");
+    }
+
+    public void showBattleCardInfo(Card card) {
+        if (card.getCardKind() == CardKind.HERO) {
+            System.out.println("HeroL:\nName: " + card.getCardName() + "\n" + "Cost: "
+                    + card.getDarikCost() + "\n" + "Desc: " + card.getCardDescription());
+        } else if (card.getCardKind() == CardKind.MINION) {
+            System.out.println("Minion:\n" + "Name: " + card.getCardName() + "\n" + "HP: " + ((Warrior) card).getHealthPoint()
+                    + "AP: " + ((Warrior) card).getActionPower() + "MP: " + card.getManaCost() + "\n" + "Range: " + ((Warrior) card).getAttackRange() +
+                    "\n" + "Cost: " + card.getDarikCost() + "Desc: " + card.getCardDescription());
+        } else {
+            System.out.println("Spell: \n" + "MP: " + card.getManaCost() + "\n" +
+                    "Cost: " + card.getDarikCost() + "\n" + "Desc: " + card.getCardDescription());
+        }
+
     }
 }

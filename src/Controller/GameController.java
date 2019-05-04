@@ -100,7 +100,6 @@ public class GameController {
         }
     }
 
-
     private void mainMenuCommandManagement(Request request, MainCommand mainCommand) {
         switch (mainCommand) {
             case ENTER_HELP:
@@ -284,7 +283,17 @@ public class GameController {
     }
 
     private void battleShowCardInfo(String cardID) {
-        show.showCardId(cardID);
+        Battle battle = Battle.getRunningBattle();
+        Card card = Card.findCardInArrayList(cardID, battle.getFirstPlayerInGameCards());
+        if (card != null) {
+            Show.getInstance().showBattleCardInfo(card);
+        } else {
+            card = Card.findCardInArrayList(cardID, battle.getSecondPlayerInGameCards());
+            if (card != null)
+                Show.getInstance().showBattleCardInfo(card);
+        }
+        if (card == null)
+            throw new Error(ConstantMessages.INVALID_CARD_ID.getMessage());
     }
 
     private void battleShowHand() {
@@ -427,10 +436,10 @@ public class GameController {
     private void collectionValidateDeck(CollectionCommand collectionCommand) {
         String deckName = collectionCommand.getData().get(0);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
-        if (deck != null) {
-            Deck.validateDeck(deck);
-            System.out.println(ConstantMessages.VALID_DECK);
-        }
+        if (deck == null)
+            throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
+        Deck.validateDeck(deck);
+        show.printAMessage(ConstantMessages.VALID_DECK.getMessage());
     }
 
     private void collectionSelectMainDeck(CollectionCommand collectionCommand) {
@@ -471,7 +480,8 @@ public class GameController {
             throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         if (CardCollection.getCountOfCard(deck.getCards(), card) < CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), card))
             deck.addCard(card);
-        throw new Error(ConstantMessages.NOT_ENOUGH_CARD_TO_ADD_TO_DECK.getMessage());
+        else
+            throw new Error(ConstantMessages.NOT_ENOUGH_CARD_TO_ADD_TO_DECK.getMessage());
     }
 
     private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
@@ -554,13 +564,22 @@ public class GameController {
     }
 
     private void graveyardShowInfo(GraveYardCommand graveYardCommand) throws Error {
-        String cardName = graveYardCommand.getData();
+        String cardId = graveYardCommand.getData();
         Battle battle = Battle.getRunningBattle();
-        Card card = Card.findCardInArrayList(cardName, battle.getFirstPlayerGraveYard());
-        if (card != null) {
-            show.showCard(card);
+        if (battle.getTurn() % 2 == 1) {
+            Card card = Card.findCardInArrayList(cardId, battle.getFirstPlayerGraveYard());
+            if (card != null) {
+                show.showCard(card);
+            } else {
+                throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+            }
         } else {
-            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+            Card card = Card.findCardInArrayList(cardId, battle.getSecondPlayerInGameCards());
+            if (card != null) {
+                show.showCard(card);
+            } else {
+                throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+            }
         }
     }
 

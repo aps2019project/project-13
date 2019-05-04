@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Warrior extends Card implements Cloneable{
 
-
     private int healthPoint;
     private int actionPower;
     private int attackRange;
@@ -17,7 +16,6 @@ public class Warrior extends Card implements Cloneable{
     private int shield;
     private boolean isValidToAttack = true;
     private boolean IsValidToMove = true;
-
 
     public Warrior(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
