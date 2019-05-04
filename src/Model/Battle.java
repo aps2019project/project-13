@@ -1,5 +1,7 @@
 package Model;
 
+import Model.BuffClasses.ABuff;
+import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
 import View.Error;
 
@@ -71,7 +73,9 @@ public class Battle {
 
     public void selectCard(String cardID) {
         Card card;
-        card = Card.findCardInArrayList(cardID, currentTurnPlayer.getMainDeck().getCards());
+        if (turn % 2 == 1)
+            card = Card.findCardInArrayList(cardID, firstPlayerInGameCards);
+        else card = Card.findCardInArrayList(cardID, secondPlayerInGameCards);
         selectedCard = card;
     }
 
@@ -98,26 +102,73 @@ public class Battle {
         }
     }
 
-    public void attack(Cell targetCell) {
+    public void attack(String cardID, Warrior warrior, boolean isAttack) {
+        Cell targetCell = getCellFromCardID(cardID);
         Card targetCard = targetCell.getCard();
-        Warrior warrior;
         Warrior defender;
         defender = (Warrior) targetCard;
-        warrior = (Warrior) selectedCard;
         if (!isValidAttack(targetCell, warrior)) {
             throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
         }
         defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
-        //TODO check valid counterAttack
-        warrior.decreaseHealthPoint(defender.getActionPower());
+        affectBuffs(warrior, targetCell, defender);
+        if (defender.isValidCounterAttack() && isAttack) {
+            attack(warrior.getCardId(), defender, false);
+        }
+
+    }
+
+    private void affectBuffs(Warrior warrior, Cell targetCell, Warrior defender) {
+        ArrayList<ABuff> aBuffs = warrior.getBuffs();
+        for (ABuff aBuff :
+                aBuffs) {
+            if (aBuff instanceof ManaBuff) {
+                aBuff.affect(this);
+            } else {
+                aBuff.affect(defender);
+                aBuff.affect(targetCell);
+            }
+        }
+    }
+
+    private Cell getCellFromCardID(String cardID) {
+        Cell targetCell = null;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (map.getCells()[i][j].getCard().getCardId().equals(cardID)) {
+                    targetCell = map.getCells()[i][j];
+                    break;
+                }
+            }
+        }
+        return targetCell;
     }
 
     public void attackCombo(Cell targetCell, String... warriorsCarIds) {
-
+        //TODO combo :(
     }
 
-    public void useSpecialPower(Cell cell) {
-
+    public void useSpecialPower(int x, int y) {
+        Warrior warrior;
+        if (selectedCard instanceof Warrior) {
+            warrior = (Warrior) selectedCard;
+            if (((Warrior) selectedCard).getSpecialPower() != null) {
+                throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
+            }
+        } else return;
+        if (!isValidSpeicalPower(x, y)) {
+            throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
+        }
+        if (turn % 2 == 1) {
+            if (firstPlayerMana < warrior.getSpecialPower().getManaCost()) {
+                throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+            }
+        } else {
+            if (secondPlayerMana < warrior.getSpecialPower().getManaCost()) {
+                throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+            }
+        }
+        insertCard(warrior.getSpecialPower().getCardName(), x, y);
 
     }
 
@@ -125,6 +176,10 @@ public class Battle {
 
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
         if (card != null) {
+            if (card instanceof Spell) {
+                applay(cardName, x, y);
+                return;
+            }
             Cell cell = map.getCell(x, y);
             if (isValidInsert(cell)) {
                 if (turn % 2 == 1) {
@@ -149,6 +204,10 @@ public class Battle {
         } else {
             throw new Error(ConstantMessages.INVALID_CARD_NAME.getMessage());
         }
+    }
+
+    public void applay(String cardName, int x, int y) {
+
     }
 
     public void endTurn() {
@@ -186,23 +245,6 @@ public class Battle {
         setFirstPlayerMana(getFirstPlayerCapacityMana());
         setSecondPlayerMana(getSecondPlayerCapacityMana());
 
-        //TODO OLD IMPLEMENTATION NOT DELETED BUT PROBABLY IT HAS NO USE ANYMORE
-
-    /*    if (turn == 1) {
-            setFirstPlayerCapacityMana(2);
-            firstPlayerCapacityMana = 2;
-        } else if (turn == 2) {
-            setSecondPlayerCapacityMana(2);
-            secondPlayerCapacityMana = 3;
-        } else if (turn % 2 == 1 && turn < 14) {
-            firstPlayerCapacityMana++;
-            secondPlayerCapacityMana++;
-        } else if (turn >= 14) {
-            firstPlayerCapacityMana = 9;
-            secondPlayerCapacityMana = 9;
-        }
-        firstPlayerMana = firstPlayerCapacityMana;
-        secondPlayerMana = secondPlayerCapacityMana;*/
     }
 
     private void incrementTurn() {
@@ -323,7 +365,6 @@ public class Battle {
                     validCells.add(cell1);
             }
         }
-
     }
 
     private void findValidCellToAttack() {
@@ -738,5 +779,19 @@ public class Battle {
 
     public int getNumberOfFlagForWin() {
         return numberOfFlagForWin;
+    }
+
+    public void showMap() {
+        Cell[][] cells = map.getCells();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].getCard() != null) {
+                    if (cells[i][j].getCard().getAccount().equals(firstPlayer))
+                        System.out.print(" 1 ");
+                    else System.out.print(" 2 ");
+                } else System.out.print(" 0 ");
+                System.out.println();
+            }
+        }
     }
 }
