@@ -303,7 +303,7 @@ public class MinionInitializer {
             writer.close();
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }

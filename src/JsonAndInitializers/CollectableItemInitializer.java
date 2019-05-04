@@ -44,8 +44,8 @@ public class CollectableItemInitializer {
 
         try (Writer writer = new FileWriter("CollectableItems_YaGson.json")) {
             gson.toJson(collectableItem, writer);
-        } catch (IOException e) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
