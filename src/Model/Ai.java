@@ -22,6 +22,8 @@ public class Ai {
         return mainDeck;
     }
 
+
+
     public void playGame() {
         Random random = new Random();
         int randomInteger = random.nextInt() % 3;
@@ -51,4 +53,11 @@ public class Ai {
     }
 
 
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public ArrayList<Card> getCardsInGame() {
+        return cardsInGame;
+    }
 }

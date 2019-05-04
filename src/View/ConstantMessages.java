@@ -29,40 +29,62 @@ public enum ConstantMessages {
     NOT_YOUR_TURN("It is not your turn!"),
     NO_CARD_SELECTED("Please Select a Card"),
     NOT_IN_SHOP("Sorry!We don't have this one in our shop"),
+    NOT_ENOUGH_CARD_TO_ADD_TO_DECK("You don't have enough cards of this one to add more to this deck!"),
     //*****************************************
 
     //Successful Messages
     //*****************************************
     USERNAME_EXIST("A user exists with this Username!"),
+
     ITEM_EXIST("An Item exists with this name!"),
+
     CARD_EXIST("A Card exists with this name!"),
+
     VALID_DECK("Selected Deck is a Valid Deck"),
+
     BUY_SUCCESSFUL("Your buy request was done successfully!"),
+
     SELL_SUCCESSFUL("Your sell request was done successfully!"),
     //*****************************************
 
     //Menus
     //*****************************************
     HELP_SHOW("create account [user name]\nlogin [username]\nshow leaderboard\nsave\nlogout"),
+
     GET_PASSWORD("PassWord [ password > 5 letter ] : "),
+
     UNRELIABLE_PASSWORD("password is unreliable! , input secure password"),
+
     YOUR_PASSWORD("PassWord : "),
+
     COLLECTABLE_HELP("Show info\nUse [location x,y]"),
+
     GRAVEYARD_HELP("exit\nShow info\nShow Cards"),
+
     SHOP_HELP("show collection\nsearch [card name]\nsearch collection [name]\nbuy [name]\nsell [name]\nshow"),
-    BATTLE_HELP("Game info\nShow my minions\nShow opponent minions\n" +
-            "Show card info [cardID]\nSelect [card id]\nInsert [card name] in (x,y)\nEnd turn\nShow collectables\n" +
-            "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)"),
-    COLLECTION_HELP("Show menu\nshow\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
-            "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
-            "select deck [deck name] \nshow all decks \nshow deck [deck name]"),
+
+    BATTLE_HELP("Game info\nShow my minions\nShow opponent minions\n"+
+                        "Show card info [cardID]\nSelect [card id]\nInsert [card name] in (x,y)\nEnd turn\nShow collectables\n"+
+                        "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)"),
+
+    COLLECTION_HELP("Show menu\nshow\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]"+
+                            "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n"+
+                            "select deck [deck name] \nshow all decks \nshow deck [deck name]"),
+
     MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nexit"),
+
     GAME_MODE("Enter Game Mode :\n1.Single Player\n2.Multi Player\n(1 , 2)? "),
+
     NUMBER_OF_GAME_MODE("1 or 2 !!? :)"),
+
     GAME_GOAL("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?"),
+
     NUMBER_OF_GAME_GOAL("1 or 2 or 3 !!? :)"),
+
     GAME_FLAG("Enter Game Goal :\n1.Hold Flag\n2.Collect Flag\n3.Kill Hero\n(1,2,3)?"),
+
     NUMBER_OF_GAME_FLAG("input Number !! , try again "),
+
     MAIN_MENU("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help");
 
     //*****************************************

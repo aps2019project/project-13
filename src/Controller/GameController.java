@@ -62,9 +62,10 @@ public class GameController {
         }
     }
 
-    public void showMenu(KindOfOrder kindOfOrder){
+    public void showMenu(KindOfOrder kindOfOrder) {
         show.showMenu(kindOfOrder);
     }
+
     private void shopCommandManagement(Request request, ShopCommand shopCommand) throws Error {
 
         Shop shop = Shop.getInstance();
@@ -335,7 +336,6 @@ public class GameController {
         int y = Integer.parseInt(battleCommand.getData().get(2));
         Battle battle = Battle.getRunningBattle();
         battle.insertCard(cardName, x, y);
-
     }
 
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) throws Error {
@@ -456,17 +456,22 @@ public class GameController {
         String deckName = collectionCommand.getData().get(0);
         if (Account.getLoginedAccount().findDeck(deckName) == null) {
             Deck.createDeck(deckName, Account.getLoginedAccount());
-        }
+        } else
+            throw new Error(ConstantMessages.DECK_EXIST.getMessage());
     }
 
     private void collectionAddToDeck(CollectionCommand collectionCommand) {
-        String cardName = collectionCommand.getData().get(0);
+        String cardId = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
-        Card card = Card.findCardInArrayList(cardName, Account.getLoginedAccount().getCardCollection().getCards());
-        if (deck != null && card != null) {
+        Card card = Card.findCardInArrayList(cardId, Account.getLoginedAccount().getCardCollection().getCards());
+        if (deck == null)
+            throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
+        if (card == null)
+            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+        if (CardCollection.getCountOfCard(deck.getCards(), card) < CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), card))
             deck.addCard(card);
-        }
+        throw new Error(ConstantMessages.NOT_ENOUGH_CARD_TO_ADD_TO_DECK.getMessage());
     }
 
     private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
