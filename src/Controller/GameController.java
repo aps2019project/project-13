@@ -22,6 +22,7 @@ public class GameController {
     }
 
     public void main() {
+        showMenu(KindOfOrder.ACCOUNT);
         Request request = Request.getInstance();
         while (!isFinish) {
             try {
@@ -61,6 +62,9 @@ public class GameController {
         }
     }
 
+    public void showMenu(KindOfOrder kindOfOrder){
+        show.showMenu(kindOfOrder);
+    }
     private void shopCommandManagement(Request request, ShopCommand shopCommand) throws Error {
 
         Shop shop = Shop.getInstance();
@@ -340,7 +344,8 @@ public class GameController {
                 show.showHelp(KindOfOrder.COLLECTION);
                 break;
             case SAVE:
-                throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
+                Account.saveAccount();
+                break;
             case EXIT:
                 request.exitLastmenu();
                 break;

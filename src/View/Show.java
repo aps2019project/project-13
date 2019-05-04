@@ -209,4 +209,8 @@ public class Show {
     public void invalidNumberForFlag() {
         System.out.println(ConstantMessages.NUMBER_OF_GAME_FLAG.getMessage());
     }
+
+    public void showMenu(KindOfOrder kindOfOrder) {
+        System.out.println(" *** " + kindOfOrder.name() + " Menu *** ");
+    }
 }

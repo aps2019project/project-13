@@ -1,5 +1,7 @@
 package View;
 
+import Controller.GameController;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -280,7 +282,12 @@ public class Request {
     }
 
     public void addNewMenu(KindOfOrder kindOfOrder) {
+        showMenu(kindOfOrder);
         kindOfOrders.add(kindOfOrder);
+    }
+
+    private void showMenu(KindOfOrder kindOfOrder){
+        GameController.getInstance().showMenu(kindOfOrder);
     }
 
     public void exitLastmenu() {
