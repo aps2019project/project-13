@@ -52,6 +52,15 @@ public class CardCollection {
         }
     }
 
+    public static int getCountOfCard(ArrayList<Card> cards, Card card) {
+        int counter = 0;
+        for (Card card1 : cards) {
+            if (card1.getCardName().equals(card.getCardName()))
+                counter++;
+        }
+        return counter;
+    }
+
     public Card findCard(String cardId) {
         return Card.findCardInArrayListByName(cardId, getCards());
     }

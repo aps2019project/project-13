@@ -40,6 +40,17 @@ public class Main {
             Shop.getInstance().addCard(minion);
         }
 
+        Hero[] heroes = new Hero[20];
+        try (Reader reader = new FileReader("Heroes_YaGson.json")) {
+            heroes = yaGson.fromJson(reader, Hero[].class);
+        } catch (IOException e) {
+
+        }
+        for (int j = 0; j < heroes.length; j++) {
+            if (heroes[i] != null)
+                Shop.getInstance().addCard(heroes[j]);
+        }
+
 
         GameController gamecontroller = GameController.getInstance();
         gamecontroller.main();

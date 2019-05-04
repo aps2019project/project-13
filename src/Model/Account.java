@@ -198,16 +198,13 @@ public class Account implements Cloneable{
         return trueAccount;
     }
 
-    private static Comparator<Account> sortByWin = new Comparator<Account>() {
-        @Override
-        public int compare(Account player1, Account player2) {
-            if (player1.getCountOfWins() > player2.getCountOfWins())
-                return -1;
-            else if (player1.getCountOfWins() == player2.getCountOfWins())
-                return 0;
-            else
-                return 1;
-        }
+    private static Comparator<Account> sortByWin = (player1, player2) -> {
+        if (player1.getCountOfWins() > player2.getCountOfWins())
+            return -1;
+        else if (player1.getCountOfWins() == player2.getCountOfWins())
+            return 0;
+        else
+            return 1;
     };
 
     public static void sortAccounts() {
