@@ -133,15 +133,15 @@ public class Card implements Cloneable {
     }
 
     public void addBuff(ABuff buff) {
-        buffs.add(buff);
+        getBuffs().add(buff);
     }
 
     public void deleteBuff(ABuff buff) {
-        buffs.remove(buff);
+        getBuffs().remove(buff);
     }
 
     public void clearAllBuffs() {
-        buffs.clear();
+        getBuffs().clear();
     }
 
     public ArrayList<ABuff> getBuffs() {
@@ -153,7 +153,7 @@ public class Card implements Cloneable {
     }
 
     private void addCard(Card card) {
-        allCards.add(card);
+        getAllCards().add(card);
     }
 
     public static Card getCard(String cardId) {

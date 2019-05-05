@@ -82,14 +82,14 @@ public class CardCollection {
     public ArrayList<String> search(String name) {
         ArrayList<String> Ids = new ArrayList<>();
         for (Card card :
-                cards) {
+                getCards()) {
             if (card.getCardName().equals(name))
                 Ids.add(card.getCardId());
         }
         if (!Ids.isEmpty())
             return Ids;
         for (Item item :
-                items) {
+                getItems()) {
             if (item.getItemName().equals(name))
                 Ids.add(item.getItemId());
         }
@@ -99,6 +99,7 @@ public class CardCollection {
     }
 
     public Card getCard(String name) {
+        //TODO WHAT DOES THIS DO?!
 
         return new Card("test", "22", 1, 1, CardKind.HERO, "");
     }
@@ -119,7 +120,7 @@ public class CardCollection {
 
     public boolean validAddItem() {
 
-        return items.size() <= 3;
+        return getItems().size() <= 3;
 
     }
 

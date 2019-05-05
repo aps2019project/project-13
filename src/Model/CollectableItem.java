@@ -1,6 +1,7 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
+import com.rits.cloning.Cloner;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,16 @@ public class CollectableItem extends Item {
     public CollectableItem(String itemId, String itemDescription, String itemName, ArrayList<ABuff> aBuffs) {
         super(itemId, itemDescription, ItemKind.COLLECTIBLE, itemName);
         this.aBuffs = aBuffs;
+    }
+    public static CollectableItem deepClone(CollectableItem collectableItem)
+    {
+        if (collectableItem!=null) {
+            Cloner cloner = new Cloner();
+            cloner.dontClone(Account.class);
+            CollectableItem collectableItemClone = cloner.deepClone(collectableItem);
+            //TODO ITEM ID
+        }
+            return collectableItem;
     }
 
     public ArrayList<ABuff> getaBuffs() {

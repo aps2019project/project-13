@@ -1,5 +1,8 @@
 package Model;
 
+import Model.BuffClasses.ABuff;
+import com.rits.cloning.Cloner;
+
 import java.util.ArrayList;
 
 public class UsableItem extends Item {
@@ -10,6 +13,16 @@ public class UsableItem extends Item {
         super(itemId, itemDescription, ItemKind.USABLE, itemName);
         this.DarickCost = darickCost;
         this.specialPowerBuffs = specialPowerBuffs;
+    }
+
+    public static UsableItem deepClone(UsableItem usableItem) {
+        if (usableItem != null) {
+            Cloner cloner = new Cloner();
+            cloner.dontClone(Account.class);
+            UsableItem usableItemClone = cloner.deepClone(usableItem);
+            //TODO ITEM ID
+        }
+        return usableItem;
     }
 
     public int getDarickCost() {

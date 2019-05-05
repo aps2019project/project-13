@@ -1,5 +1,7 @@
 package Model;
 
+import com.rits.cloning.Cloner;
+
 import java.util.ArrayList;
 
 public class Item {
@@ -17,6 +19,18 @@ public class Item {
         this.itemName = itemName;
 //        this.darickCost = darickCost;
     }
+    public static Item deepClone(Item item)
+    {
+        if (item!=null) {
+            if (item instanceof CollectableItem) {
+                return CollectableItem.deepClone(item);
+            } else if (item instanceof UsableItem) {
+                return UsableItem.deepClone(item);
+            }
+        }
+        return null;
+    }
+
 
     public static Item findItemInArrayList(String itemId, ArrayList<Item> items) {
         if (items != null) {

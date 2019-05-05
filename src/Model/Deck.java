@@ -230,7 +230,8 @@ public class Deck implements Cloneable {
             minion.setCardId(Card.makeNewID(AI.getUsername(), minion.getCardName(), counter++));
             deck.addCard(minion);
         }
-        UsableItem item1 = Shop.getInstance().searchAndGetItem("UsableItem_" + item);
+        //TODO CHECK DOWNCASTING
+        UsableItem item1 =(UsableItem) Item.deepClone( Shop.getInstance().searchAndGetItem("UsableItem_" + item));
         deck.setItem(item1);
         return deck;
         //UsableItem.findItemInArrayList("1",Shop.getInstance().getItems())
