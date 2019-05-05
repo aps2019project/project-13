@@ -3,8 +3,9 @@ package Model;
 import Model.BuffClasses.ABuff;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class Card implements Cloneable{
+public class Card implements Cloneable {
     private static ArrayList<Card> allCards = new ArrayList<>();
 
     private String cardId;
@@ -18,21 +19,17 @@ public class Card implements Cloneable{
     private ArrayList<ABuff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
     private boolean isInGame;
-    private static int counter=0;
 
-    public static String makeNewID(String accountName , String cardID , String cardName )
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.append(cardID).append("_").append(cardName).append("_").append(accountName).append("_").append(counter++);
-        return sb.toString();
+    private static String makeNewID(String accountName, String cardName, int countOfCardsInPlayerCollection) {
+        return accountName + "_" + cardName + "_" + (countOfCardsInPlayerCollection + 1);
     }
 
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
         Card card = (Card) super.clone();
-        String id = makeNewID(Account.getLoginedAccount().getUsername(),cardId,cardName);
-        card.cardId = id;
+        card.cardId = makeNewID(Account.getLoginedAccount().getUsername(), cardName,
+                CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), card));
         ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
         card.setBuffs(buffsClone);
         return card;

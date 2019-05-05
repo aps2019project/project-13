@@ -64,12 +64,14 @@ public class Battle {
         runningBattle = this;
     }
 
-    public void handelBattleSinglePlayer(){
+    public void handelBattleSinglePlayer() {
 
     }
-    public void handelBattleMultiPlayer(){
+
+    public void handelBattleMultiPlayer() {
 
     }
+
     public void decreaseMana(int number, int numberOfPlayer) {
         if (numberOfPlayer == 1) {
             firstPlayerMana -= number;
@@ -153,11 +155,14 @@ public class Battle {
         //TODO combo :(
     }
 
-    public void useSpecialPower(Warrior warrior ,int x, int y) {
-            if ( warrior.getSpecialPower() == null) {
+    public void useSpecialPower(int x, int y) {
+        Warrior warrior;
+        if (selectedCard instanceof Warrior) {
+            warrior = (Warrior) selectedCard;
+            if (((Warrior) selectedCard).getSpecialPower() != null) {
                 throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
             }
-
+        } else return;
         if (!isValidSpeicalPower(x, y)) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
         }
@@ -170,18 +175,16 @@ public class Battle {
                 throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
             }
         }
-        applySpell(warrior.getSpecialPower(), x, y);
+        insertCard(warrior.getSpecialPower().getCardName(), x, y);
 
     }
 
-    public void applySpell(Spell card, int x, int y) {
-
+    private void applySpell(Spell spell, int x, int y) {
 
 
     }
 
     public void insertCard(String cardName, int x, int y) throws Error {
-
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
         if (card != null) {
             if (card instanceof Spell) {
@@ -252,7 +255,6 @@ public class Battle {
     }
 
     private void incrementTurn() {
-        setCurrentTurnPlayer();
         setFirstPlayerNextCard();
         setSecondPlayerNextCard();
         turn++;
@@ -405,7 +407,7 @@ public class Battle {
     }
 
     private boolean isValidInsert(Cell destinationCell) {
-        return destinationCell.isEmpty();
+        return (destinationCell != null) && destinationCell.isEmpty();
     }
 
     private boolean isValidMove(Cell destinationCell) {
