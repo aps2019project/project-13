@@ -193,8 +193,8 @@ public class GameController {
                 Battle.setRunningBattle(null);
                 break;
         }
-            if (Battle.getRunningBattle() != null) {
-                Battle.getRunningBattle().showMap();
+        if (Battle.getRunningBattle() != null) {
+            Battle.getRunningBattle().showMap();
 
         }
     }
@@ -205,31 +205,62 @@ public class GameController {
 
     private void startBattle(Request request) throws Error {
         show.enterInBattle();
-        String gameModeNumber = request.getNumberForKindOfBattle();
+        String gameModeNumber = request.getString();
         gameModeNumber = getGameMode(request, gameModeNumber);
         show.enterInBattleSecondStep();
-        String gameGoalNumber = request.getNumberForKindOfBattle();
+        String gameGoalNumber = request.getString();
         gameGoalNumber = getGameGoal(request, gameGoalNumber);
         GameGoal gameGoal;
         GameMode gameMode;
-        Account account = null;
+        Account account;
         gameMode = getGameMode(gameModeNumber);
-        account = getSecondAccount(request, gameMode, account);
+        account = getSecondAccount(request, gameMode, null);
+        String kindOfSinglePlayer = null;
+        Deck deck = null;
+        String chooseAi = null;
+        if (gameMode == GameMode.SINGLEPLAYER) {
+            show.kindOFSinglePlayer();
+            kindOfSinglePlayer = request.getString();
+            while (!kindOfSinglePlayer.equals("1") && !kindOfSinglePlayer.equals("2")) {
+                show.invalidKindOfSinglePlayer();
+                show.kindOFSinglePlayer();
+                kindOfSinglePlayer = request.getString();
+            }
+            if (kindOfSinglePlayer.equals("2")) {
+                show.chooseDeck();
+                String deckName = request.getString();
+                for (Deck deck1 :
+                        Account.getLoginedAccount().getDecks()) {
+                    if (deckName.equals(deck1.getDeckName())) {
+                        deck = deck1;
+                    }
+                }
+                while (deck == null) {
+                    show.invalidDeck();
+                    show.chooseDeck();
+                    deckName = request.getString();
+                    for (Deck deck1 :
+                            Account.getLoginedAccount().getDecks()) {
+                        if (deckName.equals(deck1.getDeckName())) {
+                            deck = deck1;
+                        }
+                    }
+                }
+            } else {
+                show.chooseAi();
+                chooseAi = request.getString();
+                while (!chooseAi.equals("1") && !chooseAi.equals("3") && !chooseAi.equals("2")) {
+                    show.invalidComputer();
+                    show.chooseAi();
+                    chooseAi = request.getString();
+                }
+
+            }
+        }
         gameGoal = getGameGoal(gameGoalNumber);
-        if (setBattleForCollectFlag(request, gameGoal, gameMode, account)) return;
-        setBattle(gameGoal, gameMode, account);
-
-    }
-
-    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) throws Error {
         show.startBattle();
-        if (gameMode == GameMode.SINGLEPLAYER)
-            new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal);//TODO AI
-        else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
-    }
-
-    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account) throws Error {
-        show.startBattle();
+//        if (setBattleForCollectFlag(request, gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck)) return;
+//        setBattle(gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck);
         if (gameGoal == GameGoal.COLLECT_FLAG) {
             int numberOfFlagForWin = 0;
             while (numberOfFlagForWin < 1) {
@@ -242,14 +273,71 @@ public class GameController {
                     show.invalidNumberForFlag();
                 }
             }
-            if (gameMode == GameMode.SINGLEPLAYER)
-                new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);//TODO AI
-            else
-                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-            return true;
+            if (gameMode == GameMode.SINGLEPLAYER) {
+                if (kindOfSinglePlayer.equals("1")) {
+                    new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+                } else {
+                    Ai ai = new Ai(4);
+                    ai.setMainDeck(deck);
+                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+                }
+
+            } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+            return ;
         }
-        return false;
+        if (gameMode == GameMode.SINGLEPLAYER) {
+            if (kindOfSinglePlayer.equals("1")) {
+                new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal);
+            } else {
+                Ai ai = new Ai(4);
+                ai.setMainDeck(deck);
+                new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
+            }
+
+        } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
     }
+
+//    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account, int numberOfAi, int kindOfGame, Deck deck) throws Error {
+//        show.startBattle();
+//        if (gameMode == GameMode.SINGLEPLAYER) {
+//            if (kindOfGame == 1) {
+//                new Battle(Account.getLoginedAccount(), new Ai(numberOfAi), gameMode, gameGoal);
+//            } else {
+//                Ai ai = new Ai(4);
+//                ai.setMainDeck(deck);
+//                new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
+//            }
+//
+//        } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
+//    }
+//
+//    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account,int numberOfAi, int kindOfGame, Deck deck) throws Error {
+//        if (gameGoal == GameGoal.COLLECT_FLAG) {
+//            int numberOfFlagForWin = 0;
+//            while (numberOfFlagForWin < 1) {
+//                show.numberOfFlag();
+//                String numberOfFlag = request.getNumberOfFlag();
+//
+//                try {
+//                    numberOfFlagForWin = Integer.parseInt(numberOfFlag);
+//                } catch (Exception e) {
+//                    show.invalidNumberForFlag();
+//                }
+//            }
+//            if (gameMode == GameMode.SINGLEPLAYER) {
+//                if (kindOfGame == 1) {
+//                    new Battle(Account.getLoginedAccount(), new Ai(numberOfAi), gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+//                } else {
+//                    Ai ai = new Ai(4);
+//                    ai.setMainDeck(deck);
+//                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+//                }
+//
+//            } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+//            return true;
+//        }
+//        return false;
+//    }
 
     private GameGoal getGameGoal(String gameGoalNumber) {
         GameGoal gameGoal;
@@ -290,7 +378,7 @@ public class GameController {
         while (!gameModeNumber.equals("1") && !gameModeNumber.equals("2")) {
             show.invalidNumberForMode();
             show.enterInBattle();
-            gameModeNumber = request.getNumberForKindOfBattle();
+            gameModeNumber = request.getString();
         }
         return gameModeNumber;
     }
@@ -299,7 +387,7 @@ public class GameController {
         while (!gameGoalNumber.equals("1") && !gameGoalNumber.equals("2") && !gameGoalNumber.equals("3")) {
             show.invalidNumberForGoal();
             show.enterInBattleSecondStep();
-            gameGoalNumber = request.getNumberForKindOfBattle();
+            gameGoalNumber = request.getString();
         }
         return gameGoalNumber;
     }
@@ -572,7 +660,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        battle.useSpecialPower(null , x, y);
+        battle.useSpecialPower(null, x, y);
     }
 
 
