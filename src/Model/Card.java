@@ -1,6 +1,7 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
+import com.rits.cloning.Cloner;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -202,5 +203,17 @@ public class Card implements Cloneable {
         this.cardName = cardName;
     }
 
+    public static Card deepClone(Card card)
+    {
+        if (card instanceof Warrior)
+        {
+            return Warrior.deepClone((Warrior) card);
+        }
+        else if (card instanceof Spell)
+        {
+            return Spell.deepClone((Spell) card);
+        }
+        return null;
+    }
     //TODO THIS MAY NEED TO BE CHANGED. THE LOGIC IS THE SAME BUT MAYBE WE NEED TO CLONE ANOTHER ABuff ArrayList.
 }
