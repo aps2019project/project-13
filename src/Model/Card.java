@@ -201,5 +201,17 @@ public class Card implements Cloneable {
     public void setCardName(String cardName) {
         this.cardName = cardName;
     }
+
+    public  <T> boolean hasBuffType(Class<T> tClass)
+    {
+        for (int i =0;i<getBuffs().size();i++)
+        {
+            if (getBuffs().get(i)!=null && getBuffs().get(i).getClass().equals(tClass))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     //TODO THIS MAY NEED TO BE CHANGED. THE LOGIC IS THE SAME BUT MAYBE WE NEED TO CLONE ANOTHER ABuff ArrayList.
 }
