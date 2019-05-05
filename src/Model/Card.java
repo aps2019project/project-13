@@ -15,7 +15,7 @@ public class Card implements Cloneable{
     private Account account;
     private String cardDescription;
     private String cardName;
-    private ArrayList<ABuff> buffs = new ArrayList<>();
+
     private boolean isAbleToMove;
     private boolean isInGame;
     private static int counter=0;
@@ -33,8 +33,7 @@ public class Card implements Cloneable{
         Card card = (Card) super.clone();
         String id = makeNewID(Account.getLoginedAccount().getUsername(),cardId,cardName);
         card.cardId = id;
-        ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
-        card.setBuffs(buffsClone);
+
         return card;
     }
 
@@ -119,25 +118,7 @@ public class Card implements Cloneable{
         return cardDescription;
     }
 
-    public void addBuff(ABuff buff) {
-        buffs.add(buff);
-    }
 
-    public void deleteBuff(ABuff buff) {
-        buffs.remove(buff);
-    }
-
-    public void clearAllBuffs() {
-        buffs.clear();
-    }
-
-    public ArrayList<ABuff> getBuffs() {
-        return buffs;
-    }
-
-    public void setBuffs(ArrayList<ABuff> buffs) {
-        this.buffs = buffs;
-    }
 
     private void addCard(Card card) {
         allCards.add(card);

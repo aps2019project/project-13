@@ -555,7 +555,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        battle.useSpecialPower(x, y);
+        //todo battle.useSpecialPower(x, y);
     }
 
 
