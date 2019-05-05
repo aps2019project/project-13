@@ -8,7 +8,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_1",
       "itemDescription": "Increase Mana in 3 turns",
       "itemKind": "USABLE",
       "itemName": "Wisdom Crown"
@@ -23,7 +23,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_2",
       "itemDescription": "12 Holy Buff in Friendly Hero",
       "itemKind": "USABLE",
       "itemName": "Namoos Separ"
@@ -38,7 +38,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_3",
       "itemDescription": "Friendly Hero disarm Enemy For One Trun",
       "itemKind": "USABLE",
       "itemName": "Bow of Damol"
@@ -53,7 +53,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_4",
       "itemDescription": "Weakness power buff for enemy Ranged",
       "itemKind": "USABLE",
       "itemName": "Simorq Feather"
@@ -68,7 +68,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_5",
       "itemDescription": "Weakness power buff for random enemty for one turn",
       "itemKind": "USABLE",
       "itemName": "Terror Hood"
@@ -83,7 +83,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_6",
       "itemDescription": "One extra Mana for whole game",
       "itemKind": "USABLE",
       "itemName": "King Wisdom"
@@ -98,7 +98,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_7",
       "itemDescription": "One damage to Enemy Hero each time you put a card on the field",
       "itemKind": "USABLE",
       "itemName": "Assassination Dagger"
@@ -113,7 +113,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_8",
       "itemDescription": "Poison damage to random enemy",
       "itemKind": "USABLE",
       "itemName": "Poisonous Dagger"
@@ -128,7 +128,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_9",
       "itemDescription": "Hero disarm One enemy for one turn",
       "itemKind": "USABLE",
       "itemName": "Shock Hammer"
@@ -143,7 +143,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_10",
       "itemDescription": "A power buff to a unit when some of units die",
       "itemKind": "USABLE",
       "itemName": "Soul Eater"
@@ -158,7 +158,7 @@
         "activationCondition": "PASSIVE",
         "targetSocietyKind": "FRIENDLY_CARDS"
       },
-      "itemId": "2",
+      "itemId": "UsableItem_11",
       "itemDescription": "2 turn holy buff for each unit",
       "itemKind": "USABLE",
       "itemName": "Baptism (Ghosl Ta'amid)"

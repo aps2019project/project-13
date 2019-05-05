@@ -52,8 +52,8 @@ public class Ai extends Account{
     private void attack() {
 
     }
-
     private void move() {
+
 
     }
 

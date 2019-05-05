@@ -20,10 +20,13 @@ public class Card implements Cloneable {
     private boolean isAbleToMove;
     private boolean isInGame;
 
-    private static String makeNewID(String accountName, String cardName, int countOfCardsInPlayerCollection) {
+    public static String makeNewID(String accountName, String cardName, int countOfCardsInPlayerCollection) {
         return accountName + "_" + cardName + "_" + (countOfCardsInPlayerCollection + 1);
     }
 
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
+    }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
