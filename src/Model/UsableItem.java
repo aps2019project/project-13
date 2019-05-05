@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class UsableItem extends Item {
     private int DarickCost;
-    private Spell spell;
+    private SpecialPowerBuffs specialPowerBuffs;
 
-    public UsableItem(String itemId, String itemDescription, String itemName, int darickCost, Spell spell) {
+    public UsableItem(String itemId, String itemDescription, String itemName, int darickCost, SpecialPowerBuffs specialPowerBuffs) {
         super(itemId, itemDescription, ItemKind.USABLE, itemName);
         this.DarickCost = darickCost;
-        this.spell = spell;
+        this.specialPowerBuffs = specialPowerBuffs;
     }
 
     public int getDarickCost() {
@@ -32,7 +32,7 @@ public class UsableItem extends Item {
         return "Name:" + this.getItemName() + "- Desc: " + this.getItemDescription();
     }
 
-    public Spell getSpell() {
-        return spell;
+    public SpecialPowerBuffs getSpecialPowerBuffs() {
+        return specialPowerBuffs;
     }
 }

@@ -1,4 +1,8 @@
 import Controller.*;
+import JsonAndInitializers.HeroInitializer;
+import JsonAndInitializers.MinionInitializer;
+import JsonAndInitializers.SpellInitializer;
+import JsonAndInitializers.UsableItemInitializer;
 import Model.*;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
@@ -17,6 +21,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+
         try {
             YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
             Reader reader = new FileReader("accounts.json");
