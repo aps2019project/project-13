@@ -3,36 +3,31 @@ package Model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Ai extends Account{
+public class Ai extends Account {
 
-    private static Ai ai1;
-    private static Ai ai2;
-    private static Ai ai3;
     private Battle battle;
 
-    public Ai(Battle battle, int numberOfAi) {
-        super("name" , "Password");
-        this.battle = battle;
+    public Ai( int numberOfAi) {
+        super("name", "Password");
         if (numberOfAi == 1) {
-            ai1 = this;
+            this.setMainDeck(Deck.AiDeckBuilder(1));
         } else if (numberOfAi == 2) {
-            ai2 = this;
-        } else {
-            ai3 = this;
+            this.setMainDeck(Deck.AiDeckBuilder(2));
+        } else if (numberOfAi == 3) {
+            this.setMainDeck(Deck.AiDeckBuilder(3));
         }
         setDarick(1000000000);
 
     }
 
-    public void addCardToAi(int numberOfAi , Card card){
-        if (numberOfAi == 1) {
-            ai1.getMainDeck().addCard(card);
-        } else if (numberOfAi == 2) {
-            ai2.getMainDeck().addCard(card);
-        } else {
-            ai3.getMainDeck().addCard(card);
-        }
+    public void setDeck(Deck deck) {
+        setMainDeck(deck);
     }
+
+    public void setBattle(Battle battle) {
+        this.battle = battle;
+    }
+
     public void playGame() {
         Random random = new Random();
         int randomInteger = random.nextInt() % 3;
@@ -52,6 +47,7 @@ public class Ai extends Account{
     private void attack() {
 
     }
+
     private void move() {
 
 
@@ -59,17 +55,5 @@ public class Ai extends Account{
 
     private void insertCard() {
 
-    }
-
-    public static Ai getAi1() {
-        return ai1;
-    }
-
-    public static Ai getAi2() {
-        return ai2;
-    }
-
-    public static Ai getAi3() {
-        return ai3;
     }
 }

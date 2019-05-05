@@ -641,5 +641,22 @@
       "darick": 98300,
       "collectableItems": []
     }
+  },
+  {
+    "@type": "Model.Account",
+    "@val": {
+      "battleHistory": [],
+      "decks": [],
+      "cardCollection": {
+        "cards": [],
+        "items": [],
+        "account": "@root.3"
+      },
+      "username": "nahid",
+      "password": "nahid",
+      "countOfWins": 0,
+      "darick": 100000,
+      "collectableItems": []
+    }
   }
 ]

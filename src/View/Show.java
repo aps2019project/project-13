@@ -265,11 +265,36 @@ public class Show {
         for (int i = 0; i < s.length(); i++) {
             System.out.print(s.charAt(i));
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         System.out.println();
+    }
+
+    public void kindOFSinglePlayer() {
+        System.out.println("1.Story \n2.Custom\n(1 , 2) ? ");
+    }
+
+    public void invalidKindOfSinglePlayer() {
+        System.out.println(ConstantMessages.NUMBER_OF_GAME_FLAG.getMessage());
+    }
+
+    public void chooseDeck() {
+        System.out.println("Choose a deck : ");
+        for (Deck deck :
+                Account.getLoginedAccount().getDecks()) {
+            System.out.println("- "+deck.getDeckName());
+        }
+    }
+    public void invalidDeck(){
+        System.out.println("not exist deck ! Try again ");
+    }
+    public void chooseAi(){
+        System.out.println("we have 3 computer to play Game , choose (1 , 2 , 3)?");
+    }
+    public void invalidComputer(){
+        System.out.println("1 or 2 or 3 ?! try again!");
     }
 }

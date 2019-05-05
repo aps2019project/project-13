@@ -36,7 +36,7 @@ public class Request {
         return scanner.nextLine();
     }
 
-    public String getNumberForKindOfBattle() {
+    public String getString() {
         return scanner.nextLine();
     }
 

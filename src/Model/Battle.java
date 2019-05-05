@@ -50,6 +50,9 @@ public class Battle {
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
+        if(secondPlayer instanceof Ai){
+            ((Ai) secondPlayer).setBattle(this);
+        }
         map = new Map(this);
         runningBattle = this;
         checkDeckAtFirst(firstPlayer, secondPlayer);
