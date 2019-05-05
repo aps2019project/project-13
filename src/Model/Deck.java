@@ -1,6 +1,8 @@
 
 package Model;
 
+import com.rits.cloning.Cloner;
+
 import java.util.ArrayList;
 
 public class Deck implements Cloneable {
@@ -19,6 +21,13 @@ public class Deck implements Cloneable {
         setCards(new ArrayList<>());
         setMinions(new ArrayList<>());
         decks.add(this);
+    }
+    public static Deck deepClone (Deck deck)
+    {
+        Cloner cloner = new Cloner();
+        cloner.dontClone(Account.class);
+        Deck clonedDeck = cloner.deepClone(deck);
+        return clonedDeck;
     }
 
     public static void deleteDeck(Deck deck) {
