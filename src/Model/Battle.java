@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.GameController;
 import Model.BuffClasses.ABuff;
 import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
@@ -42,26 +43,34 @@ public class Battle {
     private FlagForHoldFlagGameMode flagForHoldFlagGameMode;
     private int firstPlayerFlags;
     private int secondPlayerFlags;
-    private ArrayList<FlagForCollectFlagGameMode> flagForCollectFlagGameModes = new ArrayList<>();//TODO bejaye 6 bayad moteghayyer gozasht
+    private ArrayList<FlagForCollectFlagGameMode> flagForCollectFlagGameModes = new ArrayList<>();
 
 
-    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
+    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) throws Error {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
-        if (firstPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
-            firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
-        } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
-        if (secondPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
-            secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
-        } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        checkDeckAtFirst(firstPlayer, secondPlayer);
         map = new Map(this);
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
             setFlagForCollectFlagGameModes();
         runningBattle = this;
+    }
+
+    private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
+        if (firstPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
+            firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
+        } else {
+            throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        }
+        if (secondPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
+            secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
+        } else {
+            throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
+        }
     }
 
     public void handelBattleSinglePlayer() {
@@ -155,14 +164,11 @@ public class Battle {
         //TODO combo :(
     }
 
-    public void useSpecialPower(int x, int y) {
-        Warrior warrior;
-        if (selectedCard instanceof Warrior) {
-            warrior = (Warrior) selectedCard;
-            if (((Warrior) selectedCard).getSpecialPower() != null) {
-                throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
-            }
-        } else return;
+    public void useSpecialPower(Warrior warrior, int x, int y) {
+        if (warrior.getSpecialPower() == null) {
+            throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
+        }
+
         if (!isValidSpeicalPower(x, y)) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
         }
@@ -175,7 +181,7 @@ public class Battle {
                 throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
             }
         }
-        insertCard(warrior.getSpecialPower().getCardName(), x, y);
+        applySpell(warrior.getSpecialPower(), x, y);
 
     }
 
@@ -255,6 +261,7 @@ public class Battle {
     }
 
     private void incrementTurn() {
+        setCurrentTurnPlayer();
         setFirstPlayerNextCard();
         setSecondPlayerNextCard();
         turn++;
