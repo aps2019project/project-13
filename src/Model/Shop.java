@@ -58,6 +58,10 @@ public class Shop {
         if (card != null) {
             account.increaseDarick(card.getDarikCost());
             account.getCardCollection().removeCard(card);
+            for (Deck deck:
+                 account.getDecks()) {
+                deck.getCards().remove(card);
+            }
             addCard(card);
         } else {
             throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
