@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.GameController;
 import Model.BuffClasses.ABuff;
 import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
@@ -129,8 +128,7 @@ public class Battle {
         if (!isValidAttack(targetCell, warrior)) {
             throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
         }
-        if (warrior.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.ATTACK))
-        {
+        if (warrior.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.ATTACK)) {
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(targetCell);
         }
@@ -820,12 +818,14 @@ public class Battle {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getCard() != null) {
-                    if (cells[i][j].getCard().getAccount().equals(firstPlayer))
+                    if (cells[i][j].getCard().getAccount() == null)
+                        System.out.print("*");
+                    else if (cells[i][j].getCard().getAccount().equals(firstPlayer))
                         System.out.print(" 1 ");
                     else System.out.print(" 2 ");
                 } else System.out.print(" 0 ");
-                System.out.println();
             }
+            System.out.println();
         }
     }
 }
