@@ -27,7 +27,7 @@ public class Map {
     }
 
     public Cell getCell(int row, int col) {
-        if (row <= 0 || row >= MAX_ROW || col <= 0 || col >= MAX_COLUMN)
+        if (row < 0 || row >= MAX_ROW || col < 0 || col >= MAX_COLUMN)
             throw new Error(ConstantMessages.INVALID_CELL_TO_INSERT_CARD.getMessage());
         return cells[row][col];
     }
