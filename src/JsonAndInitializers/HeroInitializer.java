@@ -86,7 +86,7 @@ public class HeroInitializer {
             writer2.write(s2);
             writer2.close();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }

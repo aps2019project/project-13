@@ -61,8 +61,8 @@ public class UsableItemInitializer {
 
         try (Writer writer = new FileWriter("Items_YaGson.json")) {
             gson.toJson(usableItems, writer);
-        } catch (IOException e) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
