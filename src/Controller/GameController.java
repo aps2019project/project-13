@@ -6,6 +6,7 @@ import View.Error;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameController {
     private static final GameController gamecontroller = new GameController();
@@ -147,7 +148,7 @@ public class GameController {
 
 
     private void battleCommandManagement(BattleCommand battleCommand) throws Error {
-        Battle.getRunningBattle().setCurrentTurnPlayer();
+//        Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
             case HELP:
@@ -189,6 +190,8 @@ public class GameController {
             case SHOW_OPPONENT_MINIONS:
                 show.battleShowAnStringArrayList(battleShowMinion(false));
                 break;
+            case EXIT:
+                Request.getInstance().exitLastmenu();
         }
     }
 
@@ -201,29 +204,76 @@ public class GameController {
         gameGoalNumber = getGameGoal(request, gameGoalNumber);
         GameGoal gameGoal;
         GameMode gameMode;
-        if (gameModeNumber.equals("1")) {
-            gameMode = GameMode.SINGLEPLAYER;
-        } else gameMode = GameMode.MULTIPLAYER;
-        if (gameGoalNumber.equals("1")) {
-            gameGoal = GameGoal.HOLD_FLAG;
-        } else if (gameGoalNumber.equals("2")) {
-            gameGoal = GameGoal.COLLECT_FLAG;
-        } else gameGoal = GameGoal.KILL_HERO;
+        Account account = null;
+        gameMode = getGameMode(gameModeNumber);
+        account = getSecondAccount(request, gameMode, account);
+        gameGoal = getGameGoal(gameGoalNumber);
+        if (setBattleForCollectFlag(request, gameGoal, gameMode, account)) return;
+        setBattle(gameGoal, gameMode, account);
+
+    }
+
+    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) {
+        if (gameMode == GameMode.SINGLEPLAYER)
+            new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal);//TODO AI
+        else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
+    }
+
+    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account) {
         if (gameGoal == GameGoal.COLLECT_FLAG) {
             int numberOfFlagForWin = 0;
             while (numberOfFlagForWin < 1) {
                 show.numberOfFlag();
                 String numberOfFlag = request.getNumberOfFlag();
+
                 try {
                     numberOfFlagForWin = Integer.parseInt(numberOfFlag);
                 } catch (Exception e) {
                     show.invalidNumberForFlag();
                 }
             }
-            new Battle(Account.getLoginedAccount(), new Account("username", "12345"), gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);//TODO AI
-            return;
+            if (gameMode == GameMode.SINGLEPLAYER)
+                new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);//TODO AI
+            else
+                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+            return true;
         }
-        new Battle(Account.getLoginedAccount(), new Account("username", "12345"), gameMode, gameGoal);//TODO AI
+        return false;
+    }
+
+    private GameGoal getGameGoal(String gameGoalNumber) {
+        GameGoal gameGoal;
+        if (gameGoalNumber.equals("1")) {
+            gameGoal = GameGoal.HOLD_FLAG;
+        } else if (gameGoalNumber.equals("2")) {
+            gameGoal = GameGoal.COLLECT_FLAG;
+        } else gameGoal = GameGoal.KILL_HERO;
+        return gameGoal;
+    }
+
+    private Account getSecondAccount(Request request, GameMode gameMode, Account account) {
+        if (gameMode == GameMode.MULTIPLAYER) {
+            show.showAccountsForMultiPlayer(Account.getLoginedAccount());
+            String nameOfSecondPlayer = request.getNameOfSecondPlayer();
+            account = Account.getAccount(nameOfSecondPlayer, null);
+            while (account == null || account.equals(Account.getLoginedAccount())) {
+                if (account == null) {
+                    show.notFoundSecondPlayer();
+                } else show.chooseSelfForBattle();
+                show.showAccountsForMultiPlayer(Account.getLoginedAccount());
+                nameOfSecondPlayer = request.getNameOfSecondPlayer();
+                account = Account.getAccount(nameOfSecondPlayer, null);
+            }
+        }
+        return account;
+    }
+
+    private GameMode getGameMode(String gameModeNumber) {
+        GameMode gameMode;
+        if (gameModeNumber.equals("1")) {
+            gameMode = GameMode.SINGLEPLAYER;
+        } else gameMode = GameMode.MULTIPLAYER;
+        return gameMode;
     }
 
     private String getGameMode(Request request, String gameModeNumber) {
@@ -494,7 +544,7 @@ public class GameController {
                 break;
             case ATTACK:
                 Battle battle = Battle.getRunningBattle();
-                battle.attack(cardCommand.getData().get(0),(Warrior) battle.getSelectedCard(), true);
+                battle.attack(cardCommand.getData().get(0), (Warrior) battle.getSelectedCard(), true);
                 break;
             case USE_SPECIAL_POWER:
                 useSpecialPower(cardCommand);

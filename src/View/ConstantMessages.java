@@ -69,7 +69,7 @@ public enum ConstantMessages {
 
     COLLECTION_HELP("Show menu\nshow\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
-            "select deck [deck name] \nshow all decks \nshow deck [deck name]"),
+            "select deck [deck name] \nshow all decks \nshow deck [deck name]\n exit"),
 
     MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nexit"),
 

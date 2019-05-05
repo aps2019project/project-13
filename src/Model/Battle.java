@@ -64,7 +64,12 @@ public class Battle {
         runningBattle = this;
     }
 
+    public void handelBattleSinglePlayer(){
 
+    }
+    public void handelBattleMultiPlayer(){
+
+    }
     public void decreaseMana(int number, int numberOfPlayer) {
         if (numberOfPlayer == 1) {
             firstPlayerMana -= number;
@@ -247,6 +252,7 @@ public class Battle {
     }
 
     private void incrementTurn() {
+        setCurrentTurnPlayer();
         setFirstPlayerNextCard();
         setSecondPlayerNextCard();
         turn++;
