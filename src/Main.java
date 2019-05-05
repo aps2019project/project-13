@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -26,7 +27,7 @@ public class Main {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
         Minion[] cards = new Minion[40];
@@ -44,11 +45,11 @@ public class Main {
         try (Reader reader = new FileReader("Heroes_YaGson.json")) {
             heroes = yaGson.fromJson(reader, Hero[].class);
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
-        for (int j = 0; j < heroes.length; j++) {
+        for (Hero hero : heroes) {
             if (heroes[i] != null)
-                Shop.getInstance().addCard(heroes[j]);
+                Shop.getInstance().addCard(hero);
         }
 
 

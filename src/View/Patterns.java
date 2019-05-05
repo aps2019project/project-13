@@ -46,6 +46,7 @@ public class Patterns {
             Pattern.compile("^(?i)sell (\\S+)\\s*$"),
     };
     static Pattern[] battlePatterns = new Pattern[]{
+            Pattern.compile("^(?i)exit\\s*$"),
             Pattern.compile("^(?i)Game info\\s*$"),
             Pattern.compile("^(?i)Show my minions\\s*$"),
             Pattern.compile("^(?i)Show opponent minions\\s*$"),

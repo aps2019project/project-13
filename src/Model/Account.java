@@ -169,33 +169,33 @@ public class Account implements Cloneable{
     public static void login(Request request, AccountCommand accountCommand) {
         Show show = Show.getInstance();
         String userName = accountCommand.getData();
-        Account trueAccount = null;
-        trueAccount = getAccount(userName, trueAccount);
-        if (trueAccount == null) {
+        Account foundAccount = null;
+        foundAccount = getAccount(userName, foundAccount);
+        if (foundAccount == null) {
             throw new Error(ConstantMessages.USERNAME_NOT_EXIST.getMessage());
         }
         show.getYourPasWord();
         String passWord;
         passWord = request.getPassWord();
-        while (!passWord.equals(trueAccount.getPassword())) {
+        while (!passWord.equals(foundAccount.getPassword())) {
             show.incorrectPassWord();
             show.getYourPasWord();
             passWord = request.getPassWord();
         }
-        Account.setLoginedAccount(trueAccount);
+        Account.setLoginedAccount(foundAccount);
         request.addNewMenu(KindOfOrder.MAIN_MENU);
         show.showMainMenu();
 
     }
 
-    private static Account getAccount(String userName, Account trueAccount) {
+    public static Account getAccount(String userName, Account foundAccount) {
         for (Account account :
                 Account.getAccounts()) {
             if (account.getUsername().equals(userName)) {
-                trueAccount = account;
+                foundAccount = account;
             }
         }
-        return trueAccount;
+        return foundAccount;
     }
 
     private static Comparator<Account> sortByWin = (player1, player2) -> {

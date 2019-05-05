@@ -232,4 +232,18 @@ public class Show {
         }
 
     }
+    public void showAccountsForMultiPlayer(Account account1){
+        System.out.println("select name of second Player");
+        for (Account account:
+             Account.getAccounts()) {
+            if(!account.equals(account1))
+            System.out.println("- "+account.getUsername());
+        }
+    }
+    public void notFoundSecondPlayer(){
+        System.out.println("second player not exist ! try again");
+    }
+    public void chooseSelfForBattle(){
+        System.out.println("This is You :| ");
+    }
 }

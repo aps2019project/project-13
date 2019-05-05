@@ -45,6 +45,10 @@ public class Request {
         return scanner.nextLine();
     }
 
+    public String getNameOfSecondPlayer() {
+        return scanner.nextLine();
+    }
+
     private void transferCommandToRightPlace(String command) throws Error {
         switch (kindOfOrders.get(kindOfOrders.size() - 1)) {
             case SHOP:
@@ -233,10 +237,10 @@ public class Request {
     }
 
     private void setCommandOfBattle(Matcher matcher, int i) {
-        if (i > 9) {
+        if (i > 10) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if (i > 11) {
+            if (i > 12) {
                 strings.add(matcher.group(2));
                 strings.add(matcher.group(3));
             }
@@ -286,12 +290,12 @@ public class Request {
         kindOfOrders.add(kindOfOrder);
     }
 
-    private void showMenu(KindOfOrder kindOfOrder){
+    private void showMenu(KindOfOrder kindOfOrder) {
         GameController.getInstance().showMenu(kindOfOrder);
     }
 
     public void exitLastmenu() {
         kindOfOrders.remove(kindOfOrders.size() - 1);
-        showMenu(kindOfOrders.get(kindOfOrders.size()-1));
+        showMenu(kindOfOrders.get(kindOfOrders.size() - 1));
     }
 }
