@@ -9,7 +9,7 @@ public class Spell extends Card implements Cloneable {
     private TargetSocietyKind targetSocietyKind;
     private SpellName spellName;
     private ActivationCondition activationCondition;
-    SpecialPowerBuffs specialPowerBuffs;
+    private SpecialPowerBuffs specialPowerBuffs;
 
 
     public static Spell deepClone(Spell spell) {
