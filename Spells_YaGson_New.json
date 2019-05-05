@@ -1,0 +1,422 @@
+[
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_1",
+      "manaCost": 0,
+      "darikCost": 1000,
+      "cardKind": "MINION",
+      "cardDescription": "Disarm an Enemy for whole game",
+      "cardName": "Total Disarm",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "CELL",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_2",
+      "manaCost": 2,
+      "darikCost": 1500,
+      "cardKind": "MINION",
+      "cardDescription": "Dispel Friendly negative buffs and enemy positive buffs on a 2x2 grid ",
+      "cardName": "Area Dispel",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_3",
+      "manaCost": 1,
+      "darikCost": 250,
+      "cardKind": "MINION",
+      "cardDescription": "2 More AP for one unit ",
+      "cardName": "Empower",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_4",
+      "manaCost": 1,
+      "darikCost": 400,
+      "cardKind": "MINION",
+      "cardDescription": "4 DMG to an enemy ",
+      "cardName": "Fireball",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_5",
+      "manaCost": 2,
+      "darikCost": 450,
+      "cardKind": "MINION",
+      "cardDescription": "2 More AP for one unit ",
+      "cardName": "God Strength",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "CELL",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_6",
+      "manaCost": 3,
+      "darikCost": 600,
+      "cardKind": "MINION",
+      "cardDescription": "Make a 2x2 grid burning for 2 turns ",
+      "cardName": "HellFire",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_7",
+      "manaCost": 2,
+      "darikCost": 1250,
+      "cardKind": "MINION",
+      "cardDescription": "8 DMG To Enemy Hero ",
+      "cardName": "Lightning Bolt",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "CELL",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_8",
+      "manaCost": 5,
+      "darikCost": 900,
+      "cardKind": "MINION",
+      "cardDescription": "Make a 3x3 grid poisonous for 1 turn ",
+      "cardName": "Poison Lake",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_9",
+      "manaCost": 0,
+      "darikCost": 650,
+      "cardKind": "MINION",
+      "cardDescription": "Increase 4 AP of a unit for 3 turns but Disarm that unit  ",
+      "cardName": "Madness",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_10",
+      "manaCost": 9,
+      "darikCost": 2000,
+      "cardKind": "MINION",
+      "cardDescription": "Make all  Enemy Units Disarmed for 1 Turn ",
+      "cardName": "All Disarm",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_11",
+      "manaCost": 8,
+      "darikCost": 1500,
+      "cardKind": "MINION",
+      "cardDescription": "Make all Enemy Units poisoned for 1 Turn ",
+      "cardName": "All Poison",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_12",
+      "manaCost": 0,
+      "darikCost": 2100,
+      "cardKind": "MINION",
+      "cardDescription": "Dispel 1 Friendly negative buffs OR enemy positive buffs ",
+      "cardName": "Dispel",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_13",
+      "manaCost": 0,
+      "darikCost": 2250,
+      "cardKind": "MINION",
+      "cardDescription": "1 Weakness buff with 6 DMG alongside 3 turns of 2 HolyBuff",
+      "cardName": "Health with Profit",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_14",
+      "manaCost": 2,
+      "darikCost": 2500,
+      "cardKind": "MINION",
+      "cardDescription": "6 More AP for one Unit ",
+      "cardName": "Power Up",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_15",
+      "manaCost": 4,
+      "darikCost": 2000,
+      "cardKind": "MINION",
+      "cardDescription": "2 More AP for All units ",
+      "cardName": "All Power",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_16",
+      "manaCost": 4,
+      "darikCost": 1500,
+      "cardKind": "MINION",
+      "cardDescription": "6 DMG to All Enemy Units on a Row ",
+      "cardName": "All Attack",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_17",
+      "manaCost": 1,
+      "darikCost": 1000,
+      "cardKind": "MINION",
+      "cardDescription": "4 Weakness buff of AP on an Enemy Minion",
+      "cardName": "Weakening",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "FRIENDLY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_18",
+      "manaCost": 2,
+      "darikCost": 1600,
+      "cardKind": "MINION",
+      "cardDescription": "6 Weakness buff on HP With 8 AP PowerBuff on Friendly Minion ",
+      "cardName": "Sacrifice",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_19",
+      "manaCost": 9,
+      "darikCost": 1750,
+      "cardKind": "MINION",
+      "cardDescription": "Kills one random minion in adjacent cells of Hero ",
+      "cardName": "Kings Guard",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  },
+  {
+    "@type": "Model.Spell",
+    "@val": {
+      "targetSocietyKind": "ENEMY_CARDS",
+      "activationCondition": "PASSIVE",
+      "specialPowerBuffs": {
+        "buffs": [],
+        "activationCondition": "PASSIVE",
+        "targetSocietyKind": "FRIENDLY_CARDS"
+      },
+      "cardId": "Spell_20",
+      "manaCost": 1,
+      "darikCost": 1200,
+      "cardKind": "MINION",
+      "cardDescription": "Enemy is stunned for 2 turns ",
+      "cardName": "Shock",
+      "buffs": [],
+      "isAbleToMove": false,
+      "isInGame": false
+    }
+  }
+]
