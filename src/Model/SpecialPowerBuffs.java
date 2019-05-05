@@ -5,19 +5,19 @@ import Model.BuffClasses.ABuff;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ABuffHolder {
+public class SpecialPowerBuffs {
     //TODO MAY NEED COMPLETE CHANGES. BUT I THINK THIS CLASS IS NEEDED TO MAKE HEROES AND MINIONS INDEPENDENT OF SPELL
     ArrayList<ABuff> buffs;
     ActivationCondition activationCondition;
     TargetSocietyKind targetSocietyKind;
 
-    public ABuffHolder(ActivationCondition activationCondition, TargetSocietyKind targetSocietyKind, ABuff... abuffs) {
+    public SpecialPowerBuffs(ActivationCondition activationCondition, TargetSocietyKind targetSocietyKind, ABuff... abuffs) {
         this.buffs = (ArrayList<ABuff>) Arrays.asList(abuffs);
         this.activationCondition = activationCondition;
         this.targetSocietyKind = targetSocietyKind;
     }
 
-    public ABuffHolder(ActivationCondition activationCondition, TargetSocietyKind targetSocietyKind, ArrayList<ABuff> aBuffs) {
+    public SpecialPowerBuffs(ActivationCondition activationCondition, TargetSocietyKind targetSocietyKind, ArrayList<ABuff> aBuffs) {
         this.buffs = aBuffs;
         this.activationCondition = activationCondition;
         this.targetSocietyKind = targetSocietyKind;
@@ -67,10 +67,10 @@ public class ABuffHolder {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        ABuffHolder aBuffHolder = new ABuffHolder(this.getActivationCondition(), this.getTargetSocietyKind(), this.getBuffs());
-        ArrayList<ABuff> newAbuffs = ABuff.aBuffClone(aBuffHolder.getBuffs());
-        aBuffHolder.setBuffs(newAbuffs);
-        return aBuffHolder;
+        SpecialPowerBuffs specialPowerBuffs = new SpecialPowerBuffs(this.getActivationCondition(), this.getTargetSocietyKind(), this.getBuffs());
+        ArrayList<ABuff> newAbuffs = ABuff.aBuffClone(specialPowerBuffs.getBuffs());
+        specialPowerBuffs.setBuffs(newAbuffs);
+        return specialPowerBuffs;
     }
 
     public ArrayList<ABuff> getBuffs() {

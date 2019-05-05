@@ -1,10 +1,12 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
+import com.rits.cloning.Cloner;
 
 import java.util.ArrayList;
 
 public class Warrior extends Card implements Cloneable{
+    //TODO CLONE
 
     private int healthPoint;
     private int actionPower;
@@ -16,17 +18,28 @@ public class Warrior extends Card implements Cloneable{
     private int shield;
     private boolean isValidToAttack = true;
     private boolean IsValidToMove = true;
+    private SpecialPowerBuffs specialPowerBuffs;
+    private ArrayList<ABuff> buffs = new ArrayList<>();
 
     public Warrior(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
-                   int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
+                   int healthPoint, int actionPower, int attackRange, AttackKind attackKind, SpecialPowerBuffs specialPowerBuffs) {
 
         super(cardName, cardId, manaCost, darikCost, cardKind, cardDescription);
         this.attackKind = attackKind;
         this.healthPoint = healthPoint;
         this.actionPower = actionPower;
         this.attackRange = attackRange;
-        this.specialPower = specialPower;
+        this.specialPowerBuffs = specialPowerBuffs;
         this.shield = 0;
+    }
+
+
+    public static Warrior deepClone(Warrior warrior)
+    {
+        Cloner cloner = new Cloner();
+        cloner.dontClone(Account.class);
+        Warrior clonedWarrior = cloner.deepClone(warrior);
+        return clonedWarrior;
     }
 
     public void changeShield(int i) {
@@ -79,6 +92,14 @@ public class Warrior extends Card implements Cloneable{
         return isDeath;
     }
 
+    public SpecialPowerBuffs getSpecialPowerBuffs() {
+        return specialPowerBuffs;
+    }
+
+    public void setSpecialPowerBuffs(SpecialPowerBuffs specialPowerBuffs) {
+        this.specialPowerBuffs = specialPowerBuffs;
+    }
+
     public int getShield() {
         return shield;
     }
@@ -127,7 +148,25 @@ public class Warrior extends Card implements Cloneable{
         warrior.setBuffs(buffsClone);
         return warrior;
     }
+    public void addBuff(ABuff buff) {
+        buffs.add(buff);
+    }
 
+    public void deleteBuff(ABuff buff) {
+        buffs.remove(buff);
+    }
+
+    public void clearAllBuffs() {
+        buffs.clear();
+    }
+
+    public ArrayList<ABuff> getBuffs() {
+        return buffs;
+    }
+
+    public void setBuffs(ArrayList<ABuff> buffs) {
+        this.buffs = buffs;
+    }
     //TODO MAYBE THIS NEEDS TO BE IMPLEMENTED HERE. THIS CLONE IS CURRENTLY Implemented IN CARD
     /*@Override
     protected Object clone() throws CloneNotSupportedException {

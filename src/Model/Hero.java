@@ -1,5 +1,7 @@
 package Model;
 
+import com.rits.cloning.Cloner;
+
 import java.util.ArrayList;
 
 public class Hero extends Warrior implements Cloneable {
@@ -10,8 +12,8 @@ public class Hero extends Warrior implements Cloneable {
 
     public Hero(String cardName, String cardId, int manaCost, int darikCost, String cardDescription,
                 HeroName heroName, AttackKind attackKind, int healthPoint, int actionPower, int attackRange,
-                Spell specialPower, int specialPowerCooldownTime) {
-        super(cardName, cardId, manaCost, darikCost, CardKind.HERO, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
+                SpecialPowerBuffs specialPowerBuffs, int specialPowerCooldownTime) {
+        super(cardName, cardId, manaCost, darikCost, CardKind.HERO, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPowerBuffs);
         this.heroName = heroName;
         this.specialPowerCoolDownTime = specialPowerCooldownTime;
         addHero(this);

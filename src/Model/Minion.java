@@ -10,8 +10,8 @@ public class Minion extends Warrior implements Cloneable {
     private boolean hasSpecialPower;
 
     public Minion(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, MinionName minionName,
-                  int healthPoint, int actionPower, int attackRange, AttackKind attackKind, Spell specialPower) {
-        super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPower);
+                  int healthPoint, int actionPower, int attackRange, AttackKind attackKind, SpecialPowerBuffs specialPowerBuffs) {
+        super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription, healthPoint, actionPower, attackRange, attackKind, specialPowerBuffs);
         this.minionName = minionName;
         addMinion(this);
     }

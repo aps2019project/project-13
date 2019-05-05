@@ -1,6 +1,6 @@
 package Model;
 
-import Model.BuffClasses.ABuff;
+import com.rits.cloning.Cloner;
 
 import java.util.ArrayList;
 
@@ -8,54 +8,56 @@ public class Spell extends Card implements Cloneable {
     private static ArrayList<Spell> allSpells = new ArrayList<>();
     private TargetSocietyKind targetSocietyKind;
     private SpellName spellName;
-    private ArrayList<ABuff> buffs = new ArrayList<>();
     private ActivationCondition activationCondition;
+    SpecialPowerBuffs specialPowerBuffs;
 
-    @Override
+
+    public static Spell deepClone(Spell spell)
+    {
+        Cloner cloner = new Cloner();
+        cloner.dontClone(Account.class);
+        return cloner.deepClone(spell);
+    }
+
     protected Object clone() throws CloneNotSupportedException {
         Spell spell = (Spell) super.clone();
-        ArrayList<ABuff> buffs = ABuff.aBuffClone( spell.buffs);
-        spell.buffs = buffs;
+        SpecialPowerBuffs specialPowerBuffs =(SpecialPowerBuffs) spell.specialPowerBuffs.clone();
+        spell.specialPowerBuffs = specialPowerBuffs;
         return spell;
     }
 
-    public Spell(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, TargetSocietyKind targetSocietyKind, SpellName spellName, ActivationCondition activationCondition, ArrayList<ABuff> buffs) {
+    public Spell(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, TargetSocietyKind targetSocietyKind,
+             ActivationCondition activationCondition, SpecialPowerBuffs specialPowerBuffs) {
         super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription);
         this.targetSocietyKind = targetSocietyKind;
         this.spellName = spellName;
         this.activationCondition = activationCondition;
+        this.specialPowerBuffs = specialPowerBuffs;
         addToAllSpells(this);
-        if (buffs != null) {
-            this.buffs.addAll(buffs);
-        }
+//        if (buffs != null) {
+//            this.buffs.addAll(buffs);
+//        }
     }
-
-    public void affectOnCell(Cell cell) {
-
-        for (int i = 0; i < buffs.size(); i++) {
-            cell.addBuff(buffs.get(i));
-            buffs.get(i).affect(cell);
-        }
-    }
-
-    public void affectOnWarrior(Warrior warrior) {
-
-        for (int i = 0; i < buffs.size(); i++) {
-            warrior.addBuff(buffs.get(i));
-            buffs.get(i).affect(warrior);
-        }
-    }
+//
+//    public void affectOnCell(Cell cell) {
+//
+//        for (int i = 0; i < buffs.size(); i++) {
+//            cell.addBuff(buffs.get(i));
+//            buffs.get(i).affect(cell);
+//        }
+//    }
+//
+//    public void affectOnWarrior(Warrior warrior) {
+//
+//        for (int i = 0; i < buffs.size(); i++) {
+//            warrior.addBuff(buffs.get(i));
+//            buffs.get(i).affect(warrior);
+//        }
+//    }
 
     public <T> void affectSpell(T... e) {
-        if (targetSocietyKind == TargetSocietyKind.CELL) {
-            for (int i = 0; i < e.length; i++) {
-                affectOnCell((Cell) e[i]);
-            }
-
-        } else {
-            for (int i = 0; i < e.length; i++) {
-                affectOnWarrior((Warrior) e[i]);
-            }
+        if (e.length>0) {
+            specialPowerBuffs.useBuffsOnGenericArray(e);
         }
     }
 
@@ -75,8 +77,12 @@ public class Spell extends Card implements Cloneable {
         return spellName;
     }
 
-    public ArrayList<ABuff> getBuffs() {
-        return buffs;
+    public SpecialPowerBuffs getSpecialPowerBuffs() {
+        return specialPowerBuffs;
+    }
+
+    public void setSpecialPowerBuffs(SpecialPowerBuffs specialPowerBuffs) {
+        this.specialPowerBuffs = specialPowerBuffs;
     }
 
     public ActivationCondition getActivationCondition() {
