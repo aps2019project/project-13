@@ -15,6 +15,7 @@ public enum ConstantMessages {
     ITEM_NOT_EXIST("No Item exists with this name!"),
     CARD_NOT_EXIST("NO Card exists with this name!"),
     INVALID_DECK("Current Deck combination is Invalid!"),
+    INVALID_ADD_TO_DECK("This card Id already exist in this deck"),
     ITEM_NOT_IN_SHOP("We don't have this Item in Shop!"),
     CARD_NOT_IN_SHOP("We don't have this Card in Shop!"),
     NOT_ENOUGH_MONEY("You don't have enough Darick!"),

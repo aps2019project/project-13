@@ -1,6 +1,7 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
+import com.rits.cloning.Cloner;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,6 +60,18 @@ public class Card implements Cloneable {
         }
         return null;
     }
+
+    public static Card findCardForDeckWithSameNameAndDifferentIds(String cardId, ArrayList<Card> cards, Deck deck) {
+        if (cards != null) {
+            for (int i = 0; i < cards.size(); i++) {
+                if (cards.get(i) != null && cards.get(i).getCardId().equals(cardId) && !Deck.deckHasCard(cardId, deck)) {
+                    return cards.get(i);
+                }
+            }
+        }
+        return null;
+    }
+
 
     public static Card findCardInArrayListByName(String cardName, ArrayList<Card> cards) {
         if (cards != null) {
@@ -188,6 +201,19 @@ public class Card implements Cloneable {
 
     public void setCardName(String cardName) {
         this.cardName = cardName;
+    }
+
+    public static Card deepClone(Card card)
+    {
+        if (card instanceof Warrior)
+        {
+            return Warrior.deepClone((Warrior) card);
+        }
+        else if (card instanceof Spell)
+        {
+            return Spell.deepClone((Spell) card);
+        }
+        return null;
     }
     //TODO THIS MAY NEED TO BE CHANGED. THE LOGIC IS THE SAME BUT MAYBE WE NEED TO CLONE ANOTHER ABuff ArrayList.
 }

@@ -12,22 +12,23 @@ public class Spell extends Card implements Cloneable {
     SpecialPowerBuffs specialPowerBuffs;
 
 
-    public static Spell deepClone(Spell spell)
-    {
+    public static Spell deepClone(Spell spell) {
         Cloner cloner = new Cloner();
         cloner.dontClone(Account.class);
-        return cloner.deepClone(spell);
+        Spell clonedSpell = cloner.deepClone(spell);
+        clonedSpell.setCardId(makeNewID(Account.getLoginedAccount().getUsername(), clonedSpell.getCardName(), CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), spell)));
+        return clonedSpell;
     }
 
     protected Object clone() throws CloneNotSupportedException {
         Spell spell = (Spell) super.clone();
-        SpecialPowerBuffs specialPowerBuffs =(SpecialPowerBuffs) spell.specialPowerBuffs.clone();
+        SpecialPowerBuffs specialPowerBuffs = (SpecialPowerBuffs) spell.specialPowerBuffs.clone();
         spell.specialPowerBuffs = specialPowerBuffs;
         return spell;
     }
 
     public Spell(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, TargetSocietyKind targetSocietyKind,
-             ActivationCondition activationCondition, SpecialPowerBuffs specialPowerBuffs) {
+                 ActivationCondition activationCondition, SpecialPowerBuffs specialPowerBuffs) {
         super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription);
         this.targetSocietyKind = targetSocietyKind;
         this.spellName = spellName;
@@ -56,7 +57,7 @@ public class Spell extends Card implements Cloneable {
 //    }
 
     public <T> void affectSpell(T... e) {
-        if (e.length>0) {
+        if (e.length > 0) {
             specialPowerBuffs.useBuffsOnGenericArray(e);
         }
     }

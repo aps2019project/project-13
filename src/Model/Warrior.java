@@ -4,8 +4,9 @@ import Model.BuffClasses.ABuff;
 import com.rits.cloning.Cloner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Warrior extends Card implements Cloneable{
+public class Warrior extends Card implements Cloneable {
     //TODO CLONE
 
     private int healthPoint;
@@ -34,11 +35,12 @@ public class Warrior extends Card implements Cloneable{
     }
 
 
-    public static Warrior deepClone(Warrior warrior)
-    {
+    public static Warrior deepClone(Warrior warrior) {
+        //TODO deepClone mayNeed some work and CHECK!!!
         Cloner cloner = new Cloner();
         cloner.dontClone(Account.class);
         Warrior clonedWarrior = cloner.deepClone(warrior);
+        clonedWarrior.setCardId(makeNewID(Account.getLoginedAccount().getUsername(), clonedWarrior.getCardName(), CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), warrior)));
         return clonedWarrior;
     }
 
@@ -148,6 +150,7 @@ public class Warrior extends Card implements Cloneable{
         warrior.setBuffs(buffsClone);
         return warrior;
     }
+
     public void addBuff(ABuff buff) {
         buffs.add(buff);
     }

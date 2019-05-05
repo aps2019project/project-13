@@ -30,7 +30,8 @@ public class Shop {
 
         if (card != null) {
             if (card.getDarikCost() <= account.getDarick()) {
-                account.getCardCollection().addCard((Card) card.clone());
+               //TODO account.getCardCollection().addCard((Card) card.clone());
+                account.getCardCollection().addCard(Card.deepClone(card));
                 card.setAccount(account);
                 account.decreaseDarick(card.getDarikCost());
             } else
