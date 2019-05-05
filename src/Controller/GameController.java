@@ -190,16 +190,17 @@ public class GameController {
                 break;
             case EXIT:
                 Request.getInstance().exitLastmenu();
-                if(Battle.getRunningBattle()!=null){
+                if (Battle.getRunningBattle() != null) {
                     Battle.getRunningBattle().showMap();
                 }
         }
     }
 
-    public void exitFromBattle(){
+    public void exitFromBattle() {
         battleCommandManagement(BattleCommand.EXIT);
     }
-    private void startBattle(Request request) throws Error{
+
+    private void startBattle(Request request) throws Error {
         show.enterInBattle();
         String gameModeNumber = request.getNumberForKindOfBattle();
         gameModeNumber = getGameMode(request, gameModeNumber);
@@ -217,14 +218,14 @@ public class GameController {
 
     }
 
-    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) throws Error{
+    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) throws Error {
         show.startBattle();
         if (gameMode == GameMode.SINGLEPLAYER)
             new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal);//TODO AI
         else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
     }
 
-    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account)throws Error {
+    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account) throws Error {
         show.startBattle();
         if (gameGoal == GameGoal.COLLECT_FLAG) {
             int numberOfFlagForWin = 0;
@@ -568,7 +569,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        battle.useSpecialPower(null , x, y);
+        battle.useSpecialPower(null, x, y);
     }
 
 

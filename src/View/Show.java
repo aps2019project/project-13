@@ -96,7 +96,7 @@ public class Show {
 
     public void showError(Exception error) {
         System.out.println(error.toString());
-        if(error.toString().equals(ConstantMessages.INVALID_DECK.getMessage())){
+        if (error.toString().equals(ConstantMessages.INVALID_DECK.getMessage())) {
             GameController.getInstance().exitFromBattle();
         }
     }
@@ -195,12 +195,12 @@ public class Show {
 
     public void showHand(ArrayList<Card> cards) {
         for (Card card : cards) {
-            if (card.getCardKind() == CardKind.HERO)
-                System.out.println(card.toString());
+            if (card.getCardKind() == CardKind.SPELL)
+                System.out.println(card.toString() + " CardId: " + card.getCardId());
         }
         for (Card card : cards) {
             if (card.getCardKind() == CardKind.MINION)
-                System.out.println(card.toString());
+                System.out.println(card.toString() + " CardId: " + card.getCardId());
         }
     }
 
@@ -262,11 +262,11 @@ public class Show {
 
     public void startBattle() {
         String s = "Loading Battle...";
-        for (int i = 0; i < s.length() ; i++) {
+        for (int i = 0; i < s.length(); i++) {
             System.out.print(s.charAt(i));
             try {
                 Thread.sleep(100);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
