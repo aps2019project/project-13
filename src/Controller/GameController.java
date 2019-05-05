@@ -5,6 +5,7 @@ import Model.*;
 import View.Error;
 
 
+import java.lang.invoke.ConstantCallSite;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -29,13 +30,13 @@ public class GameController {
             try {
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
-            } catch (Error e) {
+            } catch (Error | CloneNotSupportedException e) {
                 show.showError(e);
             }
         }
     }
 
-    private void commandManagement(Request request, KindOfOrder kindOfOrder) throws Error {
+    private void commandManagement(Request request, KindOfOrder kindOfOrder) throws Error, CloneNotSupportedException {
         switch (kindOfOrder) {
             case COLLECTION:
                 collectionCommandManagement(request, request.getCollectionCommand());
@@ -67,7 +68,7 @@ public class GameController {
         show.showMenu(kindOfOrder);
     }
 
-    private void shopCommandManagement(Request request, ShopCommand shopCommand) throws Error {
+    private void shopCommandManagement(Request request, ShopCommand shopCommand) throws Error, CloneNotSupportedException {
 
         Shop shop = Shop.getInstance();
         Show show = Show.getInstance();
@@ -148,7 +149,6 @@ public class GameController {
 
 
     private void battleCommandManagement(BattleCommand battleCommand) throws Error {
-//        Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
             case HELP:
@@ -192,10 +192,16 @@ public class GameController {
                 break;
             case EXIT:
                 Request.getInstance().exitLastmenu();
+                if(Battle.getRunningBattle()!=null){
+                    Battle.getRunningBattle().showMap();
+                }
         }
     }
 
-    private void startBattle(Request request) {
+    public void exitFromBattle(){
+        battleCommandManagement(BattleCommand.EXIT);
+    }
+    private void startBattle(Request request) throws Error{
         show.enterInBattle();
         String gameModeNumber = request.getNumberForKindOfBattle();
         gameModeNumber = getGameMode(request, gameModeNumber);
@@ -213,13 +219,15 @@ public class GameController {
 
     }
 
-    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) {
+    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) throws Error{
+        show.startBattle();
         if (gameMode == GameMode.SINGLEPLAYER)
             new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal);//TODO AI
         else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
     }
 
-    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account) {
+    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account)throws Error {
+        show.startBattle();
         if (gameGoal == GameGoal.COLLECT_FLAG) {
             int numberOfFlagForWin = 0;
             while (numberOfFlagForWin < 1) {
@@ -391,8 +399,13 @@ public class GameController {
     private void battleInsert(BattleCommand battleCommand) throws Error {
 
         String cardName = battleCommand.getData().get(0);
-        int x = Integer.parseInt(battleCommand.getData().get(1));
-        int y = Integer.parseInt(battleCommand.getData().get(2));
+        int x, y;
+        try {
+            x = Integer.parseInt(battleCommand.getData().get(1));
+            y = Integer.parseInt(battleCommand.getData().get(2));
+        } catch (Exception e) {
+            throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
+        }
         Battle battle = Battle.getRunningBattle();
         battle.insertCard(cardName, x, y);
     }
@@ -444,7 +457,7 @@ public class GameController {
     private void collectionSearch(CollectionCommand collectionCommand) throws Error {
         Account account = Account.getLoginedAccount();
         String name = collectionCommand.getData().get(0);
-        String ID = account.getCardCollection().search(name);
+        ArrayList<String> ID = account.getCardCollection().search(name);
         if (ID != null) {
             show.showCardId(ID);
         } else
@@ -497,7 +510,9 @@ public class GameController {
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck != null) {
             Account.getLoginedAccount().setMainDeck(deck);
-        }
+            show.printAMessage(ConstantMessages.MAIN_DECK_SELECTED.getMessage());
+        } else
+            throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
     }
 
     private void collectionDeleteDeck(CollectionCommand collectionCommand) {
@@ -555,7 +570,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        //todo battle.useSpecialPower(x, y);
+        battle.useSpecialPower(null , x, y);
     }
 
 

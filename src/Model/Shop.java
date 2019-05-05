@@ -21,7 +21,7 @@ public class Shop {
         return instance;
     }
 
-    public void buy(String name, Account account) {
+    public void buy(String name, Account account) throws CloneNotSupportedException {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
 
@@ -30,7 +30,7 @@ public class Shop {
 
         if (card != null) {
             if (card.getDarikCost() <= account.getDarick()) {
-                account.getCardCollection().addCard(card);
+                account.getCardCollection().addCard((Card)card.clone());
                 account.decreaseDarick(card.getDarikCost());
             } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());

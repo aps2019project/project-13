@@ -1,5 +1,6 @@
 package View;
 
+import Controller.GameController;
 import Model.*;
 
 import java.util.ArrayList;
@@ -93,8 +94,11 @@ public class Show {
         System.out.println(ConstantMessages.MAIN_MENU_HELP.getMessage());
     }
 
-    public void showError(Error error) {
+    public void showError(Exception error) {
         System.out.println(error.toString());
+        if(error.toString().equals(ConstantMessages.INVALID_DECK.getMessage())){
+            GameController.getInstance().exitFromBattle();
+        }
     }
 
     public void showMainMenu() {
@@ -116,6 +120,12 @@ public class Show {
 
     public void showCardId(String cardId) {
         System.out.println(cardId);
+    }
+
+    public void showCardId(ArrayList<String> cardIds) {
+        for (String cardId : cardIds) {
+            System.out.println(cardId);
+        }
     }
 
     public void showCard(Card card) {
@@ -232,18 +242,34 @@ public class Show {
         }
 
     }
-    public void showAccountsForMultiPlayer(Account account1){
+
+    public void showAccountsForMultiPlayer(Account account1) {
         System.out.println("select name of second Player");
-        for (Account account:
-             Account.getAccounts()) {
-            if(!account.equals(account1))
-            System.out.println("- "+account.getUsername());
+        for (Account account :
+                Account.getAccounts()) {
+            if (!account.equals(account1))
+                System.out.println("- " + account.getUsername());
         }
     }
-    public void notFoundSecondPlayer(){
+
+    public void notFoundSecondPlayer() {
         System.out.println("second player not exist ! try again");
     }
-    public void chooseSelfForBattle(){
+
+    public void chooseSelfForBattle() {
         System.out.println("This is You :| ");
+    }
+
+    public void startBattle() {
+        String s = "Loading Battle...";
+        for (int i = 0; i < s.length() ; i++) {
+            System.out.print(s.charAt(i));
+            try {
+                Thread.sleep(100);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        System.out.println();
     }
 }

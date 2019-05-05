@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.GameController;
 import Model.BuffClasses.ABuff;
 import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
@@ -42,20 +43,15 @@ public class Battle {
     private FlagForHoldFlagGameMode flagForHoldFlagGameMode;
     private int firstPlayerFlags;
     private int secondPlayerFlags;
-    private ArrayList<FlagForCollectFlagGameMode> flagForCollectFlagGameModes = new ArrayList<>();//TODO bejaye 6 bayad moteghayyer gozasht
+    private ArrayList<FlagForCollectFlagGameMode> flagForCollectFlagGameModes = new ArrayList<>();
 
 
-    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) {
+    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) throws Error {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
-        if (firstPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
-            firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
-        } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
-        if (secondPlayer.getMainDeck() != null && firstPlayer.getMainDeck().isValid()) {
-            secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
-        } else throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        checkDeckAtFirst(firstPlayer, secondPlayer);
         map = new Map(this);
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
@@ -64,12 +60,27 @@ public class Battle {
         runningBattle = this;
     }
 
-    public void handelBattleSinglePlayer(){
+    private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
+        if (firstPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
+            firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
+        } else {
+            throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        }
+        if (secondPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
+            secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
+        } else {
+            throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
+        }
+    }
+
+    public void handelBattleSinglePlayer() {
 
     }
-    public void handelBattleMultiPlayer(){
+
+    public void handelBattleMultiPlayer() {
 
     }
+
     public void decreaseMana(int number, int numberOfPlayer) {
         if (numberOfPlayer == 1) {
             firstPlayerMana -= number;
@@ -153,10 +164,10 @@ public class Battle {
         //TODO combo :(
     }
 
-    public void useSpecialPower(Warrior warrior ,int x, int y) {
-            if ( warrior.getSpecialPower() == null) {
-                throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
-            }
+    public void useSpecialPower(Warrior warrior, int x, int y) {
+        if (warrior.getSpecialPower() == null) {
+            throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
+        }
 
         if (!isValidSpeicalPower(x, y)) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
@@ -174,14 +185,12 @@ public class Battle {
 
     }
 
-    public void applySpell(Spell card, int x, int y) {
-
+    private void applySpell(Spell spell, int x, int y) {
 
 
     }
 
     public void insertCard(String cardName, int x, int y) throws Error {
-
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
         if (card != null) {
             if (card instanceof Spell) {
@@ -405,7 +414,7 @@ public class Battle {
     }
 
     private boolean isValidInsert(Cell destinationCell) {
-        return destinationCell.isEmpty();
+        return (destinationCell != null) && destinationCell.isEmpty();
     }
 
     private boolean isValidMove(Cell destinationCell) {

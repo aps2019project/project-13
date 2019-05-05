@@ -79,17 +79,22 @@ public class CardCollection {
         return false;
     }
 
-    public String search(String name) {
+    public ArrayList<String> search(String name) {
+        ArrayList<String> Ids = new ArrayList<>();
         for (Card card :
                 cards) {
             if (card.getCardName().equals(name))
-                return card.getCardId();
+                Ids.add(card.getCardId());
         }
+        if (!Ids.isEmpty())
+            return Ids;
         for (Item item :
                 items) {
             if (item.getItemName().equals(name))
-                return item.getItemName();
+                Ids.add(item.getItemId());
         }
+        if (!Ids.isEmpty())
+            return Ids;
         return null;
     }
 
