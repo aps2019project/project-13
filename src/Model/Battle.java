@@ -31,8 +31,8 @@ public class Battle {
     private Card firstPlayerNextCard;
     private Card secondPlayerNextCard;
     private ArrayList<Cell> validCells = new ArrayList<>();
-    private ArrayList<Card> firstPlayerDeck = new ArrayList<>();
-    private ArrayList<Card> secondPlayerDeck = new ArrayList<>();
+    private Deck firstPlayerDeck;
+    private Deck secondPlayerDeck;
     private ArrayList<Card> firstPlayerInGameCards = new ArrayList<>();
     private ArrayList<Card> secondPlayerInGameCards = new ArrayList<>();
     private ArrayList<Item> firstPlayerItems = new ArrayList<>();
@@ -51,23 +51,26 @@ public class Battle {
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
-        checkDeckAtFirst(firstPlayer, secondPlayer);
         map = new Map(this);
+        runningBattle = this;
+        checkDeckAtFirst(firstPlayer, secondPlayer);
+        insertPlayerHeroesInMap();
+        setHandOfFirstPlayer();
+        setHandOfSecondPlayer();
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
             setFlagForCollectFlagGameModes();
-        runningBattle = this;
     }
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
         if (firstPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
-            firstPlayerDeck.addAll(firstPlayer.getMainDeck().getCards());
+            firstPlayerDeck = firstPlayer.getMainDeck();
         } else {
             throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         }
         if (secondPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
-            secondPlayerDeck.addAll(secondPlayer.getMainDeck().getCards());
+            secondPlayerDeck = secondPlayer.getMainDeck();
         } else {
             throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
         }
@@ -191,6 +194,7 @@ public class Battle {
     }
 
     public void insertCard(String cardName, int x, int y) throws Error {
+
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
         if (card != null) {
             if (card instanceof Spell) {
@@ -475,12 +479,23 @@ public class Battle {
     }
 
     public void setHandOfFirstPlayer() {
-        firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck, 5);
+        firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck.getCards(), 5);
     }
 
     public void setHandOfSecondPlayer() {
-        secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck, 5);
+        secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck.getCards(), 5);
 
+    }
+
+    public void insertPlayerHeroesInMap() {
+        firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
+        map.getCell(2, 0).setCard(firstPlayerDeck.getHero());
+        firstPlayerDeck.getCards().remove(firstPlayer.getMainDeck().getHero());
+        firstPlayerInGameCards.add(firstPlayer.getMainDeck().getHero());
+        secondPlayerDeck.getHero().setCurrentCell(map.getCell(2, 8));
+        map.getCell(2, 8).setCard(secondPlayerDeck.getHero());
+        secondPlayerDeck.getCards().remove(secondPlayer.getMainDeck().getHero());
+        secondPlayerInGameCards.add(secondPlayer.getMainDeck().getHero());
     }
 
     private ArrayList<Card> selectRandomCardsForHand(ArrayList<Card> cards, int totalRandomCardsNeeded) {
@@ -488,7 +503,7 @@ public class Battle {
         ArrayList<Card> temp = new ArrayList<>();
 
         for (int i = 0; i < totalRandomCardsNeeded; i++) {
-            int randomIndex = random.nextInt();
+            int randomIndex = 1 + random.nextInt(5);
             temp.add(cards.get(randomIndex));
             cards.remove(randomIndex);
         }
@@ -501,7 +516,7 @@ public class Battle {
 
     private void setFirstPlayerNextCard() {
         Random random = new Random();
-        firstPlayerNextCard = firstPlayerDeck.get(random.nextInt());
+        firstPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt());
     }
 
     public void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) {
@@ -538,7 +553,7 @@ public class Battle {
 
     private void setSecondPlayerNextCard() {
         Random random = new Random();
-        secondPlayerNextCard = firstPlayerDeck.get(random.nextInt());
+        secondPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt());
     }
 
     public Card getNextCard() {
@@ -671,11 +686,11 @@ public class Battle {
         return validCells;
     }
 
-    public ArrayList<Card> getFirstPlayerDeck() {
+    public Deck getFirstPlayerDeck() {
         return firstPlayerDeck;
     }
 
-    public ArrayList<Card> getSecondPlayerDeck() {
+    public Deck getSecondPlayerDeck() {
         return secondPlayerDeck;
     }
 
@@ -718,9 +733,9 @@ public class Battle {
 
     private void addUsedCardsToGraveYard() {
 
-        for (int i = 0; i < firstPlayerDeck.size(); i++) {
-            if (firstPlayerDeck.get(i) instanceof Spell && firstPlayerDeck.get(i).isInGame()) {
-                firstPlayerDeck.add(firstPlayerDeck.get(i));
+        for (int i = 0; i < firstPlayerDeck.getCards().size(); i++) {
+            if (firstPlayerDeck.getCards().get(i) instanceof Spell && firstPlayerDeck.getCards().get(i).isInGame()) {
+                firstPlayerDeck.getCards().add(firstPlayerDeck.getCards().get(i));
             }
         }
         firstPlayerGraveYard.addAll(findDeathCards(firstPlayerInGameCards));
