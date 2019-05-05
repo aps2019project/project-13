@@ -4,13 +4,20 @@ import Model.BuffClasses.ABuff;
 
 import java.util.ArrayList;
 
-public class Spell extends Card implements Cloneable{
+public class Spell extends Card implements Cloneable {
     private static ArrayList<Spell> allSpells = new ArrayList<>();
     private TargetSocietyKind targetSocietyKind;
     private SpellName spellName;
     private ArrayList<ABuff> buffs = new ArrayList<>();
     private ActivationCondition activationCondition;
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Spell spell = (Spell) super.clone();
+        ArrayList<ABuff> buffs = ABuff.aBuffClone( spell.buffs);
+        spell.buffs = buffs;
+        return spell;
+    }
 
     public Spell(String cardName, String cardId, int manaCost, int darikCost, String cardDescription, TargetSocietyKind targetSocietyKind, SpellName spellName, ActivationCondition activationCondition, ArrayList<ABuff> buffs) {
         super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription);
@@ -23,18 +30,31 @@ public class Spell extends Card implements Cloneable{
         }
     }
 
-    public <T> void affectSpell(T e) {
+    public void affectOnCell(Cell cell) {
+
+        for (int i = 0; i < buffs.size(); i++) {
+            cell.addBuff(buffs.get(i));
+            buffs.get(i).affect(cell);
+        }
+    }
+
+    public void affectOnWarrior(Warrior warrior) {
+
+        for (int i = 0; i < buffs.size(); i++) {
+            warrior.addBuff(buffs.get(i));
+            buffs.get(i).affect(warrior);
+        }
+    }
+
+    public <T> void affectSpell(T... e) {
         if (targetSocietyKind == TargetSocietyKind.CELL) {
-            Cell cell = (Cell) e;
-            for (ABuff buff : buffs) {
-                cell.addBuff(buff);
-                buff.affect(cell);
+            for (int i = 0; i < e.length; i++) {
+                affectOnCell((Cell) e[i]);
             }
+
         } else {
-            Warrior warrior = (Warrior) e;
-            for (ABuff buff : buffs) {
-                warrior.addBuff(buff);
-                buff.affect(warrior);
+            for (int i = 0; i < e.length; i++) {
+                affectOnWarrior((Warrior) e[i]);
             }
         }
     }

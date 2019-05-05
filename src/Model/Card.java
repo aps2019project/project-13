@@ -5,8 +5,8 @@ import Model.BuffClasses.ABuff;
 import java.util.ArrayList;
 
 public class Card implements Cloneable{
-
     private static ArrayList<Card> allCards = new ArrayList<>();
+
     private String cardId;
     private int manaCost;
     private int darikCost;
@@ -18,6 +18,26 @@ public class Card implements Cloneable{
     private ArrayList<ABuff> buffs = new ArrayList<>();
     private boolean isAbleToMove;
     private boolean isInGame;
+    private static int counter=0;
+
+    public static String makeNewID(String accountName , String cardID , String cardName )
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(cardID).append("_").append(cardName).append("_").append(accountName).append("_").append(counter++);
+        return sb.toString();
+    }
+
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Card card = (Card) super.clone();
+        String id = makeNewID(Account.getLoginedAccount().getUsername(),cardId,cardName);
+        card.cardId = id;
+        ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
+        card.setBuffs(buffsClone);
+        return card;
+    }
+
 
     public Card(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription) {
         this.cardName = cardName;
@@ -169,13 +189,5 @@ public class Card implements Cloneable{
     public void setCardName(String cardName) {
         this.cardName = cardName;
     }
-
     //TODO THIS MAY NEED TO BE CHANGED. THE LOGIC IS THE SAME BUT MAYBE WE NEED TO CLONE ANOTHER ABuff ArrayList.
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        Warrior warrior = (Warrior) super.clone();
-        ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
-        warrior.setBuffs(buffsClone);
-        return warrior;
-    }
 }

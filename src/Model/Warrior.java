@@ -120,6 +120,14 @@ public class Warrior extends Card implements Cloneable{
         this.IsValidToMove = validToMove;
     }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Warrior warrior = (Warrior) super.clone();
+        ArrayList<ABuff> buffsClone = ABuff.aBuffClone(this.getBuffs());
+        warrior.setBuffs(buffsClone);
+        return warrior;
+    }
+
     //TODO MAYBE THIS NEEDS TO BE IMPLEMENTED HERE. THIS CLONE IS CURRENTLY Implemented IN CARD
     /*@Override
     protected Object clone() throws CloneNotSupportedException {

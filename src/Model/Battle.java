@@ -148,14 +148,11 @@ public class Battle {
         //TODO combo :(
     }
 
-    public void useSpecialPower(int x, int y) {
-        Warrior warrior;
-        if (selectedCard instanceof Warrior) {
-            warrior = (Warrior) selectedCard;
-            if (((Warrior) selectedCard).getSpecialPower() != null) {
+    public void useSpecialPower(Warrior warrior ,int x, int y) {
+            if ( warrior.getSpecialPower() == null) {
                 throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
             }
-        } else return;
+
         if (!isValidSpeicalPower(x, y)) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
         }
@@ -168,7 +165,13 @@ public class Battle {
                 throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
             }
         }
-        insertCard(warrior.getSpecialPower().getCardName(), x, y);
+        applySpell(warrior.getSpecialPower(), x, y);
+
+    }
+
+    public void applySpell(Spell card, int x, int y) {
+
+
 
     }
 
@@ -177,7 +180,7 @@ public class Battle {
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
         if (card != null) {
             if (card instanceof Spell) {
-                applay(cardName, x, y);
+                applySpell((Spell) card, x, y);
                 return;
             }
             Cell cell = map.getCell(x, y);
@@ -204,10 +207,6 @@ public class Battle {
         } else {
             throw new Error(ConstantMessages.INVALID_CARD_NAME.getMessage());
         }
-    }
-
-    public void applay(String cardName, int x, int y) {
-
     }
 
     public void endTurn() {
