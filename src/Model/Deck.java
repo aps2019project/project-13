@@ -37,9 +37,17 @@ public class Deck implements Cloneable {
     }
 
     public static boolean validateDeck(Deck deck) {
-
         return deck.getHero() != null && countOfMinionsInDeck(deck) == 20;
     }
+
+    public static boolean deckHasCard(String cardId, Deck deck) {
+        for (int i = 0; i < deck.getCards().size(); i++) {
+            if (deck.getCards().get(i).getCardId().equals(cardId))
+                return true;
+        }
+        return false;
+    }
+
 
     private static int countOfMinionsInDeck(Deck deck) {
         int sum = 0;
@@ -194,42 +202,38 @@ public class Deck implements Cloneable {
         return isValid;
     }
 
-    public static Deck AiDeckBuilder(int i)
-    {
-        int[] heroNumber = {1,5,7};
-        int[][] spellNumbers = {{1,7,10,11,12,18,20},{2,3,5,9,8,13,19} , {6,10,12,14,15,16,17}};
-        int[][] minionNumbers = {{1,9,11,11,13,17,18,21,22,26,38,36,40},{2,3,5,8,12,15,15,19,23,27,30,33,39} , {6,7,10,14,16,16,20,24,25,28,29,31,34}};
-        int[] item = {1 , 10 , 5};
-        return AiDeckBuilderUtility(heroNumber[i] , spellNumbers[i] , minionNumbers[i] , item[i]);
+    public static Deck AiDeckBuilder(int i) {
+        int[] heroNumber = {1, 5, 7};
+        int[][] spellNumbers = {{1, 7, 10, 11, 12, 18, 20}, {2, 3, 5, 9, 8, 13, 19}, {6, 10, 12, 14, 15, 16, 17}};
+        int[][] minionNumbers = {{1, 9, 11, 11, 13, 17, 18, 21, 22, 26, 38, 36, 40}, {2, 3, 5, 8, 12, 15, 15, 19, 23, 27, 30, 33, 39}, {6, 7, 10, 14, 16, 16, 20, 24, 25, 28, 29, 31, 34}};
+        int[] item = {1, 10, 5};
+        return AiDeckBuilderUtility(heroNumber[i], spellNumbers[i], minionNumbers[i], item[i]);
     }
-    public static Deck AiDeckBuilderUtility(int heroNumber , int[] spellNumbers ,int[] minionNumbers , int item)
-    {
-        int counter=1;
-        Account AI = new Account("AI" , "password");
+
+    public static Deck AiDeckBuilderUtility(int heroNumber, int[] spellNumbers, int[] minionNumbers, int item) {
+        int counter = 1;
+        Account AI = new Account("AI", "password");
 
 
-        Deck deck = new Deck("AI_Deck1",AI);
-        Hero hero=  (Hero) Card.findCardInArrayList("Hero_"+heroNumber , Shop.getInstance().getCards());
-        Hero hero1 =(Hero) Hero.deepClone(hero);
-        hero1.setCardId(Card.makeNewID(AI.getUsername(),hero1.getCardName(),counter++));
+        Deck deck = new Deck("AI_Deck1", AI);
+        Hero hero = (Hero) Card.findCardInArrayList("Hero_" + heroNumber, Shop.getInstance().getCards());
+        Hero hero1 = (Hero) Hero.deepClone(hero);
+        hero1.setCardId(Card.makeNewID(AI.getUsername(), hero1.getCardName(), counter++));
         deck.addHero(hero);
-        for (int i =0;i<spellNumbers.length;i++)
-        {
-            Spell spell =Spell.deepClone((Spell) Spell.findCardInArrayList("Spell_"+spellNumbers[i],Shop.getInstance().getCards()));
-            spell.setCardId(Card.makeNewID(AI.getUsername(),spell.getCardName(),counter++));
+        for (int i = 0; i < spellNumbers.length; i++) {
+            Spell spell = Spell.deepClone((Spell) Spell.findCardInArrayList("Spell_" + spellNumbers[i], Shop.getInstance().getCards()));
+            spell.setCardId(Card.makeNewID(AI.getUsername(), spell.getCardName(), counter++));
             deck.addCard(spell);
         }
-        for (int i =0;i<minionNumbers.length;i++)
-        {
-            Minion minion =(Minion) Minion.deepClone((Warrior) Minion.findCardInArrayList("Minion_"+minionNumbers[i],Shop.getInstance().getCards()));
-            minion.setCardId(Card.makeNewID(AI.getUsername(),minion.getCardName(),counter++));
+        for (int i = 0; i < minionNumbers.length; i++) {
+            Minion minion = (Minion) Minion.deepClone((Warrior) Minion.findCardInArrayList("Minion_" + minionNumbers[i], Shop.getInstance().getCards()));
+            minion.setCardId(Card.makeNewID(AI.getUsername(), minion.getCardName(), counter++));
             deck.addCard(minion);
         }
-        UsableItem item1 = Shop.getInstance().searchAndGetItem("UsableItem_"+item);
+        UsableItem item1 = Shop.getInstance().searchAndGetItem("UsableItem_" + item);
         deck.setItem(item1);
         return deck;
         //UsableItem.findItemInArrayList("1",Shop.getInstance().getItems())
-
 
 
     }

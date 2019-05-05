@@ -19,7 +19,6 @@
                 "specialPower": {
                   "targetSocietyKind": "FRIENDLY_CARDS",
                   "spellName": "POWER_UP",
-                  "buffs": [],
                   "activationCondition": "DEFEND",
                   "cardId": "1000",
                   "manaCost": 1,
@@ -27,7 +26,7 @@
                   "cardKind": "MINION",
                   "cardDescription": "NoDesc",
                   "cardName": "NoName",
-                  "buffs^1": [],
+                  "buffs": [],
                   "isAbleToMove": false,
                   "isInGame": false
                 },
@@ -35,13 +34,13 @@
                 "shield": 0,
                 "isValidToAttack": false,
                 "IsValidToMove": false,
+                "buffs": [],
                 "cardId": "Minion_30",
                 "manaCost": 4,
                 "darikCost": 450,
                 "cardKind": "MINION",
                 "cardDescription": "No negative effect from other cards",
                 "cardName": "Giv",
-                "buffs": [],
                 "isAbleToMove": false,
                 "isInGame": false
               }
@@ -78,7 +77,6 @@
                 "specialPower": {
                   "targetSocietyKind": "ENEMY_CARDS",
                   "spellName": "ALL_POISON",
-                  "buffs": [],
                   "activationCondition": "ATTACK",
                   "cardId": "1000",
                   "manaCost": 1,
@@ -86,7 +84,7 @@
                   "cardKind": "MINION",
                   "cardDescription": "No",
                   "cardName": "NoName",
-                  "buffs^1": [],
+                  "buffs": [],
                   "isAbleToMove": false,
                   "isInGame": false
                 },
@@ -94,13 +92,13 @@
                 "shield": 0,
                 "isValidToAttack": false,
                 "IsValidToMove": false,
+                "buffs": [],
                 "cardId": "Hero_5",
                 "manaCost": 0,
                 "darikCost": 10000,
                 "cardKind": "HERO",
                 "cardDescription": "Poison Enemy for 3 turn on Attack",
                 "cardName": "Zahak",
-                "buffs": [],
                 "isAbleToMove": false,
                 "isInGame": false
               }
@@ -153,7 +151,6 @@
               "specialPower": {
                 "targetSocietyKind": "FRIENDLY_CARDS",
                 "spellName": "POWER_UP",
-                "buffs": [],
                 "activationCondition": "DEFEND",
                 "cardId": "1000",
                 "manaCost": 1,
@@ -161,7 +158,7 @@
                 "cardKind": "MINION",
                 "cardDescription": "NoDesc",
                 "cardName": "NoName",
-                "buffs^1": [],
+                "buffs": [],
                 "isAbleToMove": false,
                 "isInGame": false
               },
@@ -169,13 +166,13 @@
               "shield": 0,
               "isValidToAttack": false,
               "IsValidToMove": false,
+              "buffs": [],
               "cardId": "Minion_30",
               "manaCost": 4,
               "darikCost": 450,
               "cardKind": "MINION",
               "cardDescription": "No negative effect from other cards",
               "cardName": "Giv",
-              "buffs": [],
               "isAbleToMove": false,
               "isInGame": false
             }
@@ -259,7 +256,6 @@
                 "specialPower": {
                   "targetSocietyKind": "ENEMY_CARDS",
                   "spellName": "POWER_UP",
-                  "buffs": [],
                   "activationCondition": "DEATH",
                   "cardId": "1000",
                   "manaCost": 1,
@@ -267,7 +263,7 @@
                   "cardKind": "MINION",
                   "cardDescription": "NoDesc",
                   "cardName": "NoName",
-                  "buffs^1": [],
+                  "buffs": [],
                   "isAbleToMove": false,
                   "isInGame": false
                 },
@@ -275,13 +271,13 @@
                 "shield": 0,
                 "isValidToAttack": false,
                 "IsValidToMove": false,
+                "buffs": [],
                 "cardId": "Minion_38",
                 "manaCost": 4,
                 "darikCost": 350,
                 "cardKind": "MINION",
                 "cardDescription": "6 Damage to Enemy hero On death",
                 "cardName": "Siavash",
-                "buffs": [],
                 "isAbleToMove": false,
                 "isInGame": false
               }
@@ -299,7 +295,6 @@
                 "specialPower": {
                   "targetSocietyKind": "ENEMY_CARDS",
                   "spellName": "ALL_DISARM",
-                  "buffs": [],
                   "activationCondition": "ATTACK",
                   "cardId": "1000",
                   "manaCost": 1,
@@ -307,7 +302,7 @@
                   "cardKind": "MINION",
                   "cardDescription": "No",
                   "cardName": "NoName",
-                  "buffs^1": [],
+                  "buffs": [],
                   "isAbleToMove": false,
                   "isInGame": false
                 },
@@ -315,13 +310,13 @@
                 "shield": 0,
                 "isValidToAttack": false,
                 "IsValidToMove": false,
+                "buffs": [],
                 "cardId": "Hero_7",
                 "manaCost": 2,
                 "darikCost": 10000,
                 "cardKind": "HERO",
                 "cardDescription": "Damages all units on the hero row",
                 "cardName": "Arash",
-                "buffs": [],
                 "isAbleToMove": false,
                 "isInGame": false
               }
@@ -339,7 +334,6 @@
                 "specialPower": {
                   "targetSocietyKind": "FRIENDLY_CARDS",
                   "spellName": "POWER_UP",
-                  "buffs": [],
                   "activationCondition": "DEFEND",
                   "cardId": "1000",
                   "manaCost": 1,
@@ -347,7 +341,7 @@
                   "cardKind": "MINION",
                   "cardDescription": "NoDesc",
                   "cardName": "NoName",
-                  "buffs^1": [],
+                  "buffs": [],
                   "isAbleToMove": false,
                   "isInGame": false
                 },
@@ -355,13 +349,13 @@
                 "shield": 0,
                 "isValidToAttack": false,
                 "IsValidToMove": false,
+                "buffs": [],
                 "cardId": "Minion_30",
                 "manaCost": 4,
                 "darikCost": 450,
                 "cardKind": "MINION",
                 "cardDescription": "No negative effect from other cards",
                 "cardName": "Giv",
-                "buffs": [],
                 "isAbleToMove": false,
                 "isInGame": false
               }
@@ -474,6 +468,177 @@
       "password": "alireza",
       "countOfWins": 0,
       "darick": 74800,
+      "collectableItems": []
+    }
+  },
+  {
+    "@type": "Model.Account",
+    "@val": {
+      "battleHistory": [],
+      "decks": [
+        {
+          "cards": [
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "minionName": "IRAJ",
+                "hasSpecialPower": false,
+                "healthPoint": 6,
+                "actionPower": 20,
+                "attackRange": 3,
+                "attackKind": "RANGED",
+                "validCounterAttack": false,
+                "specialPower": {
+                  "targetSocietyKind": "ENEMY_CARDS",
+                  "spellName": "POWER_UP",
+                  "activationCondition": "ATTACK",
+                  "cardId": "1000",
+                  "manaCost": 1,
+                  "darikCost": 0,
+                  "cardKind": "MINION",
+                  "cardDescription": "NoDesc",
+                  "cardName": "NoName",
+                  "buffs": [],
+                  "isAbleToMove": false,
+                  "isInGame": false
+                },
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": false,
+                "IsValidToMove": false,
+                "buffs": [],
+                "cardId": "saman_Iraj_1",
+                "manaCost": 4,
+                "darikCost": 500,
+                "cardKind": "MINION",
+                "cardDescription": "No Special Power",
+                "cardName": "Iraj",
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "minionName": "IRAJ",
+                "hasSpecialPower": false,
+                "healthPoint": 6,
+                "actionPower": 20,
+                "attackRange": 3,
+                "attackKind": "RANGED",
+                "validCounterAttack": false,
+                "specialPower": "@root.2.decks.0.cards.0.specialPower",
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": false,
+                "IsValidToMove": false,
+                "buffs": [],
+                "cardId": "saman_Iraj_2",
+                "manaCost": 4,
+                "darikCost": 500,
+                "cardKind": "MINION",
+                "account": "@root.2",
+                "cardDescription": "No Special Power",
+                "cardName": "Iraj",
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            }
+          ],
+          "minions": [
+            "@root.2.decks.0.cards.0",
+            "@root.2.decks.0.cards.1"
+          ],
+          "account": "@root.2",
+          "deckName": "first",
+          "isValid": false
+        },
+        {
+          "cards": [],
+          "minions": [],
+          "account": "@root.2",
+          "deckName": "frist",
+          "isValid": false
+        }
+      ],
+      "cardCollection": {
+        "cards": [
+          "@root.2.decks.0.cards.0",
+          "@root.2.decks.0.cards.1",
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "minionName": "SIAVASH",
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "specialPower": {
+                "targetSocietyKind": "ENEMY_CARDS",
+                "spellName": "POWER_UP",
+                "activationCondition": "DEATH",
+                "cardId": "1000",
+                "manaCost": 1,
+                "darikCost": 0,
+                "cardKind": "MINION",
+                "cardDescription": "NoDesc",
+                "cardName": "NoName",
+                "buffs": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              },
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": false,
+              "IsValidToMove": false,
+              "buffs": [],
+              "cardId": "saman_Siavash_1",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "minionName": "SIAVASH",
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "specialPower": "@root.2.cardCollection.cards.2.specialPower",
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": false,
+              "IsValidToMove": false,
+              "buffs": [],
+              "cardId": "saman_Siavash_2",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "account": "@root.2",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          }
+        ],
+        "items": [],
+        "account": "@root.2"
+      },
+      "username": "saman",
+      "password": "saman",
+      "countOfWins": 0,
+      "darick": 98300,
       "collectableItems": []
     }
   }

@@ -193,8 +193,8 @@ public class GameController {
                 Battle.setRunningBattle(null);
                 break;
         }
-            if (Battle.getRunningBattle() != null) {
-                Battle.getRunningBattle().showMap();
+        if (Battle.getRunningBattle() != null) {
+            Battle.getRunningBattle().showMap();
 
         }
     }
@@ -540,11 +540,13 @@ public class GameController {
         String cardId = collectionCommand.getData().get(0);
         String deckName = collectionCommand.getData().get(1);
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
-        Card card = Card.findCardInArrayList(cardId, Account.getLoginedAccount().getCardCollection().getCards());
         if (deck == null)
             throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
+        Card card = Card.findCardForDeckWithSameNameAndDifferentIds(cardId, Account.getLoginedAccount().getCardCollection().getCards(), deck);
+        if(Deck.deckHasCard(cardId, deck))
+            throw new Error(ConstantMessages.INVALID_ADD_TO_DECK.getMessage());
         if (card == null)
-            throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
+            throw new Error(ConstantMessages.INVALID_CARD_ID.getMessage());
         if (CardCollection.getCountOfCard(deck.getCards(), card) < CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), card))
             deck.addCard(card);
         else
@@ -572,7 +574,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        battle.useSpecialPower(null , x, y);
+        battle.useSpecialPower(null, x, y);
     }
 
 

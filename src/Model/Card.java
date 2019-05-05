@@ -60,6 +60,18 @@ public class Card implements Cloneable {
         return null;
     }
 
+    public static Card findCardForDeckWithSameNameAndDifferentIds(String cardId, ArrayList<Card> cards, Deck deck) {
+        if (cards != null) {
+            for (int i = 0; i < cards.size(); i++) {
+                if (cards.get(i) != null && cards.get(i).getCardId().equals(cardId) && !Deck.deckHasCard(cardId, deck)) {
+                    return cards.get(i);
+                }
+            }
+        }
+        return null;
+    }
+
+
     public static Card findCardInArrayListByName(String cardName, ArrayList<Card> cards) {
         if (cards != null) {
             for (int i = 0; i < cards.size(); i++) {
