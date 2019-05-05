@@ -3,21 +3,16 @@ package Model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Ai {
+public class Ai extends Account{
 
     private static Ai ai1;
     private static Ai ai2;
     private static Ai ai3;
-    private Deck mainDeck;
     private Battle battle;
-    private ArrayList<Card> hand;
-    private ArrayList<Card> cardsInGame;
 
-    public Ai(Deck mainDeck, Battle battle, int numberOfAi) {
-        this.mainDeck = mainDeck;
+    public Ai(Battle battle, int numberOfAi) {
+        super("name" , "Password");
         this.battle = battle;
-        hand = battle.getSecondPlayerHand();//TODO hamishe AI bazikone dovvome felan :)
-        cardsInGame = battle.getSecondPlayerInGameCards();//TODO hamishe AI bazikone dovvome felan :)
         if (numberOfAi == 1) {
             ai1 = this;
         } else if (numberOfAi == 2) {
@@ -25,15 +20,19 @@ public class Ai {
         } else {
             ai3 = this;
         }
+        setDarick(1000000000);
 
     }
 
-
-    public Deck getMainDeck() {
-        return mainDeck;
+    public void addCardToAi(int numberOfAi , Card card){
+        if (numberOfAi == 1) {
+            ai1.getMainDeck().addCard(card);
+        } else if (numberOfAi == 2) {
+            ai2.getMainDeck().addCard(card);
+        } else {
+            ai3.getMainDeck().addCard(card);
+        }
     }
-
-
     public void playGame() {
         Random random = new Random();
         int randomInteger = random.nextInt() % 3;
@@ -60,15 +59,6 @@ public class Ai {
 
     private void insertCard() {
 
-    }
-
-
-    public ArrayList<Card> getHand() {
-        return hand;
-    }
-
-    public ArrayList<Card> getCardsInGame() {
-        return cardsInGame;
     }
 
     public static Ai getAi1() {

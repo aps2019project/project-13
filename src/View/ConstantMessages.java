@@ -71,7 +71,7 @@ public enum ConstantMessages {
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
             "select deck [deck name] \nshow all decks \nshow deck [deck name]\n exit"),
 
-    MAIN_MENU_HELP("Show menu\nEnter Collection\nEnter Shop\nEnter Battle\nexit"),
+    MAIN_MENU_HELP("Enter Collection\nEnter Shop\nEnter Battle\nexit"),
 
     GAME_MODE("Enter Game Mode :\n1.Single Player\n2.Multi Player\n(1 , 2)? "),
 

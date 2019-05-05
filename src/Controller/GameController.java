@@ -148,7 +148,6 @@ public class GameController {
 
 
     private void battleCommandManagement(BattleCommand battleCommand) throws Error {
-//        Battle.getRunningBattle().setCurrentTurnPlayer();
 
         switch (battleCommand) {
             case HELP:
@@ -192,10 +191,16 @@ public class GameController {
                 break;
             case EXIT:
                 Request.getInstance().exitLastmenu();
+                if(Battle.getRunningBattle()!=null){
+                    Battle.getRunningBattle().showMap();
+                }
         }
     }
 
-    private void startBattle(Request request) {
+    public void exitFromBattle(){
+        battleCommandManagement(BattleCommand.EXIT);
+    }
+    private void startBattle(Request request) throws Error{
         show.enterInBattle();
         String gameModeNumber = request.getNumberForKindOfBattle();
         gameModeNumber = getGameMode(request, gameModeNumber);
@@ -213,13 +218,15 @@ public class GameController {
 
     }
 
-    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) {
+    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account) throws Error{
+        show.startBattle();
         if (gameMode == GameMode.SINGLEPLAYER)
             new Battle(Account.getLoginedAccount(), null, gameMode, gameGoal);//TODO AI
         else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
     }
 
-    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account) {
+    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account)throws Error {
+        show.startBattle();
         if (gameGoal == GameGoal.COLLECT_FLAG) {
             int numberOfFlagForWin = 0;
             while (numberOfFlagForWin < 1) {
@@ -555,7 +562,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        battle.useSpecialPower(x, y);
+        battle.useSpecialPower(null , x, y);
     }
 
 
