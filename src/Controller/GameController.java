@@ -190,9 +190,12 @@ public class GameController {
                 break;
             case EXIT:
                 Request.getInstance().exitLastmenu();
-                if (Battle.getRunningBattle() != null) {
-                    Battle.getRunningBattle().showMap();
-                }
+                Battle.setRunningBattle(null);
+                break;
+        }
+            if (Battle.getRunningBattle() != null) {
+                Battle.getRunningBattle().showMap();
+
         }
     }
 
@@ -569,7 +572,7 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         int x = Integer.parseInt(cardCommand.getData().get(0));
         int y = Integer.parseInt(cardCommand.getData().get(1));
-        battle.useSpecialPower(null, x, y);
+        battle.useSpecialPower(null , x, y);
     }
 
 
