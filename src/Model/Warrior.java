@@ -18,7 +18,7 @@ public class Warrior extends Card implements Cloneable{
     private int shield;
     private boolean isValidToAttack = true;
     private boolean IsValidToMove = true;
-    SpecialPowerBuffs specialPowerBuffs;
+    private SpecialPowerBuffs specialPowerBuffs;
     private ArrayList<ABuff> buffs = new ArrayList<>();
 
     public Warrior(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
@@ -90,6 +90,14 @@ public class Warrior extends Card implements Cloneable{
     public boolean isDeath() {
         checkDeath();
         return isDeath;
+    }
+
+    public SpecialPowerBuffs getSpecialPowerBuffs() {
+        return specialPowerBuffs;
+    }
+
+    public void setSpecialPowerBuffs(SpecialPowerBuffs specialPowerBuffs) {
+        this.specialPowerBuffs = specialPowerBuffs;
     }
 
     public int getShield() {

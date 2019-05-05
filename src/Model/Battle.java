@@ -126,6 +126,7 @@ public class Battle {
         if (!isValidAttack(targetCell, warrior)) {
             throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
         }
+        if (warrior.specialPowerBuffs)
         defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
         affectBuffs(warrior, targetCell, defender);
         if (defender.isValidCounterAttack() && isAttack) {
