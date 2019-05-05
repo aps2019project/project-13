@@ -7,6 +7,7 @@ public class Item {
     private String itemDescription;
     private ItemKind itemKind;
     private String itemName;
+    private Account account;
     //   private int darickCost;
 
     public Item(String itemId, String itemDescription, ItemKind itemKind, String itemName) {
@@ -46,5 +47,13 @@ public class Item {
 
     public String getItemDescription() {
         return itemDescription;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

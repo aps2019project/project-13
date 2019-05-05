@@ -30,7 +30,8 @@ public class Shop {
 
         if (card != null) {
             if (card.getDarikCost() <= account.getDarick()) {
-                account.getCardCollection().addCard((Card)card.clone());
+                account.getCardCollection().addCard((Card) card.clone());
+                card.setAccount(account);
                 account.decreaseDarick(card.getDarikCost());
             } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
@@ -38,6 +39,7 @@ public class Shop {
             if (validBuyLimitOfItem(Account.getLoginedAccount())) {
                 if (item.getDarickCost() <= account.getDarick()) {
                     account.getCardCollection().addItem(item);
+                    item.setAccount(account);
                     account.decreaseDarick(item.getDarickCost());
                 } else
                     throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());

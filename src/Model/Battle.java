@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.GameController;
 import Model.BuffClasses.ABuff;
 import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
@@ -57,6 +56,10 @@ public class Battle {
         insertPlayerHeroesInMap();
         setHandOfFirstPlayer();
         setHandOfSecondPlayer();
+        if (getTurn() % 2 == 1)
+            setFirstPlayerNextCard();
+        if (getTurn() % 2 == 0)
+            setSecondPlayerNextCard();
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
@@ -129,8 +132,7 @@ public class Battle {
         if (!isValidAttack(targetCell, warrior)) {
             throw new Error(ConstantMessages.INVALID_TARGET.getMessage());
         }
-        if (warrior.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.ATTACK))
-        {
+        if (warrior.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.ATTACK)) {
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(targetCell);
         }
@@ -240,6 +242,14 @@ public class Battle {
         }
         setMana();
         incrementTurn();
+        if (firstPlayerHand.size() < 5 && getTurn() % 2 == 1) {
+            firstPlayerHand.add(firstPlayerNextCard);
+            firstPlayerNextCard = null;
+        }
+        if (secondPlayerHand.size() < 5 && getTurn() % 2 == 0) {
+            secondPlayerHand.add(secondPlayerNextCard);
+            secondPlayerNextCard = null;
+        }
         addUsedCardsToGraveYard();
 
     }
@@ -271,8 +281,10 @@ public class Battle {
 
     private void incrementTurn() {
         setCurrentTurnPlayer();
-        setFirstPlayerNextCard();
-        setSecondPlayerNextCard();
+        if (firstPlayerNextCard == null && getTurn() % 2 == 1)
+            setFirstPlayerNextCard();
+        if (secondPlayerNextCard == null && getTurn() % 2 == 0)
+            setSecondPlayerNextCard();
         turn++;
     }
 
@@ -521,7 +533,7 @@ public class Battle {
 
     private void setFirstPlayerNextCard() {
         Random random = new Random();
-        firstPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt());
+        firstPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt(firstPlayerDeck.getCards().size()));
     }
 
     public void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) {
@@ -558,7 +570,7 @@ public class Battle {
 
     private void setSecondPlayerNextCard() {
         Random random = new Random();
-        secondPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt());
+        secondPlayerNextCard = secondPlayerDeck.getCards().get(random.nextInt(secondPlayerDeck.getCards().size()));
     }
 
     public Card getNextCard() {
@@ -820,12 +832,14 @@ public class Battle {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getCard() != null) {
-                    if (cells[i][j].getCard().getAccount().equals(firstPlayer))
+                    if (cells[i][j].getCard().getAccount() == null)
+                        System.out.print("*");
+                    else if (cells[i][j].getCard().getAccount().equals(firstPlayer))
                         System.out.print(" 1 ");
                     else System.out.print(" 2 ");
                 } else System.out.print(" 0 ");
-                System.out.println();
             }
+            System.out.println();
         }
     }
 }
