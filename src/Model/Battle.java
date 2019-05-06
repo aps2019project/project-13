@@ -4,6 +4,7 @@ import Model.BuffClasses.ABuff;
 import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
 import View.Error;
+import View.Show;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -257,7 +258,7 @@ public class Battle {
         }
     }
 
-    public void endTurn() {
+    public void endTurn()throws Error {
         endGame();
         if (isEndGame()) {
             setHistoryAfterGame();
@@ -886,19 +887,7 @@ public class Battle {
     }
 
     public void showMap() {
-        Cell[][] cells = map.getCells();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (cells[i][j].getCard() != null) {
-                    if (cells[i][j].getCard().getAccount() == null)
-                        System.out.print(" * ");
-                    else if (cells[i][j].getCard().getAccount().equals(firstPlayer))
-                        System.out.print(" 1 ");
-                    else System.out.print(" 2 ");
-                } else System.out.print(" 0 ");
-            }
-            System.out.println();
-        }
+        Show.getInstance().showMap();
     }
 
     private void turnBeiginingInit() {
@@ -915,12 +904,12 @@ public class Battle {
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             secondPlayerInGameCard.setAbleToMove(true);
         }
-        for (Card card : firstPlayerHand) {
-            ((Warrior) card).setValidToAttack(true);
-        }
-        for (Card card : secondPlayerHand) {
-            ((Warrior) card).setValidToAttack(true);
-        }
+//        for (Card card : firstPlayerHand) {
+//            ((Warrior) card).setValidToAttack(true);
+//        }
+//        for (Card card : secondPlayerHand) {
+//            ((Warrior) card).setValidToAttack(true);
+//        }
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
             ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
         }

@@ -203,10 +203,6 @@ public class GameController {
         }
 
         if (Battle.getRunningBattle() != null) {
-            Battle.getRunningBattle().showMap();
-
-        }
-        if (Battle.getRunningBattle() != null) {
             Battle.getRunningBattle().endGame();
             Battle.getRunningBattle().deleteDeathCardsFromMap();
             if (Battle.getRunningBattle().isEndGame()) {
@@ -217,7 +213,7 @@ public class GameController {
             }
         }
         if (Battle.getRunningBattle() != null) {
-            Battle.getRunningBattle().showMap();
+            show.showMap();
 
         }
     }
@@ -458,7 +454,7 @@ public class GameController {
         show.showBattleInfo(battle.toString());
     }
 
-    private void battleEndTurn() {
+    private void battleEndTurn() throws Error {
         Battle battle = Battle.getRunningBattle();
         battle.endTurn();
     }
@@ -491,6 +487,7 @@ public class GameController {
         String cardName = battleCommand.getData().get(0);
         int x, y;
         try {
+            System.out.println(battleCommand.getData().get(1) + " " + battleCommand.getData().get(2));
             x = Integer.parseInt(battleCommand.getData().get(1));
             y = Integer.parseInt(battleCommand.getData().get(2));
         } catch (Exception e) {

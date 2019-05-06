@@ -301,4 +301,23 @@ public class Show {
     public void showWinner(String userName){
         System.out.println(userName + " Win Game :)");
     }
+    public void showMap() {
+        Battle battle = Battle.getRunningBattle();
+        Cell[][] cells = battle.getMap().getCells();
+        System.out.println("*************************");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (cells[i][j].getCard() != null) {
+                    if (cells[i][j].getCard().getAccount() == null)
+                        System.out.print(" * ");
+                    else if (cells[i][j].getCard().getAccount().equals(battle.getFirstPlayer()))
+                        System.out.print(" 1 ");
+                    else System.out.print(" 2 ");
+                } else System.out.print(" 0 ");
+            }
+            System.out.println();
+        }
+        System.out.println("*************************");
+        System.out.println();
+    }
 }
