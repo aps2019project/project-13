@@ -285,22 +285,26 @@ public class Show {
         System.out.println("Choose a deck : ");
         for (Deck deck :
                 Account.getLoginedAccount().getDecks()) {
-            System.out.println("- "+deck.getDeckName());
+            System.out.println("- " + deck.getDeckName());
         }
     }
-    public void invalidDeck(){
+
+    public void invalidDeck() {
         System.out.println("not exist deck ! Try again ");
     }
-    public void chooseAi(){
+
+    public void chooseAi() {
         System.out.println("we have 3 computer to play Game , choose (1 , 2 , 3)?");
     }
-    public void invalidComputer(){
+
+    public void invalidComputer() {
         System.out.println("1 or 2 or 3 ?! try again!");
     }
 
-    public void showWinner(String userName){
+    public void showWinner(String userName) {
         System.out.println(userName + " Win Game :)");
     }
+
     public void showMap() {
         Battle battle = Battle.getRunningBattle();
         Cell[][] cells = battle.getMap().getCells();
@@ -308,11 +312,11 @@ public class Show {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getCard() != null) {
-                    if (cells[i][j].getCard().getAccount() == null)
-                        System.out.print(" * ");
-                    else if (cells[i][j].getCard().getAccount().equals(battle.getFirstPlayer()))
+                    if (cells[i][j].getCard().getAccount().equals(battle.getFirstPlayer()))
                         System.out.print(" 1 ");
                     else System.out.print(" 2 ");
+                    if(cells[i][j].getItem()!=null && cells[i][j].getItem().getItemKind().equals(ItemKind.FLAG))
+                        System.out.println("F");
                 } else System.out.print(" 0 ");
             }
             System.out.println();
