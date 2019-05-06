@@ -662,11 +662,12 @@ public class GameController {
             int x = Integer.parseInt(battleCommand.getData().get(0));
             int y = Integer.parseInt(battleCommand.getData().get(1));
             Cell cell = battle.getMap().getCell(x, y);
-            if (cell != null)
+            if (cell != null) {
                 battle.moveCard(x, y);
+            }
             else
                 throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
-        } catch (Error e) {
+        } catch (NumberFormatException  e) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
     }
