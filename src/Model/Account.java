@@ -12,7 +12,7 @@ import java.util.Comparator;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 
-public class Account implements Cloneable{
+public class Account implements Cloneable {
     private static Account loginedAccount = null;
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<String> battleHistory;
@@ -34,8 +34,8 @@ public class Account implements Cloneable{
         collectableItems = new ArrayList<>();
         setDarick(100000);
         accounts.add(this);
-        if(!(this instanceof Ai))
-        loginedAccount = this;
+        if (!(this instanceof Ai))
+            loginedAccount = this;
     }
 
     void increaseDarick(int number) {
@@ -213,7 +213,7 @@ public class Account implements Cloneable{
     }
 
     public void incrementCountOfWins(int i) {
-        setCountOfWins(getCountOfWins()+i);
+        setCountOfWins(getCountOfWins() + i);
     }
 
     public int getCountOfWins() {
