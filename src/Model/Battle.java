@@ -464,7 +464,7 @@ public class Battle {
 
         for (Cell[] cell : cells) {
             for (Cell cell1 : cell) {
-                if (cell1.isEmpty())
+                if (isValidInsert(cell1))
                     validCells.add(cell1);
             }
         }
@@ -490,16 +490,16 @@ public class Battle {
     private boolean isValidMove(Cell destinationCell) {
         if (destinationCell.getRow() == selectedCard.getCurrentCell().getRow()) {
             if (destinationCell.getColumn() < selectedCard.getCurrentCell().getColumn()) {
-                return map.getCells()[destinationCell.getRow()][destinationCell.getColumn() + 1].isEmpty();
+                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn()-1].isEmpty();
             } else {
-                return map.getCells()[destinationCell.getRow()][destinationCell.getColumn() - 1].isEmpty();
+                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() + 1].isEmpty();
             }
 
         } else if (destinationCell.getColumn() == selectedCard.getCurrentCell().getColumn()) {
             if (destinationCell.getRow() < selectedCard.getCurrentCell().getRow()) {
-                return map.getCells()[destinationCell.getRow() + 1][destinationCell.getColumn()].isEmpty();
+                return map.getCells()[selectedCard.getCurrentCell().getRow() - 1][destinationCell.getColumn()].isEmpty();
             } else {
-                return map.getCells()[destinationCell.getRow() - 1][destinationCell.getColumn()].isEmpty();
+                return map.getCells()[selectedCard.getCurrentCell().getRow() + 1][destinationCell.getColumn()].isEmpty();
             }
         }
         return false;
