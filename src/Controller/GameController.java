@@ -292,8 +292,6 @@ public class GameController {
         String gameGoalNumber = request.getString();
         gameGoalNumber = getGameGoal(request, gameGoalNumber);
         gameGoal = getGameGoal(gameGoalNumber);
-//        if (setBattleForCollectFlag(request, gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck)) return;
-//        setBattle(gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck);
         int numberOfFlagForWin = 0;
         if (gameGoal == GameGoal.COLLECT_FLAG) {
 
@@ -306,29 +304,6 @@ public class GameController {
                     show.invalidNumberForFlag();
                 }
             }
-//            if (gameMode == GameMode.SINGLEPLAYER) {
-//                try{
-//                if (kindOfSinglePlayer.equals("1")) {
-//                    System.out.println("----------------------");
-//                    Ai ai =new Ai(Integer.parseInt(chooseAi));
-//                    Battle battle = new Battle(Account.getLoginedAccount(),ai , gameMode, gameGoal);
-//                    battle.setNumberOfFlagForWin(numberOfFlagForWin);
-//                } else {
-//                    Ai ai = new Ai(4);
-//                    ai.setMainDeck(deck);
-//                    Battle battle = new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
-//                    battle.setNumberOfFlagForWin(numberOfFlagForWin);
-//                }}catch (Exception e){
-//                    System.out.println("gggggggggggggggggggggggggggggggggggggggggggg");
-//                }
-//                System.out.println("000000000000000000000000");
-//
-//            } else {
-//                Battle battle = new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
-//                battle.setNumberOfFlagForWin(numberOfFlagForWin);
-//            }
-//            show.startBattle();
-//            return;
         }
         if (gameMode == GameMode.SINGLEPLAYER) {
             if (kindOfSinglePlayer.equals("1")) {
