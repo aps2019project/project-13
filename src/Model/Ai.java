@@ -30,7 +30,7 @@ public class Ai extends Account {
 
     public void playGame() {
         Random random = new Random();
-        int randomInteger = random.nextInt() % 3;
+        int randomInteger = random.nextInt() % 4;
         switch (randomInteger) {
             case 0:
                 attack();
@@ -40,7 +40,9 @@ public class Ai extends Account {
                 break;
             case 2:
                 insertCard();
-                battle.endTurn();
+                break;
+            case 3:
+                endTurn();
         }
     }
 
@@ -54,6 +56,9 @@ public class Ai extends Account {
     }
 
     private void insertCard() {
+
+    }
+    private void endTurn() {
 
     }
 }

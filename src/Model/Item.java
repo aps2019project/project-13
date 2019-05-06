@@ -1,6 +1,7 @@
 package Model;
 
 import com.rits.cloning.Cloner;
+import com.sun.jdi.ThreadReference;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,11 @@ public class Item {
         try {
             if (item != null) {
                 if (item instanceof CollectableItem) {
-                    Item temp = (Item) item.clone();
+                    Item temp = CollectableItem.deepCloneCollect((CollectableItem) item);
                     temp.setItemId(makeNewID(Account.getLoginedAccount().getUsername(), item.getItemName()));
                     return temp;
                 } else if (item instanceof UsableItem) {
-                    Item temp = (Item) item.clone();
+                    Item temp = UsableItem.deepCloneUse((UsableItem) item);
                     temp.setItemId(makeNewID(Account.getLoginedAccount().getUsername(), item.getItemName()));
                     return temp;
                 }
