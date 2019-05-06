@@ -53,9 +53,9 @@ public class GameController {
             case SHOP:
                 shopCommandManagement(request, request.getShopCommand());
                 break;
-            case CARD:
-                cardCommandManagement(request, request.getCardCommand());
-                break;
+//            case CARD:
+//                cardCommandManagement(request, request.getCardCommand());
+//                break;
             case GRAVEYARD:
                 graveYardCommandManagement(request, request.getGraveYardCommand());
                 break;
@@ -192,7 +192,15 @@ public class GameController {
                 break;
             case EXIT:
                 putOfGame();
+            case MOVE:
+                battleCommandMove(battleCommand);
                 break;
+            case ATTACK:
+                Battle battle = Battle.getRunningBattle();
+                battle.attack(battleCommand.getData().get(0), (Warrior) battle.getSelectedCard(), true);
+                break;
+            case USE_SPECIAL_POWER:
+                useSpecialPower(battleCommand);
         }
         if (Battle.getRunningBattle() != null) {
             Battle.getRunningBattle().showMap();
@@ -667,40 +675,40 @@ public class GameController {
             throw new Error(ConstantMessages.NOT_ENOUGH_CARD_TO_ADD_TO_DECK.getMessage());
     }
 
-    private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
-        switch (cardCommand) {
-            case EXIT:
-                request.exitLastmenu();
-                break;
-            case MOVE:
-                cardCommandMove(cardCommand);
-                break;
-            case ATTACK:
-                Battle battle = Battle.getRunningBattle();
-                battle.attack(cardCommand.getData().get(0), (Warrior) battle.getSelectedCard(), true);
-                break;
-            case USE_SPECIAL_POWER:
-                useSpecialPower(cardCommand);
-        }
-    }
+//    private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
+//        switch (cardCommand) {
+//            case EXIT:
+//                request.exitLastmenu();
+//                break;
+//            case MOVE:
+//                battleCommandMove(cardCommand);
+//                break;
+//            case ATTACK:
+//                Battle battle = Battle.getRunningBattle();
+//                battle.attack(cardCommand.getData().get(0), (Warrior) battle.getSelectedCard(), true);
+//                break;
+//            case USE_SPECIAL_POWER:
+//                useSpecialPower(cardCommand);
+//        }
+//    }
 
-    private void useSpecialPower(CardCommand cardCommand) throws Error {
+    private void useSpecialPower(BattleCommand battleCommand) throws Error {
         Battle battle = Battle.getRunningBattle();
-        int x = Integer.parseInt(cardCommand.getData().get(0));
-        int y = Integer.parseInt(cardCommand.getData().get(1));
+        int x = Integer.parseInt(battleCommand.getData().get(0));
+        int y = Integer.parseInt(battleCommand.getData().get(1));
         battle.useSpecialPower(null, x, y);
     }
 
 
-    private void cardCommandMove(CardCommand cardCommand) throws Error {
+    private void battleCommandMove(BattleCommand battleCommand) throws Error {
         Battle battle = Battle.getRunningBattle();
         Card card = battle.getSelectedCard();
         if (card == null) {
             throw new Error(ConstantMessages.NO_CARD_SELECTED.getMessage());
         }
         try {
-            int x = Integer.parseInt(cardCommand.getData().get(0));
-            int y = Integer.parseInt(cardCommand.getData().get(1));
+            int x = Integer.parseInt(battleCommand.getData().get(0));
+            int y = Integer.parseInt(battleCommand.getData().get(1));
             Cell cell = battle.getMap().getCell(x, y);
             if (cell != null)
                 battle.moveCard(battle.getMap().getCell(x, y));
@@ -765,6 +773,4 @@ public class GameController {
 
         }
     }
-
-
 }

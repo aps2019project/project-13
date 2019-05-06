@@ -61,6 +61,9 @@ public class Patterns {
             Pattern.compile("^(?i)End Game\\s*$"),
             Pattern.compile("^(?i)Show card info (\\S+)\\s*$"),
             Pattern.compile("^(?i)Select (\\S+)\\s*$"),
+            Pattern.compile("^(?i)Attack (\\S+)\\s*$"),
+            Pattern.compile("^(?i)Move to \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$"),
+            Pattern.compile("^(?i)Use special power \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$"),
             //Model.Card move and attack patterns are in another array
             Pattern.compile("^(?i)Insert \\s*(\\S+) \\s*in\\s* \\s*\\(\\s*(\\d)\\s*,\\s*(\\d)\\s*\\)\\s*$"),
 
