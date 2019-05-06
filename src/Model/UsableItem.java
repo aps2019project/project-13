@@ -15,7 +15,7 @@ public class UsableItem extends Item {
         this.specialPowerBuffs = specialPowerBuffs;
     }
 
-    public static UsableItem deepClone(UsableItem usableItem) {
+    public static UsableItem deepCloneUse(UsableItem usableItem) {
         if (usableItem != null) {
             Cloner cloner = new Cloner();
             cloner.dontClone(Account.class);

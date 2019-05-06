@@ -15,7 +15,7 @@ public class CollectableItem extends Item {
         super(itemId, itemDescription, ItemKind.COLLECTIBLE, itemName);
         this.aBuffs = aBuffs;
     }
-    public static CollectableItem deepClone(CollectableItem collectableItem)
+    public static CollectableItem deepCloneCollect(CollectableItem collectableItem)
     {
         if (collectableItem!=null) {
             Cloner cloner = new Cloner();
