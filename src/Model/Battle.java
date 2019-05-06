@@ -71,13 +71,12 @@ public class Battle {
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
         if (firstPlayer.getMainDeck() != null && Deck.validateDeck(firstPlayer.getMainDeck())) {
-            firstPlayerDeck = firstPlayer.getMainDeck();
+            firstPlayerDeck = Deck.deepClone(firstPlayer.getMainDeck());
         } else {
             throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         }
         if (secondPlayer.getMainDeck() != null && Deck.validateDeck(secondPlayer.getMainDeck())) {
-
-            secondPlayerDeck = secondPlayer.getMainDeck();
+            secondPlayerDeck = Deck.deepClone(secondPlayer.getMainDeck());
         } else {
             throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
         }
@@ -270,7 +269,7 @@ public class Battle {
     private void setMana() {
         if (turn < 14) {
             setFirstPlayerCapacityMana(turn / 2 + 2 + 1000);//TODO Reval kkon
-            setSecondPlayerCapacityMana(turn / 2 + 2 + 1000 );
+            setSecondPlayerCapacityMana(turn / 2 + 2 + 1000);
         } else if (turn >= 14) {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
@@ -436,7 +435,12 @@ public class Battle {
     }
 
     private boolean isValidInsert(Cell destinationCell) {
-        return (destinationCell != null) && destinationCell.isEmpty();
+        Deck deck;
+        if (turn % 2 == 1)
+            deck = firstPlayerDeck;
+        else
+            deck = secondPlayerDeck;
+        return (destinationCell != null) && destinationCell.isEmpty() && map.getDistanceOfTwoCell(destinationCell, deck.getHero().getCurrentCell()) <= 2;
     }
 
     private boolean isValidMove(Cell destinationCell) {
