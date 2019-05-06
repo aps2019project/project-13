@@ -14,7 +14,7 @@ public class Item {
     private static int counter = 1;
     //   private int darickCost;
 
-    public Item(String itemId, String itemDescription,ItemKind itemKind, String itemName) {
+    public Item(String itemId, String itemDescription, ItemKind itemKind, String itemName) {
         this.itemId = itemId;
         this.itemDescription = itemDescription;
         this.itemName = itemName;
@@ -26,7 +26,7 @@ public class Item {
         return accountName + "_" + itemName + "_" + (counter++);
     }
 
-    public static Item deepClone(Item item){
+    public static Item deepClone(Item item) {
         try {
             if (item != null) {
                 if (item instanceof CollectableItem) {
@@ -39,9 +39,7 @@ public class Item {
                     return temp;
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

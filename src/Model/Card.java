@@ -18,7 +18,7 @@ public class Card implements Cloneable {
     private String cardDescription;
     private String cardName;
     private ArrayList<ABuff> buffs = new ArrayList<>();
-    private boolean isAbleToMove;
+    private boolean isAbleToMove = true;
     private boolean isInGame;
 
     public static String makeNewID(String accountName, String cardName, int countOfCardsInPlayerCollection) {

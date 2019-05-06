@@ -192,6 +192,7 @@ public class GameController {
                 break;
             case EXIT:
                 putOfGame();
+                break;
             case MOVE:
                 battleCommandMove(battleCommand);
                 break;
@@ -499,10 +500,8 @@ public class GameController {
         Battle battle = Battle.getRunningBattle();
         ArrayList<Card> hand = new ArrayList<>();
         if (battle.getTurn() % 2 == 1) {
-            hand.addAll(battle.getFirstPlayerHand());
             hand.addAll(battle.getFirstPlayerInGameCards());
         } else {
-            hand.addAll(battle.getSecondPlayerHand());
             hand.addAll(battle.getSecondPlayerInGameCards());
         }
         Card card = Card.findCardInArrayList(cardId, hand);
@@ -711,8 +710,9 @@ public class GameController {
             int y = Integer.parseInt(battleCommand.getData().get(1));
             Cell cell = battle.getMap().getCell(x, y);
             if (cell != null)
-                battle.moveCard(battle.getMap().getCell(x, y));
-            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
+                battle.moveCard(x, y);
+            else
+                throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         } catch (Error e) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }

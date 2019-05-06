@@ -109,12 +109,20 @@ public class Battle {
         return turn;
     }
 
-    public void moveCard(Cell destinationCell) {
-        if (!isValidMove(destinationCell)) {
+    public void moveCard(int x, int y) {
+        Cell cell = map.getCell(x, y);
+        System.out.println("In move Card method");
+        if (cell == null) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
-        if (selectedCard.isAbleToMove())
-            map.moveCard(selectedCard, selectedCard.getCurrentCell(), destinationCell);
+        if (!isValidMove(x, y)) {
+            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
+        }
+        System.out.println(selectedCard.isAbleToMove());
+        if (selectedCard.isAbleToMove()) {
+            System.out.println("map.moveCard method!");
+            map.moveCard(selectedCard, cell);
+        }
         //Take Flags for win the game
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode.updateFlagCell();
@@ -213,6 +221,7 @@ public class Battle {
                 if (turn % 2 == 1) {
                     if (firstPlayerMana >= card.getManaCost()) {
                         cell.setCard(card);
+                        card.setCurrentCell(cell);
                         firstPlayerHand.remove(card);
                         addToFirstPlayerInGameCards(card);
                     } else
@@ -220,6 +229,7 @@ public class Battle {
                 } else {
                     if (secondPlayerMana >= card.getManaCost()) {
                         cell.setCard(card);
+                        card.setCurrentCell(cell);
                         secondPlayerHand.remove(card);
                         addToSecondPlayerInGameCards(card);
 
@@ -459,6 +469,11 @@ public class Battle {
             }
         }
         return false;
+    }
+
+    private boolean isValidMove(int x, int y) {
+        Cell cell = map.getCell(x, y);
+        return map.getDistanceOfTwoCell(selectedCard.getCurrentCell(), cell) <= 2 && cell.isEmpty();
     }
 
     private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {

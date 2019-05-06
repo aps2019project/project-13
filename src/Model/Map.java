@@ -45,9 +45,12 @@ public class Map {
         return cell.getItem();
     }
 
-    public void moveCard(Card card, Cell sourceCell, Cell destinationCell) {
-        sourceCell.setCard(null);
+    public void moveCard(Card card, Cell destinationCell) {
+        System.out.println(card.getCurrentCell().getColumn());
+        card.getCurrentCell().setCard(null);
+        card.setCurrentCell(destinationCell);
         destinationCell.setCard(card);
+        System.out.println(card.getCurrentCell().getColumn());
     }
 
     public Cell findCardCell(String cardName) {
