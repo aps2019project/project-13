@@ -112,9 +112,7 @@ public class Battle {
 
     public void moveCard(int x, int y) {
         Cell cell = map.getCell(x, y);
-        if (cell == null) {
-            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
-        }
+
         if (!isValidMove(x, y)) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
@@ -513,9 +511,6 @@ public class Battle {
 
     private boolean isValidMove(int x, int y) {
         Cell cell = map.getCell(x, y);
-        if (cell == null)
-            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
-
         return map.getDistanceOfTwoCell(selectedCard.getCurrentCell(), cell) <= 2 && cell.isEmpty();
     }
 
