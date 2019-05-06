@@ -29,57 +29,68 @@ public class Ai extends Account {
     }
 
     void playGame()throws Error {
-        System.out.println("gi1");
         insertCard();
-        System.out.println("gi2");
         move();
-        System.out.println("gi3");
         attack();
-        System.out.println("gi4");
         endTurn();
     }
 
 
     private void move() throws Error{
+        Random random = new Random();
         Card card = selectCard();
         if(card==null)
             return;
         ArrayList<String> strings = new ArrayList<>();
         if(card.getCurrentCell()==null){
-            System.out.println("-------  "  + card.getCardName());
-            System.out.println("gi tosh");
             return;
         }
-        strings.add(Integer.toString(card.getCurrentCell().getRow()+1));
-        strings.add(Integer.toString(card.getCurrentCell().getColumn()+1));
+        battle.findValidCell(KindOfActionForValidCells.MOVE);
+        ArrayList<Cell> cells = battle.getValidCells();
+        if(cells==null)
+            return;
+        int numberOfCell = random.nextInt(cells.size());
+        Cell cell = cells.get(numberOfCell);
+        strings.add(Integer.toString(cell.getRow()));
+        strings.add(Integer.toString(cell.getColumn()));
         GameController.getInstance().battleCommandManagement(BattleCommand.MOVE.setData(strings));
     }
 
     private void attack()throws Error {
-        selectCard();
-        ArrayList<Card> cards = battle.getFirstPlayerInGameCards();
         Random random = new Random();
-        int numberOfCard = random.nextInt(cards.size());
-        Card card = cards.get(numberOfCard);
+        selectCard();
+        battle.findValidCell(KindOfActionForValidCells.ATTACK);
+        ArrayList<Cell> cells = battle.getValidCells();
+        if(cells==null || cells.size()==0)
+            return;
+        int numberOfCell = random.nextInt(cells.size());
+        Cell cell = cells.get(numberOfCell);
+        if(cell.getCard()==null || cells.size()==0)
+            return;
         ArrayList<String> strings = new ArrayList<>();
-        strings.add(card.getCardId());
+        strings.add(cell.getCard().getCardId());
         GameController.getInstance().battleCommandManagement(BattleCommand.ATTACK.setData(strings));
     }
 
     private void insertCard()throws Error {
         ArrayList<Card> cards = battle.getSecondPlayerHand();
         Random random = new Random();
+        if(cards==null || cards.size()==0)
+            return;
         int numberOfCard = random.nextInt(cards.size());
         Card card = cards.get(numberOfCard);
         if(card==null)
             return;
         ArrayList<String> strings = new ArrayList<>();
         strings.add(card.getCardName());
-        int[] validX = {1,-1,1,-1};
-        int[] validY = {1,-1,-1,1};
-        int numberOfCell = random.nextInt(4);
-        String x = Integer.toString(battle.getSecondPlayerDeck().getHero().getCurrentCell().getRow()+validX[numberOfCell]);
-        String y = Integer.toString(battle.getSecondPlayerDeck().getHero().getCurrentCell().getColumn()+validY[numberOfCell]);
+        battle.findValidCell(KindOfActionForValidCells.INSERT);
+        ArrayList<Cell> cells = battle.getValidCells();
+        if(cells==null || cells.size()==0)
+            return;
+        int numberOfCell = random.nextInt(cells.size());
+        Cell cell = cells.get(numberOfCell);
+        String x = Integer.toString(cell.getRow());
+        String y = Integer.toString(cell.getColumn());
         strings.add(x);
         strings.add(y);
         GameController.getInstance().battleCommandManagement(BattleCommand.INSERT.setData(strings));
@@ -97,7 +108,6 @@ public class Ai extends Account {
     }
 
     private void endTurn() {
-        System.out.println("gi ^ 2");
         GameController.getInstance().battleCommandManagement(BattleCommand.END_TURN);
     }
 }
