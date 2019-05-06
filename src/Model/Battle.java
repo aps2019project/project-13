@@ -65,7 +65,8 @@ public class Battle {
         if (getTurn() % 2 == 0)
             setSecondPlayerNextCard();
         if (gameGoal == GameGoal.HOLD_FLAG) {
-            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
+            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2, 4));
+            map.getCell(2, 4).setItem(flagForHoldFlagGameMode);
         } else if (gameGoal == GameGoal.COLLECT_FLAG)
             setFlagForCollectFlagGameModes();
     }
@@ -124,9 +125,11 @@ public class Battle {
         //Take Flags for win the game
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode.updateFlagCell();
-            takeHoldingFlag(currentTurnPlayer);
+            takeHoldingFlag(firstPlayerInGameCards);
+            takeHoldingFlag(secondPlayerInGameCards);
         } else if (gameGoal == GameGoal.COLLECT_FLAG) {
-            takeCollectingFlag(currentTurnPlayer);
+            takeCollectingFlag(firstPlayerInGameCards);
+            takeCollectingFlag(secondPlayerInGameCards);
         }
     }
 
@@ -254,7 +257,7 @@ public class Battle {
         }
     }
 
-    public void endTurn()throws Error {
+    public void endTurn() throws Error {
         endGame();
         if (isEndGame()) {
             setHistoryAfterGame();
@@ -262,6 +265,8 @@ public class Battle {
         }
         setMana();
         incrementTurn();
+        if (gameGoal == GameGoal.HOLD_FLAG)
+            flagForHoldFlagGameMode.incrementNumberOfTurns();
         if (firstPlayerHand.size() < 5 && getTurn() % 2 == 1) {
             firstPlayerHand.add(firstPlayerNextCard);
             firstPlayerNextCard = null;
@@ -274,12 +279,12 @@ public class Battle {
             if (secondPlayer instanceof Ai) {
                 try {
                     ((Ai) secondPlayer).playGame();
-                }catch (Error error){
+                } catch (Error error) {
                     endTurn();
                 }
             }
         }
-
+        selectCard(null);
         turnBeiginingInit();
     }
 
@@ -367,12 +372,13 @@ public class Battle {
         }
     }
 
-    private void takeHoldingFlag(Account player) {
+    private void takeHoldingFlag(ArrayList<Card> inGameCards) {
 
-        for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
-            if (player.getMainDeck().getCards().get(i).isInGame() && player.getMainDeck().getCards().get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
-                if (flagForHoldFlagGameMode.getFlagHolder() != player.getMainDeck().getCards().get(i))
-                    flagForHoldFlagGameMode.setFlagHolder((Warrior) player.getMainDeck().getCards().get(i));
+
+        for (int i = 0; i < inGameCards.size(); i++) {
+            if (inGameCards.get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
+                if (flagForHoldFlagGameMode.getFlagHolder() != inGameCards.get(i))
+                    flagForHoldFlagGameMode.setFlagHolder((Warrior) inGameCards.get(i));
                 return;
             }
         }
@@ -385,16 +391,16 @@ public class Battle {
             setWinner(secondPlayer);
     }
 
-    private void takeCollectingFlag(Account player) {
-        for (int i = 0; i < player.getMainDeck().getCards().size(); i++) {
+    private void takeCollectingFlag(ArrayList<Card> inGameCards) {
+        for (int i = 0; i < inGameCards.size(); i++) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
-                if (player.getMainDeck().getCards().get(i).isInGame() && player.getMainDeck().getCards().get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
+                if (inGameCards.get(i).isInGame() && inGameCards.get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
                     if (currentTurnPlayer.equals(firstPlayer)) {
                         firstPlayerFlags++;
-                        flagForCollectFlagGameModes.get(j).setOwner(player.getMainDeck().getCards().get(i));
+                        flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     } else {
                         secondPlayerFlags++;
-                        flagForCollectFlagGameModes.get(j).setOwner(player.getMainDeck().getCards().get(i));
+                        flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     }
                     flagForCollectFlagGameModes.remove(j);
                     break;
@@ -494,7 +500,7 @@ public class Battle {
     private boolean isValidMove(Cell destinationCell) {
         if (destinationCell.getRow() == selectedCard.getCurrentCell().getRow()) {
             if (destinationCell.getColumn() < selectedCard.getCurrentCell().getColumn()) {
-                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn()-1].isEmpty();
+                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() - 1].isEmpty();
             } else {
                 return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() + 1].isEmpty();
             }
@@ -554,16 +560,16 @@ public class Battle {
         return true;
     }
 
-    public void setHandOfFirstPlayer() {
+    private void setHandOfFirstPlayer() {
         firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck.getCards(), 5);
     }
 
-    public void setHandOfSecondPlayer() {
+    private void setHandOfSecondPlayer() {
         secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck.getCards(), 5);
 
     }
 
-    public void insertPlayerHeroesInMap() {
+    private void insertPlayerHeroesInMap() {
 
         firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
         firstPlayerDeck.getHero().setAbleToMove(true);
@@ -587,10 +593,6 @@ public class Battle {
             cards.remove(randomIndex);
         }
         return temp;
-    }
-
-    public void stratGame() {
-
     }
 
     private void setFirstPlayerNextCard() {
@@ -667,7 +669,7 @@ public class Battle {
         this.secondPlayerItems.add(secondPlayerItems);
     }
 
-    public void setFlagForCollectFlagGameModes() {
+    private void setFlagForCollectFlagGameModes() {
         int[] randomX = new int[6];
         int[] randomY = new int[6];
         getNRandomNumber(6, randomX, randomY);

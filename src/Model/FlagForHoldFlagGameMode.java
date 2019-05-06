@@ -4,14 +4,12 @@ public class FlagForHoldFlagGameMode extends Item {
 
     private int numberOfTurns;
     private Warrior flagHolder;
-    private Map map;
     private Cell currentCell;
 
 
-    public FlagForHoldFlagGameMode(String itemId, String itemDescription, ItemKind itemKind, Map map) {
+    public FlagForHoldFlagGameMode(String itemId, String itemDescription, ItemKind itemKind, Cell cell) {
         super(itemId, itemDescription, itemKind, null);
-        this.map = map;
-        currentCell = map.getCell(2, 4);
+        currentCell = cell;
     }
 
     public void incrementNumberOfTurns() {
