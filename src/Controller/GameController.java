@@ -240,9 +240,7 @@ public class GameController {
         show.enterInBattle();
         String gameModeNumber = request.getString();
         gameModeNumber = getGameMode(request, gameModeNumber);
-        show.enterInBattleSecondStep();
-        String gameGoalNumber = request.getString();
-        gameGoalNumber = getGameGoal(request, gameGoalNumber);
+
         GameGoal gameGoal;
         GameMode gameMode;
         Account account;
@@ -290,8 +288,10 @@ public class GameController {
 
             }
         }
+        show.enterInBattleSecondStep();
+        String gameGoalNumber = request.getString();
+        gameGoalNumber = getGameGoal(request, gameGoalNumber);
         gameGoal = getGameGoal(gameGoalNumber);
-        show.startBattle();
 //        if (setBattleForCollectFlag(request, gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck)) return;
 //        setBattle(gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck);
         if (gameGoal == GameGoal.COLLECT_FLAG) {
@@ -329,6 +329,7 @@ public class GameController {
             }
 
         } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
+        show.startBattle();
     }
 
 
