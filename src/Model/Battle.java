@@ -5,7 +5,6 @@ import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
 import View.Error;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -123,7 +122,9 @@ public class Battle {
         if (selectedCard.isAbleToMove()) {
             System.out.println("map.moveCard method!");
             map.moveCard(selectedCard, cell);
-        }
+            selectedCard.setAbleToMove(false);
+        }else
+            throw new Error(ConstantMessages.)
         //Take Flags for win the game
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode.updateFlagCell();
@@ -146,6 +147,7 @@ public class Battle {
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(targetCell);
         }
         defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
+        warrior.setValidToAttack(false);
         affectBuffs(warrior, targetCell, defender);
         if (defender.isValidCounterAttack() && isAttack) {
             attack(warrior.getCardId(), defender, false);
@@ -269,6 +271,7 @@ public class Battle {
             secondPlayerHand.add(secondPlayerNextCard);
             secondPlayerNextCard = null;
         }
+        turnBeiginingInit();
     }
 
     private void setHistoryAfterGame() {
@@ -889,4 +892,36 @@ public class Battle {
             System.out.println();
         }
     }
+
+    private void turnBeiginingInit() {
+
+        for (Card card : firstPlayerHand) {
+            card.setAbleToMove(true);
+        }
+        for (Card card : secondPlayerHand) {
+            card.setAbleToMove(true);
+        }
+        for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
+            firstPlayerInGameCard.setAbleToMove(true);
+        }
+        for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
+            secondPlayerInGameCard.setAbleToMove(true);
+        }
+        for (Card card : firstPlayerHand) {
+            ((Warrior)card).setValidToAttack(true);
+        }
+        for (Card card : secondPlayerHand) {
+            ((Warrior)card).setValidToAttack(true);
+        }
+        for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
+            ((Warrior)firstPlayerInGameCard).setValidToAttack(true);
+        }
+        for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
+            ((Warrior)secondPlayerInGameCard).setValidToAttack(true);
+        }
+
+
+    }
+
+
 }

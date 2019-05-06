@@ -133,6 +133,7 @@ public class GameController {
                 break;
             case SAVE:
                 Account.saveAccount();
+                show.printAMessage(ConstantMessages.GAMED_SAVED.getMessage());
                 break;
             case LOGIN:
                 Account.login(request, accountCommand);
@@ -547,6 +548,7 @@ public class GameController {
                 break;
             case SAVE:
                 Account.saveAccount();
+                show.printAMessage(ConstantMessages.GAMED_SAVED.getMessage());
                 break;
             case EXIT:
                 request.exitLastMenu();

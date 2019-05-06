@@ -22,6 +22,7 @@ public enum ConstantMessages {
     MORE_THAN_3_ITEM("You have more than 3 Items in your deck!"),
     INVALID_CARD_ID("Invalid Card ID!"),
     INVALID_TARGET("Invalid Target!"),
+
     MINION_NOT_AVAILABLE_ATTACK("Opponent minion is unavailable for attack!"),
     HERO_NOT_AVAILABLE_ATTACK("Opponent hero is unavailable for attack!"),
     NO_SPECIAL_POWER("This Card doesnt' have Special Power!"),
@@ -38,7 +39,7 @@ public enum ConstantMessages {
     USERNAME_EXIST("A user exists with this Username!"),
 
     ITEM_EXIST("An Item exists with this name!"),
-
+    GAMED_SAVED("Game Saved Successfully :)"),
     CARD_EXIST("A Card exists with this name!"),
     DECK_CREATED("Deck successfully created!"),
     VALID_DECK("Selected Deck is a Valid Deck"),
