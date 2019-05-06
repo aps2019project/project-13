@@ -58,9 +58,7 @@ public class Main {
             if (heroes[i] != null)
                 Shop.getInstance().addCard(hero);
         }
-        for (int j = 0; j <heroes.length ; j++) {
-            System.out.println(heroes[j].getCardId());
-        }
+
 
         Spell[] spells = new Spell[20];
         try (Reader reader = new FileReader("Spells_YaGson_New.json")) {
@@ -73,9 +71,7 @@ public class Main {
                 Shop.getInstance().addCard(spells[j]);
             }
         }
-        for (int j = 0; j < spells.length; j++) {
-            System.out.println(spells[j].getCardId() + "     " + j);
-        }
+
 
         Item[] items = new Item[20];
         try (Reader reader = new FileReader("Items_YaGson_New.json")) {

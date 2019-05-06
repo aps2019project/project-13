@@ -937,5 +937,879 @@
       "darick": 79500,
       "collectableItems": []
     }
+  },
+  {
+    "@type": "Model.Account",
+    "@val": {
+      "battleHistory": [],
+      "decks": [
+        {
+          "cards": [
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_1",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_2",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_3",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_4",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_5",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_6",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_7",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_8",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_9",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_10",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_11",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_12",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_13",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_14",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_15",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_17",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_18",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_19",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_20",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Minion",
+              "@val": {
+                "hasSpecialPower": false,
+                "healthPoint": 8,
+                "actionPower": 5,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Siavash_25",
+                "manaCost": 4,
+                "darikCost": 350,
+                "cardKind": "MINION",
+                "account": "@root.1",
+                "cardDescription": "6 Damage to Enemy hero On death",
+                "cardName": "Siavash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            },
+            {
+              "@type": "Model.Hero",
+              "@val": {
+                "specialPowerCoolDownTime": 2,
+                "healthPoint": 30,
+                "actionPower": 2,
+                "attackRange": 6,
+                "attackKind": "RANGED",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "amir_Arash_1",
+                "manaCost": 2,
+                "darikCost": 10000,
+                "cardKind": "HERO",
+                "cardDescription": "Damages all units on the hero row",
+                "cardName": "Arash",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
+            }
+          ],
+          "minions": [
+            "@root.1.decks.0.cards.0",
+            "@root.1.decks.0.cards.1",
+            "@root.1.decks.0.cards.2",
+            "@root.1.decks.0.cards.3",
+            "@root.1.decks.0.cards.4",
+            "@root.1.decks.0.cards.5",
+            "@root.1.decks.0.cards.6",
+            "@root.1.decks.0.cards.7",
+            "@root.1.decks.0.cards.8",
+            "@root.1.decks.0.cards.9",
+            "@root.1.decks.0.cards.10",
+            "@root.1.decks.0.cards.11",
+            "@root.1.decks.0.cards.12",
+            "@root.1.decks.0.cards.13",
+            "@root.1.decks.0.cards.14",
+            "@root.1.decks.0.cards.15",
+            "@root.1.decks.0.cards.16",
+            "@root.1.decks.0.cards.17",
+            "@root.1.decks.0.cards.18",
+            "@root.1.decks.0.cards.19"
+          ],
+          "hero": "@root.1.decks.0.cards.20",
+          "account": "@root.1",
+          "deckName": "amirDeck",
+          "isValid": false
+        }
+      ],
+      "cardCollection": {
+        "cards": [
+          "@root.1.decks.0.cards.20",
+          "@root.1.decks.0.cards.0",
+          "@root.1.decks.0.cards.1",
+          "@root.1.decks.0.cards.2",
+          "@root.1.decks.0.cards.3",
+          "@root.1.decks.0.cards.4",
+          "@root.1.decks.0.cards.5",
+          "@root.1.decks.0.cards.6",
+          "@root.1.decks.0.cards.7",
+          "@root.1.decks.0.cards.8",
+          "@root.1.decks.0.cards.9",
+          "@root.1.decks.0.cards.10",
+          "@root.1.decks.0.cards.11",
+          "@root.1.decks.0.cards.12",
+          "@root.1.decks.0.cards.13",
+          "@root.1.decks.0.cards.14",
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "amir_Siavash_16",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "account": "@root.1",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          "@root.1.decks.0.cards.15",
+          "@root.1.decks.0.cards.16",
+          "@root.1.decks.0.cards.17",
+          "@root.1.decks.0.cards.18",
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "amir_Siavash_21",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "account": "@root.1",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "amir_Siavash_22",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "account": "@root.1",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "amir_Siavash_23",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "account": "@root.1",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          {
+            "@type": "Model.Minion",
+            "@val": {
+              "hasSpecialPower": false,
+              "healthPoint": 8,
+              "actionPower": 5,
+              "attackRange": 1,
+              "attackKind": "MELEE",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "amir_Siavash_24",
+              "manaCost": 4,
+              "darikCost": 350,
+              "cardKind": "MINION",
+              "account": "@root.1",
+              "cardDescription": "6 Damage to Enemy hero On death",
+              "cardName": "Siavash",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          "@root.1.decks.0.cards.19"
+        ],
+        "items": [],
+        "account": "@root.1"
+      },
+      "username": "amir",
+      "password": "123456",
+      "countOfWins": 0,
+      "darick": 81250,
+      "collectableItems": []
+    }
   }
 ]
