@@ -229,6 +229,7 @@ public class Battle {
                         card.setCurrentCell(cell);
                         firstPlayerHand.remove(card);
                         addToFirstPlayerInGameCards(card);
+                        card.setInGame(true);
                         card.setAbleToMove(true);
                     } else
                         throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
@@ -238,6 +239,7 @@ public class Battle {
                         card.setCurrentCell(cell);
                         secondPlayerHand.remove(card);
                         addToSecondPlayerInGameCards(card);
+                        card.setInGame(true);
                         card.setAbleToMove(true);
 
                     } else
@@ -313,8 +315,11 @@ public class Battle {
     public void deleteDeathCardsFromMap() {
         ArrayList<Card> firstDeathCards = findDeathCards(firstPlayerInGameCards);
         ArrayList<Card> secondDeathCards = findDeathCards(secondPlayerInGameCards);
+        if (secondDeathCards.size() > 0)
+            System.out.println(secondDeathCards.get(0).getCardName());
         deleteFromMap(firstDeathCards);
         deleteFromMap(secondDeathCards);
+        addUsedCardsToGraveYard(firstDeathCards, secondDeathCards);
 
     }
 
@@ -796,18 +801,17 @@ public class Battle {
         return currentTurnPlayer;
     }
 
-    private void addUsedCardsToGraveYard() {
+    private void addUsedCardsToGraveYard(ArrayList<Card> firstDeathCards, ArrayList<Card> secondDeathCards) {
 
         for (int i = 0; i < firstPlayerDeck.getCards().size(); i++) {
             if (firstPlayerDeck.getCards().get(i) instanceof Spell && firstPlayerDeck.getCards().get(i).isInGame()) {
                 firstPlayerDeck.getCards().add(firstPlayerDeck.getCards().get(i));
             }
         }
-        firstPlayerGraveYard.addAll(findDeathCards(firstPlayerInGameCards));
-        firstPlayerInGameCards.removeAll(findDeathCards(firstPlayerInGameCards));
-        secondPlayerGraveYard.addAll(findDeathCards(secondPlayerInGameCards));
-        secondPlayerInGameCards.removeAll(findDeathCards(secondPlayerInGameCards));
-
+        firstPlayerGraveYard.addAll(firstDeathCards);
+        firstPlayerInGameCards.removeAll(firstDeathCards);
+        secondPlayerGraveYard.addAll(secondDeathCards);
+        secondPlayerInGameCards.removeAll(secondDeathCards);
     }
 
     private ArrayList<Card> findDeathCards(ArrayList<Card> playerInGameCards) {
@@ -815,8 +819,10 @@ public class Battle {
         ArrayList<Card> deathCards = new ArrayList<>();
         for (Card playerInGameCard : playerInGameCards) {
             if (playerInGameCard.isInGame() && (playerInGameCard instanceof Warrior)) {
-                if (((Warrior) playerInGameCard).getHealthPoint() <= 0)
+                if (((Warrior) playerInGameCard).getHealthPoint() <= 0) {
                     deathCards.add(playerInGameCard);
+                    playerInGameCard.setInGame(false);
+                }
             }
         }
         return deathCards;

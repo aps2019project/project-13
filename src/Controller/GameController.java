@@ -215,6 +215,10 @@ public class GameController {
                 exitFromBattle();
             }
         }
+        if (Battle.getRunningBattle() != null) {
+            Battle.getRunningBattle().showMap();
+
+        }
     }
 
     private void putOfGame() {
