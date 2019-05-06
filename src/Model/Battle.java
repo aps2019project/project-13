@@ -202,7 +202,11 @@ public class Battle {
 
     public void insertCard(String cardName, int x, int y) throws Error {
         setCurrentTurnPlayer();
-        Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
+        Card card;
+        if (turn % 2 == 1) {
+            card = Card.findCardInArrayListByName(cardName, firstPlayerHand);
+        } else card = Card.findCardInArrayListByName(cardName, secondPlayerHand);
+
         if (card != null) {
             if (card instanceof Spell) {
                 applySpell((Spell) card, x, y);
