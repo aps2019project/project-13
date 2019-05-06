@@ -37,6 +37,7 @@ public class GameController {
     }
 
     private void commandManagement(Request request, KindOfOrder kindOfOrder) throws Error, CloneNotSupportedException {
+
         switch (kindOfOrder) {
             case COLLECTION:
                 collectionCommandManagement(request, request.getCollectionCommand());
@@ -149,7 +150,6 @@ public class GameController {
 
 
     private void battleCommandManagement(BattleCommand battleCommand) throws Error {
-
         switch (battleCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.BATTLE);
@@ -203,9 +203,20 @@ public class GameController {
             case USE_SPECIAL_POWER:
                 useSpecialPower(battleCommand);
         }
+
         if (Battle.getRunningBattle() != null) {
             Battle.getRunningBattle().showMap();
 
+        }
+        if (Battle.getRunningBattle() != null) {
+            Battle.getRunningBattle().endGame();
+            Battle.getRunningBattle().deleteDeathCardsFromMap();
+            if (Battle.getRunningBattle().isEndGame()) {
+                show.printAMessage(Battle.getRunningBattle().getWinner().getUsername() + " Win");
+                Battle.getRunningBattle().getWinner().incrementCountOfWins(1);
+                Battle.getRunningBattle().getWinner().setDarick(2000);
+                exitFromBattle();
+            }
         }
     }
 
@@ -223,7 +234,7 @@ public class GameController {
         Request.getInstance().exitLastmenu();
     }
 
-    public void exitFromBattleForInvalidDeck() {
+    public void exitFromBattle() {
         Battle.setRunningBattle(null);
         Request.getInstance().exitLastmenu();
     }
@@ -421,6 +432,7 @@ public class GameController {
     private ArrayList<String> battleShowMinion(boolean isYoursMinion) {
         Account account;
         Battle battle = Battle.getRunningBattle();
+        battle.setCurrentTurnPlayer();
         if (isYoursMinion) {
             account = battle.getCurrentTurnPlayer();
         } else {

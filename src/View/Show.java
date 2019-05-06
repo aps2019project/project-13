@@ -97,7 +97,7 @@ public class Show {
     public void showError(Exception error) {
         System.out.println(error.toString());
         if (error.toString().equals(ConstantMessages.INVALID_DECK.getMessage())) {
-            GameController.getInstance().exitFromBattleForInvalidDeck();
+            GameController.getInstance().exitFromBattle();
         }
     }
 

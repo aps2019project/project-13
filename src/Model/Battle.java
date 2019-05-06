@@ -5,6 +5,7 @@ import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
 import View.Error;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -169,7 +170,7 @@ public class Battle {
         Cell targetCell = null;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
-                if (map.getCells()[i][j].getCard().getCardId().equals(cardID)) {
+                if (map.getCells()[i][j].getCard() != null && map.getCells()[i][j].getCard().getCardId().equals(cardID)) {
                     targetCell = map.getCells()[i][j];
                     break;
                 }
@@ -228,6 +229,7 @@ public class Battle {
                         card.setCurrentCell(cell);
                         firstPlayerHand.remove(card);
                         addToFirstPlayerInGameCards(card);
+                        card.setAbleToMove(true);
                     } else
                         throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
                 } else {
@@ -236,6 +238,7 @@ public class Battle {
                         card.setCurrentCell(cell);
                         secondPlayerHand.remove(card);
                         addToSecondPlayerInGameCards(card);
+                        card.setAbleToMove(true);
 
                     } else
                         throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
@@ -250,7 +253,7 @@ public class Battle {
 
     public void endTurn() {
         endGame();
-        if (endGame) {
+        if (isEndGame()) {
             setHistoryAfterGame();
             return;
         }
@@ -302,7 +305,23 @@ public class Battle {
         turn++;
     }
 
+    public void deleteDeathCardsFromMap() {
+        ArrayList<Card> firstDeathCards = findDeathCards(firstPlayerInGameCards);
+        ArrayList<Card> secondDeathCards = findDeathCards(secondPlayerInGameCards);
+        deleteFromMap(firstDeathCards);
+        deleteFromMap(secondDeathCards);
+
+    }
+
+    private void deleteFromMap(ArrayList<Card> cards) {
+        for (int i = 0; i < cards.size(); i++) {
+            cards.get(i).getCurrentCell().setCard(null);
+            cards.get(i).setCurrentCell(null);
+        }
+    }
+
     public void endGame() {
+
         switch (gameGoal) {
             case KILL_HERO:
                 endOfKillHeroGameMode();
@@ -317,11 +336,11 @@ public class Battle {
     }
 
     private void endOfKillHeroGameMode() {
-        if (firstPlayer.getMainDeck().getHero().isDeath()) {
-            endGame = true;
+        if (firstPlayerDeck.getHero().getHealthPoint() <= 0) {
+            this.endGame = true;
             setWinner(secondPlayer);
-        } else if (secondPlayer.getMainDeck().getHero().isDeath()) {
-            endGame = true;
+        } else if (secondPlayerDeck.getHero().getHealthPoint() <= 0) {
+            this.endGame = true;
             setWinner(firstPlayer);
         }
     }
@@ -503,7 +522,7 @@ public class Battle {
 
     private boolean isValidRangedAttack(Cell targetCell, Warrior warrior) {
 
-        if (Math.abs(targetCell.getRow() - warrior.getCurrentCell().getRow()) <= 1 && Math.abs(targetCell.getColumn() - warrior.getCurrentCell().getColumn()) <= 1) {
+        if (map.getDistanceOfTwoCell(targetCell, warrior.getCurrentCell()) <= 1) {
             return false;
         } else {
             return map.getDistanceOfTwoCell(targetCell, warrior.getCurrentCell()) <= warrior.getAttackRange();
@@ -511,7 +530,7 @@ public class Battle {
     }
 
     private boolean isValidMeleeAttack(Cell targetCell, Warrior warrior) {
-        return Math.abs(targetCell.getRow() - warrior.getCurrentCell().getRow()) <= 1 && Math.abs(targetCell.getColumn() - warrior.getCurrentCell().getColumn()) <= 1;
+        return map.getDistanceOfTwoCell(targetCell, warrior.getCurrentCell()) <= 1;
     }
 
     private boolean isValidSpeicalPower(int row, int column) {
