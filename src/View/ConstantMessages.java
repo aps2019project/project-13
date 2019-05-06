@@ -66,7 +66,7 @@ public enum ConstantMessages {
 
     SHOP_HELP("show collection\nsearch [card name]\nsearch collection [name]\nbuy [name]\nsell [name]\nshow"),
 
-    BATTLE_HELP("Game info\nShow my minions\nShow opponent minions\n"+
+    BATTLE_HELP("end Game\nGame info\nShow my minions\nShow opponent minions\n"+
                         "Show card info [cardID]\nSelect [card id]\nInsert [card name] in (x,y)\nEnd turn\nShow collectables\n"+
                         "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)"),
 
