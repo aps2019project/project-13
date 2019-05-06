@@ -66,8 +66,12 @@ public class Battle {
             setSecondPlayerNextCard();
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
-        } else if (gameGoal == GameGoal.COLLECT_FLAG)
-            setFlagForCollectFlagGameModes();
+        }
+    }
+    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal , int numberOfFlagForWin) throws Error {
+        this(firstPlayer , secondPlayer , gameMode , gameGoal);
+        this.numberOfFlagForWin = numberOfFlagForWin;
+        setFlagForCollectFlagGameModes();
     }
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
