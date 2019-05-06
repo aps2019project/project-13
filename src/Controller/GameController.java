@@ -203,10 +203,6 @@ public class GameController {
         }
 
         if (Battle.getRunningBattle() != null) {
-            Battle.getRunningBattle().showMap();
-
-        }
-        if (Battle.getRunningBattle() != null) {
             Battle.getRunningBattle().endGame();
             Battle.getRunningBattle().deleteDeathCardsFromMap();
             if (Battle.getRunningBattle().isEndGame()) {
