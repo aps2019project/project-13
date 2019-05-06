@@ -26,8 +26,7 @@ public class Deck implements Cloneable {
     public static Deck deepClone(Deck deck) {
         Cloner cloner = new Cloner();
         cloner.dontClone(Account.class);
-        Deck clonedDeck = cloner.deepClone(deck);
-        return clonedDeck;
+        return cloner.deepClone(deck);
     }
 
     public static void deleteDeck(Deck deck) {
