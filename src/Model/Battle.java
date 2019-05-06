@@ -891,10 +891,6 @@ public class Battle {
         return numberOfFlagForWin;
     }
 
-    public void showMap() {
-        Show.getInstance().showMap();
-    }
-
     private void turnBeiginingInit() {
 
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
