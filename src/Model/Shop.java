@@ -21,7 +21,7 @@ public class Shop {
         return instance;
     }
 
-    public void buy(String name, Account account) throws CloneNotSupportedException {
+    public Object buy(String name, Account account) throws CloneNotSupportedException {
         Card card = searchAndGetCard(name);
         UsableItem item = searchAndGetItem(name);
 
@@ -35,14 +35,17 @@ public class Shop {
                 account.getCardCollection().addCard(tempCard);
                 tempCard.setAccount(account);
                 account.decreaseDarick(card.getDarikCost());
+                return tempCard;
             } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
         } else {
-            if (validBuyLimitOfItem(Account.getLoginedAccount())) {
+            if (validBuyLimitOfItem(Account.getLoginedAccount()) || account.getUsername().equals("AI")) {
                 if (item.getDarickCost() <= account.getDarick()) {
-                    account.getCardCollection().addItem(item);
-                    item.setAccount(account);
+                    Item cloneItem = Item.deepClone(item);
+                    account.getCardCollection().addItem(cloneItem);
+                    cloneItem.setAccount(account);
                     account.decreaseDarick(item.getDarickCost());
+                    return cloneItem;
                 } else
                     throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
             } else
