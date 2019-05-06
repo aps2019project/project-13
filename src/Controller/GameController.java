@@ -240,9 +240,7 @@ public class GameController {
         show.enterInBattle();
         String gameModeNumber = request.getString();
         gameModeNumber = getGameMode(request, gameModeNumber);
-        show.enterInBattleSecondStep();
-        String gameGoalNumber = request.getString();
-        gameGoalNumber = getGameGoal(request, gameGoalNumber);
+
         GameGoal gameGoal;
         GameMode gameMode;
         Account account;
@@ -290,45 +288,45 @@ public class GameController {
 
             }
         }
+        show.enterInBattleSecondStep();
+        String gameGoalNumber = request.getString();
+        gameGoalNumber = getGameGoal(request, gameGoalNumber);
         gameGoal = getGameGoal(gameGoalNumber);
-        show.startBattle();
-//        if (setBattleForCollectFlag(request, gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck)) return;
-//        setBattle(gameGoal, gameMode, account,(chooseAi!=null)?Integer.parseInt(chooseAi):null,(kindOfSinglePlayer!=null)?Integer.parseInt(kindOfSinglePlayer):null,deck);
+        int numberOfFlagForWin = 0;
         if (gameGoal == GameGoal.COLLECT_FLAG) {
-            int numberOfFlagForWin = 0;
-            while (numberOfFlagForWin < 1) {
-                show.numberOfFlag();
-                String numberOfFlag = request.getNumberOfFlag();
 
+            while (numberOfFlagForWin < 1) {
+                show.showGetNumberOfFlag();
+                String numberOfFlag = request.getNumberOfFlag();
                 try {
                     numberOfFlagForWin = Integer.parseInt(numberOfFlag);
                 } catch (Exception e) {
                     show.invalidNumberForFlag();
                 }
             }
-            if (gameMode == GameMode.SINGLEPLAYER) {
-                if (kindOfSinglePlayer.equals("1")) {
-                    new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-                } else {
-                    Ai ai = new Ai(4);
-                    ai.setMainDeck(deck);
-                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-                }
-
-            } else
-                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-            return;
         }
         if (gameMode == GameMode.SINGLEPLAYER) {
             if (kindOfSinglePlayer.equals("1")) {
-                new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal);
+
+                if (gameGoal == GameGoal.COLLECT_FLAG) {
+                    new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal,numberOfFlagForWin);
+                }else new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal);
             } else {
                 Ai ai = new Ai(4);
                 ai.setMainDeck(deck);
-                new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
+
+                if (gameGoal == GameGoal.COLLECT_FLAG) {
+                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal,numberOfFlagForWin);
+                }else new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
             }
 
-        } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
+        } else {
+            if (gameGoal == GameGoal.COLLECT_FLAG) {
+                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal,numberOfFlagForWin);
+            } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
+
+        }
+        show.startBattle();
     }
 
 
@@ -664,10 +662,9 @@ public class GameController {
             Cell cell = battle.getMap().getCell(x, y);
             if (cell != null) {
                 battle.moveCard(x, y);
-            }
-            else
+            } else
                 throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
-        } catch (NumberFormatException  e) {
+        } catch (NumberFormatException e) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
     }

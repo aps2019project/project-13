@@ -326,4 +326,7 @@ public class Show {
         System.out.println("*************************");
         System.out.println();
     }
+    public void showGetNumberOfFlag(){
+        System.out.println("number of flag : ");
+    }
 }
