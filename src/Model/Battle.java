@@ -146,7 +146,7 @@ public class Battle {
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(targetCell);
         }
-        if(warrior.isValidToAttack()) {
+        if (warrior.isValidToAttack()) {
             defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
             warrior.setValidToAttack(false);
         }
@@ -218,7 +218,8 @@ public class Battle {
         Card card;
         if (turn % 2 == 1) {
             card = Card.findCardInArrayListByName(cardName, firstPlayerHand);
-        } else card = Card.findCardInArrayListByName(cardName, secondPlayerHand);
+        } else
+            card = Card.findCardInArrayListByName(cardName, secondPlayerHand);
 
         if (card != null) {
             if (card instanceof Spell) {
@@ -273,8 +274,8 @@ public class Battle {
             secondPlayerHand.add(secondPlayerNextCard);
             secondPlayerNextCard = null;
         }
-        if(turn%2==0){
-            if(secondPlayer instanceof Ai){
+        if (turn % 2 == 0) {
+            if (secondPlayer instanceof Ai) {
                 ((Ai) secondPlayer).playGame();
             }
         }
@@ -497,7 +498,6 @@ public class Battle {
             } else {
                 return map.getCells()[destinationCell.getRow()][destinationCell.getColumn() - 1].isEmpty();
             }
-
         } else if (destinationCell.getColumn() == selectedCard.getCurrentCell().getColumn()) {
             if (destinationCell.getRow() < selectedCard.getCurrentCell().getRow()) {
                 return map.getCells()[destinationCell.getRow() + 1][destinationCell.getColumn()].isEmpty();
@@ -510,10 +510,14 @@ public class Battle {
 
     private boolean isValidMove(int x, int y) {
         Cell cell = map.getCell(x, y);
+        if (cell == null)
+            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
+
         return map.getDistanceOfTwoCell(selectedCard.getCurrentCell(), cell) <= 2 && cell.isEmpty();
     }
 
     private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {
+
         return true;
     }
 
@@ -562,14 +566,15 @@ public class Battle {
     }
 
     public void insertPlayerHeroesInMap() {
+
         firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
         map.getCell(2, 0).setCard(firstPlayerDeck.getHero());
-        firstPlayerDeck.getCards().remove(firstPlayer.getMainDeck().getHero());
-        firstPlayerInGameCards.add(firstPlayer.getMainDeck().getHero());
+        firstPlayerDeck.getCards().remove(firstPlayerDeck.getHero());
+        firstPlayerInGameCards.add(firstPlayerDeck.getHero());
         secondPlayerDeck.getHero().setCurrentCell(map.getCell(2, 8));
         map.getCell(2, 8).setCard(secondPlayerDeck.getHero());
-        secondPlayerDeck.getCards().remove(secondPlayer.getMainDeck().getHero());
-        secondPlayerInGameCards.add(secondPlayer.getMainDeck().getHero());
+        secondPlayerDeck.getCards().remove(secondPlayerDeck.getHero());
+        secondPlayerInGameCards.add(secondPlayerDeck.getHero());
     }
 
     private ArrayList<Card> selectRandomCardsForHand(ArrayList<Card> cards, int totalRandomCardsNeeded) {
@@ -903,23 +908,11 @@ public class Battle {
 
     private void turnBeiginingInit() {
 
-        for (Card card : firstPlayerHand) {
-            card.setAbleToMove(true);
-        }
-        for (Card card : secondPlayerHand) {
-            card.setAbleToMove(true);
-        }
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
             firstPlayerInGameCard.setAbleToMove(true);
         }
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             secondPlayerInGameCard.setAbleToMove(true);
-        }
-        for (Card card : firstPlayerHand) {
-            ((Warrior) card).setValidToAttack(true);
-        }
-        for (Card card : secondPlayerHand) {
-            ((Warrior) card).setValidToAttack(true);
         }
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
             ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
@@ -927,7 +920,6 @@ public class Battle {
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             ((Warrior) secondPlayerInGameCard).setValidToAttack(true);
         }
-
 
     }
 
