@@ -273,6 +273,12 @@ public class Battle {
             secondPlayerHand.add(secondPlayerNextCard);
             secondPlayerNextCard = null;
         }
+        if(turn%2==0){
+            if(secondPlayer instanceof Ai){
+                ((Ai) secondPlayer).playGame();
+            }
+        }
+
         turnBeiginingInit();
     }
 
