@@ -79,7 +79,7 @@ public class GameController {
                 show.successfulBuy();
                 break;
             case EXIT:
-                request.exitLastmenu();
+                request.exitLastMenu();
                 break;
             case HELP:
                 show.showHelp(KindOfOrder.SHOP);
@@ -108,7 +108,7 @@ public class GameController {
                 show.showHelp(KindOfOrder.MAIN_MENU);
                 break;
             case ENTER_EXIT:
-                request.exitLastmenu();
+                request.exitLastMenu();
                 break;
             case ENTER_SHOP:
                 request.addNewMenu(KindOfOrder.SHOP);
@@ -220,12 +220,12 @@ public class GameController {
             Battle.getRunningBattle().getSecondPlayer().setDarick(2000);
         }
         Battle.setRunningBattle(null);
-        Request.getInstance().exitLastmenu();
+        Request.getInstance().exitLastMenu();
     }
 
-    public void exitFromBattleForInvalidDeck() {
+    public void exitFromBattle() {
         Battle.setRunningBattle(null);
-        Request.getInstance().exitLastmenu();
+        Request.getInstance().exitLastMenu();
     }
 
     private void startBattle(Request request) throws Error {
@@ -530,13 +530,14 @@ public class GameController {
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) throws Error {
         switch (collectionCommand) {
             case HELP:
+                System.out.println("wwwwwwwwwwwoa");
                 show.showHelp(KindOfOrder.COLLECTION);
                 break;
             case SAVE:
                 Account.saveAccount();
                 break;
             case EXIT:
-                request.exitLastmenu();
+                request.exitLastMenu();
                 break;
             case SEARCH:
                 collectionSearch(collectionCommand);
@@ -677,7 +678,7 @@ public class GameController {
 //    private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
 //        switch (cardCommand) {
 //            case EXIT:
-//                request.exitLastmenu();
+//                request.exitLastMenu();
 //                break;
 //            case MOVE:
 //                battleCommandMove(cardCommand);
@@ -721,7 +722,7 @@ public class GameController {
     private void graveYardCommandManagement(Request request, GraveYardCommand graveYardCommand) {
         switch (graveYardCommand) {
             case EXIT:
-                request.exitLastmenu();
+                request.exitLastMenu();
                 break;
             case SHOW_CARDS:
                 showCardsOfGraveYard();

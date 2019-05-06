@@ -65,10 +65,8 @@ public class Request {
                 break;
             case COLLECTION:
                 commandOfCollection(command);
-//                break;
-//            case CARD:
-//                commandOfCard(command);
-//                break;
+                break;
+
             case GRAVEYARD:
                 commandOfGraveyard(command);
                 break;
@@ -119,18 +117,6 @@ public class Request {
         throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 
-//    private void commandOfCard(String command) {
-//        for (int i = 0; i < Patterns.cardPatterns.length; i++) {
-//            Matcher matcher = Patterns.cardPatterns[i].matcher(command);
-//            {
-//                if (matcher.matches()) {
-//                    setCommandOfCard(matcher, i);
-//                    return;
-//                }
-//            }
-//        }
-//        throw new Error(ConstantMessages.INVALID_COMMAND.getMessage());
-//    }
 
     private void commandOfGraveyard(String command) {
         for (int i = 0; i < Patterns.graveyardPatters.length; i++) {
@@ -218,18 +204,6 @@ public class Request {
         } else graveYardCommand = GraveYardCommand.values()[i];
     }
 
-//    private void setCommandOfCard(Matcher matcher, int i) {
-//        if (i > 0) {
-//            ArrayList<String> strings = new ArrayList<>();
-//            strings.add(matcher.group(1));
-//            if (i != 2) {
-//                strings.add(matcher.group(2));
-//            }
-//            cardCommand = CardCommand.values()[i].setData(strings);
-//        } else
-//            cardCommand = CardCommand.values()[i];
-//    }
-
     private void setCommandOfCollectable(Matcher matcher, int i) {
         if (i == 2) {
             collectableCommand = CollectableCommand.values()[i].setData(matcher.group(1));
@@ -243,7 +217,7 @@ public class Request {
             if (i > 13) {
                 strings.add(matcher.group(2));
             }
-            if(i>15){
+            if (i > 15) {
                 strings.add(matcher.group(3));
             }
             battleCommand = BattleCommand.values()[i].setData(strings);
@@ -296,7 +270,7 @@ public class Request {
         GameController.getInstance().showMenu(kindOfOrder);
     }
 
-    public void exitLastmenu() {
+    public void exitLastMenu() {
         kindOfOrders.remove(kindOfOrders.size() - 1);
         showMenu(kindOfOrders.get(kindOfOrders.size() - 1));
     }
