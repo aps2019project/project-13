@@ -112,16 +112,13 @@ public class Battle {
 
     public void moveCard(int x, int y) {
         Cell cell = map.getCell(x, y);
-        System.out.println("In move Card method");
         if (cell == null) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
         if (!isValidMove(x, y)) {
             throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
         }
-        System.out.println(selectedCard.isAbleToMove());
         if (selectedCard.isAbleToMove()) {
-            System.out.println("map.moveCard method!");
             map.moveCard(selectedCard, cell);
             selectedCard.setAbleToMove(false);
         } else
@@ -570,10 +567,12 @@ public class Battle {
     public void insertPlayerHeroesInMap() {
 
         firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
+        firstPlayerDeck.getHero().setAbleToMove(true);
         map.getCell(2, 0).setCard(firstPlayerDeck.getHero());
         firstPlayerDeck.getCards().remove(firstPlayerDeck.getHero());
         firstPlayerInGameCards.add(firstPlayerDeck.getHero());
         secondPlayerDeck.getHero().setCurrentCell(map.getCell(2, 8));
+        secondPlayerDeck.getHero().setAbleToMove(true);
         map.getCell(2, 8).setCard(secondPlayerDeck.getHero());
         secondPlayerDeck.getCards().remove(secondPlayerDeck.getHero());
         secondPlayerInGameCards.add(secondPlayerDeck.getHero());
