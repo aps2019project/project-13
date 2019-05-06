@@ -87,8 +87,7 @@ public class Spell extends Card implements Cloneable {
 
     @Override
     public String toString() {
-        String str = "Type: Spell" + "- Name: " + this.getCardName() + "- MP:" + this.getManaCost() + "-Description: " + this.getCardDescription();
-        return str;
+        return "Type: Spell" + "- Name: " + this.getCardName() + "- MP:" + this.getManaCost() + "-Description: " + this.getCardDescription() + "- CardId:" + this.getCardId();
     }
 
 }

@@ -30,9 +30,10 @@ public class Shop {
 
         if (card != null) {
             if (card.getDarikCost() <= account.getDarick()) {
-               //TODO account.getCardCollection().addCard((Card) card.clone());
-                account.getCardCollection().addCard(Card.deepClone(card));
-                card.setAccount(account);
+                //TODO account.getCardCollection().addCard((Card) card.clone());
+                Card tempCard = Card.deepClone(card);
+                account.getCardCollection().addCard(tempCard);
+                tempCard.setAccount(account);
                 account.decreaseDarick(card.getDarikCost());
             } else
                 throw new Error(ConstantMessages.NOT_ENOUGH_MONEY.getMessage());
@@ -59,8 +60,8 @@ public class Shop {
         if (card != null) {
             account.increaseDarick(card.getDarikCost());
             account.getCardCollection().removeCard(card);
-            for (Deck deck:
-                 account.getDecks()) {
+            for (Deck deck :
+                    account.getDecks()) {
                 deck.getCards().remove(card);
             }
             addCard(card);

@@ -409,7 +409,7 @@ public class GameController {
         for (int i = 0; i < Map.MAX_ROW; i++) {
             for (int j = 0; j < Map.MAX_COLUMN; j++) {
                 Cell cell = map.getCell(i, j);
-                if (cell.getCard().getAccount().equals(account)) {
+                if (cell.getCard() != null && cell.getCard().getAccount().equals(account)) {
                     output.add(cell.getCard().toString() + "- Position: " + i + 1 + " , " + j + 1);
                 }
             }
@@ -474,17 +474,20 @@ public class GameController {
     }
 
     private void battleSelect(BattleCommand battleCommand) {
-        String cardName = battleCommand.getData().get(0);
+        String cardId = battleCommand.getData().get(0);
         Battle battle = Battle.getRunningBattle();
-        ArrayList<Card> hand;
+        ArrayList<Card> hand = new ArrayList<>();
         if (battle.getTurn() % 2 == 1) {
-            hand = battle.getFirstPlayerHand();
+            hand.addAll(battle.getFirstPlayerHand());
+            hand.addAll(battle.getFirstPlayerInGameCards());
         } else {
-            hand = battle.getSecondPlayerHand();
+            hand.addAll(battle.getSecondPlayerHand());
+            hand.addAll(battle.getSecondPlayerInGameCards());
         }
-        Card card = Card.findCardInArrayList(cardName, hand);
+        Card card = Card.findCardInArrayList(cardId, hand);
         if (card != null) {
-            battle.selectCard(cardName);
+            battle.selectCard(card);
+
         } else {
             throw new Error(ConstantMessages.CARD_NOT_EXIST.getMessage());
         }

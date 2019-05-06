@@ -36,6 +36,8 @@ public class Hero extends Warrior implements Cloneable {
 
     @Override
     public String toString() {
-        return "Type: Hero " + "Name: " + this.getCardName() + "- AP: " + this.getActionPower() + "- HP: " + this.getHealthPoint() + "- Class: " + getAttackKind().name() + "- Special Power: " + getCardDescription();
+        return "Type: Hero " + "Name: " + this.getCardName() + "- AP: " + this.getActionPower() +
+                "- HP: " + this.getHealthPoint() + "- Class: " + getAttackKind().name() +
+                "- Special Power: " + getCardDescription() + "- CardId:" + this.getCardId();
     }
 }

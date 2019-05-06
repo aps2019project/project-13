@@ -46,8 +46,7 @@ public class Deck implements Cloneable {
     }
 
     public static boolean validateDeck(Deck deck) {
-        return true;
-        //return deck.getHero() != null && countOfCardsWithoutHeroInDeck(deck) == 20;
+        return deck.getHero() != null && countOfCardsWithoutHeroInDeck(deck) == 20;
     }
 
     public static boolean deckHasCard(String cardId, Deck deck) {

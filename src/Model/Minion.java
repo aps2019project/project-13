@@ -32,7 +32,7 @@ public class Minion extends Warrior implements Cloneable {
 
     @Override
     public String toString() {
-        return "Type: Minion " + "- Name: " + this.getCardName() + "- Class " + this.getAttackKind() + "- AP: " + this.getActionPower() + " - HP: " + this.getHealthPoint() +
-                "- MP:" + this.getManaCost() + "- Special Power: " + this.getCardDescription();
+        return "Type: Minion " + " - Name: " + this.getCardName() + " - Class " + this.getAttackKind() + " - AP: " + this.getActionPower() + " - HP: " + this.getHealthPoint() +
+                "- MP:" + this.getManaCost() + "- Special Power: " + this.getCardDescription() + "- CardId:" + this.getCardId();
     }
 }

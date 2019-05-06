@@ -20,8 +20,8 @@ public class Battle {
     private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
-    private int firstPlayerMana;
-    private int secondPlayerMana;
+    private int firstPlayerMana = 1000;
+    private int secondPlayerMana = 1000;
     private Card selectedCard;
     private ArrayList<Card> firstPlayerGraveYard = new ArrayList<>();
     private ArrayList<Card> secondPlayerGraveYard = new ArrayList<>();
@@ -73,14 +73,12 @@ public class Battle {
         if (firstPlayer.getMainDeck() != null && Deck.validateDeck(firstPlayer.getMainDeck())) {
             firstPlayerDeck = firstPlayer.getMainDeck();
         } else {
-            System.out.println("Alireza moshkel dare");
             throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         }
         if (secondPlayer.getMainDeck() != null && Deck.validateDeck(secondPlayer.getMainDeck())) {
 
             secondPlayerDeck = secondPlayer.getMainDeck();
         } else {
-            System.out.println("Ai moshkel dare");
             throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
         }
     }
@@ -100,11 +98,7 @@ public class Battle {
         } else secondPlayerMana -= number;
     }
 
-    public void selectCard(String cardID) {
-        Card card;
-        if (turn % 2 == 1)
-            card = Card.findCardInArrayList(cardID, firstPlayerInGameCards);
-        else card = Card.findCardInArrayList(cardID, secondPlayerInGameCards);
+    public void selectCard(Card card) {
         selectedCard = card;
     }
 
@@ -208,7 +202,7 @@ public class Battle {
     }
 
     public void insertCard(String cardName, int x, int y) throws Error {
-
+        setCurrentTurnPlayer();
         Card card = Card.findCardInArrayListByName(cardName, currentTurnPlayer.getMainDeck().getCards());
         if (card != null) {
             if (card instanceof Spell) {
@@ -275,8 +269,8 @@ public class Battle {
 
     private void setMana() {
         if (turn < 14) {
-            setFirstPlayerCapacityMana(turn / 2 + 2);
-            setSecondPlayerCapacityMana(turn / 2 + 2);
+            setFirstPlayerCapacityMana(turn / 2 + 2 + 1000);//TODO Reval kkon
+            setSecondPlayerCapacityMana(turn / 2 + 2 + 1000 );
         } else if (turn >= 14) {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
