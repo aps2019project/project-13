@@ -54,9 +54,6 @@ public class GameController {
             case SHOP:
                 shopCommandManagement(request, request.getShopCommand());
                 break;
-//            case CARD:
-//                cardCommandManagement(request, request.getCardCommand());
-//                break;
             case GRAVEYARD:
                 graveYardCommandManagement(request, request.getGraveYardCommand());
                 break;
@@ -149,7 +146,7 @@ public class GameController {
     }
 
 
-    private void battleCommandManagement(BattleCommand battleCommand) throws Error {
+    public void battleCommandManagement(BattleCommand battleCommand) throws Error {
         switch (battleCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.BATTLE);
@@ -334,47 +331,6 @@ public class GameController {
         } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
     }
 
-//    private void setBattle(GameGoal gameGoal, GameMode gameMode, Account account, int numberOfAi, int kindOfGame, Deck deck) throws Error {
-//        show.startBattle();
-//        if (gameMode == GameMode.SINGLEPLAYER) {
-//            if (kindOfGame == 1) {
-//                new Battle(Account.getLoginedAccount(), new Ai(numberOfAi), gameMode, gameGoal);
-//            } else {
-//                Ai ai = new Ai(4);
-//                ai.setMainDeck(deck);
-//                new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
-//            }
-//
-//        } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
-//    }
-//
-//    private boolean setBattleForCollectFlag(Request request, GameGoal gameGoal, GameMode gameMode, Account account,int numberOfAi, int kindOfGame, Deck deck) throws Error {
-//        if (gameGoal == GameGoal.COLLECT_FLAG) {
-//            int numberOfFlagForWin = 0;
-//            while (numberOfFlagForWin < 1) {
-//                show.numberOfFlag();
-//                String numberOfFlag = request.getNumberOfFlag();
-//
-//                try {
-//                    numberOfFlagForWin = Integer.parseInt(numberOfFlag);
-//                } catch (Exception e) {
-//                    show.invalidNumberForFlag();
-//                }
-//            }
-//            if (gameMode == GameMode.SINGLEPLAYER) {
-//                if (kindOfGame == 1) {
-//                    new Battle(Account.getLoginedAccount(), new Ai(numberOfAi), gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-//                } else {
-//                    Ai ai = new Ai(4);
-//                    ai.setMainDeck(deck);
-//                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-//                }
-//
-//            } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-//            return true;
-//        }
-//        return false;
-//    }
 
     private GameGoal getGameGoal(String gameGoalNumber) {
         GameGoal gameGoal;
@@ -686,23 +642,6 @@ public class GameController {
         } else
             throw new Error(ConstantMessages.NOT_ENOUGH_CARD_TO_ADD_TO_DECK.getMessage());
     }
-
-//    private void cardCommandManagement(Request request, CardCommand cardCommand) throws Error {
-//        switch (cardCommand) {
-//            case EXIT:
-//                request.exitLastMenu();
-//                break;
-//            case MOVE:
-//                battleCommandMove(cardCommand);
-//                break;
-//            case ATTACK:
-//                Battle battle = Battle.getRunningBattle();
-//                battle.attack(cardCommand.getData().get(0), (Warrior) battle.getSelectedCard(), true);
-//                break;
-//            case USE_SPECIAL_POWER:
-//                useSpecialPower(cardCommand);
-//        }
-//    }
 
     private void useSpecialPower(BattleCommand battleCommand) throws Error {
         Battle battle = Battle.getRunningBattle();

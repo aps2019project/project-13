@@ -268,6 +268,11 @@ public class Battle {
             secondPlayerNextCard = null;
         }
         addUsedCardsToGraveYard();
+        if(turn%2==0){
+            if(secondPlayer instanceof Ai){
+                ((Ai) secondPlayer).playGame();
+            }
+        }
 
     }
 
