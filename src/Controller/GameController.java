@@ -150,6 +150,7 @@ public class GameController {
 
 
     private void battleCommandManagement(BattleCommand battleCommand) throws Error {
+
         switch (battleCommand) {
             case HELP:
                 show.showHelp(KindOfOrder.BATTLE);
@@ -203,11 +204,6 @@ public class GameController {
             case USE_SPECIAL_POWER:
                 useSpecialPower(battleCommand);
         }
-
-        if (Battle.getRunningBattle() != null) {
-            Battle.getRunningBattle().showMap();
-
-        }
         if (Battle.getRunningBattle() != null) {
             Battle.getRunningBattle().endGame();
             Battle.getRunningBattle().deleteDeathCardsFromMap();
@@ -217,6 +213,10 @@ public class GameController {
                 Battle.getRunningBattle().getWinner().setDarick(2000);
                 exitFromBattle();
             }
+        }
+        if (Battle.getRunningBattle() != null) {
+            Battle.getRunningBattle().showMap();
+
         }
     }
 
