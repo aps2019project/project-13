@@ -3,6 +3,7 @@ package Model;
 
 import com.rits.cloning.Cloner;
 
+import java.net.spi.URLStreamHandlerProvider;
 import java.util.ArrayList;
 
 public class Deck implements Cloneable {
@@ -227,26 +228,52 @@ public class Deck implements Cloneable {
 
         Deck deck = new Deck("AI_Deck1", AI);
         Hero hero = (Hero) Card.findCardInArrayList("Hero_" + heroNumber, Shop.getInstance().getCards());
-        Hero hero1 = (Hero) Hero.deepClone(hero);
-        hero1.setCardId(Card.makeNewID(AI.getUsername(), hero1.getCardName(), counter++));
-        deck.addHero(hero);
+        try {
+            Hero heroClone = (Hero) Shop.getInstance().buy(hero.getCardName(), AI);
+            deck.addHero(heroClone);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         for (int i = 0; i < spellNumbers.length; i++) {
-            Spell spell = Spell.deepClone((Spell) Spell.findCardInArrayList("Spell_" + spellNumbers[i], Shop.getInstance().getCards()));
-            spell.setCardId(Card.makeNewID(AI.getUsername(), spell.getCardName(), counter++));
-            deck.addCard(spell);
+            Spell spell = (Spell) Card.findCardInArrayList("Spell_" + spellNumbers[i], Shop.getInstance().getCards());
+            try {
+                Spell spellClone = (Spell) Shop.getInstance().buy(spell.getCardName(), AI);
+                deck.addCard(spellClone);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+//            Spell spell = Spell.deepClone((Spell) Spell.findCardInArrayList("Spell_" + spellNumbers[i], Shop.getInstance().getCards()));
+//            spell.setCardId(Card.makeNewID(AI.getUsername(), spell.getCardName(), counter++));
+//            deck.addCard(spell);
         }
         for (int i = 0; i < minionNumbers.length; i++) {
-            Minion minion = (Minion) Minion.deepClone((Warrior) Minion.findCardInArrayList("Minion_" + minionNumbers[i], Shop.getInstance().getCards()));
-            minion.setCardId(Card.makeNewID(AI.getUsername(), minion.getCardName(), counter++));
-            deck.addCard(minion);
+            Minion minion = (Minion) Card.findCardInArrayList("Minion_" + minionNumbers[i], Shop.getInstance().getCards());
+            try {
+
+                Minion minionClone = (Minion) Shop.getInstance().buy(minion.getCardName(), AI);
+                deck.addCard(minionClone);
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+//            minion.setCardId(Card.makeNewID(AI.getUsername(), minion.getCardName(), counter++));
+//            deck.addCard(minion);
         }
         //TODO CHECK DOWNCASTING
-        UsableItem item1 = (UsableItem) Item.deepClone(Shop.getInstance().searchAndGetItem("UsableItem_" + item));
-        deck.setItem(item1);
-        return deck;
+        UsableItem item1 = (UsableItem) UsableItem.findUsableItemInArrayList("UsableItem_" + item, Shop.getInstance().getItems());
+        try {
+            Item itemClone = (Item) Shop.getInstance().buy(item1.getItemId(), AI);
+            deck.setItem(itemClone);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+//        UsableItem item1 = (UsableItem) Item.deepClone(Shop.getInstance().searchAndGetItem("UsableItem_" + item));
+//        deck.setItem(item1);
+//        return deck;
         //UsableItem.findItemInArrayList("1",Shop.getInstance().getItems())
 
-
+    return deck;
     }
+
+
 
 }
