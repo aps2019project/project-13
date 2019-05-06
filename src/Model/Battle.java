@@ -123,8 +123,8 @@ public class Battle {
             System.out.println("map.moveCard method!");
             map.moveCard(selectedCard, cell);
             selectedCard.setAbleToMove(false);
-        }else
-            throw new Error(ConstantMessages.)
+        } else
+            throw new Error(ConstantMessages.CARD_MOVED_BEFORE.getMessage());
         //Take Flags for win the game
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode.updateFlagCell();
@@ -146,8 +146,10 @@ public class Battle {
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
             warrior.getSpecialPowerBuffs().useBuffsOnGeneric(targetCell);
         }
-        defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
-        warrior.setValidToAttack(false);
+        if(warrior.isValidToAttack()) {
+            defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
+            warrior.setValidToAttack(false);
+        }
         affectBuffs(warrior, targetCell, defender);
         if (defender.isValidCounterAttack() && isAttack) {
             attack(warrior.getCardId(), defender, false);
@@ -908,16 +910,16 @@ public class Battle {
             secondPlayerInGameCard.setAbleToMove(true);
         }
         for (Card card : firstPlayerHand) {
-            ((Warrior)card).setValidToAttack(true);
+            ((Warrior) card).setValidToAttack(true);
         }
         for (Card card : secondPlayerHand) {
-            ((Warrior)card).setValidToAttack(true);
+            ((Warrior) card).setValidToAttack(true);
         }
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
-            ((Warrior)firstPlayerInGameCard).setValidToAttack(true);
+            ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
         }
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
-            ((Warrior)secondPlayerInGameCard).setValidToAttack(true);
+            ((Warrior) secondPlayerInGameCard).setValidToAttack(true);
         }
 
 
