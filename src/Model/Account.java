@@ -34,6 +34,7 @@ public class Account implements Cloneable{
         collectableItems = new ArrayList<>();
         setDarick(100000);
         accounts.add(this);
+        if(!(this instanceof Ai))
         loginedAccount = this;
     }
 

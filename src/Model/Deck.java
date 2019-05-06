@@ -22,8 +22,8 @@ public class Deck implements Cloneable {
         setMinions(new ArrayList<>());
         decks.add(this);
     }
-    public static Deck deepClone (Deck deck)
-    {
+
+    public static Deck deepClone(Deck deck) {
         Cloner cloner = new Cloner();
         cloner.dontClone(Account.class);
         Deck clonedDeck = cloner.deepClone(deck);
@@ -46,7 +46,8 @@ public class Deck implements Cloneable {
     }
 
     public static boolean validateDeck(Deck deck) {
-        return deck.getHero() != null && countOfMinionsInDeck(deck) == 20;
+        return true;
+        //return deck.getHero() != null && countOfCardsWithoutHeroInDeck(deck) == 20;
     }
 
     public static boolean deckHasCard(String cardId, Deck deck) {
@@ -58,10 +59,10 @@ public class Deck implements Cloneable {
     }
 
 
-    private static int countOfMinionsInDeck(Deck deck) {
+    private static int countOfCardsWithoutHeroInDeck(Deck deck) {
         int sum = 0;
         for (int i = 0; i < deck.getCards().size(); i++) {
-            if (deck.getCards().get(i).getCardKind() == CardKind.MINION) {
+            if (deck.getCards().get(i).getCardKind() != CardKind.HERO) {
                 sum++;
             }
         }
@@ -204,6 +205,7 @@ public class Deck implements Cloneable {
     }
 
     public void setValid(boolean valid) {
+        isValid = validateDeck(this);
         isValid = valid;
     }
 
@@ -216,10 +218,11 @@ public class Deck implements Cloneable {
         int[][] spellNumbers = {{1, 7, 10, 11, 12, 18, 20}, {2, 3, 5, 9, 8, 13, 19}, {6, 10, 12, 14, 15, 16, 17}};
         int[][] minionNumbers = {{1, 9, 11, 11, 13, 17, 18, 21, 22, 26, 38, 36, 40}, {2, 3, 5, 8, 12, 15, 15, 19, 23, 27, 30, 33, 39}, {6, 7, 10, 14, 16, 16, 20, 24, 25, 28, 29, 31, 34}};
         int[] item = {1, 10, 5};
-        return AiDeckBuilderUtility(heroNumber[i], spellNumbers[i], minionNumbers[i], item[i]);
+        return AiDeckBuilderUtility(heroNumber[i - 1], spellNumbers[i - 1], minionNumbers[i - 1], item[i - 1]);
     }
 
     public static Deck AiDeckBuilderUtility(int heroNumber, int[] spellNumbers, int[] minionNumbers, int item) {
+
         int counter = 1;
         Account AI = new Account("AI", "password");
 
@@ -240,7 +243,7 @@ public class Deck implements Cloneable {
             deck.addCard(minion);
         }
         //TODO CHECK DOWNCASTING
-        UsableItem item1 =(UsableItem) Item.deepClone( Shop.getInstance().searchAndGetItem("UsableItem_" + item));
+        UsableItem item1 = (UsableItem) Item.deepClone(Shop.getInstance().searchAndGetItem("UsableItem_" + item));
         deck.setItem(item1);
         return deck;
         //UsableItem.findItemInArrayList("1",Shop.getInstance().getItems())

@@ -8,7 +8,7 @@ public class Ai extends Account {
     private Battle battle;
 
     public Ai( int numberOfAi) {
-        super("name", "Password");
+        super("AI", "Password");
         if (numberOfAi == 1) {
             this.setMainDeck(Deck.AiDeckBuilder(1));
         } else if (numberOfAi == 2) {

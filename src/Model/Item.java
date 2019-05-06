@@ -7,26 +7,41 @@ import java.util.ArrayList;
 public class Item {
     private String itemId;
     private String itemDescription;
-    private ItemKind itemKind;
     private String itemName;
     private Account account;
+    private ItemKind itemKind;
+    private static int counter = 1;
     //   private int darickCost;
 
-    public Item(String itemId, String itemDescription, ItemKind itemKind, String itemName) {
+    public Item(String itemId, String itemDescription,ItemKind itemKind, String itemName) {
         this.itemId = itemId;
         this.itemDescription = itemDescription;
-        this.itemKind = itemKind;
         this.itemName = itemName;
+        this.itemKind = itemKind;
 //        this.darickCost = darickCost;
     }
-    public static Item deepClone(Item item)
-    {
-        if (item!=null) {
-            if (item instanceof CollectableItem) {
-                return CollectableItem.deepClone(item);
-            } else if (item instanceof UsableItem) {
-                return UsableItem.deepClone(item);
+
+    public static String makeNewID(String accountName, String itemName) {
+        return accountName + "_" + itemName + "_" + (counter++);
+    }
+
+    public static Item deepClone(Item item){
+        try {
+            if (item != null) {
+                if (item instanceof CollectableItem) {
+                    Item temp = (Item) item.clone();
+                    temp.setItemId(makeNewID(Account.getLoginedAccount().getUsername(), item.getItemName()));
+                    return temp;
+                } else if (item instanceof UsableItem) {
+                    Item temp = (Item) item.clone();
+                    temp.setItemId(makeNewID(Account.getLoginedAccount().getUsername(), item.getItemName()));
+                    return temp;
+                }
             }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
         return null;
     }

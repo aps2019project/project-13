@@ -40,9 +40,10 @@ public enum ConstantMessages {
     ITEM_EXIST("An Item exists with this name!"),
 
     CARD_EXIST("A Card exists with this name!"),
-
+    DECK_CREATED("Deck successfully created!"),
     VALID_DECK("Selected Deck is a Valid Deck"),
     MAIN_DECK_SELECTED("Main Deck Selected Successfully"),
+    CARD_ADDED_TO_DECK("Card successfully added to your deck!"),
 
     BUY_SUCCESSFUL("Your buy request was done successfully!"),
 

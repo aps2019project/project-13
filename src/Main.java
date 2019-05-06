@@ -27,8 +27,10 @@ public class Main {
             Reader reader = new FileReader("accounts.json");
             Account[] accounts = new Account[1000];
             accounts = yaGson.fromJson(reader, (Type) Account[].class);
-            for (Account account : accounts) {
-                Account.getAccounts().add(account);
+            if (accounts != null) {
+                for (Account account : accounts) {
+                    Account.getAccounts().add(account);
+                }
             }
 
         } catch (Exception e) {
@@ -36,7 +38,7 @@ public class Main {
         }
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
         Minion[] cards = new Minion[40];
-        try (Reader reader = new FileReader("Minions_YaGson.json")) {
+        try (Reader reader = new FileReader("Minions_YaGson_New.json")) {
             cards = yaGson.fromJson(reader, Minion[].class);
         } catch (IOException e) {
             System.out.println(":DD");
@@ -47,7 +49,7 @@ public class Main {
         }
 
         Hero[] heroes = new Hero[20];
-        try (Reader reader = new FileReader("Heroes_YaGson.json")) {
+        try (Reader reader = new FileReader("Heroes_YaGson_New.json")) {
             heroes = yaGson.fromJson(reader, Hero[].class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,6 +57,36 @@ public class Main {
         for (Hero hero : heroes) {
             if (heroes[i] != null)
                 Shop.getInstance().addCard(hero);
+        }
+        for (int j = 0; j <heroes.length ; j++) {
+            System.out.println(heroes[j].getCardId());
+        }
+
+        Spell[] spells = new Spell[20];
+        try (Reader reader = new FileReader("Spells_YaGson_New.json")) {
+            spells = yaGson.fromJson(reader, Spell[].class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int j = 0; j < spells.length; j++) {
+            if (spells[j] != null) {
+                Shop.getInstance().addCard(spells[j]);
+            }
+        }
+        for (int j = 0; j < spells.length; j++) {
+            System.out.println(spells[j].getCardId() + "     " + j);
+        }
+
+        Item[] items = new Item[20];
+        try (Reader reader = new FileReader("Items_YaGson_New.json")) {
+            items = yaGson.fromJson(reader, Item[].class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int j = 0; j < items.length; j++) {
+            if (items[j] != null) {
+                Shop.getInstance().addItem((UsableItem) items[j]);
+            }
         }
 
 

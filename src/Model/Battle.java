@@ -50,7 +50,7 @@ public class Battle {
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
         this.gameGoal = gameGoal;
-        if(secondPlayer instanceof Ai){
+        if (secondPlayer instanceof Ai) {
             ((Ai) secondPlayer).setBattle(this);
         }
         map = new Map(this);
@@ -70,19 +70,23 @@ public class Battle {
     }
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
-        if (firstPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
+        if (firstPlayer.getMainDeck() != null && Deck.validateDeck(firstPlayer.getMainDeck())) {
             firstPlayerDeck = firstPlayer.getMainDeck();
         } else {
+            System.out.println("Alireza moshkel dare");
             throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         }
-        if (secondPlayer.getMainDeck() != null && !firstPlayer.getMainDeck().isValid()) {
+        if (secondPlayer.getMainDeck() != null && Deck.validateDeck(secondPlayer.getMainDeck())) {
+
             secondPlayerDeck = secondPlayer.getMainDeck();
         } else {
+            System.out.println("Ai moshkel dare");
             throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
         }
     }
 
     public void handelBattleSinglePlayer() {
+
 
     }
 
@@ -836,7 +840,7 @@ public class Battle {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getCard() != null) {
                     if (cells[i][j].getCard().getAccount() == null)
-                        System.out.print("*");
+                        System.out.print(" * ");
                     else if (cells[i][j].getCard().getAccount().equals(firstPlayer))
                         System.out.print(" 1 ");
                     else System.out.print(" 2 ");

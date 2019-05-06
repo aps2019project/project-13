@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Spell extends Card implements Cloneable {
     private static ArrayList<Spell> allSpells = new ArrayList<>();
     private TargetSocietyKind targetSocietyKind;
-    private SpellName spellName;
     private ActivationCondition activationCondition;
     private SpecialPowerBuffs specialPowerBuffs;
 
@@ -22,8 +21,7 @@ public class Spell extends Card implements Cloneable {
 
     protected Object clone() throws CloneNotSupportedException {
         Spell spell = (Spell) super.clone();
-        SpecialPowerBuffs specialPowerBuffs = (SpecialPowerBuffs) spell.specialPowerBuffs.clone();
-        spell.specialPowerBuffs = specialPowerBuffs;
+        spell.specialPowerBuffs = (SpecialPowerBuffs) spell.specialPowerBuffs.clone();
         return spell;
     }
 
@@ -31,7 +29,7 @@ public class Spell extends Card implements Cloneable {
                  ActivationCondition activationCondition, SpecialPowerBuffs specialPowerBuffs) {
         super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription);
         this.targetSocietyKind = targetSocietyKind;
-        this.spellName = spellName;
+       // this.spellName = spellName;
         this.activationCondition = activationCondition;
         this.specialPowerBuffs = specialPowerBuffs;
         addToAllSpells(this);
@@ -74,9 +72,6 @@ public class Spell extends Card implements Cloneable {
         return targetSocietyKind;
     }
 
-    public SpellName getSpellName() {
-        return spellName;
-    }
 
     public SpecialPowerBuffs getSpecialPowerBuffs() {
         return specialPowerBuffs;
@@ -92,7 +87,7 @@ public class Spell extends Card implements Cloneable {
 
     @Override
     public String toString() {
-        String str = "Type: Spell" + "- Name: " + this.getSpellName().getName() + "- MP:" + this.getManaCost() + "-Description: " + this.getCardDescription();
+        String str = "Type: Spell" + "- Name: " + this.getCardName() + "- MP:" + this.getManaCost() + "-Description: " + this.getCardDescription();
         return str;
     }
 

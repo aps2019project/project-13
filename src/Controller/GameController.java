@@ -25,6 +25,9 @@ public class GameController {
         showMenu(KindOfOrder.ACCOUNT);
         Request request = Request.getInstance();
         while (!isFinish) {
+            if (Account.getLoginedAccount() != null)
+                System.out.println(Account.getLoginedAccount().getUsername());
+
             try {
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
@@ -282,8 +285,9 @@ public class GameController {
                     new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
                 }
 
-            } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
-            return ;
+            } else
+                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal).setNumberOfFlagForWin(numberOfFlagForWin);
+            return;
         }
         if (gameMode == GameMode.SINGLEPLAYER) {
             if (kindOfSinglePlayer.equals("1")) {
@@ -591,8 +595,12 @@ public class GameController {
         Deck deck = Account.getLoginedAccount().findDeck(deckName);
         if (deck == null)
             throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
-        Deck.validateDeck(deck);
-        show.printAMessage(ConstantMessages.VALID_DECK.getMessage());
+        if (Deck.validateDeck(deck))
+            show.printAMessage(ConstantMessages.VALID_DECK.getMessage());
+        else {
+            System.out.println("Khodet moshkel dari");
+            throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        }
     }
 
     private void collectionSelectMainDeck(CollectionCommand collectionCommand) {
@@ -620,6 +628,7 @@ public class GameController {
         String deckName = collectionCommand.getData().get(0);
         if (Account.getLoginedAccount().findDeck(deckName) == null) {
             Deck.createDeck(deckName, Account.getLoginedAccount());
+            show.printAMessage(ConstantMessages.DECK_CREATED.getMessage());
         } else
             throw new Error(ConstantMessages.DECK_EXIST.getMessage());
     }
@@ -631,13 +640,14 @@ public class GameController {
         if (deck == null)
             throw new Error(ConstantMessages.DECK_NOT_EXIST.getMessage());
         Card card = Card.findCardForDeckWithSameNameAndDifferentIds(cardId, Account.getLoginedAccount().getCardCollection().getCards(), deck);
-        if(Deck.deckHasCard(cardId, deck))
+        if (Deck.deckHasCard(cardId, deck))
             throw new Error(ConstantMessages.INVALID_ADD_TO_DECK.getMessage());
         if (card == null)
             throw new Error(ConstantMessages.INVALID_CARD_ID.getMessage());
-        if (CardCollection.getCountOfCard(deck.getCards(), card) < CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), card))
+        if (CardCollection.getCountOfCard(deck.getCards(), card) < CardCollection.getCountOfCard(Account.getLoginedAccount().getCardCollection().getCards(), card)) {
             deck.addCard(card);
-        else
+            show.printAMessage(ConstantMessages.CARD_ADDED_TO_DECK.getMessage());
+        } else
             throw new Error(ConstantMessages.NOT_ENOUGH_CARD_TO_ADD_TO_DECK.getMessage());
     }
 
