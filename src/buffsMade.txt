@@ -1,0 +1,11 @@
+Help: Made: Just made!  ||| OK: Works fine!
+
+Minions:
+persianSwordsman: Made.
+toranianSpy: Made.
+eagle: Made.
+poisonousSnake: Made.
+giantSnake: Made.
+panther: Made.
+wolf: Made.
+mage: Made.

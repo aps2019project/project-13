@@ -272,7 +272,11 @@ public class Battle {
         }
         if (turn % 2 == 0) {
             if (secondPlayer instanceof Ai) {
-                ((Ai) secondPlayer).playGame();
+                try {
+                    ((Ai) secondPlayer).playGame();
+                }catch (Error error){
+                    endTurn();
+                }
             }
         }
 
