@@ -20,9 +20,9 @@ public class Ai extends Account {
 
     }
 
-    public void setDeck(Deck deck) {
-        setMainDeck(deck);
-    }
+//    public void setDeck(Deck deck) {
+//        setMainDeck(deck);
+//    }
 
     public void setBattle(Battle battle) {
         this.battle = battle;

@@ -97,7 +97,7 @@ public class Show {
     public void showError(Exception error) {
         System.out.println(error.toString());
         if (error.toString().equals(ConstantMessages.INVALID_DECK.getMessage())) {
-            GameController.getInstance().exitFromBattle();
+            GameController.getInstance().exitFromBattleForInvalidDeck();
         }
     }
 
@@ -296,5 +296,9 @@ public class Show {
     }
     public void invalidComputer(){
         System.out.println("1 or 2 or 3 ?! try again!");
+    }
+
+    public void showWinner(String userName){
+        System.out.println(userName + " Win Game :)");
     }
 }
