@@ -583,37 +583,6 @@
                   "targetSocietyKind": "FRIENDLY_CARDS"
                 },
                 "buffs": [],
-                "cardId": "alireza_Iraj_20",
-                "manaCost": 4,
-                "darikCost": 500,
-                "cardKind": "MINION",
-                "account": "@root.0",
-                "cardDescription": "No Special Power",
-                "cardName": "Iraj",
-                "buffs^2": [],
-                "isAbleToMove": false,
-                "isInGame": false
-              }
-            },
-            {
-              "@type": "Model.Minion",
-              "@val": {
-                "hasSpecialPower": false,
-                "healthPoint": 6,
-                "actionPower": 20,
-                "attackRange": 3,
-                "attackKind": "RANGED",
-                "validCounterAttack": false,
-                "isDeath": false,
-                "shield": 0,
-                "isValidToAttack": true,
-                "IsValidToMove": true,
-                "specialPowerBuffs": {
-                  "buffs": [],
-                  "activationCondition": "PASSIVE",
-                  "targetSocietyKind": "FRIENDLY_CARDS"
-                },
-                "buffs": [],
                 "cardId": "alireza_Iraj_2",
                 "manaCost": 4,
                 "darikCost": 500,
@@ -630,6 +599,7 @@
               "@type": "Model.Hero",
               "@val": {
                 "specialPowerCoolDownTime": 0,
+                "remainginTurntoCoolDown": 0,
                 "healthPoint": 50,
                 "actionPower": 2,
                 "attackRange": 1,
@@ -656,6 +626,28 @@
                 "isAbleToMove": false,
                 "isInGame": false
               }
+            },
+            {
+              "@type": "Model.Spell",
+              "@val": {
+                "targetSocietyKind": "FRIENDLY_CARDS",
+                "activationCondition": "PASSIVE",
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "cardId": "alireza_Dispel_1",
+                "manaCost": 0,
+                "darikCost": 2100,
+                "cardKind": "MINION",
+                "account": "@root.0",
+                "cardDescription": "Dispel 1 Friendly negative buffs OR enemy positive buffs ",
+                "cardName": "Dispel",
+                "buffs": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
             }
           ],
           "minions": [
@@ -677,10 +669,38 @@
             "@root.0.decks.0.cards.15",
             "@root.0.decks.0.cards.16",
             "@root.0.decks.0.cards.17",
+            {
+              "hasSpecialPower": false,
+              "healthPoint": 6,
+              "actionPower": 20,
+              "attackRange": 3,
+              "attackKind": "RANGED",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "alireza_Iraj_20",
+              "manaCost": 4,
+              "darikCost": 500,
+              "cardKind": "MINION",
+              "account": "@root.0",
+              "cardDescription": "No Special Power",
+              "cardName": "Iraj",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            },
             "@root.0.decks.0.cards.18",
-            "@root.0.decks.0.cards.19"
+            "@.18"
           ],
-          "hero": "@root.0.decks.0.cards.20",
+          "hero": "@root.0.decks.0.cards.19",
           "account": "@root.0",
           "deckName": "first",
           "isValid": false
@@ -689,7 +709,7 @@
       "cardCollection": {
         "cards": [
           "@root.0.decks.0.cards.0",
-          "@root.0.decks.0.cards.19",
+          "@root.0.decks.0.cards.18",
           "@root.0.decks.0.cards.1",
           "@root.0.decks.0.cards.2",
           "@root.0.decks.0.cards.3",
@@ -707,11 +727,12 @@
           "@root.0.decks.0.cards.15",
           "@root.0.decks.0.cards.16",
           "@root.0.decks.0.cards.17",
-          "@root.0.decks.0.cards.18",
+          "@root.0.decks.0.minions.18",
           {
             "@type": "Model.Hero",
             "@val": {
               "specialPowerCoolDownTime": 2,
+              "remainginTurntoCoolDown": 0,
               "healthPoint": 30,
               "actionPower": 2,
               "attackRange": 6,
@@ -739,6 +760,7 @@
               "isInGame": false
             }
           },
+          "@root.0.decks.0.cards.19",
           "@root.0.decks.0.cards.20"
         ],
         "items": [],
@@ -748,7 +770,7 @@
       "username": "alireza",
       "password": "alireza",
       "countOfWins": 2,
-      "darick": 1990000,
+      "darick": 1987900,
       "collectableItems": []
     }
   },
@@ -1383,6 +1405,7 @@
               "@type": "Model.Hero",
               "@val": {
                 "specialPowerCoolDownTime": 2,
+                "remainginTurntoCoolDown": 0,
                 "healthPoint": 50,
                 "actionPower": 4,
                 "attackRange": 1,

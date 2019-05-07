@@ -618,7 +618,6 @@ public class GameController {
         if (Deck.validateDeck(deck))
             show.printAMessage(ConstantMessages.VALID_DECK.getMessage());
         else {
-            System.out.println("Khodet moshkel dari");
             throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         }
     }

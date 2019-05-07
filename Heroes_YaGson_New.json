@@ -24,7 +24,7 @@
       "darikCost": 8000,
       "cardKind": "HERO",
       "cardDescription": "Has continous power buff with 4 units of AP",
-      "cardName": "Dive Sefid",
+      "cardName": "Dive_Sefid",
       "buffs^2": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -86,7 +86,7 @@
       "darikCost": 8000,
       "cardKind": "HERO",
       "cardDescription": "Disarm One Enemey",
-      "cardName": "Ejdeha Haft Sar",
+      "cardName": "Ejdeha_Haft_Sar",
       "buffs^2": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -179,7 +179,7 @@
       "darikCost": 8000,
       "cardKind": "HERO",
       "cardDescription": "Holy Buff a cell for 3 turns",
-      "cardName": " Kaveh",
+      "cardName": "Kaveh",
       "buffs^2": [],
       "isAbleToMove": false,
       "isInGame": false

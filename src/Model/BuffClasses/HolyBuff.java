@@ -7,7 +7,8 @@ import Model.Warrior;
 public class HolyBuff extends ABuff implements Cloneable {
     private int shield;
     private boolean isAffected;
-//TODO CHECK LOGIC
+
+    //TODO CHECK LOGIC
     public HolyBuff(int shield, Account account, int duration, boolean isDispellable) {
         super(account, duration, PositiveNegative.POSITIVE, isDispellable);
         this.shield = shield;
@@ -32,7 +33,7 @@ public class HolyBuff extends ABuff implements Cloneable {
 
     private void affectOnWarrior(Warrior warrior) {
         if (getDuration() > 0 && !isAffected()) {
-            warrior.decreaseShield(getShield());
+            warrior.increaseShield(getShield());
             setAffected(true);
         }
 
@@ -44,9 +45,9 @@ public class HolyBuff extends ABuff implements Cloneable {
         if (t instanceof Warrior) {
             Warrior warrior = (Warrior) t;
             affectOnWarrior(warrior);
-                if (getDuration() <= 0 && isAffected()) {
-                    warrior.increaseShield(getShield());
-                    setAffected(false);
+            if (getDuration() <= 0 && isAffected()) {
+                warrior.decreaseShield(getShield());
+                setAffected(false);
             }
         }
     }

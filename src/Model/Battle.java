@@ -22,8 +22,8 @@ public class Battle {
     private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
-    private int firstPlayerMana = 0;
-    private int secondPlayerMana = 0;
+    private int firstPlayerMana;
+    private int secondPlayerMana;
     private Card selectedCard;
     private ArrayList<Card> firstPlayerGraveYard = new ArrayList<>();
     private ArrayList<Card> secondPlayerGraveYard = new ArrayList<>();
@@ -61,10 +61,8 @@ public class Battle {
         insertPlayerHeroesInMap();
         setHandOfFirstPlayer();
         setHandOfSecondPlayer();
-        if (getTurn() % 2 == 1)
-            setFirstPlayerNextCard();
-        if (getTurn() % 2 == 0)
-            setSecondPlayerNextCard();
+        setFirstPlayerNextCard();
+        setSecondPlayerNextCard();
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2, 4));
             map.getCell(2, 4).setItem(flagForHoldFlagGameMode);
@@ -300,10 +298,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(card, cardOpponent);
+        CancelBuff(random, cards, opponents, card,cardOpponent);
     }
 
-    private void CancelBuff(Card card, Card cardOpponent) {
+    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
@@ -381,11 +379,11 @@ public class Battle {
         incrementTurn();
         if (firstPlayerHand.size() < 5 && getTurn() % 2 == 1) {
             firstPlayerHand.add(firstPlayerNextCard);
-            firstPlayerNextCard = null;
+            setFirstPlayerNextCard();
         }
         if (secondPlayerHand.size() < 5 && getTurn() % 2 == 0) {
             secondPlayerHand.add(secondPlayerNextCard);
-            secondPlayerNextCard = null;
+            setSecondPlayerNextCard();
         }
         if (turn % 2 == 0) {
             if (secondPlayer instanceof Ai) {
@@ -970,6 +968,7 @@ public class Battle {
             ((Warrior) secondPlayerInGameCard).setValidToAttack(true);
             ((Warrior) secondPlayerInGameCard).setValidCounterAttack(true);
         }
+
     }
 
 }
