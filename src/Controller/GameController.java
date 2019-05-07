@@ -398,7 +398,7 @@ public class GameController {
             for (int j = 0; j < Map.MAX_COLUMN; j++) {
                 Cell cell = map.getCell(i, j);
                 if (cell.getCard() != null && cell.getCard().getAccount().equals(account)) {
-                    output.add(cell.getCard().toString() + "- Position: " + i + 1 + " , " + j + 1);
+                    output.add(cell.getCard().toString() + "- Position: " + i  + " , " + j);
                 }
             }
         }

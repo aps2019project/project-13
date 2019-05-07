@@ -262,7 +262,7 @@ public class Battle {
         }
     }
 
-    public void endTurn()throws Error {
+    public void endTurn() throws Error {
         endGame();
         if (isEndGame()) {
             setHistoryAfterGame();
@@ -388,24 +388,27 @@ public class Battle {
     }
 
     private void endOfCollectFlagGameMode() {
-        if (firstPlayerFlags >= 6 / 2) // Bejaye 6 bayad moteghayyer bezarim
+        if (firstPlayerFlags >= numberOfFlagForWin / 2)
             setWinner(firstPlayer);
-        else if (secondPlayerFlags >= 6 / 2)
+        else if (secondPlayerFlags >= numberOfFlagForWin / 2)
             setWinner(secondPlayer);
     }
 
     private void takeCollectingFlag(ArrayList<Card> inGameCards) {
+        setCurrentTurnPlayer();
         for (int i = 0; i < inGameCards.size(); i++) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
-                if (inGameCards.get(i).isInGame() && inGameCards.get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
+                if (inGameCards.get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
                     if (currentTurnPlayer.equals(firstPlayer)) {
                         firstPlayerFlags++;
-                        flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     } else {
                         secondPlayerFlags++;
-                        flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     }
+                    flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     flagForCollectFlagGameModes.remove(j);
+                    flagForCollectFlagGameModes.get(i).getCurrentCell().setItem(null);
+                    flagForCollectFlagGameModes.get(i).setCurrentCell(null);
+                    System.out.println("---> " + firstPlayerFlags);
                     break;
                 }
             }
