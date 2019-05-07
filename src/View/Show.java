@@ -315,9 +315,10 @@ public class Show {
                     if (cells[i][j].getCard().getAccount().equals(battle.getFirstPlayer()))
                         System.out.print(" 1 ");
                     else System.out.print(" 2 ");
-                    if(cells[i][j].getItem()!=null && cells[i][j].getItem().getItemKind().equals(ItemKind.FLAG))
-                        System.out.println("F");
-                } else System.out.print(" 0 ");
+                } else if (cells[i][j].getItem() == null)
+                    System.out.print(" 0 ");
+                if(cells[i][j].getItem()!=null)
+                    System.out.print(" F ");
             }
             System.out.println();
         }

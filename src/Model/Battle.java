@@ -4,7 +4,6 @@ import Model.BuffClasses.ABuff;
 import Model.BuffClasses.ManaBuff;
 import View.ConstantMessages;
 import View.Error;
-import View.Show;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -68,10 +67,11 @@ public class Battle {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map);
         }
     }
-    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal , int numberOfFlagForWin) throws Error {
-        this(firstPlayer , secondPlayer , gameMode , gameGoal);
+
+    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal, int numberOfFlagForWin) throws Error {
+        this(firstPlayer, secondPlayer, gameMode, gameGoal);
         this.numberOfFlagForWin = numberOfFlagForWin;
-        setFlagForCollectFlagGameModes();
+        setFlagForCollectFlagGameModes(numberOfFlagForWin);
     }
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
@@ -258,7 +258,7 @@ public class Battle {
         }
     }
 
-    public void endTurn()throws Error {
+    public void endTurn() throws Error {
         endGame();
         if (isEndGame()) {
             setHistoryAfterGame();
@@ -278,7 +278,7 @@ public class Battle {
             if (secondPlayer instanceof Ai) {
                 try {
                     ((Ai) secondPlayer).playGame();
-                }catch (Error error){
+                } catch (Error error) {
                     endTurn();
                 }
             }
@@ -498,7 +498,7 @@ public class Battle {
     private boolean isValidMove(Cell destinationCell) {
         if (destinationCell.getRow() == selectedCard.getCurrentCell().getRow()) {
             if (destinationCell.getColumn() < selectedCard.getCurrentCell().getColumn()) {
-                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn()-1].isEmpty();
+                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() - 1].isEmpty();
             } else {
                 return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() + 1].isEmpty();
             }
@@ -671,37 +671,41 @@ public class Battle {
         this.secondPlayerItems.add(secondPlayerItems);
     }
 
-    public void setFlagForCollectFlagGameModes() {
-        int[] randomX = new int[6];
-        int[] randomY = new int[6];
-        getNRandomNumber(6, randomX, randomY);
+    private void setFlagForCollectFlagGameModes(int n) {
+        int[] randomX = new int[n];
+        int[] randomY = new int[n];
+        getNRandomNumber(randomX, randomY, 0, n / 2, 0);
+        getNRandomNumber(randomX, randomY, n / 2, n, 5);
         for (int i = 0; i < randomX.length; i++) {
             flagForCollectFlagGameModes.add(new FlagForCollectFlagGameMode(getMap().getCell(randomX[i], randomY[i])));
             getMap().getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes.get(i));
         }
+
     }
 
-    private void getNRandomNumber(int n, int[] randomX, int[] randomY) {
+    private void getNRandomNumber(int[] randomX, int[] randomY, int first, int last, int extra) {
 
         Random random = new Random();
-
-        for (int i = 0; i < randomX.length; i++) {
-            randomX[i] = random.nextInt();
-            randomY[i] = random.nextInt();
-            while (hasNumber(randomX, randomX[i])) {
-                randomX[i] = random.nextInt();
+        int rx, ry;
+        for (int i = first; i < last; i++) {
+            rx = random.nextInt(5);
+            ry = random.nextInt(4) + extra;
+            while (hasPoint(randomX, randomY, rx, ry)) {
+                rx = random.nextInt(5);
+                ry = random.nextInt(4) + extra;
             }
-            while (hasNumber(randomY, randomY[i])) {
-                randomY[i] = random.nextInt();
-            }
+            randomX[i] = rx;
+            randomY[i] = ry;
         }
     }
 
-    private boolean hasNumber(int[] array, int number) {
-        for (int n : array) {
-            if (n == number)
+    private boolean hasPoint(int[] arrayX, int[] arrayY, int rx, int ry) {
+        for (int i = 0; i < arrayX.length; i++) {
+            if (arrayX[i] == rx && arrayY[i] == ry)
                 return true;
         }
+        if ((rx == 2 && ry == 0) || (rx == 2 && ry == 8))
+            return true;
         return false;
     }
 
