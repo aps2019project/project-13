@@ -298,10 +298,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(random, cards, opponents, card,cardOpponent);
+        CancelBuff(card, cardOpponent);
     }
 
-    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
+    private void CancelBuff(Card card, Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
