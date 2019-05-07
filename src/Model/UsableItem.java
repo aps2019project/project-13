@@ -42,7 +42,7 @@ public class UsableItem extends Item {
         return null;
     }
 
-    private void GhosleTamid() {
+    public void ghosleTamid() {
 
         if (battle.getTurn() % 2 == 1) {
             for (int i = 0; i < battle.getFirstPlayerDeck().getMinions().size(); i++) {
@@ -55,7 +55,7 @@ public class UsableItem extends Item {
         }
     }
 
-    private void SoulEater() {
+    public void soulEater() {
 
         Random random = new Random();
 
@@ -69,7 +69,7 @@ public class UsableItem extends Item {
     }
 
 
-    private void ShockHammer(Warrior defender) {
+    public void shockHammer(Warrior defender) {
         Account player;
         if (battle.getTurn() % 2 == 1) {
             player = battle.getSecondPlayer();
@@ -79,7 +79,7 @@ public class UsableItem extends Item {
         defender.addBuff(new DisarmBuff(player, 2, true));
     }
 
-    private void poisonousDagger(Warrior attacker) {
+    public void poisonousDagger(Warrior attacker) {
         Account player;
         if (battle.getTurn() % 2 == 1) {
             player = battle.getSecondPlayer();
@@ -88,7 +88,7 @@ public class UsableItem extends Item {
         attacker.addBuff(new PoisonBuff(player, 1, 1, true));//TODO should be random
     }
 
-    private void assassinationDagger() {
+    public void assassinationDagger() {
         Deck deck;
         if (battle.getTurn() % 2 == 1) {
             deck = battle.getSecondPlayerDeck();
@@ -97,7 +97,7 @@ public class UsableItem extends Item {
         deck.getHero().decreaseHealthPoint(1);
     }
 
-    private void kingWisdom() {
+    public void kingWisdom() {
         Account player;
         if (battle.getTurn() % 2 == 1) {
             player = battle.getSecondPlayer();
@@ -106,7 +106,7 @@ public class UsableItem extends Item {
         battle.increaseMana(player, 1);
     }
 
-    private void terrorHood() {
+    public void terrorHood() {
         Random random = new Random();
         if (battle.getTurn() % 2 == 1) {
             battle.getSecondPlayerInGameCards().get(random.nextInt(battle.getSecondPlayerInGameCards().size())).addBuff(new WeaknessBuff(PowerAndWeaknessBuffType.ATTACK, 2, battle.getSecondPlayer(), 1, true));
@@ -114,7 +114,7 @@ public class UsableItem extends Item {
             battle.getFirstPlayerInGameCards().get(random.nextInt(battle.getFirstPlayerInGameCards().size())).addBuff(new WeaknessBuff(PowerAndWeaknessBuffType.ATTACK, 2, battle.getFirstPlayer(), 1, true));
     }
 
-    private void pareSimorgh() {
+    public void pareSimorgh() {
 
         if (battle.getTurn() % 2 == 1) {
             if (battle.getSecondPlayerDeck().getHero().getAttackKind() != AttackKind.MELEE) {
@@ -127,7 +127,7 @@ public class UsableItem extends Item {
         }
     }
 
-    private void kamaneDamol(Warrior defender) {
+    public void kamaneDamol(Warrior defender) {
 
         if (battle.getTurn() % 2 == 1) {
             if (battle.getFirstPlayerDeck().getHero().getAttackKind() != AttackKind.MELEE) {
@@ -140,21 +140,19 @@ public class UsableItem extends Item {
         }
     }
 
-    private void namooseSepar() {
-
+    public void namooseSepar() {
         if (battle.getTurn() % 2 == 1) {
             battle.getFirstPlayerDeck().getHero().addBuff(new HolyBuff(12, battle.getFirstPlayer(), 100000, true));
         } else
             battle.getSecondPlayerDeck().getHero().addBuff(new HolyBuff(12, battle.getSecondPlayer(), 100000, true));
     }
 
-    private void tajeDanaii() {
+    public void tajeDanaii() {
         if (battle.getTurn() % 2 == 1) {
             battle.increaseMana(battle.getFirstPlayer(), 1);
         } else
             battle.increaseMana(battle.getSecondPlayer(), 1);
     }
-
 
 
     @Override

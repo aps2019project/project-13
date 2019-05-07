@@ -67,6 +67,18 @@ public class Battle {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2, 4));
             map.getCell(2, 4).setItem(flagForHoldFlagGameMode);
         }
+        if (firstPlayer.getMainDeck().getItem() != null && firstPlayer.getMainDeck().getItem().getItemName().equals("Simorq_Feather")) {
+            ((UsableItem) firstPlayer.getMainDeck().getItem()).pareSimorgh();
+        }
+        if (secondPlayer.getMainDeck().getItem() != null && secondPlayer.getMainDeck().getItem().getItemName().equals("Simorq_Feather")) {
+            ((UsableItem) secondPlayer.getMainDeck().getItem()).pareSimorgh();
+        }
+        if (firstPlayer.getMainDeck().getItem() != null && firstPlayer.getMainDeck().getItem().getItemName().equals("Namoos_Separ")) {
+            ((UsableItem) firstPlayer.getMainDeck().getItem()).namooseSepar();
+        }
+        if (secondPlayer.getMainDeck().getItem() != null && secondPlayer.getMainDeck().getItem().getItemName().equals("Namoos_Separ")) {
+            ((UsableItem) secondPlayer.getMainDeck().getItem()).namooseSepar();
+        }
     }
 
     public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal, int numberOfFlagForWin) throws Error {
@@ -143,6 +155,22 @@ public class Battle {
         if (warrior.isValidToAttack()) {
             defender.decreaseHealthPoint(warrior.getActionPower() - defender.getShield());
             warrior.setValidToAttack(false);
+            if (warrior.getCardKind() == CardKind.HERO) {
+                if (warrior.getAccount().getMainDeck().getItem() != null && warrior.getAccount().getMainDeck().getItem().getItemName().equals("Shock_Hammer")) {
+                    ((UsableItem) warrior.getAccount().getMainDeck().getItem()).shockHammer(defender);
+                }
+            }
+            if (warrior.getCardKind() == CardKind.HERO) {
+                if (warrior.getAccount().getMainDeck().getItem() != null && warrior.getAccount().getMainDeck().getItem().getItemName().equals("Bow_of_Damol")) {
+                    ((UsableItem) warrior.getAccount().getMainDeck().getItem()).kamaneDamol(defender);
+                }
+            }
+            if (defender.getAccount().getMainDeck().getItem() != null && defender.getAccount().getMainDeck().getItem().getItemName().equals("Poisonous_Dagger")) {
+                ((UsableItem) defender.getAccount().getMainDeck().getItem()).poisonousDagger(warrior);
+            }
+            if (warrior.getAccount().getMainDeck().getItem() != null && warrior.getAccount().getMainDeck().getItem().getItemName().equals("Terror_Hood")) {
+                ((UsableItem) warrior.getAccount().getMainDeck().getItem()).terrorHood();
+            }
         }
         affectBuffs(warrior, targetCell, defender);
         if (defender.isValidCounterAttack() && isAttack) {
@@ -310,10 +338,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(random, cards, opponents, card,cardOpponent);
+        CancelBuff(random, cards, opponents, card, cardOpponent);
     }
 
-    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
+    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card, Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
@@ -379,15 +407,26 @@ public class Battle {
         } else {
             throw new Error(ConstantMessages.INVALID_CARD_NAME.getMessage());
         }
+        if (currentTurnPlayer.getMainDeck().getItem() != null && currentTurnPlayer.getMainDeck().getItem().getItemName().equals("Baptism")) {
+            ((UsableItem) currentTurnPlayer.getMainDeck().getItem()).ghosleTamid();
+        }
+        if (currentTurnPlayer.getMainDeck().getItem() != null && currentTurnPlayer.getMainDeck().getItem().getItemName().equals("Assassination_Dagger")) {
+            ((UsableItem) currentTurnPlayer.getMainDeck().getItem()).assassinationDagger();
+        }
     }
 
     public void endTurn() throws Error {
+        setCurrentTurnPlayer();
         endGame();
         if (isEndGame()) {
             setHistoryAfterGame();
             return;
         }
         setMana();
+        if (currentTurnPlayer.getMainDeck().getItem() != null && currentTurnPlayer.getMainDeck().getItem().getItemName().equals("Wisdom_Crown")) {
+            ((UsableItem) currentTurnPlayer.getMainDeck().getItem()).tajeDanaii();
+        }
+
         incrementTurn();
         if (firstPlayerHand.size() < 5 && getTurn() % 2 == 1) {
             firstPlayerHand.add(firstPlayerNextCard);
@@ -427,6 +466,10 @@ public class Battle {
         }
         firstPlayerDeck.getHero().decreaseCoolDonw();
         secondPlayerDeck.getHero().decreaseCoolDonw();
+
+        if (currentTurnPlayer.getMainDeck().getItem() != null && currentTurnPlayer.getMainDeck().getItem().getItemName().equals("King_Wisdom")) {
+            ((UsableItem) currentTurnPlayer.getMainDeck().getItem()).kingWisdom();
+        }
 
         selectCard(null);
         turnBeiginingInit();
@@ -985,6 +1028,9 @@ public class Battle {
             if (playerInGameCard.isInGame() && (playerInGameCard instanceof Warrior)) {
                 if (((Warrior) playerInGameCard).getHealthPoint() <= 0) {
                     deathCards.add(playerInGameCard);
+                    if (playerInGameCard.getAccount().getMainDeck().getItem() != null && playerInGameCard.getAccount().getMainDeck().getItem().getItemName().equals("Soul_Eater")) {
+                        ((UsableItem) playerInGameCard.getAccount().getMainDeck().getItem()).soulEater();
+                    }
                     playerInGameCard.setInGame(false);
                 }
             }
