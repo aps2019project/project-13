@@ -228,7 +228,8 @@ public class Battle {
                     throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
                 }
             }
-            applySpell(hero.getSpecialPowerBuffs(), x, y);
+            Spell spell = new Spell("","",0,0,"",TargetSocietyKind.FRIENDLY_CARDS,ActivationCondition.PASSIVE,hero.getSpecialPowerBuffs());
+            applySpell(spell, x, y);
 
         } else {
             throw new Error(ConstantMessages.COOLDOWN.getMessage());
