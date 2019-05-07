@@ -69,16 +69,6 @@ public class CardCollection {
         return Item.findItemInArrayList(itemId, getItems());
     }
 
-    public boolean hasCard(String cardName) {
-
-        return false;
-    }
-
-    public boolean hasItem(String itemName) {
-
-        return false;
-    }
-
     public ArrayList<String> search(String name) {
         ArrayList<String> Ids = new ArrayList<>();
         for (Card card :
@@ -98,17 +88,6 @@ public class CardCollection {
         return null;
     }
 
-    public Card getCard(String name) {
-        //TODO WHAT DOES THIS DO?!
-
-        return new Card("test", "22", 1, 1, CardKind.HERO, "");
-    }
-
-    public Item getItem(String name) {
-
-        //TODO should find an specific item by its name
-        return null;
-    }
 
     public Account getAccount() {
         return account;
@@ -118,11 +97,6 @@ public class CardCollection {
         this.account = account;
     }
 
-    public boolean validAddItem() {
-
-        return getItems().size() <= 3;
-
-    }
 
     public String searchCardInCollection(String cardName) {
         for (Card card :
