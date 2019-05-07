@@ -1017,4 +1017,11 @@ public class Battle {
 
     }
 
+    public Deck getFirstPlayerDeck() {
+        return firstPlayerDeck;
+    }
+
+    public Deck getSecondPlayerDeck() {
+        return secondPlayerDeck;
+    }
 }
