@@ -1,10 +1,11 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
+import Model.BuffClasses.HolyBuff;
 import Model.BuffClasses.ManaBuff;
+import Model.BuffClasses.PowerBuff;
 import View.ConstantMessages;
 import View.Error;
-import View.Show;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -158,14 +159,24 @@ public class Battle {
         if (defender.isValidCounterAttack() && isAttack) {
             attack(warrior.getCardId(), defender, false);
         }
-        if (defender.getHealthPoint()<=0 && defender.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.DEATH))
-        {
+        if (defender.getHealthPoint() <= 0 && defender.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.DEATH)) {
             defender.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
         }
+        deathOfSiavash(defender);
 
         if (gameGoal == GameGoal.HOLD_FLAG)
             flagForHoldFlagGameMode.updateFlagHolder();
 
+    }
+
+    private void deathOfSiavash(Warrior defender) {
+        if (defender.getCardName().equals("Siavash")) {
+            Hero hero;
+            if (defender.getAccount().equals(firstPlayer)) {
+                hero = secondPlayerDeck.getHero();
+            } else hero = firstPlayerDeck.getHero();
+            hero.decreaseHealthPoint(6);
+        }
     }
 
     private void affectBuffs(Warrior warrior, Cell targetCell, Warrior defender) {
@@ -220,8 +231,81 @@ public class Battle {
     }
 
     private void applySpell(Spell spell, int x, int y) {
+        AreaDispel(spell);
+        Cell cell = map.getCell(x, y);
+        Card card = null;
+        if (cell.getCard() != null) {
+            card = cell.getCard();
+        }
+        for (ABuff aBuff :
+                spell.getBuffs()) {
+            aBuff.affect(map.getCell(x, y));
+            aBuff.affect(card);
+        }
+    }
 
+    private void AreaDispel(Spell spell) {
+        setCurrentTurnPlayer();
+        Random random = new Random();
+        if (spell.getCardName().equals("Dispel")) {
+            dispel();
+        } else if (spell.getCardName().equals("Area Dispel")) {
+            AreaDispel(random);
+        }
+    }
 
+    private void dispel() {
+        ArrayList<Card> cards = (currentTurnPlayer.equals(firstPlayer)) ? firstPlayerInGameCards : secondPlayerInGameCards;
+        if (cards == null)
+            return;
+        ArrayList<Card> opponents = (currentTurnPlayer.equals(firstPlayer)) ? secondPlayerInGameCards : firstPlayerInGameCards;
+        if (opponents == null)
+            return;
+        for (Card card:
+             cards) {
+            myDispel(card);
+        }
+        for (Card card:
+             opponents) {
+            opponentDispel(card);
+        }
+    }
+
+    private void AreaDispel(Random random) {
+        ArrayList<Card> cards = (currentTurnPlayer.equals(firstPlayer)) ? firstPlayerInGameCards : secondPlayerInGameCards;
+        if (cards == null)
+            return;
+        ArrayList<Card> opponents = (currentTurnPlayer.equals(firstPlayer)) ? secondPlayerInGameCards : firstPlayerInGameCards;
+        if (opponents == null)
+            return;
+        int randomNumber = random.nextInt(cards.size());
+        Card card = cards.get(randomNumber);
+        randomNumber = random.nextInt(cards.size());
+        Card cardOpponent = opponents.get(randomNumber);
+        CancelBuff(random, cards, opponents, card,cardOpponent);
+    }
+
+    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
+        myDispel(card);
+        opponentDispel(cardOpponent);
+    }
+
+    private void opponentDispel(Card cardOpponent) {
+        for (int i = 0; i < cardOpponent.getBuffs().size(); i++) {
+            ABuff aBuff = cardOpponent.getBuffs().get(i);
+            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)){
+                cardOpponent.getBuffs().remove(aBuff);
+            }
+        }
+    }
+
+    private void myDispel(Card card) {
+        for (int i = 0; i < card.getBuffs().size(); i++) {
+            ABuff aBuff = card.getBuffs().get(i);
+            if (aBuff instanceof PowerBuff || aBuff instanceof HolyBuff){
+                card.getBuffs().remove(aBuff);
+            }
+        }
     }
 
     public void insertCard(String cardName, int x, int y) throws Error {
