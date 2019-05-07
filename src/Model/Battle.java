@@ -227,7 +227,6 @@ public class Battle {
             }
         }
         applySpell(warrior.getSpecialPower(), x, y);
-
     }
 
     private void applySpell(Spell spell, int x, int y) {
@@ -1001,17 +1000,14 @@ public class Battle {
 
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
             firstPlayerInGameCard.setAbleToMove(true);
+            ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
+            ((Warrior)firstPlayerInGameCard).setValidCounterAttack(true);
         }
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             secondPlayerInGameCard.setAbleToMove(true);
-        }
-        for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
-            ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
-        }
-        for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             ((Warrior) secondPlayerInGameCard).setValidToAttack(true);
+            ((Warrior)secondPlayerInGameCard).setValidCounterAttack(true);
         }
-
     }
 
 }
