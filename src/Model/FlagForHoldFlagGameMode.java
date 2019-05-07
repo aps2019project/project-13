@@ -13,7 +13,8 @@ public class FlagForHoldFlagGameMode extends Item {
     }
 
     public void incrementNumberOfTurns() {
-        numberOfTurns++;
+        if (flagHolder != null)
+            numberOfTurns++;
     }
 
     public void setFlagHolder(Warrior flagHolder) {
@@ -24,6 +25,12 @@ public class FlagForHoldFlagGameMode extends Item {
     public void updateFlagCell() {
         if (flagHolder != null)
             currentCell = flagHolder.getCurrentCell();
+    }
+
+    public void updateFlagHolder() {
+        if (flagHolder.getHealthPoint() <= 0) {
+            flagHolder = null;
+        }
     }
 
     public Warrior getFlagHolder() {

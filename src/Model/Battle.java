@@ -158,6 +158,8 @@ public class Battle {
         if (defender.isValidCounterAttack() && isAttack) {
             attack(warrior.getCardId(), defender, false);
         }
+        if (gameGoal == GameGoal.HOLD_FLAG)
+            flagForHoldFlagGameMode.updateFlagHolder();
 
     }
 
@@ -188,7 +190,9 @@ public class Battle {
     }
 
     public void attackCombo(Cell targetCell, String... warriorsCarIds) {
+
         //TODO combo :(
+
     }
 
     public void useSpecialPower(Warrior warrior, int x, int y) {
@@ -380,9 +384,10 @@ public class Battle {
 
         for (int i = 0; i < inGameCards.size(); i++) {
             if (inGameCards.get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
-                if (flagForHoldFlagGameMode.getFlagHolder() != inGameCards.get(i))
+                if (flagForHoldFlagGameMode.getFlagHolder() != inGameCards.get(i)) {
                     flagForHoldFlagGameMode.setFlagHolder((Warrior) inGameCards.get(i));
-                return;
+                    return;
+                }
             }
         }
     }
@@ -917,6 +922,5 @@ public class Battle {
         }
 
     }
-
 
 }
