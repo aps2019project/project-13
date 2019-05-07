@@ -716,8 +716,8 @@
       "mainDeck": "@root.0.decks.0",
       "username": "alireza",
       "password": "alireza",
-      "countOfWins": 0,
-      "darick": 80000,
+      "countOfWins": 2,
+      "darick": 2000,
       "collectableItems": []
     }
   },
