@@ -73,9 +73,8 @@ public class Battle {
     public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal, int numberOfFlagForWin) throws Error {
         this(firstPlayer, secondPlayer, gameMode, gameGoal);
         this.numberOfFlagForWin = numberOfFlagForWin;
-        setFlagForCollectFlagGameModes();
+        setFlagForCollectFlagGameModes(numberOfFlagForWin);
     }
-
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
         if (firstPlayer.getMainDeck() != null && Deck.validateDeck(firstPlayer.getMainDeck())) {
@@ -275,8 +274,6 @@ public class Battle {
         }
         setMana();
         incrementTurn();
-        if (gameGoal == GameGoal.HOLD_FLAG)
-            flagForHoldFlagGameMode.incrementNumberOfTurns();
         if (firstPlayerHand.size() < 5 && getTurn() % 2 == 1) {
             firstPlayerHand.add(firstPlayerNextCard);
             firstPlayerNextCard = null;
@@ -396,24 +393,27 @@ public class Battle {
     }
 
     private void endOfCollectFlagGameMode() {
-        if (firstPlayerFlags >= 6 / 2) // Bejaye 6 bayad moteghayyer bezarim
+        if (firstPlayerFlags >= numberOfFlagForWin / 2)
             setWinner(firstPlayer);
-        else if (secondPlayerFlags >= 6 / 2)
+        else if (secondPlayerFlags >= numberOfFlagForWin / 2)
             setWinner(secondPlayer);
     }
 
     private void takeCollectingFlag(ArrayList<Card> inGameCards) {
+        setCurrentTurnPlayer();
         for (int i = 0; i < inGameCards.size(); i++) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
-                if (inGameCards.get(i).isInGame() && inGameCards.get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
+                if (inGameCards.get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
                     if (currentTurnPlayer.equals(firstPlayer)) {
                         firstPlayerFlags++;
-                        flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     } else {
                         secondPlayerFlags++;
-                        flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     }
+                    flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
                     flagForCollectFlagGameModes.remove(j);
+                    flagForCollectFlagGameModes.get(i).getCurrentCell().setItem(null);
+                    flagForCollectFlagGameModes.get(i).setCurrentCell(null);
+                    System.out.println("---> " + firstPlayerFlags);
                     break;
                 }
             }
@@ -680,37 +680,41 @@ public class Battle {
         this.secondPlayerItems.add(secondPlayerItems);
     }
 
-    private void setFlagForCollectFlagGameModes() {
-        int[] randomX = new int[6];
-        int[] randomY = new int[6];
-        getNRandomNumber(6, randomX, randomY);
+    private void setFlagForCollectFlagGameModes(int n) {
+        int[] randomX = new int[n];
+        int[] randomY = new int[n];
+        getNRandomNumber(randomX, randomY, 0, n / 2, 0);
+        getNRandomNumber(randomX, randomY, n / 2, n, 5);
         for (int i = 0; i < randomX.length; i++) {
             flagForCollectFlagGameModes.add(new FlagForCollectFlagGameMode(getMap().getCell(randomX[i], randomY[i])));
             getMap().getCell(randomX[i], randomY[i]).setItem(flagForCollectFlagGameModes.get(i));
         }
+
     }
 
-    private void getNRandomNumber(int n, int[] randomX, int[] randomY) {
+    private void getNRandomNumber(int[] randomX, int[] randomY, int first, int last, int extra) {
 
         Random random = new Random();
-
-        for (int i = 0; i < randomX.length; i++) {
-            randomX[i] = random.nextInt();
-            randomY[i] = random.nextInt();
-            while (hasNumber(randomX, randomX[i])) {
-                randomX[i] = random.nextInt();
+        int rx, ry;
+        for (int i = first; i < last; i++) {
+            rx = random.nextInt(5);
+            ry = random.nextInt(4) + extra;
+            while (hasPoint(randomX, randomY, rx, ry)) {
+                rx = random.nextInt(5);
+                ry = random.nextInt(4) + extra;
             }
-            while (hasNumber(randomY, randomY[i])) {
-                randomY[i] = random.nextInt();
-            }
+            randomX[i] = rx;
+            randomY[i] = ry;
         }
     }
 
-    private boolean hasNumber(int[] array, int number) {
-        for (int n : array) {
-            if (n == number)
+    private boolean hasPoint(int[] arrayX, int[] arrayY, int rx, int ry) {
+        for (int i = 0; i < arrayX.length; i++) {
+            if (arrayX[i] == rx && arrayY[i] == ry)
                 return true;
         }
+        if ((rx == 2 && ry == 0) || (rx == 2 && ry == 8))
+            return true;
         return false;
     }
 

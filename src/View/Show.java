@@ -312,21 +312,25 @@ public class Show {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 9; j++) {
                 if (cells[i][j].getCard() != null) {
-                    if (cells[i][j].getCard().getAccount().equals(battle.getFirstPlayer()))
+                    if (cells[i][j].getCard().getAccount().equals(battle.getFirstPlayer())) {
                         System.out.print(" 1 ");
-                    else
+                    } else {
                         System.out.print(" 2 ");
-                } else if(cells[i][j].getItem() == null)
+                    }
+                } else if (cells[i][j].getItem() == null) {
                     System.out.print(" 0 ");
-                if (cells[i][j].getItem() != null)
+                }
+                if (cells[i][j].getItem() != null) {
                     System.out.print(" F ");
+                }
             }
             System.out.println();
         }
         System.out.println("*************************");
         System.out.println();
     }
-    public void showGetNumberOfFlag(){
+
+    public void showGetNumberOfFlag() {
         System.out.println("number of flag : ");
     }
 }
