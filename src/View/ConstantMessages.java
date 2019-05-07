@@ -70,7 +70,8 @@ public enum ConstantMessages {
 
     BATTLE_HELP("end Game\nGame info\nShow my minions\nShow opponent minions\n" +
             "Show card info [cardID]\nSelect [card id]\nInsert [card name] in (x,y)\nEnd turn\nShow collectables\n" +
-            "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)"),
+            "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)" +
+            "\nAttack combo [opponent card id] [my card id] [my card id] [...]\n"),
 
     COLLECTION_HELP("show\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +

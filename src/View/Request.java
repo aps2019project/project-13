@@ -211,13 +211,13 @@ public class Request {
     }
 
     private void setCommandOfBattle(Matcher matcher, int i) {
-        if (i > 10) {
+        if (i > 11) {
             ArrayList<String> strings = new ArrayList<>();
             strings.add(matcher.group(1));
-            if (i > 13) {
+            if (i > 14) {
                 strings.add(matcher.group(2));
             }
-            if (i > 15) {
+            if (i > 16) {
                 strings.add(matcher.group(3));
             }
             battleCommand = BattleCommand.values()[i].setData(strings);

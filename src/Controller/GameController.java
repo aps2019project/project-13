@@ -200,6 +200,9 @@ public class GameController {
                 break;
             case USE_SPECIAL_POWER:
                 useSpecialPower(battleCommand);
+                break;
+            case COMBO_ATTACK:
+
         }
 
         if (Battle.getRunningBattle() != null) {

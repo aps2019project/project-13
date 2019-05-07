@@ -59,6 +59,7 @@ public class Patterns {
             //Graveyard pattern are in another array
             Pattern.compile("^(?i)help\\s*$"),
             Pattern.compile("^(?i)End Game\\s*$"),
+            Pattern.compile("^(?i)combo attack \\s*(\\w+\\s*)*$"),
             Pattern.compile("^(?i)Show card info (\\S+)\\s*$"),
             Pattern.compile("^(?i)Select (\\S+)\\s*$"),
             Pattern.compile("^(?i)Attack (\\S+)\\s*$"),
