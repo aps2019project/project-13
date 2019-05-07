@@ -22,8 +22,8 @@ public class Battle {
     private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
-    private int firstPlayerMana = 1000;
-    private int secondPlayerMana = 1000;
+    private int firstPlayerMana = 0;
+    private int secondPlayerMana = 0;
     private Card selectedCard;
     private ArrayList<Card> firstPlayerGraveYard = new ArrayList<>();
     private ArrayList<Card> secondPlayerGraveYard = new ArrayList<>();
@@ -424,8 +424,8 @@ public class Battle {
 
     private void setMana() {
         if (turn < 14) {
-            setFirstPlayerCapacityMana(turn / 2 + 2 + 1000);//TODO Reval kkon
-            setSecondPlayerCapacityMana(turn / 2 + 2 + 1000);
+            setFirstPlayerCapacityMana(turn / 2 + 2);
+            setSecondPlayerCapacityMana(turn / 2 + 2);
         } else if (turn >= 14) {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
