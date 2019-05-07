@@ -208,7 +208,7 @@ public class GameController {
             if (Battle.getRunningBattle().isEndGame()) {
                 show.printAMessage(Battle.getRunningBattle().getWinner().getUsername() + " Win");
                 Battle.getRunningBattle().getWinner().incrementCountOfWins(1);
-                Battle.getRunningBattle().getWinner().setDarick(2000);
+                Battle.getRunningBattle().getWinner().increaseDarick(2000);
                 exitFromBattle();
             }
         }
@@ -221,11 +221,11 @@ public class GameController {
         if (Battle.getRunningBattle().getTurn() % 2 == 0) {
             show.showWinner(Battle.getRunningBattle().getFirstPlayer().getUsername());
             Battle.getRunningBattle().getFirstPlayer().incrementCountOfWins(1);
-            Battle.getRunningBattle().getFirstPlayer().setDarick(2000);
+            Battle.getRunningBattle().getFirstPlayer().increaseDarick(2000);
         } else {
             Battle.getRunningBattle().getSecondPlayer().incrementCountOfWins(1);
             show.showWinner(Battle.getRunningBattle().getSecondPlayer().getUsername());
-            Battle.getRunningBattle().getSecondPlayer().setDarick(2000);
+            Battle.getRunningBattle().getSecondPlayer().increaseDarick(2000);
         }
         Battle.setRunningBattle(null);
         Request.getInstance().exitLastMenu();

@@ -38,11 +38,11 @@ public class Account implements Cloneable {
             loginedAccount = this;
     }
 
-    void increaseDarick(int number) {
+    public void increaseDarick(int number) {
         setDarick(getDarick() + number);
     }
 
-    void decreaseDarick(int number) {
+    public void decreaseDarick(int number) {
         setDarick(getDarick() - number);
     }
 
