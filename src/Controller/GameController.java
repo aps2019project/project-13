@@ -496,7 +496,6 @@ public class GameController {
     private void collectionCommandManagement(Request request, CollectionCommand collectionCommand) throws Error {
         switch (collectionCommand) {
             case HELP:
-                System.out.println("wwwwwwwwwwwoa");
                 show.showHelp(KindOfOrder.COLLECTION);
                 break;
             case SAVE:

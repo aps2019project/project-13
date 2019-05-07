@@ -71,7 +71,7 @@ public enum ConstantMessages {
             "Show card info [cardID]\nSelect [card id]\nInsert [card name] in (x,y)\nEnd turn\nShow collectables\n" +
             "Show Next Card\nShow hand\nEnter graveyard\nEnd Game\nMove to (x,y)\nAttack [[opponent card id]\nUse special power (x,y)"),
 
-    COLLECTION_HELP("Show menu\nshow\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
+    COLLECTION_HELP("show\nsearch [card name] \nsave \ncreate deck [deck name] \ndelete deck [deck name]" +
             "\nadd [card id] to deck [deck name]\nremove [card id] from deck [deck name] \nvalidate deck [deck name]\n" +
             "select deck [deck name] \nshow all decks \nshow deck [deck name]\n exit"),
 

@@ -136,6 +136,8 @@ public class Account implements Cloneable {
     }
 
     public static void setLoginedAccount(Account loginedAccount) {
+        if(loginedAccount instanceof Ai)
+            return;
         Account.loginedAccount = loginedAccount;
     }
 

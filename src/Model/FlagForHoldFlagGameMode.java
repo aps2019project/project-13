@@ -23,8 +23,11 @@ public class FlagForHoldFlagGameMode extends Item {
     }
 
     public void updateFlagCell() {
-        if (flagHolder != null)
+        if (flagHolder != null) {
+            currentCell.setItem(null);
             currentCell = flagHolder.getCurrentCell();
+            currentCell.setItem(this);
+        }
     }
 
     public void updateFlagHolder() {

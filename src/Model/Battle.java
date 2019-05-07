@@ -138,6 +138,7 @@ public class Battle {
         }
     }
 
+
     public void attack(String cardID, Warrior warrior, boolean isAttack) {
         Cell targetCell = getCellFromCardID(cardID);
         Card targetCard = targetCell.getCard();
@@ -380,7 +381,6 @@ public class Battle {
     }
 
     private void takeHoldingFlag(ArrayList<Card> inGameCards) {
-
 
         for (int i = 0; i < inGameCards.size(); i++) {
             if (inGameCards.get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
@@ -792,6 +792,7 @@ public class Battle {
 
 
     public boolean isEndGame() {
+
         return endGame;
     }
 
