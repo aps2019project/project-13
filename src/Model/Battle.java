@@ -292,7 +292,7 @@ public class Battle {
     private void opponentDispel(Card cardOpponent) {
         for (int i = 0; i < cardOpponent.getBuffs().size(); i++) {
             ABuff aBuff = cardOpponent.getBuffs().get(i);
-            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)){
+            if ((aBuff instanceof PowerBuff) || (aBuff instanceof HolyBuff)){
                 cardOpponent.getBuffs().remove(aBuff);
             }
         }
@@ -301,7 +301,7 @@ public class Battle {
     private void myDispel(Card card) {
         for (int i = 0; i < card.getBuffs().size(); i++) {
             ABuff aBuff = card.getBuffs().get(i);
-            if (aBuff instanceof PowerBuff || aBuff instanceof HolyBuff){
+            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)){
                 card.getBuffs().remove(aBuff);
             }
         }
