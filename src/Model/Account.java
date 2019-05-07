@@ -33,9 +33,10 @@ public class Account implements Cloneable {
         setBattleHistory(new ArrayList<>());
         collectableItems = new ArrayList<>();
         setDarick(100000);
-        accounts.add(this);
-        if (!(this instanceof Ai))
+        if (!(this instanceof Ai)) {
+            accounts.add(this);
             loginedAccount = this;
+        }
     }
 
     public void increaseDarick(int number) {
@@ -136,7 +137,7 @@ public class Account implements Cloneable {
     }
 
     public static void setLoginedAccount(Account loginedAccount) {
-        if(loginedAccount instanceof Ai)
+        if (loginedAccount instanceof Ai)
             return;
         Account.loginedAccount = loginedAccount;
     }
