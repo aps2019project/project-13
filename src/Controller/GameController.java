@@ -6,6 +6,7 @@ import View.Error;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameController {
     private static final GameController gamecontroller = new GameController();
@@ -202,7 +203,7 @@ public class GameController {
                 useSpecialPower(battleCommand);
                 break;
             case COMBO_ATTACK:
-
+                comboAttack(battleCommand.getData().get(0));
         }
 
         if (Battle.getRunningBattle() != null) {
@@ -218,6 +219,32 @@ public class GameController {
         if (Battle.getRunningBattle() != null) {
             show.showMap();
         }
+    }
+
+    private void comboAttack(String Ids)throws Error {
+        String[] cardIds = Ids.split(" ");
+        String opponentsId = cardIds[0];
+        ArrayList<String> warriorIds = new ArrayList<>(Arrays.asList(cardIds).subList(1, cardIds.length));
+        String[] kind = {"Persian", "Toranian", "Dive", "Giant"};
+        boolean isValid = false;
+        for (String s : kind) {
+            if (isValidComboAttack(warriorIds, s))
+                isValid = true;
+        }
+        if (!isValid) {
+            show.invalidCombo();
+        }
+        Battle.getRunningBattle().attackCombo(opponentsId,warriorIds);
+
+    }
+
+    private boolean isValidComboAttack(ArrayList<String> strings, String kind) {
+        for (String s :
+                strings) {
+            if (!s.contains(kind))
+                return false;
+        }
+        return true;
     }
 
     private void putOfGame() {

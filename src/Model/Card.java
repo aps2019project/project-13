@@ -1,10 +1,7 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
-import com.rits.cloning.Cloner;
-
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Card implements Cloneable {
     private static ArrayList<Card> allCards = new ArrayList<>();

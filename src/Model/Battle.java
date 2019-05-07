@@ -22,8 +22,8 @@ public class Battle {
     private Account currentTurnPlayer;
     private int firstPlayerCapacityMana;
     private int secondPlayerCapacityMana;
-    private int firstPlayerMana = 1000;
-    private int secondPlayerMana = 1000;
+    private int firstPlayerMana;
+    private int secondPlayerMana;
     private Card selectedCard;
     private ArrayList<Card> firstPlayerGraveYard = new ArrayList<>();
     private ArrayList<Card> secondPlayerGraveYard = new ArrayList<>();
@@ -86,15 +86,6 @@ public class Battle {
         } else {
             throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
         }
-    }
-
-    public void handelBattleSinglePlayer() {
-
-
-    }
-
-    public void handelBattleMultiPlayer() {
-
     }
 
     public void decreaseMana(int number, int numberOfPlayer) {
@@ -203,9 +194,42 @@ public class Battle {
         return targetCell;
     }
 
-    public void attackCombo(Cell targetCell, String... warriorsCarIds) {
-        //TODO combo :(
+    public void attackCombo(String oppnentId, ArrayList<String> warriorsCarIds) throws Error {
+        ArrayList<Card> cards;
+        if (turn % 2 == 1) {
+            cards = firstPlayerInGameCards;
+        } else cards = secondPlayerInGameCards;
+        boolean validOpponent = false;
+        for (Card card :
+                cards) {
+            if (card.getCardId().equals(oppnentId)) {
+                validOpponent = true;
+            }
+        }
+        if (!validOpponent) {
+            throw new Error("invalid Opponent for Combo");
+        }
+        boolean validAttackers;
+        for (int i = 0; i < warriorsCarIds.size(); i++) {
+            validAttackers = false;
+            for (Card card :
+                    cards) {
+                if (card.getCardId().equals(oppnentId)) {
+                    validAttackers = true;
+                }
+            }
+            if (!validAttackers) {
+                throw new Error("invalid attacker for Combo");
+            }
+        }
+        Card card = Card.findCardInArrayList(oppnentId, (turn % 2 == 1) ? firstPlayerInGameCards : secondPlayerInGameCards);
+        for (String s :
+                warriorsCarIds) {
+            attack(s, (Warrior) card, true);
+        }
+
     }
+
 
     public void useSpecialPower(Hero hero, int x, int y) {
         if (hero.getSpecialPowerBuffs() == null) {
@@ -286,10 +310,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(random, cards, opponents, card, cardOpponent);
+        CancelBuff(random, cards, opponents, card,cardOpponent);
     }
 
-    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card, Card cardOpponent) {
+    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
@@ -422,8 +446,8 @@ public class Battle {
 
     private void setMana() {
         if (turn < 14) {
-            setFirstPlayerCapacityMana(turn / 2 + 2 + 1000);//TODO Reval kkon
-            setSecondPlayerCapacityMana(turn / 2 + 2 + 1000);
+            setFirstPlayerCapacityMana(turn / 2 + 2);
+            setSecondPlayerCapacityMana(turn / 2 + 2);
         } else if (turn >= 14) {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
