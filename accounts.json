@@ -596,37 +596,6 @@
               }
             },
             {
-              "@type": "Model.Hero",
-              "@val": {
-                "specialPowerCoolDownTime": 2,
-                "healthPoint": 30,
-                "actionPower": 2,
-                "attackRange": 6,
-                "attackKind": "RANGED",
-                "validCounterAttack": false,
-                "isDeath": false,
-                "shield": 0,
-                "isValidToAttack": true,
-                "IsValidToMove": true,
-                "specialPowerBuffs": {
-                  "buffs": [],
-                  "activationCondition": "PASSIVE",
-                  "targetSocietyKind": "FRIENDLY_CARDS"
-                },
-                "buffs": [],
-                "cardId": "alireza_Arash_1",
-                "manaCost": 2,
-                "darikCost": 10000,
-                "cardKind": "HERO",
-                "account": "@root.0",
-                "cardDescription": "Damages all units on the hero row",
-                "cardName": "Arash",
-                "buffs^2": [],
-                "isAbleToMove": false,
-                "isInGame": false
-              }
-            },
-            {
               "@type": "Model.Minion",
               "@val": {
                 "hasSpecialPower": false,
@@ -656,6 +625,37 @@
                 "isAbleToMove": false,
                 "isInGame": false
               }
+            },
+            {
+              "@type": "Model.Hero",
+              "@val": {
+                "specialPowerCoolDownTime": 0,
+                "healthPoint": 50,
+                "actionPower": 2,
+                "attackRange": 1,
+                "attackKind": "MELEE",
+                "validCounterAttack": false,
+                "isDeath": false,
+                "shield": 0,
+                "isValidToAttack": true,
+                "IsValidToMove": true,
+                "specialPowerBuffs": {
+                  "buffs": [],
+                  "activationCondition": "PASSIVE",
+                  "targetSocietyKind": "FRIENDLY_CARDS"
+                },
+                "buffs": [],
+                "cardId": "alireza_Zahak_1",
+                "manaCost": 0,
+                "darikCost": 10000,
+                "cardKind": "HERO",
+                "account": "@root.0",
+                "cardDescription": "Poison Enemy for 3 turn on Attack",
+                "cardName": "Zahak",
+                "buffs^2": [],
+                "isAbleToMove": false,
+                "isInGame": false
+              }
             }
           ],
           "minions": [
@@ -678,9 +678,9 @@
             "@root.0.decks.0.cards.16",
             "@root.0.decks.0.cards.17",
             "@root.0.decks.0.cards.18",
-            "@root.0.decks.0.cards.20"
+            "@root.0.decks.0.cards.19"
           ],
-          "hero": "@root.0.decks.0.cards.19",
+          "hero": "@root.0.decks.0.cards.20",
           "account": "@root.0",
           "deckName": "first",
           "isValid": false
@@ -689,7 +689,7 @@
       "cardCollection": {
         "cards": [
           "@root.0.decks.0.cards.0",
-          "@root.0.decks.0.cards.20",
+          "@root.0.decks.0.cards.19",
           "@root.0.decks.0.cards.1",
           "@root.0.decks.0.cards.2",
           "@root.0.decks.0.cards.3",
@@ -708,7 +708,38 @@
           "@root.0.decks.0.cards.16",
           "@root.0.decks.0.cards.17",
           "@root.0.decks.0.cards.18",
-          "@root.0.decks.0.cards.19"
+          {
+            "@type": "Model.Hero",
+            "@val": {
+              "specialPowerCoolDownTime": 2,
+              "healthPoint": 30,
+              "actionPower": 2,
+              "attackRange": 6,
+              "attackKind": "RANGED",
+              "validCounterAttack": false,
+              "isDeath": false,
+              "shield": 0,
+              "isValidToAttack": true,
+              "IsValidToMove": true,
+              "specialPowerBuffs": {
+                "buffs": [],
+                "activationCondition": "PASSIVE",
+                "targetSocietyKind": "FRIENDLY_CARDS"
+              },
+              "buffs": [],
+              "cardId": "alireza_Arash_1",
+              "manaCost": 2,
+              "darikCost": 10000,
+              "cardKind": "HERO",
+              "account": "@root.0",
+              "cardDescription": "Damages all units on the hero row",
+              "cardName": "Arash",
+              "buffs^2": [],
+              "isAbleToMove": false,
+              "isInGame": false
+            }
+          },
+          "@root.0.decks.0.cards.20"
         ],
         "items": [],
         "account": "@root.0"
@@ -717,7 +748,7 @@
       "username": "alireza",
       "password": "alireza",
       "countOfWins": 2,
-      "darick": 2000,
+      "darick": 1990000,
       "collectableItems": []
     }
   },
@@ -1469,8 +1500,8 @@
       "mainDeck": "@root.1.decks.0",
       "username": "amir",
       "password": "12345",
-      "countOfWins": 0,
-      "darick": 84650,
+      "countOfWins": 1,
+      "darick": 86650,
       "collectableItems": []
     }
   }
