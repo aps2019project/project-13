@@ -65,15 +65,16 @@ public class Battle {
         if (getTurn() % 2 == 0)
             setSecondPlayerNextCard();
         if (gameGoal == GameGoal.HOLD_FLAG) {
-            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2,4));
-            map.getCell(2,4).setItem(flagForHoldFlagGameMode);
+            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2, 4));
+            map.getCell(2, 4).setItem(flagForHoldFlagGameMode);
         }
     }
-    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal , int numberOfFlagForWin) throws Error {
-        this(firstPlayer , secondPlayer , gameMode , gameGoal);
+
+    public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal, int numberOfFlagForWin) throws Error {
+        this(firstPlayer, secondPlayer, gameMode, gameGoal);
         this.numberOfFlagForWin = numberOfFlagForWin;
         setFlagForCollectFlagGameModes();
-        }
+    }
 
 
     private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
@@ -505,7 +506,7 @@ public class Battle {
     private boolean isValidMove(Cell destinationCell) {
         if (destinationCell.getRow() == selectedCard.getCurrentCell().getRow()) {
             if (destinationCell.getColumn() < selectedCard.getCurrentCell().getColumn()) {
-                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn()-1].isEmpty();
+                return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() - 1].isEmpty();
             } else {
                 return map.getCells()[destinationCell.getRow()][selectedCard.getCurrentCell().getColumn() + 1].isEmpty();
             }
