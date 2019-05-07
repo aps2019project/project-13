@@ -292,7 +292,7 @@ public class Battle {
                 }
             }
         }
-        if(gameGoal == GameGoal.HOLD_FLAG)
+        if (gameGoal == GameGoal.HOLD_FLAG)
             flagForHoldFlagGameMode.incrementNumberOfTurns();
         selectCard(null);
         turnBeiginingInit();
@@ -395,10 +395,13 @@ public class Battle {
     }
 
     private void endOfCollectFlagGameMode() {
-        if (firstPlayerFlags >= numberOfFlagForWin / 2)
+        if (firstPlayerFlags >= numberOfFlagForWin / 2) {
             setWinner(firstPlayer);
-        else if (secondPlayerFlags >= numberOfFlagForWin / 2)
+            endGame = true;
+        } else if (secondPlayerFlags >= numberOfFlagForWin / 2) {
             setWinner(secondPlayer);
+            endGame = true;
+        }
     }
 
     private void takeCollectingFlag(ArrayList<Card> inGameCards) {
