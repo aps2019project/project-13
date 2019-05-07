@@ -32,6 +32,7 @@ public enum ConstantMessages {
     NO_CARD_SELECTED("Please Select a Card"),
     NOT_IN_SHOP("Sorry!We don't have this one in our shop"),
     NOT_ENOUGH_CARD_TO_ADD_TO_DECK("You don't have enough cards of this one to add more to this deck!"),
+    COOLDOWN("Special power is in cooldown time"),
     //*****************************************
 
     //Successful Messages
@@ -92,6 +93,7 @@ public enum ConstantMessages {
     MAIN_MENU("1.Collection\n2.Shop\n3.Battle\n4.Exit\n5.Help");
 
     //*****************************************
+
 
     private String message;
 

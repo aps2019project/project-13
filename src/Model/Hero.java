@@ -1,14 +1,27 @@
 package Model;
 
-import com.rits.cloning.Cloner;
-
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Hero extends Warrior implements Cloneable {
 
     private static ArrayList<Hero> allHeroes = new ArrayList<>();
     private int specialPowerCoolDownTime;
+    private int remainginTurntoCoolDown =0;
    // private HeroName heroName;
+
+
+    public int getRemainginTurntoCoolDown() {
+        return remainginTurntoCoolDown;
+    }
+
+    public void setRemainginTurntoCoolDown(int remainginTurntoCoolDown) {
+        this.remainginTurntoCoolDown = remainginTurntoCoolDown;
+    }
+    public void decreaseCoolDonw()
+    {
+        setRemainginTurntoCoolDown(getRemainginTurntoCoolDown()-1);
+    }
 
     public Hero(String cardName, String cardId, int manaCost, int darikCost, String cardDescription,
                 HeroName heroName, AttackKind attackKind, int healthPoint, int actionPower, int attackRange,

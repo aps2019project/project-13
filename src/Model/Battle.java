@@ -158,8 +158,7 @@ public class Battle {
         if (defender.isValidCounterAttack() && isAttack) {
             attack(warrior.getCardId(), defender, false);
         }
-        if (defender.getHealthPoint()<=0 && defender.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.DEATH))
-        {
+        if (defender.getHealthPoint() <= 0 && defender.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.DEATH)) {
             defender.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
         }
 
@@ -198,25 +197,30 @@ public class Battle {
         //TODO combo :(
     }
 
-    public void useSpecialPower(Warrior warrior, int x, int y) {
-        if (warrior.getSpecialPower() == null) {
+    public void useSpecialPower(Hero hero, int x, int y) {
+        if (hero.getSpecialPowerBuffs() == null) {
             throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
         }
+        if (hero.getRemainginTurntoCoolDown() <= 0) {
 
-        if (!isValidSpeicalPower(x, y)) {
-            throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
-        }
-        if (turn % 2 == 1) {
-            if (firstPlayerMana < warrior.getSpecialPower().getManaCost()) {
-                throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+
+            if (!isValidSpeicalPower(x, y)) {
+                throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
             }
+            if (turn % 2 == 1) {
+                if (firstPlayerMana < hero.getSpecialPower().getManaCost()) {
+                    throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                }
+            } else {
+                if (secondPlayerMana < hero.getSpecialPower().getManaCost()) {
+                    throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                }
+            }
+            applySpell(hero.getSpecialPowerBuffs(), x, y);
+
         } else {
-            if (secondPlayerMana < warrior.getSpecialPower().getManaCost()) {
-                throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
-            }
+            throw new Error(ConstantMessages.COOLDOWN.getMessage());
         }
-        applySpell(warrior.getSpecialPower(), x, y);
-
     }
 
     private void applySpell(Spell spell, int x, int y) {
@@ -296,6 +300,26 @@ public class Battle {
         }
         if (gameGoal == GameGoal.HOLD_FLAG)
             flagForHoldFlagGameMode.incrementNumberOfTurns();
+        for (Card card :
+                getSecondPlayerInGameCards()) {
+            if (card instanceof Warrior) {
+                if (((Warrior) card).getSpecialPowerBuffs().getTargetSocietyKind().equals(TargetSocietyKind.SELF)) {
+                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric((Warrior) card);
+                }
+            }
+        }
+
+        for (Card card :
+                getFirstPlayerInGameCards()) {
+            if (card instanceof Warrior) {
+                if (((Warrior) card).getSpecialPowerBuffs().getTargetSocietyKind().equals(TargetSocietyKind.SELF)) {
+                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric((Warrior) card);
+                }
+            }
+        }
+        firstPlayerDeck.getHero().decreaseCoolDonw();
+        secondPlayerDeck.getHero().decreaseCoolDonw();
+
         selectCard(null);
         turnBeiginingInit();
     }
