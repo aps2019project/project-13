@@ -138,7 +138,6 @@ public class Battle {
         }
     }
 
-
     public void attack(String cardID, Warrior warrior, boolean isAttack) {
         Cell targetCell = getCellFromCardID(cardID);
         Card targetCard = targetCell.getCard();
@@ -159,6 +158,11 @@ public class Battle {
         if (defender.isValidCounterAttack() && isAttack) {
             attack(warrior.getCardId(), defender, false);
         }
+        if (defender.getHealthPoint()<=0 && defender.getSpecialPowerBuffs().getActivationCondition().equals(ActivationCondition.DEATH))
+        {
+            defender.getSpecialPowerBuffs().useBuffsOnGeneric(warrior);
+        }
+
         if (gameGoal == GameGoal.HOLD_FLAG)
             flagForHoldFlagGameMode.updateFlagHolder();
 
@@ -191,9 +195,7 @@ public class Battle {
     }
 
     public void attackCombo(Cell targetCell, String... warriorsCarIds) {
-
         //TODO combo :(
-
     }
 
     public void useSpecialPower(Warrior warrior, int x, int y) {
@@ -796,7 +798,6 @@ public class Battle {
 
 
     public boolean isEndGame() {
-
         return endGame;
     }
 

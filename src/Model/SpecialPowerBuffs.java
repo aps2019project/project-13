@@ -29,6 +29,7 @@ public class SpecialPowerBuffs {
         if (t != null) {
             for (int i = 0; i < getBuffs().size(); i++) {
                 if (getBuffs().get(i) != null) {
+
                     getBuffs().get(i).affect(t);
                 }
             }
