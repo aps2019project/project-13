@@ -19,127 +19,127 @@ public class MinionInitializer {
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Persian Swordsman", "Minion_2", 2, 400,
+        Minions.add(new Minion("Persian_Swordsman", "Minion_2", 2, 400,
                 "Stun on Attack", MinionName.SHAMSHIRZANE_FARS,
                 6, 4, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Persian Spearman", "Minion_3", 1, 500,
+        Minions.add(new Minion("Persian_Spearman", "Minion_3", 1, 500,
                 "No Special Power", MinionName.NEYZEDARE_FARS,
                 5, 3, 3,
                 AttackKind.HYBRID,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Persian Horseman", "Minion_4", 4, 200,
+        Minions.add(new Minion("Persian_Horseman", "Minion_4", 4, 200,
                 "No Special Power", MinionName.ASBSAVARE_FARS,
                 10, 6, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Persian Pahlavan", "Minion_5", 9, 600,
+        Minions.add(new Minion("Persian_Pahlavan", "Minion_5", 9, 600,
                 "Attack 5 points more for each turn he attacked someone", MinionName.PAHLEVANE_FARS,
                 24, 6, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Persian General", "Minion_6", 7, 800,
+        Minions.add(new Minion("Persian_General", "Minion_6", 7, 800,
                 "Combo", MinionName.SEPAHSALARE_FARS,
                 12, 4, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Toranian Archer", "Minion_7", 1, 500,
+        Minions.add(new Minion("Toranian_Archer", "Minion_7", 1, 500,
                 "No Special Power", MinionName.KAMANDARE_TOORANI,
                 3, 4, 5,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Toranian Slinger", "Minion_8", 1, 600,
+        Minions.add(new Minion("Toranian_Slinger", "Minion_8", 1, 600,
                 "No Special Power", MinionName.GHOLLABSANGDARE_TOORANI,
                 4, 2, 7,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Toranian Spearman", "Minion_9", 1, 600,
+        Minions.add(new Minion("Toranian_Spearman", "Minion_9", 1, 600,
                 "No Special Power", MinionName.NEYZEDARE_TOORANI,
                 4, 4, 3,
                 AttackKind.HYBRID,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Toranian Spy", "Minion_10", 4, 700,
+        Minions.add(new Minion("Toranian_Spy", "Minion_10", 4, 700,
                 "1 turn Disarm - 4 Turn Poison", MinionName.JASOOSE_TOORANI,
                 6, 6, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Toranian Maceman", "Minion_11", 2, 450,
+        Minions.add(new Minion("Toranian_Maceman", "Minion_11", 2, 450,
                 "No Special Power", MinionName.JASOOSE_TOORANI,
                 3, 10, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Toranian Prince", "Minion_12", 6, 800,
+        Minions.add(new Minion("Toranian_Prince", "Minion_12", 6, 800,
                 "No Special Power", MinionName.SHAHZADEYE_TOORANI,
                 6, 10, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Dive Siah", "Minion_13", 9, 300,
+        Minions.add(new Minion("Dive_Siah", "Minion_13", 9, 300,
                 "No Special Power", MinionName.DIVE_SIAH,
                 14, 10, 7,
                 AttackKind.HYBRID,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Rock Thrower Giant", "Minion_14", 9, 300,
+        Minions.add(new Minion("Rock_Thrower_Giant", "Minion_14", 9, 300,
                 "No Special Power", MinionName.GHOOLE_SANGANDAZ,
                 12, 12, 7,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Eagle ", "Minion_15", 200, 2,
+        Minions.add(new Minion("Eagle", "Minion_15", 200, 2,
                 "10 Health PowerBuff", MinionName.OGHAB,
                 0, 2, 3,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Boarrider Dive", "Minion_16", 6, 300,
+        Minions.add(new Minion("Boarrider_Dive", "Minion_16", 6, 300,
                 "No Special Power", MinionName.DIVE_GORAZSAVAR,
                 18, 8, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("OneEyed Giant", "Minion_17", 7, 500,
+        Minions.add(new Minion("OneEyed_Giant", "Minion_17", 7, 500,
                 "2 Damage to Adjacents on death", MinionName.JASOOSE_TOORANI,
                 12, 11, 3,
                 AttackKind.HYBRID,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Poisonous Snake", "Minion_18", 4, 300,
+        Minions.add(new Minion("Poisonous_Snake", "Minion_18", 4, 300,
                 "Posion for 3 Turns", MinionName.MARE_SAMMI,
                 5, 6, 4,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Firing Dragon", "Minion_19", 5, 250,
+        Minions.add(new Minion("Firing_Dragon", "Minion_19", 5, 250,
                 "No Special Power", MinionName.EJDEHAYE_ATASHANDAZ,
                 9, 5, 4,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Wild Lion", "Minion_20", 2, 600,
+        Minions.add(new Minion("Wild_Lion", "Minion_20", 2, 600,
                 "Holy ABuff has no effect on him", MinionName.SHIRE_DARANDE,
                 1, 8, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Giant Snake", "Minion_21", 8, 500,
+        Minions.add(new Minion("Giant_Snake", "Minion_21", 8, 500,
                 "1 More Damage To 2-cell adjacent units", MinionName.MARE_GHOOLPEIKAR,
                 14, 7, 5,
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("White Wolf", "Minion_22", 5, 400,
+        Minions.add(new Minion("White_Wolf", "Minion_22", 5, 400,
                 "After Attack,After 1 turn 6 more dmg , After Another turn 4 more dmg to that minion", MinionName.GORGE_SEFID,
                 8, 2, 1,
                 AttackKind.MELEE,
@@ -175,7 +175,7 @@ public class MinionInitializer {
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Wild Boar", "Minion_28", 6, 500,
+        Minions.add(new Minion("Wild_Boar", "Minion_28", 6, 500,
                 "Cannot be disarmed", MinionName.GORAZE_VAHSHI,
                 10, 14, 1,
                 AttackKind.MELEE,
@@ -211,19 +211,19 @@ public class MinionInitializer {
                 AttackKind.RANGED,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Big Giant", "Minion_34", 9, 600,
+        Minions.add(new Minion("Big_Giant", "Minion_34", 9, 600,
                 "No Special Power", MinionName.GHOOLE_BOZORG2,
                 30, 8, 2,
                 AttackKind.HYBRID,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Two-headed Giant", "Minion_35", 4, 550,
+        Minions.add(new Minion("Two_headed_Giant", "Minion_35", 4, 550,
                 "Negates all positive effect on attack card", MinionName.GHOOLE_DOSAR,
                 10, 4, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Naneh Sarma", "Minion_36", 3, 500,
+        Minions.add(new Minion("Naneh_Sarma", "Minion_36", 3, 500,
                 "Stun Adjacent Enemy Minions for turn", MinionName.NANESARMA,
                 3, 4, 5,
                 AttackKind.RANGED,
@@ -241,13 +241,13 @@ public class MinionInitializer {
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Giant King", "Minion_39", 5, 600,
+        Minions.add(new Minion("Giant_King", "Minion_39", 5, 600,
                 "Combo", MinionName.SHAHGHOOL,
                 10, 4, 1,
                 AttackKind.MELEE,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())));
 
-        Minions.add(new Minion("Arzhang Div", "Minion_40", 3, 600,
+        Minions.add(new Minion("Arzhang_Div", "Minion_40", 3, 600,
                 "Combo", MinionName.ARJANG_DIV,
                 6, 6, 1,
                 AttackKind.MELEE,

@@ -100,12 +100,6 @@ public class Battle {
         }
     }
 
-    public void decreaseMana(int number, int numberOfPlayer) {
-        if (numberOfPlayer == 1) {
-            firstPlayerMana -= number;
-        } else secondPlayerMana -= number;
-    }
-
     public void selectCard(Card card) {
         selectedCard = card;
     }
@@ -255,9 +249,7 @@ public class Battle {
                 warriorsCarIds) {
             attack(s, (Warrior) card, true);
         }
-
     }
-
 
     public void useSpecialPower(Hero hero, int x, int y) {
         if (hero.getSpecialPowerBuffs() == null) {
@@ -265,10 +257,6 @@ public class Battle {
         }
         if (hero.getRemainginTurntoCoolDown() <= 0) {
 
-
-            if (!isValidSpeicalPower(x, y)) {
-                throw new Error(ConstantMessages.INVALID_CELL_TO_USE_SPECIAL_POWER.getMessage());
-            }
             if (turn % 2 == 1) {
                 if (firstPlayerMana < hero.getSpecialPower().getManaCost()) {
                     throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
@@ -338,10 +326,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(random, cards, opponents, card, cardOpponent);
+        CancelBuff(card, cardOpponent);
     }
 
-    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card, Card cardOpponent) {
+    private void CancelBuff(Card card, Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
@@ -451,7 +439,7 @@ public class Battle {
                 getSecondPlayerInGameCards()) {
             if (card instanceof Warrior) {
                 if (((Warrior) card).getSpecialPowerBuffs().getTargetSocietyKind().equals(TargetSocietyKind.SELF)) {
-                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric((Warrior) card);
+                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric(card);
                 }
             }
         }
@@ -460,7 +448,7 @@ public class Battle {
                 getFirstPlayerInGameCards()) {
             if (card instanceof Warrior) {
                 if (((Warrior) card).getSpecialPowerBuffs().getTargetSocietyKind().equals(TargetSocietyKind.SELF)) {
-                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric((Warrior) card);
+                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric(card);
                 }
             }
         }
@@ -491,7 +479,7 @@ public class Battle {
         if (turn < 14) {
             setFirstPlayerCapacityMana(turn / 2 + 2);
             setSecondPlayerCapacityMana(turn / 2 + 2);
-        } else if (turn >= 14) {
+        } else {
             setFirstPlayerCapacityMana(9);
             setSecondPlayerCapacityMana(9);
         }
@@ -521,9 +509,9 @@ public class Battle {
     }
 
     private void deleteFromMap(ArrayList<Card> cards) {
-        for (int i = 0; i < cards.size(); i++) {
-            cards.get(i).getCurrentCell().setCard(null);
-            cards.get(i).setCurrentCell(null);
+        for (Card card : cards) {
+            card.getCurrentCell().setCard(null);
+            card.setCurrentCell(null);
         }
     }
 
@@ -561,10 +549,10 @@ public class Battle {
 
     private void takeHoldingFlag(ArrayList<Card> inGameCards) {
 
-        for (int i = 0; i < inGameCards.size(); i++) {
-            if (inGameCards.get(i).getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
-                if (flagForHoldFlagGameMode.getFlagHolder() != inGameCards.get(i)) {
-                    flagForHoldFlagGameMode.setFlagHolder((Warrior) inGameCards.get(i));
+        for (Card inGameCard : inGameCards) {
+            if (inGameCard.getCurrentCell() == flagForHoldFlagGameMode.getCurrentCell()) {
+                if (flagForHoldFlagGameMode.getFlagHolder() != inGameCard) {
+                    flagForHoldFlagGameMode.setFlagHolder((Warrior) inGameCard);
                     return;
                 }
             }
@@ -583,15 +571,15 @@ public class Battle {
 
     private void takeCollectingFlag(ArrayList<Card> inGameCards) {
         setCurrentTurnPlayer();
-        for (int i = 0; i < inGameCards.size(); i++) {
+        for (Card inGameCard : inGameCards) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
-                if (inGameCards.get(i).getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
+                if (inGameCard.getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
                     if (currentTurnPlayer.equals(firstPlayer)) {
                         firstPlayerFlags++;
                     } else {
                         secondPlayerFlags++;
                     }
-                    flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
+                    flagForCollectFlagGameModes.get(j).setOwner(inGameCard);
                     flagForCollectFlagGameModes.get(j).getCurrentCell().setItem(null);
                     flagForCollectFlagGameModes.get(j).setCurrentCell(null);
                     flagForCollectFlagGameModes.remove(j);
@@ -613,7 +601,7 @@ public class Battle {
         validCells.clear();
     }
 
-    public void findValidCell(KindOfActionForValidCells kindOfActionForValidCells) {
+    void findValidCell(KindOfActionForValidCells kindOfActionForValidCells) {
 
         clearValidCellsList();
         switch (kindOfActionForValidCells) {
@@ -712,11 +700,6 @@ public class Battle {
         return map.getDistanceOfTwoCell(selectedCard.getCurrentCell(), cell) <= 2 && cell.isEmpty();
     }
 
-    private boolean isValidComboAttack(Cell targetCell, String... warriorsCardID) {
-
-        return true;
-    }
-
     private boolean isValidAttack(Cell targetCell, Warrior warrior) {
         if (targetCell.getCard().getAccount() == warrior.getAccount()) {
             return false;
@@ -747,17 +730,12 @@ public class Battle {
         return map.getDistanceOfTwoCell(targetCell, warrior.getCurrentCell()) <= 1;
     }
 
-    private boolean isValidSpeicalPower(int row, int column) {
-
-        return true;
-    }
-
     private void setHandOfFirstPlayer() {
-        firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck.getCards(), 5);
+        firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck.getCards());
     }
 
     private void setHandOfSecondPlayer() {
-        secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck.getCards(), 5);
+        secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck.getCards());
 
     }
 
@@ -775,11 +753,11 @@ public class Battle {
         secondPlayerInGameCards.add(secondPlayerDeck.getHero());
     }
 
-    private ArrayList<Card> selectRandomCardsForHand(ArrayList<Card> cards, int totalRandomCardsNeeded) {
+    private ArrayList<Card> selectRandomCardsForHand(ArrayList<Card> cards) {
         Random random = new Random();
         ArrayList<Card> temp = new ArrayList<>();
 
-        for (int i = 0; i < totalRandomCardsNeeded; i++) {
+        for (int i = 0; i < 5; i++) {
             int randomIndex = 1 + random.nextInt(5);
             temp.add(cards.get(randomIndex));
             cards.remove(randomIndex);
@@ -792,11 +770,11 @@ public class Battle {
         firstPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt(firstPlayerDeck.getCards().size()));
     }
 
-    public void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) {
+    private void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) {
         this.firstPlayerCapacityMana = firstPlayerCapacityMana;
     }
 
-    public void setSecondPlayerCapacityMana(int secondPlayerCapacityMana) {
+    private void setSecondPlayerCapacityMana(int secondPlayerCapacityMana) {
         this.secondPlayerCapacityMana = secondPlayerCapacityMana;
     }
 
@@ -808,19 +786,19 @@ public class Battle {
         }
     }
 
-    public void incrementFirstPlayerCapacityMana(int i) {
+    private void incrementFirstPlayerCapacityMana(int i) {
         setFirstPlayerCapacityMana(getFirstPlayerCapacityMana() + i);
     }
 
-    public void incrementSecondPlayerCapacityMana(int i) {
+    private void incrementSecondPlayerCapacityMana(int i) {
         setSecondPlayerCapacityMana(getSecondPlayerCapacityMana() + i);
     }
 
-    public void setFirstPlayerMana(int firstPlayerMana) {
+    private void setFirstPlayerMana(int firstPlayerMana) {
         this.firstPlayerMana = firstPlayerMana;
     }
 
-    public void setSecondPlayerMana(int secondPlayerMana) {
+    private void setSecondPlayerMana(int secondPlayerMana) {
         this.secondPlayerMana = secondPlayerMana;
     }
 
@@ -843,22 +821,6 @@ public class Battle {
 
     private Card getSecondPlayerNextCard() {
         return secondPlayerNextCard;
-    }
-
-    public ArrayList<Item> getFirstPlayerItems() {
-        return firstPlayerItems;
-    }
-
-    public ArrayList<Item> getSecondPlayerItems() {
-        return secondPlayerItems;
-    }
-
-    public void addFirstPlayerItems(Item firstPlayerItems) {
-        this.firstPlayerItems.add(firstPlayerItems);
-    }
-
-    public void addSecondPlayerItems(Item secondPlayerItems) {
-        this.secondPlayerItems.add(secondPlayerItems);
     }
 
     private void setFlagForCollectFlagGameModes(int n) {
@@ -894,21 +856,7 @@ public class Battle {
             if (arrayX[i] == rx && arrayY[i] == ry)
                 return true;
         }
-        if ((rx == 2 && ry == 0) || (rx == 2 && ry == 8))
-            return true;
-        return false;
-    }
-
-    public GameMode getGameMode() {
-        return gameMode;
-    }
-
-    public GameGoal getGameGoal() {
-        return gameGoal;
-    }
-
-    public FlagForHoldFlagGameMode getFlagForHoldFlagGameMode() {
-        return flagForHoldFlagGameMode;
+        return (rx == 2 && ry == 0) || (rx == 2 && ry == 8);
     }
 
     private void setWinner(Account winner) {
@@ -931,20 +879,12 @@ public class Battle {
         return secondPlayer;
     }
 
-    public int getFirstPlayerCapacityMana() {
+    private int getFirstPlayerCapacityMana() {
         return firstPlayerCapacityMana;
     }
 
-    public int getSecondPlayerCapacityMana() {
+    private int getSecondPlayerCapacityMana() {
         return secondPlayerCapacityMana;
-    }
-
-    public int getFirstPlayerMana() {
-        return firstPlayerMana;
-    }
-
-    public int getSecondPlayerMana() {
-        return secondPlayerMana;
     }
 
     public ArrayList<Card> getFirstPlayerGraveYard() {
@@ -959,33 +899,12 @@ public class Battle {
         return secondPlayerHand;
     }
 
-    public ArrayList<Cell> getValidCells() {
+    ArrayList<Cell> getValidCells() {
         return validCells;
     }
 
-    public Deck getFirstPlayerDeck() {
-        return firstPlayerDeck;
-    }
-
-    public Deck getSecondPlayerDeck() {
-        return secondPlayerDeck;
-    }
-
-
     public boolean isEndGame() {
         return endGame;
-    }
-
-    public int getFirstPlayerFlags() {
-        return firstPlayerFlags;
-    }
-
-    public int getSecondPlayerFlags() {
-        return secondPlayerFlags;
-    }
-
-    public ArrayList<FlagForCollectFlagGameMode> getFlagForCollectFlagGameModes() {
-        return flagForCollectFlagGameModes;
     }
 
     public static Battle getRunningBattle() {
@@ -1076,19 +995,11 @@ public class Battle {
         return secondPlayerInGameCards;
     }
 
-    public void setNumberOfFlagForWin(int numberOfFlagForWin) {
-        this.numberOfFlagForWin = numberOfFlagForWin;
-    }
-
     public void increaseMana(Account account, int number) {
         if (account.getUsername().equals(firstPlayer.getUsername()))
             firstPlayerMana += number;
         else if (account.getUsername().equals(secondPlayer.getUsername()))
             secondPlayerMana += number;
-    }
-
-    public int getNumberOfFlagForWin() {
-        return numberOfFlagForWin;
     }
 
     private void turnBeiginingInit() {
