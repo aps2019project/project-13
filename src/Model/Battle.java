@@ -90,15 +90,6 @@ public class Battle {
         }
     }
 
-    public void handelBattleSinglePlayer() {
-
-
-    }
-
-    public void handelBattleMultiPlayer() {
-
-    }
-
     public void decreaseMana(int number, int numberOfPlayer) {
         if (numberOfPlayer == 1) {
             firstPlayerMana -= number;
@@ -205,9 +196,42 @@ public class Battle {
         return targetCell;
     }
 
-    public void attackCombo(Cell targetCell, String... warriorsCarIds) {
-        //TODO combo :(
+    public void attackCombo(String oppnentId, ArrayList<String> warriorsCarIds) throws Error {
+        ArrayList<Card> cards;
+        if (turn % 2 == 1) {
+            cards = firstPlayerInGameCards;
+        } else cards = secondPlayerInGameCards;
+        boolean validOpponent = false;
+        for (Card card :
+                cards) {
+            if (card.getCardId().equals(oppnentId)) {
+                validOpponent = true;
+            }
+        }
+        if (!validOpponent) {
+            throw new Error("invalid Opponent for Combo");
+        }
+        boolean validAttackers;
+        for (int i = 0; i < warriorsCarIds.size(); i++) {
+            validAttackers = false;
+            for (Card card :
+                    cards) {
+                if (card.getCardId().equals(oppnentId)) {
+                    validAttackers = true;
+                }
+            }
+            if (!validAttackers) {
+                throw new Error("invalid attacker for Combo");
+            }
+        }
+        Card card = Card.findCardInArrayList(oppnentId, (turn % 2 == 1) ? firstPlayerInGameCards : secondPlayerInGameCards);
+        for (String s :
+                warriorsCarIds) {
+            attack(s, (Warrior) card, true);
+        }
+
     }
+
 
     public void useSpecialPower(Hero hero, int x, int y) {
         if (hero.getSpecialPowerBuffs() == null) {
@@ -228,7 +252,7 @@ public class Battle {
                     throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
                 }
             }
-            Spell spell = new Spell("","",0,0,"",TargetSocietyKind.FRIENDLY_CARDS,ActivationCondition.PASSIVE,hero.getSpecialPowerBuffs());
+            Spell spell = new Spell("", "", 0, 0, "", TargetSocietyKind.FRIENDLY_CARDS, ActivationCondition.PASSIVE, hero.getSpecialPowerBuffs());
             applySpell(spell, x, y);
 
         } else {
@@ -267,12 +291,12 @@ public class Battle {
         ArrayList<Card> opponents = (currentTurnPlayer.equals(firstPlayer)) ? secondPlayerInGameCards : firstPlayerInGameCards;
         if (opponents == null)
             return;
-        for (Card card:
-             cards) {
+        for (Card card :
+                cards) {
             myDispel(card);
         }
-        for (Card card:
-             opponents) {
+        for (Card card :
+                opponents) {
             opponentDispel(card);
         }
     }
@@ -288,10 +312,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(random, cards, opponents, card,cardOpponent);
+        CancelBuff(card, cardOpponent);
     }
 
-    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
+    private void CancelBuff(Card card, Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
@@ -299,7 +323,7 @@ public class Battle {
     private void opponentDispel(Card cardOpponent) {
         for (int i = 0; i < cardOpponent.getBuffs().size(); i++) {
             ABuff aBuff = cardOpponent.getBuffs().get(i);
-            if ((aBuff instanceof PowerBuff) || (aBuff instanceof HolyBuff)){
+            if ((aBuff instanceof PowerBuff) || (aBuff instanceof HolyBuff)) {
                 cardOpponent.getBuffs().remove(aBuff);
             }
         }
@@ -308,7 +332,7 @@ public class Battle {
     private void myDispel(Card card) {
         for (int i = 0; i < card.getBuffs().size(); i++) {
             ABuff aBuff = card.getBuffs().get(i);
-            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)){
+            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)) {
                 card.getBuffs().remove(aBuff);
             }
         }
@@ -1028,12 +1052,12 @@ public class Battle {
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
             firstPlayerInGameCard.setAbleToMove(true);
             ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
-            ((Warrior)firstPlayerInGameCard).setValidCounterAttack(true);
+            ((Warrior) firstPlayerInGameCard).setValidCounterAttack(true);
         }
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             secondPlayerInGameCard.setAbleToMove(true);
             ((Warrior) secondPlayerInGameCard).setValidToAttack(true);
-            ((Warrior)secondPlayerInGameCard).setValidCounterAttack(true);
+            ((Warrior) secondPlayerInGameCard).setValidCounterAttack(true);
         }
     }
 

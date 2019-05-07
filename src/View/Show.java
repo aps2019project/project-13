@@ -333,4 +333,7 @@ public class Show {
     public void showGetNumberOfFlag() {
         System.out.println("number of flag : ");
     }
+    public void invalidCombo(){
+        System.out.println(ConstantMessages.INVALID_COMMAND.getMessage());
+    }
 }
