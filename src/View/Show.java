@@ -320,7 +320,7 @@ public class Show {
                 } else if (cells[i][j].getItem() == null) {
                     System.out.print(" 0 ");
                 }
-                if (cells[i][j].getItem() != null) {
+                else if (cells[i][j].getItem() != null) {
                     System.out.print(" F ");
                 }
             }

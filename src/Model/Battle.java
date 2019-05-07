@@ -405,10 +405,9 @@ public class Battle {
                         secondPlayerFlags++;
                     }
                     flagForCollectFlagGameModes.get(j).setOwner(inGameCards.get(i));
+                    flagForCollectFlagGameModes.get(j).getCurrentCell().setItem(null);
+                    flagForCollectFlagGameModes.get(j).setCurrentCell(null);
                     flagForCollectFlagGameModes.remove(j);
-                    flagForCollectFlagGameModes.get(i).getCurrentCell().setItem(null);
-                    flagForCollectFlagGameModes.get(i).setCurrentCell(null);
-                    System.out.println("---> " + firstPlayerFlags);
                     break;
                 }
             }
