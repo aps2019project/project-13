@@ -13,7 +13,7 @@ public class HeroInitializer {
     public static void HeroInit() {
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
         ArrayList<Hero> heroes = new ArrayList<>();
-        heroes.add(new Hero("Dive Sefid", "Hero_1", 1, 8000,
+        heroes.add(new Hero("Dive_Sefid", "Hero_1", 1, 8000,
                 "Has continous power buff with 4 units of AP", HeroName.DIVE_SEFID, AttackKind.MELEE,
                 50, 4, 1,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>())
@@ -24,7 +24,7 @@ public class HeroInitializer {
                 50, 4, 1,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>()),
                 8));
-        heroes.add(new Hero("Ejdeha Haft Sar", "Hero_3", 0, 8000,
+        heroes.add(new Hero("Ejdeha_Haft_Sar", "Hero_3", 0, 8000,
                 "Disarm One Enemey", HeroName.EJDEHA, AttackKind.MELEE,
                 50, 4, 1,
                 new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, new ArrayList<ABuff>()),
