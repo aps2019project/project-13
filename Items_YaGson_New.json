@@ -11,7 +11,7 @@
       "itemId": "UsableItem_1",
       "itemDescription": "Increase Mana in 3 turns",
       "itemKind": "USABLE",
-      "itemName": "Wisdom Crown"
+      "itemName": "Wisdom_Crown"
     }
   },
   {
@@ -26,7 +26,7 @@
       "itemId": "UsableItem_2",
       "itemDescription": "12 Holy Buff in Friendly Hero",
       "itemKind": "USABLE",
-      "itemName": "Namoos Separ"
+      "itemName": "Namoos_Separ"
     }
   },
   {
@@ -41,7 +41,7 @@
       "itemId": "UsableItem_3",
       "itemDescription": "Friendly Hero disarm Enemy For One Trun",
       "itemKind": "USABLE",
-      "itemName": "Bow of Damol"
+      "itemName": "Bow_of_Damol"
     }
   },
   {
@@ -56,7 +56,7 @@
       "itemId": "UsableItem_4",
       "itemDescription": "Weakness power buff for enemy Ranged",
       "itemKind": "USABLE",
-      "itemName": "Simorq Feather"
+      "itemName": "Simorq_Feather"
     }
   },
   {
@@ -71,7 +71,7 @@
       "itemId": "UsableItem_5",
       "itemDescription": "Weakness power buff for random enemty for one turn",
       "itemKind": "USABLE",
-      "itemName": "Terror Hood"
+      "itemName": "Terror_Hood"
     }
   },
   {
@@ -86,7 +86,7 @@
       "itemId": "UsableItem_6",
       "itemDescription": "One extra Mana for whole game",
       "itemKind": "USABLE",
-      "itemName": "King Wisdom"
+      "itemName": "King_Wisdom"
     }
   },
   {
@@ -101,7 +101,7 @@
       "itemId": "UsableItem_7",
       "itemDescription": "One damage to Enemy Hero each time you put a card on the field",
       "itemKind": "USABLE",
-      "itemName": "Assassination Dagger"
+      "itemName": "Assassination_Dagger"
     }
   },
   {
@@ -116,7 +116,7 @@
       "itemId": "UsableItem_8",
       "itemDescription": "Poison damage to random enemy",
       "itemKind": "USABLE",
-      "itemName": "Poisonous Dagger"
+      "itemName": "Poisonous_Dagger"
     }
   },
   {
@@ -131,7 +131,7 @@
       "itemId": "UsableItem_9",
       "itemDescription": "Hero disarm One enemy for one turn",
       "itemKind": "USABLE",
-      "itemName": "Shock Hammer"
+      "itemName": "Shock_Hammer"
     }
   },
   {
@@ -146,7 +146,7 @@
       "itemId": "UsableItem_10",
       "itemDescription": "A power buff to a unit when some of units die",
       "itemKind": "USABLE",
-      "itemName": "Soul Eater"
+      "itemName": "Soul_Eater"
     }
   },
   {
@@ -161,7 +161,7 @@
       "itemId": "UsableItem_11",
       "itemDescription": "2 turn holy buff for each unit",
       "itemKind": "USABLE",
-      "itemName": "Baptism (Ghosl Ta'amid)"
+      "itemName": "Baptism"
     }
   }
 ]

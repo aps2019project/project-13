@@ -49,16 +49,25 @@ public class Main {
         }
 
         Hero[] heroes = new Hero[20];
+        Hero[] heroes1 = new Hero[20];
         try (Reader reader = new FileReader("Heroes_YaGson_New.json")) {
             heroes = yaGson.fromJson(reader, Hero[].class);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try (Reader reader = new FileReader("Heroes_YaGson2_New.json")) {
+            heroes1 = yaGson.fromJson(reader, Hero[].class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (Hero hero : heroes) {
-            if (heroes[i] != null)
+            if (hero != null)
                 Shop.getInstance().addCard(hero);
         }
-
+        for (Hero hero : heroes1) {
+            if (hero != null)
+                Shop.getInstance().addCard(hero);
+        }
 
         Spell[] spells = new Spell[20];
         try (Reader reader = new FileReader("Spells_YaGson_New.json")) {
@@ -72,7 +81,6 @@ public class Main {
             }
         }
 
-
         Item[] items = new Item[20];
         try (Reader reader = new FileReader("Items_YaGson_New.json")) {
             items = yaGson.fromJson(reader, Item[].class);
@@ -84,7 +92,6 @@ public class Main {
                 Shop.getInstance().addItem((UsableItem) items[j]);
             }
         }
-
 
         GameController gamecontroller = GameController.getInstance();
         gamecontroller.main();

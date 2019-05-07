@@ -61,10 +61,8 @@ public class Battle {
         insertPlayerHeroesInMap();
         setHandOfFirstPlayer();
         setHandOfSecondPlayer();
-        if (getTurn() % 2 == 1)
-            setFirstPlayerNextCard();
-        if (getTurn() % 2 == 0)
-            setSecondPlayerNextCard();
+        setFirstPlayerNextCard();
+        setSecondPlayerNextCard();
         if (gameGoal == GameGoal.HOLD_FLAG) {
             flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2, 4));
             map.getCell(2, 4).setItem(flagForHoldFlagGameMode);
@@ -228,7 +226,7 @@ public class Battle {
                     throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
                 }
             }
-            Spell spell = new Spell("","",0,0,"",TargetSocietyKind.FRIENDLY_CARDS,ActivationCondition.PASSIVE,hero.getSpecialPowerBuffs());
+            Spell spell = new Spell("", "", 0, 0, "", TargetSocietyKind.FRIENDLY_CARDS, ActivationCondition.PASSIVE, hero.getSpecialPowerBuffs());
             applySpell(spell, x, y);
 
         } else {
@@ -267,12 +265,12 @@ public class Battle {
         ArrayList<Card> opponents = (currentTurnPlayer.equals(firstPlayer)) ? secondPlayerInGameCards : firstPlayerInGameCards;
         if (opponents == null)
             return;
-        for (Card card:
-             cards) {
+        for (Card card :
+                cards) {
             myDispel(card);
         }
-        for (Card card:
-             opponents) {
+        for (Card card :
+                opponents) {
             opponentDispel(card);
         }
     }
@@ -288,10 +286,10 @@ public class Battle {
         Card card = cards.get(randomNumber);
         randomNumber = random.nextInt(cards.size());
         Card cardOpponent = opponents.get(randomNumber);
-        CancelBuff(random, cards, opponents, card,cardOpponent);
+        CancelBuff(random, cards, opponents, card, cardOpponent);
     }
 
-    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card,Card cardOpponent) {
+    private void CancelBuff(Random random, ArrayList<Card> cards, ArrayList<Card> opponents, Card card, Card cardOpponent) {
         myDispel(card);
         opponentDispel(cardOpponent);
     }
@@ -299,7 +297,7 @@ public class Battle {
     private void opponentDispel(Card cardOpponent) {
         for (int i = 0; i < cardOpponent.getBuffs().size(); i++) {
             ABuff aBuff = cardOpponent.getBuffs().get(i);
-            if ((aBuff instanceof PowerBuff) || (aBuff instanceof HolyBuff)){
+            if ((aBuff instanceof PowerBuff) || (aBuff instanceof HolyBuff)) {
                 cardOpponent.getBuffs().remove(aBuff);
             }
         }
@@ -308,7 +306,7 @@ public class Battle {
     private void myDispel(Card card) {
         for (int i = 0; i < card.getBuffs().size(); i++) {
             ABuff aBuff = card.getBuffs().get(i);
-            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)){
+            if (!(aBuff instanceof PowerBuff) && !(aBuff instanceof HolyBuff)) {
                 card.getBuffs().remove(aBuff);
             }
         }
@@ -369,11 +367,11 @@ public class Battle {
         incrementTurn();
         if (firstPlayerHand.size() < 5 && getTurn() % 2 == 1) {
             firstPlayerHand.add(firstPlayerNextCard);
-            firstPlayerNextCard = null;
+            setFirstPlayerNextCard();
         }
         if (secondPlayerHand.size() < 5 && getTurn() % 2 == 0) {
             secondPlayerHand.add(secondPlayerNextCard);
-            secondPlayerNextCard = null;
+            setSecondPlayerNextCard();
         }
         if (turn % 2 == 0) {
             if (secondPlayer instanceof Ai) {
@@ -1028,13 +1026,14 @@ public class Battle {
         for (Card firstPlayerInGameCard : firstPlayerInGameCards) {
             firstPlayerInGameCard.setAbleToMove(true);
             ((Warrior) firstPlayerInGameCard).setValidToAttack(true);
-            ((Warrior)firstPlayerInGameCard).setValidCounterAttack(true);
+            ((Warrior) firstPlayerInGameCard).setValidCounterAttack(true);
         }
         for (Card secondPlayerInGameCard : secondPlayerInGameCards) {
             secondPlayerInGameCard.setAbleToMove(true);
             ((Warrior) secondPlayerInGameCard).setValidToAttack(true);
-            ((Warrior)secondPlayerInGameCard).setValidCounterAttack(true);
+            ((Warrior) secondPlayerInGameCard).setValidCounterAttack(true);
         }
+
     }
 
 }

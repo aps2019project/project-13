@@ -312,20 +312,20 @@ public class GameController {
             if (kindOfSinglePlayer.equals("1")) {
 
                 if (gameGoal == GameGoal.COLLECT_FLAG) {
-                    new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal,numberOfFlagForWin);
-                }else new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal);
+                    new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal, numberOfFlagForWin);
+                } else new Battle(Account.getLoginedAccount(), new Ai(Integer.parseInt(chooseAi)), gameMode, gameGoal);
             } else {
                 Ai ai = new Ai(4);
                 ai.setMainDeck(deck);
 
                 if (gameGoal == GameGoal.COLLECT_FLAG) {
-                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal,numberOfFlagForWin);
-                }else new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
+                    new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal, numberOfFlagForWin);
+                } else new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
             }
 
         } else {
             if (gameGoal == GameGoal.COLLECT_FLAG) {
-                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal,numberOfFlagForWin);
+                new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal, numberOfFlagForWin);
             } else new Battle(Account.getLoginedAccount(), account, gameMode, gameGoal);
 
         }
@@ -401,7 +401,7 @@ public class GameController {
             for (int j = 0; j < Map.MAX_COLUMN; j++) {
                 Cell cell = map.getCell(i, j);
                 if (cell.getCard() != null && cell.getCard().getAccount().equals(account)) {
-                    output.add(cell.getCard().toString() + "- Position: " + i  + " , " + j);
+                    output.add(cell.getCard().toString() + "- Position: " + i + " , " + j);
                 }
             }
         }
@@ -591,7 +591,6 @@ public class GameController {
         if (Deck.validateDeck(deck))
             show.printAMessage(ConstantMessages.VALID_DECK.getMessage());
         else {
-            System.out.println("Khodet moshkel dari");
             throw new Error(ConstantMessages.INVALID_DECK.getMessage());
         }
     }

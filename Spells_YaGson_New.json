@@ -14,7 +14,7 @@
       "darikCost": 1000,
       "cardKind": "MINION",
       "cardDescription": "Disarm an Enemy for whole game",
-      "cardName": "Total Disarm",
+      "cardName": "Total_Disarm",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -35,7 +35,7 @@
       "darikCost": 1500,
       "cardKind": "MINION",
       "cardDescription": "Dispel Friendly negative buffs and enemy positive buffs on a 2x2 grid ",
-      "cardName": "Area Dispel",
+      "cardName": "Area_Dispel",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -98,7 +98,7 @@
       "darikCost": 450,
       "cardKind": "MINION",
       "cardDescription": "2 More AP for one unit ",
-      "cardName": "God Strength",
+      "cardName": "God_Strength",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -140,7 +140,7 @@
       "darikCost": 1250,
       "cardKind": "MINION",
       "cardDescription": "8 DMG To Enemy Hero ",
-      "cardName": "Lightning Bolt",
+      "cardName": "Lightning_Bolt",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -161,7 +161,7 @@
       "darikCost": 900,
       "cardKind": "MINION",
       "cardDescription": "Make a 3x3 grid poisonous for 1 turn ",
-      "cardName": "Poison Lake",
+      "cardName": "Poison_Lake",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -203,7 +203,7 @@
       "darikCost": 2000,
       "cardKind": "MINION",
       "cardDescription": "Make all  Enemy Units Disarmed for 1 Turn ",
-      "cardName": "All Disarm",
+      "cardName": "All_Disarm",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -224,7 +224,7 @@
       "darikCost": 1500,
       "cardKind": "MINION",
       "cardDescription": "Make all Enemy Units poisoned for 1 Turn ",
-      "cardName": "All Poison",
+      "cardName": "All_Poison",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -266,7 +266,7 @@
       "darikCost": 2250,
       "cardKind": "MINION",
       "cardDescription": "1 Weakness buff with 6 DMG alongside 3 turns of 2 HolyBuff",
-      "cardName": "Health with Profit",
+      "cardName": "Health_with_Profit",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -287,7 +287,7 @@
       "darikCost": 2500,
       "cardKind": "MINION",
       "cardDescription": "6 More AP for one Unit ",
-      "cardName": "Power Up",
+      "cardName": "Power_Up",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -308,7 +308,7 @@
       "darikCost": 2000,
       "cardKind": "MINION",
       "cardDescription": "2 More AP for All units ",
-      "cardName": "All Power",
+      "cardName": "All_Power",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -329,7 +329,7 @@
       "darikCost": 1500,
       "cardKind": "MINION",
       "cardDescription": "6 DMG to All Enemy Units on a Row ",
-      "cardName": "All Attack",
+      "cardName": "All_Attack",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
@@ -392,7 +392,7 @@
       "darikCost": 1750,
       "cardKind": "MINION",
       "cardDescription": "Kills one random minion in adjacent cells of Hero ",
-      "cardName": "Kings Guard",
+      "cardName": "Kings_Guard",
       "buffs": [],
       "isAbleToMove": false,
       "isInGame": false
