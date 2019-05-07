@@ -292,6 +292,8 @@ public class Battle {
                 }
             }
         }
+        if(gameGoal == GameGoal.HOLD_FLAG)
+            flagForHoldFlagGameMode.incrementNumberOfTurns();
         selectCard(null);
         turnBeiginingInit();
     }
