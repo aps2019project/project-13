@@ -6,6 +6,7 @@ import java.util.Random;
 public class Player {
     private Account account;
     private int capacityMana;
+    private int currentMana;
     private ArrayList<Card> graveyard = new ArrayList<>();
     private ArrayList<Card> hand = new ArrayList<>();
     private Card nextCard;
@@ -30,6 +31,14 @@ public class Player {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public int getCurrentMana() {
+        return currentMana;
+    }
+
+    public void setCurrentMana(int currentMana) {
+        this.currentMana = currentMana;
     }
 
     public int getCapacityMana() {

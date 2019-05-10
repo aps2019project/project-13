@@ -14,6 +14,7 @@ public class Battle {
     //NEW
     private Player player1;
     private Player player2;
+    private Player currentTurnPlayerNew;
     //OLD
     private static Battle runningBattle = null;
     private Map map;
@@ -123,7 +124,7 @@ public class Battle {
         setFlagForCollectFlagGameModes(numberOfFlagForWin);
     }
 
-    private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) { //done for new
+    private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) { //done for new newCheckDeckAtFirst
         if (firstPlayer.getMainDeck() != null && Deck.validateDeck(firstPlayer.getMainDeck())) {
             firstPlayerDeck = Deck.deepClone(firstPlayer.getMainDeck());
         } else {
@@ -148,7 +149,7 @@ public class Battle {
         return turn;
     }
 
-    public void moveCard(int x, int y) {
+    public void moveCard(int x, int y) {//Done for New moveCardNew
         Cell cell = map.getCell(x, y);
 
         if (!isValidMove(x, y)) {
@@ -216,7 +217,7 @@ public class Battle {
 
     }
 
-    private void deathOfSiavash(Warrior defender) {
+    private void deathOfSiavash(Warrior defender) { //Done for new deathOfSiavashNew
         if (defender.getCardName().equals("Siavash")) {
             Hero hero;
             if (defender.getAccount().equals(firstPlayer)) {
@@ -252,7 +253,7 @@ public class Battle {
         return targetCell;
     }
 
-    public void attackCombo(String oppnentId, ArrayList<String> warriorsCarIds) throws Error {
+    public void attackCombo(String oppnentId, ArrayList<String> warriorsCarIds) throws Error { //Done For New attackComboNew
         ArrayList<Card> cards;
         if (turn % 2 == 1) {
             cards = firstPlayerInGameCards;
@@ -287,7 +288,7 @@ public class Battle {
         }
     }
 
-    public void useSpecialPower(Hero hero, int x, int y) {
+    public void useSpecialPower(Hero hero, int x, int y) { //Done for New useSpecialPowerNew
         if (hero.getSpecialPowerBuffs() == null) {
             throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
         }
@@ -334,7 +335,7 @@ public class Battle {
         }
     }
 
-    private void dispel() {
+    private void dispel() { //done For New dispelNew
         ArrayList<Card> cards = (currentTurnPlayer.equals(firstPlayer)) ? firstPlayerInGameCards : secondPlayerInGameCards;
         if (cards == null)
             return;
@@ -351,7 +352,7 @@ public class Battle {
         }
     }
 
-    private void AreaDispel(Random random) {
+    private void AreaDispel(Random random) { //done for new areaDispelNew
         ArrayList<Card> cards = (currentTurnPlayer.equals(firstPlayer)) ? firstPlayerInGameCards : secondPlayerInGameCards;
         if (cards == null)
             return;
@@ -776,7 +777,6 @@ public class Battle {
     }
 
 
-
     private void insertPlayerHeroesInMap() {
 
         firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
@@ -1077,6 +1077,7 @@ public class Battle {
     public boolean newCheckDeckValid(Account account) {
         return account != null && account.getMainDeck() != null && Deck.validateDeck(account.getMainDeck());
     }
+
     private void newInsertPlayerHeroesInMap() {
         getPlayer1().getDeck().getHero().setCurrentCell(map.getCell(2, 0));
         player1.getDeck().getHero().setAbleToMove(true);
@@ -1093,4 +1094,127 @@ public class Battle {
 
 
     }
+
+    public void moveCardNew(int x, int y) {
+        Cell cell = map.getCell(x, y);
+
+        if (!isValidMove(x, y)) {
+            throw new Error(ConstantMessages.INVALID_CELL_TO_MOVE.getMessage());
+        }
+        if (selectedCard.isAbleToMove()) {
+            map.moveCard(selectedCard, cell);
+            selectedCard.setAbleToMove(false);
+        } else
+            throw new Error(ConstantMessages.CARD_MOVED_BEFORE.getMessage());
+        //Take Flags for win the game
+        if (gameGoal == GameGoal.HOLD_FLAG) {
+            flagForHoldFlagGameMode.updateFlagCell();
+            takeHoldingFlag(player1.getInGameCards());
+            takeHoldingFlag(player2.getInGameCards());
+        } else if (gameGoal == GameGoal.COLLECT_FLAG) {
+            takeCollectingFlag(player1.getInGameCards());
+            takeCollectingFlag(player2.getInGameCards());
+        }
+    }
+
+    private void deathOfSiavashNew(Warrior defender) { //Done for new deathOfSiavashNew
+        if (defender.getCardName().equals("Siavash")) {
+            Hero hero;
+            if (defender.getAccount().equals(player1.getAccount())) {
+                hero = player2.getDeck().getHero();//TODO CHECK getDeck() or getInGameCards???
+            } else hero = player1.getDeck().getHero();
+            hero.decreaseHealthPoint(6);
+        }
+    }
+    public void attackComboNew(String oppnentId, ArrayList<String> warriorsCarIds) throws Error {
+        ArrayList<Card> cards;
+        if (turn % 2 == 1) {
+            cards = player1.getInGameCards();
+        } else cards = player2.getInGameCards();
+        boolean validOpponent = false;
+        for (Card card :
+                cards) {
+            if (card.getCardId().equals(oppnentId)) {
+                validOpponent = true;
+            }
+        }
+        if (!validOpponent) {
+            throw new Error("invalid Opponent for Combo");
+        }
+        boolean validAttackers;
+        for (int i = 0; i < warriorsCarIds.size(); i++) {
+            validAttackers = false;
+            for (Card card :
+                    cards) {
+                if (card.getCardId().equals(oppnentId)) {
+                    validAttackers = true;
+                }
+            }
+            if (!validAttackers) {
+                throw new Error("invalid attacker for Combo");
+            }
+        }
+        Card card = Card.findCardInArrayList(oppnentId, (turn % 2 == 1) ? player1.getInGameCards() : player2.getInGameCards());
+        for (String s :
+                warriorsCarIds) {
+            attack(s, (Warrior) card, true);
+        }
+    }
+
+
+    public void useSpecialPowerNew(Hero hero, int x, int y) { //Done for New useSpecialPowerNew
+        if (hero.getSpecialPowerBuffs() == null) {
+            throw new Error(ConstantMessages.NO_SPECIAL_POWER.getMessage());
+        }
+        if (hero.getRemainginTurntoCoolDown() <= 0) {
+
+            if (turn % 2 == 1) {
+                if (player1.getCurrentMana() < hero.getSpecialPower().getManaCost()) {
+                    throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                }
+            } else {
+                if (player2.getCurrentMana() < hero.getSpecialPower().getManaCost()) {
+                    throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                }
+            }
+            Spell spell = new Spell("", "", 0, 0, "", TargetSocietyKind.FRIENDLY_CARDS, ActivationCondition.PASSIVE, hero.getSpecialPowerBuffs());
+            applySpell(spell, x, y);
+
+        } else {
+            throw new Error(ConstantMessages.COOLDOWN.getMessage());
+        }
+    }
+
+    private void dispelNew() { //done For New dispelNew
+        ArrayList<Card> cards = (currentTurnPlayerNew.equals(player1)) ? player1.getInGameCards() : player2.getInGameCards(); //TODO CurrentTurnPlayerNew ? WHO IS THIS?
+        if (cards == null)
+            return;
+        ArrayList<Card> opponents = (currentTurnPlayerNew.equals(player1)) ? player2.getInGameCards() : player1.getInGameCards();
+        if (opponents == null)
+            return;
+        for (Card card :
+                cards) {
+            myDispel(card);
+        }
+        for (Card card :
+                opponents) {
+            opponentDispel(card);
+        }
+    }
+
+    private void areaDispelNew(Random random) { //done for new areaDispelNew
+        ArrayList<Card> cards = (currentTurnPlayerNew.equals(player1)) ? player1.getInGameCards() : player2.getInGameCards(); //TODO CurrentTurnPlayerNew ? WHO IS THIS?
+        if (cards == null)
+            return;
+        ArrayList<Card> opponents = (currentTurnPlayerNew.equals(player1)) ? player2.getInGameCards() : player1.getInGameCards();
+        if (opponents == null)
+            return;
+
+        int randomNumber = random.nextInt(cards.size());
+        Card card = cards.get(randomNumber);
+        randomNumber = random.nextInt(cards.size());
+        Card cardOpponent = opponents.get(randomNumber);
+        CancelBuff(card, cardOpponent);
+    }
+
 }
