@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Battle {
-
+    //NEW
+    private Player player1;
+    private Player player2;
+    //OLD
     private static Battle runningBattle = null;
     private Map map;
     private Account firstPlayer;
@@ -48,6 +51,38 @@ public class Battle {
 
 
     public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal) throws Error {
+        //NEW
+        if (!newCheckDeckValid(firstPlayer)) {
+            throw new Error(ConstantMessages.INVALID_DECK.getMessage());
+        } else if (!newCheckDeckValid(secondPlayer)) {
+            throw new Error(ConstantMessages.INVALID_DECK_SECOND_USER.getMessage());
+        }
+
+        player1 = new Player(firstPlayer, Deck.deepClone(firstPlayer.getMainDeck()));
+        player2 = new Player(secondPlayer, Deck.deepClone(secondPlayer.getMainDeck()));
+        getPlayer1().setAccount(firstPlayer);
+        getPlayer2().setAccount(secondPlayer);
+
+        this.gameMode = gameMode;
+        this.gameGoal = gameGoal;
+        map = new Map(this);
+        runningBattle = this;
+
+        newInsertPlayerHeroesInMap();
+
+        player1.setHand();
+        player2.setHand();
+
+        player1.setNextCard();
+        player2.setNextCard();
+
+        if (gameGoal == GameGoal.HOLD_FLAG) {
+            flagForHoldFlagGameMode = new FlagForHoldFlagGameMode("0", "Flag", ItemKind.FLAG, map.getCell(2, 4));
+            map.getCell(2, 4).setItem(flagForHoldFlagGameMode);
+        }
+
+
+        //OLD
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.gameMode = gameMode;
@@ -81,13 +116,14 @@ public class Battle {
         }
     }
 
+
     public Battle(Account firstPlayer, Account secondPlayer, GameMode gameMode, GameGoal gameGoal, int numberOfFlagForWin) throws Error {
         this(firstPlayer, secondPlayer, gameMode, gameGoal);
         this.numberOfFlagForWin = numberOfFlagForWin;
         setFlagForCollectFlagGameModes(numberOfFlagForWin);
     }
 
-    private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) {
+    private void checkDeckAtFirst(Account firstPlayer, Account secondPlayer) { //done for new
         if (firstPlayer.getMainDeck() != null && Deck.validateDeck(firstPlayer.getMainDeck())) {
             firstPlayerDeck = Deck.deepClone(firstPlayer.getMainDeck());
         } else {
@@ -739,6 +775,8 @@ public class Battle {
 
     }
 
+
+
     private void insertPlayerHeroesInMap() {
 
         firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
@@ -1017,11 +1055,42 @@ public class Battle {
 
     }
 
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
     public Deck getFirstPlayerDeck() {
         return firstPlayerDeck;
     }
 
     public Deck getSecondPlayerDeck() {
         return secondPlayerDeck;
+    }
+
+
+//new Methods:
+
+    public boolean newCheckDeckValid(Account account) {
+        return account != null && account.getMainDeck() != null && Deck.validateDeck(account.getMainDeck());
+    }
+    private void newInsertPlayerHeroesInMap() {
+        getPlayer1().getDeck().getHero().setCurrentCell(map.getCell(2, 0));
+        player1.getDeck().getHero().setAbleToMove(true);
+        map.getCell(2, 0).setCard(player1.getDeck().getHero());
+        player1.getDeck().getCards().remove(player1.getDeck().getHero());
+        player1.getInGameCards().add(player1.getDeck().getHero());
+
+
+        player2.getDeck().getHero().setCurrentCell(map.getCell(2, 8));
+        player2.getDeck().getHero().setAbleToMove(true);
+        map.getCell(2, 8).setCard(player2.getDeck().getHero());
+        player2.getDeck().getCards().remove(player2.getDeck().getHero());
+        player2.getInGameCards().add(player2.getDeck().getHero());
+
+
     }
 }

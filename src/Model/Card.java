@@ -1,7 +1,9 @@
 package Model;
 
 import Model.BuffClasses.ABuff;
+
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Card implements Cloneable {
     private static ArrayList<Card> allCards = new ArrayList<>();
@@ -45,6 +47,18 @@ public class Card implements Cloneable {
         this.cardKind = cardKind;
         this.cardDescription = cardDescription;
         addCard(this);
+    }
+
+    public static ArrayList<Card> selectRandomCardsForHand(ArrayList<Card> cards, int numberOfCards) {
+        Random random = new Random();
+        ArrayList<Card> temp = new ArrayList<>();
+
+        for (int i = 0; i < numberOfCards; i++) {
+            int randomIndex = 1 + random.nextInt(numberOfCards);
+            temp.add(cards.get(randomIndex));
+            cards.remove(randomIndex);
+        }
+        return temp;
     }
 
     public static Card findCardInArrayList(String cardId, ArrayList<Card> cards) {
@@ -200,14 +214,10 @@ public class Card implements Cloneable {
         this.cardName = cardName;
     }
 
-    public static Card deepClone(Card card)
-    {
-        if (card instanceof Warrior)
-        {
+    public static Card deepClone(Card card) {
+        if (card instanceof Warrior) {
             return Warrior.deepClone((Warrior) card);
-        }
-        else if (card instanceof Spell)
-        {
+        } else if (card instanceof Spell) {
             return Spell.deepClone((Spell) card);
         }
         return null;
