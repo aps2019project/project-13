@@ -29,7 +29,7 @@ public class Spell extends Card implements Cloneable {
                  ActivationCondition activationCondition, SpecialPowerBuffs specialPowerBuffs) {
         super(cardName, cardId, manaCost, darikCost, CardKind.MINION, cardDescription);
         this.targetSocietyKind = targetSocietyKind;
-       // this.spellName = spellName;
+        // this.spellName = spellName;
         this.activationCondition = activationCondition;
         this.specialPowerBuffs = specialPowerBuffs;
         addToAllSpells(this);

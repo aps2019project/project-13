@@ -39,7 +39,7 @@ public class SpecialPowerBuffsMaker {
     static SpecialPowerBuffs wolfSPB = new SpecialPowerBuffs(ActivationCondition.ATTACK, TargetSocietyKind.ENEMY_CARDS,
             wolfBuffs);
 
-    static SpecialPowerBuffs mageSPB = new SpecialPowerBuffs(ActivationCondition.PASSIVE , TargetSocietyKind.FRIENDLY_CARDS , mageBuffs);
+    static SpecialPowerBuffs mageSPB = new SpecialPowerBuffs(ActivationCondition.PASSIVE, TargetSocietyKind.FRIENDLY_CARDS, mageBuffs);
 
     public static void buffMaker() {
         //Persian Swordsman
@@ -65,8 +65,8 @@ public class SpecialPowerBuffsMaker {
         wolfBuffs.add(new PoisonBuff(null, 1, 6, true));
 
         //Mage
-        mageBuffs.add(new PowerBuff(PowerAndWeaknessBuffType.ATTACK,2,null,1,true));
-        mageBuffs.add(new WeaknessBuff(PowerAndWeaknessBuffType.HEALTH,1,null,1,true));
+        mageBuffs.add(new PowerBuff(PowerAndWeaknessBuffType.ATTACK, 2, null, 1, true));
+        mageBuffs.add(new WeaknessBuff(PowerAndWeaknessBuffType.HEALTH, 1, null, 1, true));
 
 
     }

@@ -756,23 +756,26 @@ public class Battle {
     @Override
     public String toString() {
         //TODO CHECK NULL POINTERS.
-        String s = String.format("%-10%-20s%-20s%-20s%-20s\n","No.","Player","Hero Name" , "Health Points of Hero", "Mana");
+        String s = String.format("%-10s%-20s%-20s%-20s%-20s\n", "No.", "Player", "Hero Name", "Health Points of Hero", "Mana");
         StringBuilder sb = new StringBuilder();
         sb.append(s);
-        s = String.format("%-10%-20s%-20s%-20s%-20s\n" , "1.",getFirstPlayer().getUsername(),getFirstPlayer().getMainDeck().getHero().getCardName(),
-                getFirstPlayer().getMainDeck().getHero().getHealthPoint(),(getFirstPlayerMana()));
+        s = String.format("%-10s%-20s%-20s%-20s%-20s\n", "1.", getFirstPlayer().getUsername(), getFirstPlayer().getMainDeck().getHero().getCardName(),
+                getFirstPlayer().getMainDeck().getHero().getHealthPoint(), (getFirstPlayerMana()));
         sb.append(s);
-        s = String.format("%-10%-20s%-20s%-20s%-20s\n" , "1.",getSecondPlayer().getUsername(),getSecondPlayer().getMainDeck().getHero().getCardName(),
-                getSecondPlayer().getMainDeck().getHero().getHealthPoint(),(getSecondPlayerMana()));
+        s = String.format("%-10s%-20s%-20s%-20s%-20s\n", "2.", getSecondPlayer().getUsername(), getSecondPlayer().getMainDeck().getHero().getCardName(),
+                getSecondPlayer().getMainDeck().getHero().getHealthPoint(), (getSecondPlayerMana()));
         sb.append(s);
-                sb.append("Game Goal: ").append(getGameGoal() == GameGoal.KILL_HERO ? "Kill Hero" : getGameGoal() == GameGoal.HOLD_FLAG ? "Hold Flag" : "Collect Flag");
+        sb.append("Game Goal: ").append(getGameGoal() == GameGoal.KILL_HERO ? "Kill Hero" : getGameGoal() == GameGoal.HOLD_FLAG ? "Hold Flag" : "Collect Flag").append("\n");
         if (getGameGoal() == GameGoal.HOLD_FLAG) {
             sb.append("Flag Coordinates : Row: " + getFlagForHoldFlagGameMode().getCurrentCell().getRow() + " Column: " + getFlagForHoldFlagGameMode().getCurrentCell().getColumn()
-                    + " Flag Owner: " + getFlagForHoldFlagGameMode().getFlagHolder().getAccount());
+                    + " Flag Owner: " + (getFlagForHoldFlagGameMode().getFlagHolder() != null ? getFlagForHoldFlagGameMode().getFlagHolder().getAccount().getUsername() : "No one"));
         } else if (getGameGoal() == GameGoal.COLLECT_FLAG) {
             StringBuilder temp = new StringBuilder();
             for (FlagForCollectFlagGameMode flagForCollectFlagGameMode : getFlagForCollectFlagGameModes()) {
-                temp.append("CardName: ").append(flagForCollectFlagGameMode.getOwner().getCardName()).append(" ").append("Player: ").append(flagForCollectFlagGameMode.getOwner().getAccount().getUsername()).append("\n");
+                if (flagForCollectFlagGameMode.getOwner() != null) {
+                    temp.append("CardName: ").append(flagForCollectFlagGameMode.getOwner().getCardName()).append(" ").append("Player: ").append(flagForCollectFlagGameMode.getOwner().getAccount().getUsername()).append("\n");
+
+                }
             }
             sb.append(temp);
         }

@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Player {
     private Account account;
-    private int capacityMana=2;
-    private int currentMana=2;
+    private int capacityMana = 2;
+    private int currentMana = 2;
     private ArrayList<Card> graveyard = new ArrayList<>();
     private ArrayList<Card> hand = new ArrayList<>();
     private Card nextCard;
@@ -14,14 +14,13 @@ public class Player {
     private ArrayList<Card> inGameCards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private int flags;
-public Player()
-{
 
-}
+    public Player() {
 
-    public  void incrementFlags(int i)
-    {
-        setFlags(getFlags()+1);
+    }
+
+    public void incrementFlags(int i) {
+        setFlags(getFlags() + 1);
     }
 
     public void setNextCard() {

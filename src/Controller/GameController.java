@@ -221,7 +221,7 @@ public class GameController {
         }
     }
 
-    private void comboAttack(String Ids)throws Error {
+    private void comboAttack(String Ids) throws Error {
         String[] cardIds = Ids.split(" ");
         String opponentsId = cardIds[0];
         ArrayList<String> warriorIds = new ArrayList<>(Arrays.asList(cardIds).subList(1, cardIds.length));
@@ -234,7 +234,7 @@ public class GameController {
         if (!isValid) {
             show.invalidCombo();
         }
-        Battle.getRunningBattle().attackCombo(opponentsId,warriorIds);
+        Battle.getRunningBattle().attackCombo(opponentsId, warriorIds);
 
     }
 

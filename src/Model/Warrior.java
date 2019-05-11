@@ -23,7 +23,6 @@ public class Warrior extends Card implements Cloneable {
     private ArrayList<ABuff> buffs = new ArrayList<>();
 
 
-
     public Warrior(String cardName, String cardId, int manaCost, int darikCost, CardKind cardKind, String cardDescription,
                    int healthPoint, int actionPower, int attackRange, AttackKind attackKind, SpecialPowerBuffs specialPowerBuffs) {
 
