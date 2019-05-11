@@ -596,7 +596,7 @@ public class Battle {
         }
     }
 
-    private void endOfCollectFlagGameMode() {
+    private void endOfCollectFlagGameMode() { //Done for New endOfCollectFlagGameModeNew()
         if (firstPlayerFlags >= numberOfFlagForWin / 2) {
             setWinner(firstPlayer);
             endGame = true;
@@ -606,7 +606,7 @@ public class Battle {
         }
     }
 
-    private void takeCollectingFlag(ArrayList<Card> inGameCards) {
+    private void takeCollectingFlag(ArrayList<Card> inGameCards) { //Done for New takeColelctingFlagNew
         setCurrentTurnPlayer();
         for (Card inGameCard : inGameCards) {
             for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
@@ -626,7 +626,7 @@ public class Battle {
         }
     }
 
-    public Account getOtherTurnPlayer() {
+    public Account getOtherTurnPlayer() { //Done for New getOtherTurnPlayerNew
         if (getTurn() % 2 == 1) {
             return secondPlayer;
         } else {
@@ -705,7 +705,7 @@ public class Battle {
 
     }
 
-    private boolean isValidInsert(Cell destinationCell) {
+    private boolean isValidInsert(Cell destinationCell) { //Done for new isValidInsertNew
         Deck deck;
         if (turn % 2 == 1)
             deck = firstPlayerDeck;
@@ -767,17 +767,18 @@ public class Battle {
         return map.getDistanceOfTwoCell(targetCell, warrior.getCurrentCell()) <= 1;
     }
 
-    private void setHandOfFirstPlayer() {
+    private void setHandOfFirstPlayer() { //Done for New
         firstPlayerHand = selectRandomCardsForHand(firstPlayerDeck.getCards());
+
     }
 
-    private void setHandOfSecondPlayer() {
+    private void setHandOfSecondPlayer() { //Done for New
         secondPlayerHand = selectRandomCardsForHand(secondPlayerDeck.getCards());
 
     }
 
 
-    private void insertPlayerHeroesInMap() {
+    private void insertPlayerHeroesInMap() { //Done For New insertPlayerHeroesInMapNew
 
         firstPlayerDeck.getHero().setCurrentCell(map.getCell(2, 0));
         firstPlayerDeck.getHero().setAbleToMove(true);
@@ -803,20 +804,20 @@ public class Battle {
         return temp;
     }
 
-    private void setFirstPlayerNextCard() {
+    private void setFirstPlayerNextCard() { //Done for New
         Random random = new Random();
         firstPlayerNextCard = firstPlayerDeck.getCards().get(random.nextInt(firstPlayerDeck.getCards().size()));
     }
 
-    private void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) {
+    private void setFirstPlayerCapacityMana(int firstPlayerCapacityMana) { //Done for New
         this.firstPlayerCapacityMana = firstPlayerCapacityMana;
     }
 
-    private void setSecondPlayerCapacityMana(int secondPlayerCapacityMana) {
+    private void setSecondPlayerCapacityMana(int secondPlayerCapacityMana) { //Done for New
         this.secondPlayerCapacityMana = secondPlayerCapacityMana;
     }
 
-    public void increaseCapacityMana(Account account, int i) {
+    public void increaseCapacityMana(Account account, int i) { //Done for New
         if (account.equals(getFirstPlayer())) {
             incrementFirstPlayerCapacityMana(i);
         } else if (account.equals(getSecondPlayer())) {
@@ -824,11 +825,11 @@ public class Battle {
         }
     }
 
-    private void incrementFirstPlayerCapacityMana(int i) {
+    private void incrementFirstPlayerCapacityMana(int i) { //Done for New
         setFirstPlayerCapacityMana(getFirstPlayerCapacityMana() + i);
     }
 
-    private void incrementSecondPlayerCapacityMana(int i) {
+    private void incrementSecondPlayerCapacityMana(int i) { //Done For New
         setSecondPlayerCapacityMana(getSecondPlayerCapacityMana() + i);
     }
 
@@ -925,11 +926,11 @@ public class Battle {
         return player2.getAccount();
     }
 
-    private int getFirstPlayerCapacityMana() {
+    private int getFirstPlayerCapacityMana() { //Done for New
         return firstPlayerCapacityMana;
     }
 
-    private int getSecondPlayerCapacityMana() {
+    private int getSecondPlayerCapacityMana() { // Done for New
         return secondPlayerCapacityMana;
     }
 
@@ -1134,6 +1135,7 @@ public class Battle {
             hero.decreaseHealthPoint(6);
         }
     }
+
     public void attackComboNew(String oppnentId, ArrayList<String> warriorsCarIds) throws Error {
         ArrayList<Card> cards;
         if (turn % 2 == 1) {
@@ -1275,6 +1277,7 @@ public class Battle {
             ((UsableItem) currentTurnPlayerNew.getDeck().getItem()).assassinationDagger();
         }
     }
+
     public void endTurnNew() throws Error { //Done for new endTurnNew
         setCurrentTurnPlayerNew();
         endGame();
@@ -1359,6 +1362,7 @@ public class Battle {
         player2.setCurrentMana(player2.getCapacityMana());
 
     }
+
     private void incrementTurnNew() {
         setCurrentTurnPlayerNew();
         if (player1.getNextCard() == null && getTurn() % 2 == 1)
@@ -1397,5 +1401,117 @@ public class Battle {
         }
     }
 
+    private void endOfCollectFlagGameModeNew() { //Done for New endOfCollectFlagGameModeNew
+        if (player1.getFlags() >= numberOfFlagForWin / 2) {
+            setWinner(player1.getAccount());
+            endGame = true;
+        } else if (player2.getFlags() >= numberOfFlagForWin / 2) {
+            setWinner(player2.getAccount());
+            endGame = true;
+        }
+    }
 
+    private void takeCollectingFlagNew(ArrayList<Card> inGameCards) { //Done for New takeColelctingFlagNew
+        setCurrentTurnPlayerNew();
+        for (Card inGameCard : inGameCards) {
+            for (int j = 0; j < flagForCollectFlagGameModes.size(); j++) {
+                if (inGameCard.getCurrentCell() == flagForCollectFlagGameModes.get(j).getCurrentCell()) {
+                    if (currentTurnPlayerNew.equals(player1)) {
+                        player1.incrementFlags(1);
+                    } else {
+                        player2.incrementFlags(1);
+                    }
+                    flagForCollectFlagGameModes.get(j).setOwner(inGameCard);
+                    flagForCollectFlagGameModes.get(j).getCurrentCell().setItem(null);
+                    flagForCollectFlagGameModes.get(j).setCurrentCell(null);
+                    flagForCollectFlagGameModes.remove(j);
+                    break;
+                }
+            }
+        }
+    }
+
+    public Player getOtherTurnPlayerNew() { //Done for New getOtherTurnPlayerNew
+        if (getTurn() % 2 == 1) {
+            return player2;
+        } else {
+            return player1;
+        }
+    }
+
+    private boolean isValidInsertNew(Cell destinationCell) { //Done for new isValidInsertNew
+        Deck deck;
+        if (turn % 2 == 1)
+            deck = player1.getDeck();
+        else
+            deck = player2.getDeck();
+        return (destinationCell != null) && destinationCell.isEmpty() && map.getDistanceOfTwoCell(destinationCell, deck.getHero().getCurrentCell()) <= 2;
+    }
+    private void setHandOfFirstPlayerNew() { //Done for New
+       player1.setHand();
+
+    }
+
+    private void setHandOfSecondPlayerNew() { //Done for New
+        player2.setHand();
+    }
+
+    private void insertPlayerHeroesInMapNew() { //Done For New insertPlayerHeroesInMapNew
+
+        player1.getDeck().getHero().setCurrentCell(map.getCell(2, 0));
+        player1.getDeck().getHero().setAbleToMove(true);
+        map.getCell(2, 0).setCard(player1.getDeck().getHero());
+        player1.getDeck().getCards().remove(player1.getDeck().getHero());
+        player1.getInGameCards().add(player1.getDeck().getHero());
+
+
+
+        player2.getDeck().getHero().setCurrentCell(map.getCell(2, 8));
+        player2.getDeck().getHero().setAbleToMove(true);
+        map.getCell(2, 8).setCard(player2.getDeck().getHero());
+        player2.getDeck().getCards().remove(player2.getDeck().getHero());
+        player2.getInGameCards().add(player2.getDeck().getHero());
+    }
+
+    private void setFirstPlayerNextCardNext() { //Done for New
+       player1.setNextCard();
+    }
+
+    private void setFirstPlayerCapacityManaNew(int firstPlayerCapacityMana) { //Done for New
+        player1.setCapacityMana( firstPlayerCapacityMana);
+    }
+
+    private void setSecondPlayerCapacityManaNew(int secondPlayerCapacityMana) { //Done for New
+        player2.setCapacityMana( secondPlayerCapacityMana);
+    }
+    public void increaseCapacityManaNew(Player player, int i) { //DOne for New
+        if (player.equals(getFirstPlayerNew())) {
+            incrementFirstPlayerCapacityManaNew(i);
+        } else if (player.equals(getSecondPlayerNew())) {
+            incrementSecondPlayerCapacityManaNew(i);
+        }
+    }
+    private void incrementFirstPlayerCapacityManaNew(int i) { //Done for New
+        setFirstPlayerCapacityManaNew(getFirstPlayerCapacityManaNew() + i);
+    }
+
+    private void incrementSecondPlayerCapacityManaNew(int i) { //Done for New
+        setSecondPlayerCapacityManaNew(getSecondPlayerCapacityManaNew() + i);
+    }
+
+    private void setFirstPlayerManaNew(int firstPlayerMana) { //Done for new
+        player1.setCurrentMana(firstPlayerMana);
+    }
+
+    private void setSecondPlayerManaNew(int secondPlayerMana) { //Done for New
+        player2.setCurrentMana(secondPlayerMana);
+    }
+
+    private int getFirstPlayerCapacityManaNew() {
+        return player1.getCapacityMana();
+    }
+
+    private int getSecondPlayerCapacityManaNew() {
+        return player2.getCapacityMana();
+    }
 }

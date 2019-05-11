@@ -15,6 +15,11 @@ public class Player {
     private ArrayList<Item> items = new ArrayList<>();
     private int flags;
 
+    public  void incrementFlags(int i)
+    {
+        setFlags(getFlags()+1);
+    }
+
     public void setNextCard() {
         Random random = new Random();
         nextCard = deck.getCards().get(random.nextInt(getDeck().getCards().size()));
