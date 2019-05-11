@@ -389,7 +389,7 @@ public class Battle {
         }
     }
 
-    public void insertCard(String cardName, int x, int y) throws Error {
+    public void insertCard(String cardName, int x, int y) throws Error { // Done new insertCardNew
         setCurrentTurnPlayer();
         Card card;
         if (turn % 2 == 1) {
@@ -440,7 +440,7 @@ public class Battle {
         }
     }
 
-    public void endTurn() throws Error {
+    public void endTurn() throws Error { //Done for new endTurnNew
         setCurrentTurnPlayer();
         endGame();
         if (isEndGame()) {
@@ -500,7 +500,7 @@ public class Battle {
         turnBeiginingInit();
     }
 
-    private void setHistoryAfterGame() {
+    private void setHistoryAfterGame() { ////Done for new setHistoryAfterGameNew
         getWinner().incrementCountOfWins(1);
         int numberOfWinnerPlayer;
         if (getWinner().equals(getFirstPlayer())) {
@@ -512,7 +512,7 @@ public class Battle {
         secondPlayerHistory.add(getFirstPlayer().getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
     }
 
-    private void setMana() {
+    private void setMana() { //Done for New setManaNew
         if (turn < 14) {
             setFirstPlayerCapacityMana(turn / 2 + 2);
             setSecondPlayerCapacityMana(turn / 2 + 2);
@@ -525,7 +525,7 @@ public class Battle {
 
     }
 
-    private void incrementTurn() {
+    private void incrementTurn() { //Done for new IncrementTurnNew
         setCurrentTurnPlayer();
         if (firstPlayerNextCard == null && getTurn() % 2 == 1)
             setFirstPlayerNextCard();
@@ -534,11 +534,11 @@ public class Battle {
         turn++;
     }
 
-    public void deleteDeathCardsFromMap() {
+    public void deleteDeathCardsFromMap() { //done for new deleteDeathCardsFromMapNew
         ArrayList<Card> firstDeathCards = findDeathCards(firstPlayerInGameCards);
         ArrayList<Card> secondDeathCards = findDeathCards(secondPlayerInGameCards);
         if (secondDeathCards.size() > 0)
-            System.out.println(secondDeathCards.get(0).getCardName());
+            System.out.println(secondDeathCards.get(0).getCardName()); //TODO WHAT IS THIS?! SOUT IN MODEL?
         deleteFromMap(firstDeathCards);
         deleteFromMap(secondDeathCards);
         addUsedCardsToGraveYard(firstDeathCards, secondDeathCards);
@@ -567,7 +567,7 @@ public class Battle {
 
     }
 
-    private void endOfKillHeroGameMode() {
+    private void endOfKillHeroGameMode() { //Done for new endOfKillHeroGameModeNew
         if (firstPlayerDeck.getHero().getHealthPoint() <= 0) {
             this.endGame = true;
             setWinner(secondPlayer);
@@ -917,6 +917,14 @@ public class Battle {
         return secondPlayer;
     }
 
+    public Account getFirstPlayerNew() {
+        return player1.getAccount();
+    }
+
+    public Account getSecondPlayerNew() {
+        return player2.getAccount();
+    }
+
     private int getFirstPlayerCapacityMana() {
         return firstPlayerCapacityMana;
     }
@@ -953,7 +961,7 @@ public class Battle {
         Battle.runningBattle = runningBattle;
     }
 
-    public void setCurrentTurnPlayer() {
+    public void setCurrentTurnPlayer() { //Done for New setCurrentTurnPlayerNew
         if (getTurn() % 2 == 1) {
             currentTurnPlayer = firstPlayer;
         } else {
@@ -1216,5 +1224,178 @@ public class Battle {
         Card cardOpponent = opponents.get(randomNumber);
         CancelBuff(card, cardOpponent);
     }
+
+    public void insertCardNew(String cardName, int x, int y) throws Error { // Done new insertCardNew
+        setCurrentTurnPlayerNew();
+        Card card;
+        if (turn % 2 == 1) {
+            card = Card.findCardInArrayListByName(cardName, player1.getHand());
+        } else
+            card = Card.findCardInArrayListByName(cardName, player2.getHand());
+
+        if (card != null) {
+            if (card instanceof Spell) {
+                applySpell((Spell) card, x, y);
+                return;
+            }
+            Cell cell = map.getCell(x, y);
+            if (isValidInsert(cell)) {
+                if (turn % 2 == 1) {
+                    if (player1.getCurrentMana() >= card.getManaCost()) {
+                        cell.setCard(card);
+                        card.setCurrentCell(cell);
+                        player1.getHand().remove(card);
+                        addToFirstPlayerInGameCards(card);
+                        card.setInGame(true);
+                        card.setAbleToMove(true);
+                    } else
+                        throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                } else {
+                    if (player2.getCurrentMana() >= card.getManaCost()) {
+                        cell.setCard(card);
+                        card.setCurrentCell(cell);
+                        player2.getHand().remove(card);
+                        addToSecondPlayerInGameCards(card);
+                        card.setInGame(true);
+                        card.setAbleToMove(true);
+
+                    } else
+                        throw new Error(ConstantMessages.NOT_ENOUGH_MANA.getMessage());
+                }
+            } else {
+                throw new Error(ConstantMessages.INVALID_CELL_TO_INSERT_CARD.getMessage());
+            }
+        } else {
+            throw new Error(ConstantMessages.INVALID_CARD_NAME.getMessage());
+        }
+        if (currentTurnPlayerNew.getDeck().getItem() != null && currentTurnPlayerNew.getDeck().getItem().getItemName().equals("Baptism")) {
+            ((UsableItem) currentTurnPlayer.getMainDeck().getItem()).ghosleTamid();
+        }
+        if (currentTurnPlayerNew.getDeck().getItem() != null && currentTurnPlayerNew.getDeck().getItem().getItemName().equals("Assassination_Dagger")) {
+            ((UsableItem) currentTurnPlayerNew.getDeck().getItem()).assassinationDagger();
+        }
+    }
+    public void endTurnNew() throws Error { //Done for new endTurnNew
+        setCurrentTurnPlayerNew();
+        endGame();
+        if (isEndGame()) {
+            setHistoryAfterGame();
+            return;
+        }
+        setMana();
+        if (currentTurnPlayerNew.getDeck().getItem() != null && currentTurnPlayerNew.getDeck().getItem().getItemName().equals("Wisdom_Crown")) {
+            ((UsableItem) currentTurnPlayerNew.getDeck().getItem()).tajeDanaii();
+        }
+
+        incrementTurn();
+        if (player1.getHand().size() < 5 && getTurn() % 2 == 1) {
+            player1.getHand().add(player1.getNextCard());
+            setFirstPlayerNextCard();
+        }
+        if (player2.getHand().size() < 5 && getTurn() % 2 == 0) {
+            player2.getHand().add(player2.getNextCard());
+            setSecondPlayerNextCard();
+        }
+        if (turn % 2 == 0) {
+            if (secondPlayer instanceof Ai) { //TODO CEHCK CHECK AI AI
+                try {
+                    ((Ai) secondPlayer).playGame();
+                } catch (Error error) {
+                    endTurn();
+                }
+            }
+        }
+        if (gameGoal == GameGoal.HOLD_FLAG)
+            flagForHoldFlagGameMode.incrementNumberOfTurns();
+        for (Card card :
+                getSecondPlayerInGameCards()) {
+            if (card instanceof Warrior) {
+                if (((Warrior) card).getSpecialPowerBuffs().getTargetSocietyKind().equals(TargetSocietyKind.SELF)) {
+                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric(card);
+                }
+            }
+        }
+
+        for (Card card :
+                getFirstPlayerInGameCards()) {
+            if (card instanceof Warrior) {
+                if (((Warrior) card).getSpecialPowerBuffs().getTargetSocietyKind().equals(TargetSocietyKind.SELF)) {
+                    ((Warrior) card).getSpecialPowerBuffs().useBuffsOnGeneric(card);
+                }
+            }
+        }
+        player1.getDeck().getHero().decreaseCoolDonw();
+        player2.getDeck().getHero().decreaseCoolDonw();
+
+        if (currentTurnPlayerNew.getDeck().getItem() != null && currentTurnPlayerNew.getDeck().getItem().getItemName().equals("King_Wisdom")) {
+            ((UsableItem) currentTurnPlayerNew.getDeck().getItem()).kingWisdom();
+        }
+
+        selectCard(null);
+        turnBeiginingInit();
+    }
+
+    private void setHistoryAfterGameNew() { //Done for new setHistoryAfterGameNew
+        getWinner().incrementCountOfWins(1);
+        int numberOfWinnerPlayer;
+        if (getWinner().equals(getFirstPlayerNew())) {
+            numberOfWinnerPlayer = 1;
+        } else numberOfWinnerPlayer = 2;
+        ArrayList<String> firstPlayerHistory = getFirstPlayerNew().getBattleHistory();
+        firstPlayerHistory.add(getSecondPlayerNew().getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
+        ArrayList<String> secondPlayerHistory = getSecondPlayerNew().getBattleHistory();
+        secondPlayerHistory.add(getFirstPlayerNew().getUsername() + " - " + ((numberOfWinnerPlayer == 1) ? "Win" : "Lose"));
+    }
+
+    private void setManaNew() { //Done for New setManaNew
+        if (turn < 14) {
+            player1.setCapacityMana(turn / 2 + 2);
+            player2.setCapacityMana(turn / 2 + 2);
+        } else {
+            player1.setCapacityMana(9);
+            player2.setCapacityMana(9);
+        }
+        player1.setCurrentMana(player1.getCapacityMana());
+        player2.setCurrentMana(player2.getCapacityMana());
+
+    }
+    private void incrementTurnNew() {
+        setCurrentTurnPlayerNew();
+        if (player1.getNextCard() == null && getTurn() % 2 == 1)
+            setFirstPlayerNextCard();//TODO
+        if (player2.getNextCard() == null && getTurn() % 2 == 0)
+            setSecondPlayerNextCard();
+        turn++;
+    }
+
+    public void setCurrentTurnPlayerNew() { //Done for New setCurrentTurnPlayerNew
+        if (getTurn() % 2 == 1) {
+            currentTurnPlayerNew = player1;
+        } else {
+            currentTurnPlayerNew = player2;
+        }
+    }
+
+    public void deleteDeathCardsFromMapNew() { //done for new deleteDeathCardsFromMapNew
+        ArrayList<Card> firstDeathCards = findDeathCards(player1.getInGameCards());
+        ArrayList<Card> secondDeathCards = findDeathCards(player2.getInGameCards());
+        if (secondDeathCards.size() > 0)
+            System.out.println(secondDeathCards.get(0).getCardName()); //TODO WHAT IS THIS?! SOUT IN MODEL?
+        deleteFromMap(firstDeathCards);
+        deleteFromMap(secondDeathCards);
+        addUsedCardsToGraveYard(firstDeathCards, secondDeathCards);
+
+    }
+
+    private void endOfKillHeroGameModeNew() { //Done for new endOfKillHeroGameModeNew
+        if (player1.getDeck().getHero().getHealthPoint() <= 0) {
+            this.endGame = true;
+            setWinner(player1.getAccount());
+        } else if (player2.getDeck().getHero().getHealthPoint() <= 0) {
+            this.endGame = true;
+            setWinner(player2.getAccount());
+        }
+    }
+
 
 }
