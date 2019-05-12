@@ -9,10 +9,11 @@ import java.util.Random;
 public class UsableItem extends Item {
     private int DarickCost;
     private SpecialPowerBuffs specialPowerBuffs;
-    private Battle battle = Battle.getRunningBattle();
+    private Battle battle ;
 
     public UsableItem(String itemId, String itemDescription, String itemName, int darickCost, SpecialPowerBuffs specialPowerBuffs) {
         super(itemId, itemDescription, ItemKind.USABLE, itemName);
+        battle = Battle.getRunningBattle();
         this.DarickCost = darickCost;
         this.specialPowerBuffs = specialPowerBuffs;
     }
@@ -148,6 +149,7 @@ public class UsableItem extends Item {
     }
 
     public void tajeDanaii() {
+        battle=Battle.getRunningBattle();
         if (battle.getTurn() % 2 == 1) {
             battle.increaseMana(battle.getFirstPlayer(), 1);
         } else

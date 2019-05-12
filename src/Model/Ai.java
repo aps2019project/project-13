@@ -47,7 +47,7 @@ public class Ai extends Account {
         }
         battle.findValidCell(KindOfActionForValidCells.MOVE);
         ArrayList<Cell> cells = battle.getValidCells();
-        if (cells == null)
+        if (cells == null || cells.size() == 0)
             return;
         int numberOfCell = random.nextInt(cells.size());
         Cell cell = cells.get(numberOfCell);
@@ -58,7 +58,9 @@ public class Ai extends Account {
 
     private void attack() throws Error {
         Random random = new Random();
-        selectCard();
+        Card card = selectCard();
+        if (card == null)
+            return;
         battle.findValidCell(KindOfActionForValidCells.ATTACK);
         ArrayList<Cell> cells = battle.getValidCells();
         if (cells == null || cells.size() == 0)
@@ -73,7 +75,7 @@ public class Ai extends Account {
     }
 
     private void insertCard() throws Error {
-        ArrayList<Card> cards = battle.getSecondPlayerHand();
+        ArrayList<Card> cards = battle.getPlayer2().getHand();
         Random random = new Random();
         if (cards == null || cards.size() == 0)
             return;
@@ -97,7 +99,8 @@ public class Ai extends Account {
     }
 
     private Card selectCard() throws Error {
-        ArrayList<Card> cards = battle.getSecondPlayerInGameCards();
+        ArrayList<Card> cards = battle.getPlayer2().getInGameCards();
+
         Random random = new Random();
         int numberOfCard = random.nextInt(cards.size());
         Card card = cards.get(numberOfCard);

@@ -26,8 +26,6 @@ public class GameController {
         showMenu(KindOfOrder.ACCOUNT);
         Request request = Request.getInstance();
         while (!isFinish) {
-
-
             try {
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
