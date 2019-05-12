@@ -15,15 +15,15 @@ public class CollectableItem extends Item {
         super(itemId, itemDescription, ItemKind.COLLECTIBLE, itemName);
         this.aBuffs = aBuffs;
     }
-    public static CollectableItem deepCloneCollect(CollectableItem collectableItem)
-    {
-        if (collectableItem!=null) {
+
+    public static CollectableItem deepCloneCollect(CollectableItem collectableItem) {
+        if (collectableItem != null) {
             Cloner cloner = new Cloner();
             cloner.dontClone(Account.class);
             CollectableItem collectableItemClone = cloner.deepClone(collectableItem);
             //TODO ITEM ID
         }
-            return collectableItem;
+        return collectableItem;
     }
 
     public ArrayList<ABuff> getaBuffs() {

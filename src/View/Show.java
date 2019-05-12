@@ -319,8 +319,7 @@ public class Show {
                     }
                 } else if (cells[i][j].getItem() == null) {
                     System.out.print(" 0 ");
-                }
-                else if (cells[i][j].getItem() != null) {
+                } else if (cells[i][j].getItem() != null) {
                     System.out.print(" F ");
                 }
             }
@@ -333,7 +332,8 @@ public class Show {
     public void showGetNumberOfFlag() {
         System.out.println("number of flag : ");
     }
-    public void invalidCombo(){
+
+    public void invalidCombo() {
         System.out.println(ConstantMessages.INVALID_COMMAND.getMessage());
     }
 }

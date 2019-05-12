@@ -24,7 +24,6 @@ public class SpecialPowerBuffs {
     }
 
 
-
     public <T> void useBuffsOnGeneric(T t) {
         if (t != null) {
             for (int i = 0; i < getBuffs().size(); i++) {
@@ -35,6 +34,7 @@ public class SpecialPowerBuffs {
             }
         }
     }
+
     public <T> void useBuffsOnGenericArrayList(ArrayList<T> tArrayList) {
         if (tArrayList.size() > 0) {
             for (int i = 0; i < tArrayList.size(); i++) {
@@ -45,7 +45,7 @@ public class SpecialPowerBuffs {
             }
         }
     }
-    
+
     public <T> void useBuffsOnGenericArray(T... ts) {
         if (ts.length > 0) {
             for (int i = 0; i < ts.length; i++) {

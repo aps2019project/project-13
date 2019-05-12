@@ -20,7 +20,7 @@ public class IncrementalAttackingBuff extends ABuff {
 
     public void affectOnCard(Card card) {
 
-        if (hasBuffType(IncrementalAttackingBuff.class , card.getBuffs())) {
+        if (hasBuffType(IncrementalAttackingBuff.class, card.getBuffs())) {
             card.getBuffs().add(this);
         } else {
             incrementTurns(1);

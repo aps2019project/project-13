@@ -37,6 +37,8 @@ public class Map {
     }
 
     public int getDistanceOfTwoCell(Cell firstCell, Cell secondCell) {
+        if(firstCell==null || secondCell==null)
+            return 100 ;
         return Math.abs(firstCell.getColumn() - secondCell.getColumn()) + Math.abs(firstCell.getRow() - secondCell.getRow());
 
     }

@@ -270,9 +270,8 @@ public class Deck implements Cloneable {
 //        return deck;
         //UsableItem.findItemInArrayList("1",Shop.getInstance().getItems())
 
-    return deck;
+        return deck;
     }
-
 
 
 }

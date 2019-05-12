@@ -56,12 +56,10 @@ public abstract class ABuff implements Cloneable {
         }
         return aBuffsClone;
     }
-    public static <T> boolean hasBuffType(Class<T> tClass , ArrayList<ABuff> aBuffs)
-    {
-        for (int i =0;i<aBuffs.size();i++)
-        {
-            if (aBuffs.get(i)!=null && aBuffs.get(i).getClass().equals(tClass))
-            {
+
+    public static <T> boolean hasBuffType(Class<T> tClass, ArrayList<ABuff> aBuffs) {
+        for (int i = 0; i < aBuffs.size(); i++) {
+            if (aBuffs.get(i) != null && aBuffs.get(i).getClass().equals(tClass)) {
                 return true;
             }
         }
