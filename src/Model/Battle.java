@@ -45,6 +45,8 @@ public class Battle {
         setRunningBattle(this);
         checkDeckAtFirst(firstPlayer, secondPlayer);
         insertPlayerHeroesInMap();
+        player1.setDeck(player1.getAccount().getMainDeck());
+        player2.setDeck(player2.getAccount().getMainDeck());
         setHandOfFirstPlayer();
         setHandOfSecondPlayer();
         setFirstPlayerNextCard();
@@ -1185,7 +1187,7 @@ public class Battle {
     }
 
     private void setHandOfSecondPlayer() {
-        player2.setHand(selectRandomCardsForHand(getFirstPlayerDeck().getCards()));
+        player2.setHand(selectRandomCardsForHand(getSecondPlayerDeck().getCards()));
 
     }
 
