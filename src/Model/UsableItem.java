@@ -154,7 +154,6 @@ public class UsableItem extends Item {
             battle.increaseMana(battle.getSecondPlayer(), 1);
     }
 
-
     @Override
     public String toString() {
         return "Name:" + this.getItemName() + "- Desc: " + this.getItemDescription();

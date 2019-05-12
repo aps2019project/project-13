@@ -1,11 +1,5 @@
 import Controller.*;
-import JsonAndInitializers.HeroInitializer;
-import JsonAndInitializers.MinionInitializer;
-import JsonAndInitializers.SpellInitializer;
-import JsonAndInitializers.UsableItemInitializer;
 import Model.*;
-import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.YaGsonBuilder;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.YaGsonBuilder;
 
@@ -13,8 +7,6 @@ import java.io.*;
 import java.io.FileReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -22,31 +14,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        try {
-            YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
-            Reader reader = new FileReader("accounts.json");
-            Account[] accounts = new Account[1000];
-            accounts = yaGson.fromJson(reader, (Type) Account[].class);
-            if (accounts != null) {
-                for (Account account : accounts) {
-                    Account.getAccounts().add(account);
-                }
-            }
+        initAccounts();
+        initMinions();
+        initHeroes();
+        initItems();
+        initSpells();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        GameController gamecontroller = GameController.getInstance();
+        gamecontroller.main();
+    }
+
+    private static void initHeroes() {
         YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
-        Minion[] cards = new Minion[40];
-        try (Reader reader = new FileReader("Minions_YaGson_New.json")) {
-            cards = yaGson.fromJson(reader, Minion[].class);
-        } catch (IOException e) {
-            System.out.println(":DD");
-        }
-        int i = 1;
-        for (Minion minion : cards) {
-            Shop.getInstance().addCard(minion);
-        }
 
         Hero[] heroes = new Hero[20];
         Hero[] heroes1 = new Hero[20];
@@ -68,6 +47,24 @@ public class Main {
             if (hero != null)
                 Shop.getInstance().addCard(hero);
         }
+    }
+
+    private static void initMinions() {
+        YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
+        Minion[] cards = new Minion[40];
+        try (Reader reader = new FileReader("Minions_YaGson_New.json")) {
+            cards = yaGson.fromJson(reader, Minion[].class);
+        } catch (IOException e) {
+            System.out.println(":DD");
+        }
+        int i = 1;
+        for (Minion minion : cards) {
+            Shop.getInstance().addCard(minion);
+        }
+    }
+
+    private static void initSpells() {
+        YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
 
         Spell[] spells = new Spell[20];
         try (Reader reader = new FileReader("Spells_YaGson_New.json")) {
@@ -80,6 +77,10 @@ public class Main {
                 Shop.getInstance().addCard(spells[j]);
             }
         }
+    }
+
+    private static void initItems() {
+        YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
 
         Item[] items = new Item[20];
         try (Reader reader = new FileReader("Items_YaGson_New.json")) {
@@ -92,8 +93,23 @@ public class Main {
                 Shop.getInstance().addItem((UsableItem) items[j]);
             }
         }
-
-        GameController gamecontroller = GameController.getInstance();
-        gamecontroller.main();
     }
+
+    private static void initAccounts() {
+        try {
+            YaGson yaGson = new YaGsonBuilder().setPrettyPrinting().create();
+            Reader reader = new FileReader("accounts.json");
+            Account[] accounts = new Account[1000];
+            accounts = yaGson.fromJson(reader, (Type) Account[].class);
+            if (accounts != null) {
+                for (Account account : accounts) {
+                    Account.getAccounts().add(account);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

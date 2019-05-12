@@ -18,7 +18,6 @@ public class GameController {
     }
 
     public static GameController getInstance() {
-
         return gamecontroller;
     }
 
@@ -26,8 +25,6 @@ public class GameController {
         showMenu(KindOfOrder.ACCOUNT);
         Request request = Request.getInstance();
         while (!isFinish) {
-
-
             try {
                 request.getRequest();
                 commandManagement(request, request.getKindOfOrders().get(request.getKindOfOrders().size() - 1));
@@ -221,7 +218,7 @@ public class GameController {
         }
     }
 
-    private void comboAttack(String Ids)throws Error {
+    private void comboAttack(String Ids) throws Error {
         String[] cardIds = Ids.split(" ");
         String opponentsId = cardIds[0];
         ArrayList<String> warriorIds = new ArrayList<>(Arrays.asList(cardIds).subList(1, cardIds.length));
@@ -234,7 +231,7 @@ public class GameController {
         if (!isValid) {
             show.invalidCombo();
         }
-        Battle.getRunningBattle().attackCombo(opponentsId,warriorIds);
+        Battle.getRunningBattle().attackCombo(opponentsId, warriorIds);
 
     }
 
@@ -293,7 +290,8 @@ public class GameController {
                 for (Deck deck1 :
                         Account.getLoginedAccount().getDecks()) {
                     if (deckName.equals(deck1.getDeckName())) {
-                        deck = deck1;
+                        deck = Deck.deepClone(deck1);
+
                     }
                 }
                 while (deck == null) {
@@ -303,7 +301,7 @@ public class GameController {
                     for (Deck deck1 :
                             Account.getLoginedAccount().getDecks()) {
                         if (deckName.equals(deck1.getDeckName())) {
-                            deck = deck1;
+                            deck = Deck.deepClone(deck1);
                         }
                     }
                 }
@@ -344,7 +342,7 @@ public class GameController {
             } else {
                 Ai ai = new Ai(4);
                 ai.setMainDeck(deck);
-
+                singlePlayerCustomSetCardsAccount(deck, ai);
                 if (gameGoal == GameGoal.COLLECT_FLAG) {
                     new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal, numberOfFlagForWin);
                 } else new Battle(Account.getLoginedAccount(), ai, gameMode, gameGoal);
@@ -357,6 +355,14 @@ public class GameController {
 
         }
         show.startBattle();
+    }
+
+    private void singlePlayerCustomSetCardsAccount(Deck deck, Account account) {
+        for (int i = 0; i < deck.getCards().size(); i++) {
+            deck.getCards().get(i).setCardName(Card.makeNewID(account.getUsername(), deck.getCards().get(i).getCardName(), CardCollection.getCountOfCard(deck.getCards(), deck.getCards().get(i))));
+            deck.getCards().get(i).setAccount(account);
+        }
+
     }
 
 
